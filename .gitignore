@@ -1,0 +1,6 @@
+#latex generated files
+*.log
+*.pdf
+*.tar.gz
+*.out
+*.aux

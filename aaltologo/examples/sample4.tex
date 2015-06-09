@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[finnish,english]{babel} % The document language is set to English!
+\usepackage[Insinooritieteiden korkeakoulu,Uncoated]{aaltologo}
+\begin{document}
+\AaltoLogoSmall{0.5}{?}{black}
+\vfill
+% Set the background to black, note the use of aaltoBlack color
+\colorbox{aaltoBlack}{%
+    \null\hspace*{7mm}%
+    \begin{minipage}{\linewidth}
+    \vspace*{14mm}
+    % Change the language to Finnish, only within the minipage environment!
+    \selectlanguage{finnish}
+    \AaltoLogoSmall{0.5}{?}{white}
+    \vspace*{7mm}
+    \end{minipage}
+}
+% Here the background is again white and the document language is English
+\end{document}

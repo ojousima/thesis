@@ -1,0 +1,15 @@
+\select@language {english}
+\contentsline {section}{Abstract{} }{ii}{section*.1}
+\contentsline {section}{Abstract{} (in Finnish)}{iii}{section*.2}
+\contentsline {section}{Abstract{} (in Swedish)}{iv}{section*.3}
+\contentsline {section}{Preface}{v}{section*.4}
+\contentsline {section}{Contents}{vi}{section*.5}
+\contentsline {section}{Symbols and abbreviations}{vii}{section*.7}
+\contentsline {section}{\numberline {1}Johdanto}{1}{section.1}
+\contentsline {section}{\numberline {2}Background}{2}{section.2}
+\contentsline {section}{\numberline {3}Research material and methods}{10}{section.3}
+\contentsline {section}{\numberline {4}Results}{11}{section.4}
+\contentsline {section}{\numberline {5}Summary}{12}{section.5}
+\contentsline {section}{References}{13}{section*.18}
+\contentsline {section}{\numberline {A}Esimerkki liitteest\"a}{15}{appendix.A}
+\contentsline {section}{\numberline {B}Toinen esimerkki liitteest\"a}{16}{appendix.B}
