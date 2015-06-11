@@ -78,6 +78,8 @@
   pdftitle={Default Title, Modify},pdfauthor={Your Name},
   pdfkeywords={Modify keywords}}
 
+%Use for degree symbol
+\usepackage{gensymb}
 
 %% All that is printed on paper starts here
 \begin{document}
@@ -96,8 +98,8 @@
 %% ONLY FOR M.Sc. AND LICENTIATE THESIS: Specify your department,
 %% professorship and professorship code. 
 %%
-\department{Department of Radio Science and Technology}
-\professorship{Circuit theory}
+\department{Department of Automation and Systems Technology}
+\professorship{Smart products}
 %%
 
 %% Valitse yksi näistä kolmesta
@@ -108,7 +110,7 @@
 %\univdegree{Lic}
 
 %% Your own name (should be self explanatory...)
-\author{Teemu Teekkari}
+\author{Otso Jousimaa}
 
 %% Your thesis title comes here and again before a possible abstract in
 %% Finnish or Swedish . If the title is very long and latex does an
@@ -116,7 +118,7 @@
 %% linebreak with the \\ control character. 
 %% Do not hyphenate titles.
 %% 
-\thesistitle{Thesis template}
+\thesistitle{Energy Harvester Design for Intelligent Tire Systems}
 
 \place{Espoo}
 
@@ -132,15 +134,15 @@
 %% should be followed by a slightly longer space but is to be followed
 %% by a regular space.
 %%
-\supervisor{Prof.\ Pirjo Professori} %{Prof.\ Pirjo Professori}
+\supervisor{Prof.\ Arto Visala} %{Prof.\ Pirjo Professori}
 
 %% B.Sc. or M.Sc. thesis advisors(s). You can give upto two advisors in
 %% this template. Check with your supervisor how many official advisors
 %% you can have.
 %%
 %\advisor{Prof.\ Pirjo Professori}
-\advisor{D.Sc.\ (Tech.) Olli Ohjaaja}
-%\advisor{M.Sc.\ Polli Pohjaaja}
+\advisor{D.Sc.\ (Tech.) Ari Tuononen}
+\advisor{M.Sc.\ Yi Xiong}
 
 %% Aalto logo: syntax:
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
@@ -193,11 +195,12 @@
 \newpage
 %
 %% Abstract in Finnish.  Delete if you don't need it. 
-\thesistitle{Opinnäyteohje}
-\advisor{TkT Olli Ohjaaja}
-\degreeprogram{Electronics and electrical engineering}
-\department{Radiotieteen ja -tekniikan laitos}
-\professorship{Piiriteoria}
+\thesistitle{Energy Harvester Design for Intelligent Tire Systems}
+\advisor{DI Yi Xiong}
+\advisor{TkT Ari Tuononen}
+\degreeprogram{Automaatio- ja systeemitekniikka}
+\department{Automaatio- ja systeemitekniikan laitos}
+\professorship{Älykkäät tuotteet}
 %% Avainsanat
 \keywords{Vastus, Resistanssi,\\ Lämpötila}
 %% Tiivistelmän tekstiosa
@@ -220,25 +223,6 @@
   sekä mitä tuloksia on saatu. 
 \end{abstractpage}
 
-%% Force new page so that the Swedish abstract starts from a new page
-\newpage
-%
-%% Swedish abstract. Delete if you don't need it. 
-%% 
-\thesistitle{Arbetets titel}
-\advisor{TkD Olli Ohjaaja} %
-\degreeprogram{Electronik och electroteknik}
-\department{Institutionen för radiovetenskap och -teknik}%
-\professorship{Kretsteori}  %
-%% Abstract keywords
-\keywords{Nyckelord p\aa{} svenska,\\ Temperatur}
-%% Abstract text
-\begin{abstractpage}[swedish]
- Sammandrag p\aa{} svenska.
- Try to keep the abstract short, approximately 
- 100 words should be enough. Abstract explains your research topic, 
- the methods you have used, and the results you obtained.  
-\end{abstractpage}
 
 %% Preface
 %%
@@ -297,11 +281,8 @@ $\mathbf{B}$
 
 \begin{tabular}{ll}
 AC         & alternating current \\
-APLAC      & an object-oriented analog circuit simulator and design tool \\
-           & (originally Analysis Program for Linear Active Circuits) \\
-BCS        & Bardeen-Cooper-Schrieffer \\ %% dash between the names
 DC         & direct current \\
-TEM        & transverse eletromagnetic
+IC         & integrated circuit
 \end{tabular}
 
 
@@ -326,69 +307,24 @@ TEM        & transverse eletromagnetic
 %% Finnish-language specific thesis conventions in English. Someday 
 %% this text will possibly be translated to English.
 %%
-\section{Johdanto}
 %\section{Introduction}
+\input{introduction.tex}
 
-%% Ensimm\"ainen sivu tyhj\"aksi
-%% 
-%% Leave first page empty
-\thispagestyle{empty}
+%\section{Background}
+\input{background.tex}
 
-T\"am\"an tekstin l\"ahteen\"a oleva tiedosto on opinn\"aytteen
-pohja, jota voi k\"aytt\"a\"a kandidaatinty\"oss\"a, diplomity\"oss\"a ja
-lisensiaatinty\"oss\"a. Tekstin 
-l\"ahteen\"a oleva tiedosto on kirjoitettu  \LaTeX-tiedoston rakenteen
-opiskelemista ajatellen. Tiedoston kommentit sis\"alt\"av\"at
-tietoa, joka on hy\"odyllist\"a opinn\"aytett\"a kirjoitettaessa. 
+%\section{Literature review?}
+%\input{Literature review?}
 
-%% Esimerkki luettelosta. Lyhyt ajatusviiva on k\"ayt\"oss\"a
-%% luettelossa, ja se on pituudeltaan
-%% en dash. Merkit\"a\"an latex-koodissa --. 
-Johdanto selvitt\"a\"a samat asiat kuin tiivistelm\"a, mutta
-laveammin. Johdannossa kerrotaan yleens\"a seuraavat asiat
+%\section{Design?}
+%\input{Design.tex?}
 
-\begin{itemize}
-\item[--]Tutkimuksen taustaa ja tutkimusaiheen yleisluonteinen esittely
-\item[--]Tutkimuksen tavoitteet
-\item[--]P\"a\"akysymys ja osaongelmat
-\item[--]Tutkimuksen rajaus ja keskeiset k\"asitteet.
-\end{itemize}
+%\section{Results}
+%\input{results.tex}
 
-Lyhyiden opinn\"aytteiden johdannot ovat yleens\"a liian pitki\"a, joten
-johdannon paisuttamista on v\"altett\"av\"a. Diplomity\"oh\"on sopii johdanto,
-joka on 2--4 sivua. %% t\"ass\"a on my\"os lyhyt ajatusviiva l. en dash.
-Kandidaatinty\"on johdannon on oltava diplomity\"on
-johdantoa lyhyempi. Sopivasti tiivistetty johdanto ei kaipaa alaotsikoita.
+%\section{Conclusions}
+%\input{conclusions.tex}
 
-
-%% Opinn\"aytteess\"a jokainen osa alkaa uudelta sivulta, joten \clearpage
-%%
-%% In a thesis, every section starts a new page, hence \clearpage
-\clearpage
-
-\section{Background}
-%\section{Aikaisempi tutkimus}
-
-T\"ass\"a osassa selvitet\"a\"an, mit\"a tutkimuksen kohteena olevasta
-aiheesta tiedet\"a\"an entuudestaan. Selvityksen tulee kattaa
-tasapainoisesti koko tutkimuskentt\"a. 
-
-Kun opinn\"aytety\"ot\"a kirjoitetaan, on noudatettava 
-ohjeita, jotka koskevat opinn\"aytteen rakennetta,
-k\"ayt\"ant\"oj\"a, muotoseikkoja sek\"a ulkoasua. Esitell\"a\"an n\"ait\"a
-ohjeita tarkemmin.
-
-%% Osan hienojaottelua alaosiin, eik\"a v\"altt\"am\"att\"a edes tarpeen,
-%% t\"ass\"a vain esimerkkin\"a. K\"ayt\"a harkintasi mukaan
-%% osan jaottelua, joskus alaotsikot selvent\"av\"at asioita ja
-%% joskus vain sirpaloittavat tarpeettomasti teksti\"a.
-%%  Jaottelu menee seuraavasti:
-%% \section{osan otsikko} 
-%% \subsection{alaotsikko}
-%% \subsubsection{ala-alaotsikko}
-%% T\"at\"a pitem\"alle ei pid\"a jaotella. 
-%%
-%% Three levels of hierarchy in sectioning should be enough
 
 \subsection*{Rakenne}
 
@@ -815,30 +751,33 @@ rakenteeltaan ja ulkoasultaan.
 
 \phantomsection
 \addcontentsline{toc}{section}{\refname}
-%\addcontentsline{toc}{section}{References}
-\begin{thebibliography}{99}
+\addcontentsline{toc}{section}{References}
+\bibliography{library}
+\bibliographystyle{plain}
+
+%\begin{thebibliography}{99}
 
 %% Alla pilkun j\"alkeen on pakotettu oikea v\"ali \<v\"alily\"onti>-merkeill\"a.
-\bibitem{Kauranen} Kauranen,\ I., Mustakallio,\ M. ja Palmgren,\ V.
-  \textit{Tutkimusraportin kirjoittamisen opas opinn\"aytety\"on
-    tekij\"oille.}  Espoo, Teknillinen korkeakoulu, 2006.
+%\bibitem{Kauranen} Kauranen,\ I., Mustakallio,\ M. ja Palmgren,\ V.
+%  \textit{Tutkimusraportin kirjoittamisen opas opinn\"aytety\"on
+%    tekij\"oille.}  Espoo, Teknillinen korkeakoulu, 2006.
 
-\bibitem{Itkonen} Itkonen,\ M. \textit{Typografian k\"asikirja.} 3.\
-  painos.  Helsinki, RPS-yhti\"ot, 2007.
+%\bibitem{Itkonen} Itkonen,\ M. \textit{Typografian k\"asikirja.} 3.\
+%  painos.  Helsinki, RPS-yhti\"ot, 2007.
 
-\bibitem{Koblitz} Koblitz,\ N. \textit{A Course in Number Theory and
-    Cryptography. Graduate Texts in Mathematics 114.}  2.\ painos. New
-  York, Springer, 1994.
+%\bibitem{Koblitz} Koblitz,\ N. \textit{A Course in Number Theory and
+%    Cryptography. Graduate Texts in Mathematics 114.}  2.\ painos. New
+%  York, Springer, 1994.
 
 %% Kun on useampi nimikirjain, jokaisen nimikirjaimen v\"aliin
 %% kuuluu v\"alily\"onti. Oikea v\"alin m\"a\"ar\"a on saatu \<v\"alily\"onnill\"a>
-\bibitem{bcs} Bardeen,\ J., Cooper,\ L.\ N. ja Schrieffer,\ J.\ R.
-  Theory of Superconductivity. \textit{Physical Review,} 1957, vol.\
-  108, nro~5, s.\ 1175--1204.
+%\bibitem{bcs} Bardeen,\ J., Cooper,\ L.\ N. ja Schrieffer,\ J.\ R.
+%  Theory of Superconductivity. \textit{Physical Review,} 1957, vol.\
+%  108, nro~5, s.\ 1175--1204.
 
-\bibitem{Deschamps} Deschamps,\ G.\ A. Electromagnetics and
-  Differential Forms. \textit{Proceedings of the IEEE,} 1981, vol.\
-  69, nro~6, s.\ 676--696.
+%\bibitem{Deschamps} Deschamps,\ G.\ A. Electromagnetics and
+%  Differential Forms. \textit{Proceedings of the IEEE,} 1981, vol.\
+%  69, nro~6, s.\ 676--696.
 
 %% Alla esimerkki englanninkielisen tavuttamisen pakottamisesta.
 %% Oletusarvoisesti k\"aytet\"a\"an suomalaista tavutusta, mutta viitteiss\"a
@@ -846,80 +785,80 @@ rakenteeltaan ja ulkoasultaan.
 %% suomen kielen s\"a\"ant\"ojen mukaan. T\"am\"an voi korjata \foreignlanguage-
 %% komennolla, jonka ensimm\"ainen parametri on vieraan kielen nimi ja toinen 
 %% on vieraalla kielell\"a tavutettava teksti. 
-\bibitem{Sihvola} Sihvola,\ A.\ et al.
-  \foreignlanguage{english}{Interpretation of measurements of helix 
-    and bihelix superchiral structures.}
-  Teoksessa: Jacob,\ A.\ F. ja
-  Reinert,\ J. (toim.) \textit{Bianisotropics '98 7th International
-    Conference on Complex Media.}  Braunschweig, 3.--6.6.1998.
-  Braunscweig, Technische Universit\"at Braunschweig, 1998, s.\
-  317--320.
+%\bibitem{Sihvola} Sihvola,\ A.\ et al.
+%  \foreignlanguage{english}{Interpretation of measurements of helix 
+%    and bihelix superchiral structures.}
+%  Teoksessa: Jacob,\ A.\ F. ja
+%  Reinert,\ J. (toim.) \textit{Bianisotropics '98 7th International
+%    Conference on Complex Media.}  Braunschweig, 3.--6.6.1998.
+%  Braunscweig, Technische Universit\"at Braunschweig, 1998, s.\
+%  317--320.
 
 %% Alla on suomalainen yhdistelm\"asukunimi. Sen nimien v\"aliss\"a 
 %% k\"aytet\"a\"an yhdysmerkki\"a l. tavuviivaa, kirjoitetaan -.
-\bibitem{Lindblom} Lindblom-Yl\"anne,\ S. ja Wager,\ M.  Tieteellisten
-  opinn\"aytet\"oiden ohjaaminen. Teoksessa: Lindblom-Yl\"anne,\ S. ja
-  Nevgi,\ A. (toim.) \textit{Yliopisto- ja korkeakouluopettajan
-    k\"asikirja.}  Helsinki, WSOY, 2004, s.\ 314--325.
+%\bibitem{Lindblom} Lindblom-Yl\"anne,\ S. ja Wager,\ M.  Tieteellisten
+%  opinn\"aytet\"oiden ohjaaminen. Teoksessa: Lindblom-Yl\"anne,\ S. ja
+%  Nevgi,\ A. (toim.) \textit{Yliopisto- ja korkeakouluopettajan
+%    k\"asikirja.}  Helsinki, WSOY, 2004, s.\ 314--325.
  
-\bibitem{Miinusmaa} Miinusmaa,\ H. Neliskulmaisen rei\"an poraamisesta
-  kolmikulmaisella poralla. Diplomity\"o, Teknillinen korkeakoulu,
-  konetekniikan osasto, Espoo, 1977.
+%\bibitem{Miinusmaa} Miinusmaa,\ H. Neliskulmaisen rei\"an poraamisesta
+%  kolmikulmaisella poralla. Diplomity\"o, Teknillinen korkeakoulu,
+%  konetekniikan osasto, Espoo, 1977.
 
 %% T\"ass\"a taas pakotettu englanninkielinen tavutus. 
 %% Pedanttinen kirjoittaja pakottaa tietysti jokaiseen englanninkieliseen
 %% lauseeseen englannin tavutuksen, mutta t\"ass\"a esityksess\"a ei n\"ain ole
 %% tehty selvyyden ja l\"ahdekoodin luettavuuden takia. 
-\bibitem{Loh} Loh,\ N.\ C. High-Resolution Micromachined
-  Interferometric Accelerometer. Master's Thesis, Massachusetts
-  Institute of Technology, Cambridge,
-  \foreignlanguage{english}{Massachusetts,} 1992.
+%\bibitem{Loh} Loh,\ N.\ C. High-Resolution Micromachined
+%  Interferometric Accelerometer. Master's Thesis, Massachusetts
+%  Institute of Technology, Cambridge,
+%  \foreignlanguage{english}{Massachusetts,} 1992.
 
-\bibitem{Lonnqvist} L\"onnqvist,\ A.
-  \foreignlanguage{english}{Applications of hologram-based compact
-    range: antenna radiation pattern, radar cross section, and
-    absorber reflectivity measurements.}
-  V\"ait\"oskirja, Teknillinen korkeakoulu, s\"ahk\"o- ja tietoliikennetekniikan
-  osasto, 2006.
+%\bibitem{Lonnqvist} L\"onnqvist,\ A.
+%  \foreignlanguage{english}{Applications of hologram-based compact
+%    range: antenna radiation pattern, radar cross section, and
+%    absorber reflectivity measurements.}
+%  V\"ait\"oskirja, Teknillinen korkeakoulu, s\"ahk\"o- ja tietoliikennetekniikan
+%  osasto, 2006.
 
-\bibitem{sfs} SFS 5342. Kirjallisuusviitteiden laatiminen. 2.\ painos.
-  Helsinki, Suomen standardisoimisliitto, 2004. 20~s.
+%\bibitem{sfs} SFS 5342. Kirjallisuusviitteiden laatiminen. 2.\ painos.
+%  Helsinki, Suomen standardisoimisliitto, 2004. 20~s.
 
-\bibitem{haastattelu} Palmgren,\ V. Suunnittelija. Teknillinen
-  korkeakoulu, kirjasto. Otaniementie 9, 02150 Espoo. Haastattelu
-  15.1.2007.
+%\bibitem{haastattelu} Palmgren,\ V. Suunnittelija. Teknillinen
+%  korkeakoulu, kirjasto. Otaniementie 9, 02150 Espoo. Haastattelu
+%  15.1.2007.
 
-\bibitem{Ribeiro} Ribeiro,\ C.\ B., Ollila,\ E. ja Koivunen,\ V.
-  \foreignlanguage{english}{Stochastic Maximum-Likelihood Method for
-    MIMO Propagation Parameter Estimation.}
- \textit{IEEE Transactions
-    on Signal Processing,} verkkolehti, vol.\ 55, nro~1, s.\ 46--55.
-  Viitattu 19.1.2007. Lehti ilmestyy my\"os painettuna. DOI:
-  10.1109/TSP.2006.882057.
+%\bibitem{Ribeiro} Ribeiro,\ C.\ B., Ollila,\ E. ja Koivunen,\ V.
+%  \foreignlanguage{english}{Stochastic Maximum-Likelihood Method for
+%    MIMO Propagation Parameter Estimation.}
+% \textit{IEEE Transactions
+%    on Signal Processing,} verkkolehti, vol.\ 55, nro~1, s.\ 46--55.
+%  Viitattu 19.1.2007. Lehti ilmestyy my\"os painettuna. DOI:
+%  10.1109/TSP.2006.882057.
 
-\bibitem{Stieber} Stieber,\ T. GnuPG Hacks. \textit{Linux Journal,}
-  verkkolehti, 2006, maaliskuu, nro~143. Viitattu 19.1.2007. Lehti
-  ilmestyy my\"os painettuna. Saatavissa:
-  \url{http://www.linuxjournal.com/article/8732.}
+%\bibitem{Stieber} Stieber,\ T. GnuPG Hacks. \textit{Linux Journal,}
+%  verkkolehti, 2006, maaliskuu, nro~143. Viitattu 19.1.2007. Lehti
+%  ilmestyy my\"os painettuna. Saatavissa:
+%  \url{http://www.linuxjournal.com/article/8732.}
 
-\bibitem{kone} Pohjois-Koivisto,\ T. Voiko kone tulevaisuudessa arvata
-  tahtosi?  \textit{Apropos,} verkkolehti, helmikuu, nro~1, 2005.
-  Viitattu 19.1.2007.  Saatavissa:
-  \url{http://www.apropos.fi/1-2005/prima.php.}
+%\bibitem{kone} Pohjois-Koivisto,\ T. Voiko kone tulevaisuudessa arvata
+%  tahtosi?  \textit{Apropos,} verkkolehti, helmikuu, nro~1, 2005.
+%  Viitattu 19.1.2007.  Saatavissa:
+%  \url{http://www.apropos.fi/1-2005/prima.php.}
 
-\bibitem{Adida} Adida,\ B.  Advances in Cryptographic Voting Systems.
-  Verkkodokumentti. Ph.D.\ Thesis, Massachusetts Institute of
-  Technology, Cambridge, 
-  \foreignlanguage{english}{Massachusetts,}
-  2006. Viitattu 19.1.2007.  Saatavissa:
-  \url{http://crypto.csail.mit.edu/~cis/theses/adida-phd.pdf.}
+%\bibitem{Adida} Adida,\ B.  Advances in Cryptographic Voting Systems.
+%  Verkkodokumentti. Ph.D.\ Thesis, Massachusetts Institute of
+%  Technology, Cambridge, 
+%  \foreignlanguage{english}{Massachusetts,}
+%  2006. Viitattu 19.1.2007.  Saatavissa:
+%  \url{http://crypto.csail.mit.edu/~cis/theses/adida-phd.pdf.}
 
-\bibitem{viittaaminen} Kilpel\"ainen,\ P. WWW-l\"ahteisiin viittaaminen
-  tutkielmatekstiss\"a. Verkkodokumentti. P\"aivitetty 26.11.2001.
-  Viitattu 19.1.2007. Saatavissa:
-  \url{http://www.cs.uku.fi/~kilpelai/wwwlahteet.html.}
+%\bibitem{viittaaminen} Kilpel\"ainen,\ P. WWW-l\"ahteisiin viittaaminen
+%  tutkielmatekstiss\"a. Verkkodokumentti. P\"aivitetty 26.11.2001.
+%  Viitattu 19.1.2007. Saatavissa:
+%  \url{http://www.cs.uku.fi/~kilpelai/wwwlahteet.html.}
 
-\end{thebibliography}
+%\end{thebibliography}
 
 %% Appendices
 %% Liitteet
