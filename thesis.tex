@@ -1,0 +1,446 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                %%
+%% An example for writting your thesis using LaTeX                %%
+%% Original version by Luis Costa,  changes by Perttu Puska       %%
+%% Support for Swedish added 15092014                             %%
+%%                                                                %%
+%% This example consists of the files                             %%
+%%         thesistemplate.tex (versio 2.01)                       %%
+%%         opinnaytepohja.tex (versio 2.01) (for text in Finnish) %%
+%%         aaltothesis.cls (versio 2.01)                          %%
+%%         kuva1.eps                                              %%
+%%         kuva2.eps                                              %%
+%%         kuva1.pdf                                              %%
+%%         kuva2.pdf                                              %%
+%%                                                                %%
+%%                                                                %%
+%% Typeset either with                                            %%
+%% latex:                                                         %%
+%%             $ latex opinnaytepohja                             %%
+%%             $ latex opinnaytepohja                             %%
+%%                                                                %%
+%%   Result is the file opinnayte.dvi, which                      %%
+%%   is converted to ps format as follows:                        %%
+%%                                                                %%
+%%             $ dvips opinnaytepohja -o                          %%
+%%                                                                %%
+%%   and then to pdf as follows:                                  %%
+%%                                                                %%
+%%             $ ps2pdf opinnaytepohja.ps                         %%
+%%                                                                %%
+%% Or                                                             %%
+%% pdflatex:                                                      %%
+%%             $ pdflatex opinnaytepohja                          %%
+%%             $ pdflatex opinnaytepohja                          %%
+%%                                                                %%
+%%   Result is the file opinnaytepohja.pdf                        %%
+%%                                                                %%
+%% Explanatory comments in this example begin with                %%
+%% the characters %%, and changes that the user can make          %%
+%% with the character %                                           %%
+%%                                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Uncomment one of these:
+%% the 1st when using pdflatex, which directly typesets your document in
+%% pdf (use jpg or pdf figures), or
+%% the 2nd when producing a ps file (use eps figures, don't use ps figures!).
+\documentclass[english,12pt,a4paper,pdftex,elec,utf8]{aaltothesis}
+%\documentclass[english,12pt,a4paper,dvips]{aaltothesis}
+
+%% To the \documentclass above
+%% specify your school: arts, biz, chem, elec, eng, sci
+%% specify the character encoding scheme used by your editor: utf8, latin1
+
+%% Use one of these if you write in Finnish (see the Finnish template):
+%%
+%\documentclass[finnish,12pt,a4paper,pdftex,elec,utf8]{aaltothesis}
+%\documentclass[finnish,12pt,a4paper,dvips]{aaltothesis}
+
+\usepackage{graphicx}
+
+%% Use this if you write hard core mathematics, these are usually needed
+\usepackage{amsfonts,amssymb,amsbsy}
+
+%% Use the macros in this package to change how the hyperref package below 
+%% typesets its hypertext -- hyperlink colour, font, etc. See the package
+%% documentation. It also defines the \url macro, so use the package when 
+%% not using the hyperref package.
+%%
+%\usepackage{url}
+
+%% Use this if you want to get links and nice output. Works well with pdflatex.
+\usepackage{hyperref}
+\hypersetup{pdfpagemode=UseNone, pdfstartview=FitH,
+  colorlinks=true,urlcolor=red,linkcolor=blue,citecolor=black,
+  pdftitle={Default Title, Modify},pdfauthor={Your Name},
+  pdfkeywords={Modify keywords}}
+
+%Use for degree symbol
+\usepackage{gensymb}
+
+%for color
+\usepackage{color}
+
+%% All that is printed on paper starts here
+\begin{document}
+
+%% Change the school field to specify your school if the automatically 
+%% set name is wrong
+% \university{aalto-yliopisto}
+% \university{aalto University}
+% \school{Sähkötekniikan korkeakoulu}
+% \school{School of Electrical Engineering}
+
+%% Only for B.Sc. thesis: Choose your degree programme. 
+%\degreeprogram{Electronics and electrical engineering}
+%%
+
+%% ONLY FOR M.Sc. AND LICENTIATE THESIS: Specify your department,
+%% professorship and professorship code. 
+%%
+\department{Department of Automation and Systems Technology}
+\professorship{Smart products}
+%%
+
+%% Valitse yksi näistä kolmesta
+%%
+%% Choose one of these:
+%\univdegree{BSc}
+\univdegree{MSc}
+%\univdegree{Lic}
+
+%% Your own name (should be self explanatory...)
+\author{Otso Jousimaa}
+
+%% Your thesis title comes here and again before a possible abstract in
+%% Finnish or Swedish . If the title is very long and latex does an
+%% unsatisfactory job of breaking the lines, you will have to force a
+%% linebreak with the \\ control character. 
+%% Do not hyphenate titles.
+%% 
+\thesistitle{Energy Harvester Design for Intelligent Tire Systems}
+
+\place{Espoo}
+
+%% For B.Sc. thesis use the date when you present your thesis. 
+%% 
+%% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
+\date{XX.XX.XXXX}
+
+%% B.Sc. or M.Sc. thesis supervisor 
+%% Note the "\" after the comma. This forces the following space to be 
+%% a normal interword space, not the space that starts a new sentence. 
+%% This is done because the fullstop isn't the end of the sentence that
+%% should be followed by a slightly longer space but is to be followed
+%% by a regular space.
+%%
+\supervisor{Prof.\ Arto Visala} %{Prof.\ Pirjo Professori}
+
+%% B.Sc. or M.Sc. thesis advisors(s). You can give upto two advisors in
+%% this template. Check with your supervisor how many official advisors
+%% you can have.
+%%
+%\advisor{Prof.\ Pirjo Professori}
+\advisor{D.Sc.\ (Tech.) Ari Tuononen}
+\advisor{M.Sc.\ Yi Xiong}
+
+%% Aalto logo: syntax:
+%% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
+%%
+%% Logo language is set to be the same as the document language.
+%% Logon kieli on sama kuin dokumentin kieli
+%%
+\uselogo{aaltoRed}{''}
+
+%% Create the coverpage
+%%
+\makecoverpage
+
+
+%% Note that when writting your master's thesis in English, place
+%% the English abstract first followed by the possible Finnish abstract
+
+%% English abstract.
+%% All the information required in the abstract (your name, thesis title, etc.)
+%% is used as specified above.
+%% Specify keywords
+%%
+%% Kaikki tiivistelmässä tarvittava tieto (nimesi, työnnimi, jne.) käytetään
+%% niin kuin se on yllä määritelty.
+%% Avainsanat
+%%
+\keywords{For keywords choose concepts that are central to your thesis}
+%% Abstract text
+\begin{abstractpage}[english]
+  Your abstract in English. Try to keep the abstract short; approximately 
+  100 words should be enough. The abstract explains your research topic, 
+  the methods you have used, and the results you obtained.  
+  Your abstract in English. Try to keep the abstract short; approximately 
+  100 words should be enough. The abstract explains your research topic, 
+  the methods you have used, and the results you obtained.  
+
+  Your abstract in English. Try to keep the abstract short; approximately 
+  100 words should be enough. The abstract explains your research topic, 
+  the methods you have used, and the results you obtained.  
+  Your abstract in English. Try to keep the abstract short; approximately 
+  100 words should be enough. The abstract explains your research topic, 
+  the methods you have used, and the results you obtained.  
+\end{abstractpage}
+
+%% Force a new page so that the possible English abstract starts on a new page
+%%
+%% Pakotetaan uusi sivu varmuuden vuoksi, jotta 
+%% mahdollinen suomenkielinen ja englanninkielinen tiivistelmä
+%% eivät tule vahingossakaan samalle sivulle
+\newpage
+%
+%% Abstract in Finnish.  Delete if you don't need it. 
+\thesistitle{Energy Harvester Design for Intelligent Tire Systems}
+\advisor{DI Yi Xiong}
+\advisor{TkT Ari Tuononen}
+\degreeprogram{Automaatio- ja systeemitekniikka}
+\department{Automaatio- ja systeemitekniikan laitos}
+\professorship{Älykkäät tuotteet}
+%% Avainsanat
+\keywords{Vastus, Resistanssi,\\ Lämpötila}
+%% Tiivistelmän tekstiosa
+\begin{abstractpage}[finnish]
+  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
+  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
+  sekä mitä tuloksia on saatu. 
+  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
+  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
+  sekä mitä tuloksia on saatu. 
+
+  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
+  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
+  sekä mitä tuloksia on saatu. 
+  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
+  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
+  sekä mitä tuloksia on saatu. 
+  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
+  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
+  sekä mitä tuloksia on saatu. 
+\end{abstractpage}
+
+
+%% Preface
+%%
+%% Esipuhe 
+\mysection{Preface}
+%\mysection{Esipuhe}
+I want to thank Professor Pirjo Professori
+and my instructor Olli Ohjaaja for their 
+good and poor guidance.\\
+
+\vspace{5cm}
+Otaniemi, 16.1.2015
+
+\vspace{5mm}
+{\hfill Eddie E.\ A.\ Engineer \hspace{1cm}}
+
+%% Force new page after preface
+%%
+%% Pakotetaan varmuuden vuoksi esipuheen jälkeinen osa
+%% alkamaan uudelta sivulta
+\newpage
+
+
+%% Table of contents. 
+\thesistableofcontents
+
+
+%% Symbols and abbreviations
+\mysection{Symbols and abbreviations}
+
+\subsection*{Symbols}
+
+\begin{tabular}{ll}
+$\mathbf{B}$  & magnetic flux density  \\
+$c$              & speed of light in vacuum $\approx 3\times10^8$ [m/s]\\
+$\omega_{\mathrm{D}}$    & Debye frequency \\
+$\omega_{\mathrm{latt}}$ & average phonon frequency of lattice \\
+$\uparrow$       & electron spin direction up\\
+$\downarrow$     & electron spin direction down
+\end{tabular}
+
+\subsection*{Operators}
+
+\begin{tabular}{ll}
+$\nabla \times \mathbf{A}$              & curl of vectorin $\mathbf{A}$\\
+$\displaystyle\frac{\mbox{d}}{\mbox{d} t}$ & derivative with respect to 
+variable $t$\\[3mm]
+$\displaystyle\frac{\partial}{\partial t}$  & partial derivative with respect 
+to variable $t$ \\[3mm]
+$\sum_i $                       & sum over index $i$\\
+$\mathbf{A} \cdot \mathbf{B}$    & dot product of vectors $\mathbf{A}$ and 
+$\mathbf{B}$
+\end{tabular}
+
+\subsection*{Abbreviations}
+
+\begin{tabular}{ll}
+AC         & alternating current \\
+C          & celsius \\
+DC         & direct current \\
+IC         & integrated circuit
+\end{tabular}
+
+
+%% Tweaks the page numbering to meet the requirement of the thesis format:
+%% Begin the pagenumbering in Arabian numerals (and leave the first page
+%% of the text body empty, see \thispagestyle{empty} below).
+%% Additionally, force the actual text to begin on a new page with the 
+%% \clearpage command.
+%% \clearpage is similar to \newpage, but it also flushes the floats (figures
+%% and tables).
+%% There is no need to change these
+%%
+\cleardoublepage
+\storeinipagenumber
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+%% Text body begins. Note that since the text body
+%% is mostly in Finnish the majority of comments are
+%% also in Finnish after this point. There is no point in explaining
+%% Finnish-language specific thesis conventions in English. Someday 
+%% this text will possibly be translated to English.
+%%
+%\section{Introduction}
+\input{introduction.tex}
+
+%\section{Background}
+%% In a thesis, every section starts a new page, hence \clearpage
+\clearpage
+\input{background.tex}
+
+
+%\section{Literature review?}
+%\input{Literature review?}
+
+%\section{Design?}
+%\input{Design.tex?}
+
+%\section{Results}
+%\input{results.tex}
+
+%\section{Conclusions}
+%\input{conclusions.tex}
+
+%% L\"ahdeluettelo
+%%
+%% \phantomsection varmistaa, ett\"a hyperref-paketti latoo hypertekstilinkit
+%% oikein.
+%%
+%% The \phantomsection command is nessesary for hyperref to jump to the 
+%% correct page, in other words it puts a hyper marker on the page.
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{\refname}
+%\addcontentsline{toc}{section}{References}
+\bibliography{library}
+\bibliographystyle{plain}
+
+%% Appendices
+%% Liitteet
+\clearpage
+
+\thesisappendix
+
+\section{Esimerkki liitteest\"a\label{LiiteA}}
+
+Liitteet eiv\"at ole opinn\"aytteen kannalta v\"altt\"am\"att\"omi\"a ja 
+opinn\"aytteen tekij\"an on 
+kirjoittamaan ryhtyess\"a\"an hyv\"a ajatella p\"arj\"a\"av\"ans\"a ilman liitteit\"a.
+Kokemattomat kirjoittajat, jotka ovat huolissaan
+tekstiosan pituudesta, paisuttavat turhan 
+helposti liitteit\"a pit\"a\"akseen tekstiosan pituuden annetuissa rajoissa.
+T\"all\"a tavalla ei synny hyv\"a\"a opinn\"aytett\"a.   
+
+Liite on itsen\"ainen kokonaisuus, vaikka se t\"aydent\"a\"akin tekstiosaa.
+Liite ei siten ole pelkk\"a listaus, kuva tai taulukko, vaan 
+liitteess\"a selitet\"a\"an aina sis\"all\"on laatu ja tarkoitus. 
+
+Liitteeseen voi laittaa esimerkiksi listauksia. Alla on 
+listausesimerkki t\"am\"an liitteen luomisesta. 
+
+%% Verbatim-ymp\"arist\"o ei muotoile tai tavuta teksti\"a. Fontti on monospace.
+%% Verbatim-ymp\"arist\"on sis\"all\"a annettuja komentoja ei LaTeX k\"asittele. 
+%% Vasta \end{verbatim}-komennon j\"alkeen jatketaan k\"asittely\"a.
+\begin{verbatim}
+	\clearpage
+	\appendix
+	\addcontentsline{toc}{section}{Liite A}
+	\section*{Liite A}
+	...
+	\thispagestyle{empty}
+	...
+	teksti\"a
+	...
+	\clearpage
+\end{verbatim}
+
+Kaavojen numerointi muodostaa liitteiss\"a oman kokonaisuutensa:
+\begin{eqnarray}
+d \wedge A  &=& F, \label{liitekaava1}\\
+d \wedge F  &=& 0. \label{liitekaava2}
+\end{eqnarray}
+
+
+\clearpage
+\section{Toinen esimerkki liitteest\"a\label{LiiteB}}
+
+%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
+%%
+%% Equations, tables and figures have their own numbering in Appendices
+%\renewcommand{\theequation}{B\arabic{equation}}
+%\setcounter{equation}{0}  
+%\renewcommand{\thefigure}{B\arabic{figure}}
+%\setcounter{figure}{0}
+%\renewcommand{\thetable}{B\arabic{table}}
+%\setcounter{table}{0}
+
+Liitteiss\"a voi my\"os olla kuvia, jotka
+eiv\"at sovi leip\"atekstin joukkoon:
+%% Ymp\"arist\"on figure parametrit htb pakottavat
+%% kuvan t\"ah\"an, eik\"a LaTeX yrit\"a siirrell\"a niit\"a
+%% hyv\"aksi katsomaansa paikkaan. 
+%% Ymp\"arist\"o\"a center voi k\"aytt\"a\"a \centering-
+%% komennon sijaan
+%%
+%% Example of a figure, note the use of htb parameters which force
+%% the figure to be inserted here
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=8cm]{kuva2}
+\end{center}
+\caption{Kuvateksti, jossa on liitteen numerointi}
+\label{liitekuva}
+\end{figure}
+%%
+Liitteiden taulukoiden numerointi on kuvien ja kaavojen kaltainen:
+\begin{table}[htb]
+\caption{Taulukon kuvateksti.}
+\label{liitetaulukko}
+\begin{center}
+\fbox{
+\begin{tabular}{lp{0.5\linewidth}}
+9.00--9.55  & K\"aytett\"avyystestauksen tiedotustilaisuus (osanottajat
+ovat saaneet s\"ahk\"opostitse valmistautumisteht\"av\"at, joten tiedotustilaisuus
+voidaan pit\"a\"a lyhyen\"a).\\
+9.55--10.00 & Testausalueelle siirtyminen
+\end{tabular}}
+\end{center}
+\end{table}
+Kaavojen numerointi muodostaa liitteiss\"a oman kokonaisuutensa:
+\begin{eqnarray}
+T_{ik} &=& -p g_{ik} + w u_i u_k + \tau_{ik},  \label{liitekaava3} \\
+n_i    &=& n u_i + v_i.                      \label{liitekaava4}
+\end{eqnarray}
+
+\end{document}
