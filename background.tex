@@ -24,13 +24,13 @@ Finally there is an accelerometer which is used for gathering data out of the sy
 LTC3331			& 0.2 $\mu A$		& 80 $\mu A$ 		& 16 250 $\mu A$ 		\\ \hline
 BLE113			& 0.9 $\mu A$ 		& 275 $\mu A$ 		& 26 000 $\mu A$	\\ \hline 
 ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline \hline
-\textbf{Total power}	& 3   $\mu W$		& 3!! $\mu W$		& 65 375!! $\mu W$	
+\textbf{Total power}	& 3   $\mu W$		& 1 200 $\mu W$		& 110 000 $\mu W$	
 \end{tabular}
 }
 \end{center}
 \end{table}
 
-Power consumption grows by two orders of magnitude when the activity is stepped up to next level. Therefore it's important to keep the system in sleep whenever possible, for example when the car is parked and wake up only periodically to check if movement has started. Monitoring starts once car is moving, and device will send brief pulses over the radio link when necessary.
+Power consumption grows by orders of magnitude when the activity is stepped up to next level. Therefore it's important to keep the system in sleep whenever possible, for example when the car is parked and wake up only periodically to check if movement has started. Monitoring starts once car is moving, and device will send brief pulses over the radio link when necessary.
 
 Battery manager power draw is estimated by calculating required power to supply the rest of the circuit at 80 \% efficiency.
 
