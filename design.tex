@@ -17,29 +17,68 @@ The complete system will consist of energy harvesting source, energy storage for
 The analog sections of circuit were simulated using LTSpice IV {\color{red} reference}. Accelerometer and bluetooth module were modelled as parallel current sinks which took energy from the circuit in pulses. Energy harvesting was simulated as a high.impedance AC voltage source. 
 Battery was modelled as a voltage source with high-value capacitor and low-value resistor in series.
 
-\subsection{Energy harvester}
-\subsubsection{Overview of available methods}
-Several different methods for harvesting were experimented with to find optimal solution for the application. After initial review of energy harvesting methods, it was obvious that methods which use mechanical energy as their power source are best suited to application. Different approaches are piezoelectronic, electrostatic, electromagnetic and microelectromechanical systems (MEMS). 
+\subsection{Overview of usable energy harvesting methods}
+Several different methods for harvesting were experimented with to find optimal solution for the application. After background study on chapter {\color{red} refer to background} of energy harvesting methods, it was obvious that methods which use mechanical energy as their power source are best suited to application. Different approaches are piezoelectronic, electrostatic, electromagnetic and microelectromechanical systems (MEMS). 
 
-Piezoelectronic systems use {\color{red} review of physical basis of piezos}. Their power output is rather limited, and it is uncertain if usable output of a few milliwatts could be reached with reasonable sized / priced element stack. However, the elements are stackable, so power output can be scaled as needed if higher cost of system is allowable.
+Piezoelectronic systems use {\color{red} review of physical basis of piezos}.  The elements are stackable, so power output can be scaled as needed if higher cost of system is allowable. Their power output is rather limited, and it is uncertain if usable output of a few milliwatts could be reached with element stack of reasonable size and cost.
 
-Electrostatic devices charge plates of capacitor and use mechanical vibration to vary the structure of a capacitor. As the capacitance value changes with the structure, energy can be harvested from increased potential energy in capacitor. Drawback of this method is the required control electronics and high polarization voltages needed for maximal efficiency {\color{red} cite Electrostatic conversion for Vibration Energy harvesting}. There are also electrostatic methods which use *electrets*, Electronic Magnets. THese electrects hold constant charge and polarization for years and they can be used in electrostatic harvesters which do not require an external exitation source. While electrostatic harvesters have reached the required power levels, they are not readily available at the moment. Vibration characteristics of tyre pose additional challenges to electrostatic harvesters, as the plates must be protected against contact to one another during shocks. 
+Electrostatic devices charge plates of capacitor and use mechanical vibration to vary the structure of a capacitor. As the capacitance value changes with the structure, energy can be harvested from increased potential energy in capacitor. Drawback of this method is the required control electronics and high polarization voltages needed for maximal efficiency {\color{red} cite Electrostatic conversion for Vibration Energy harvesting}. There are also electrostatic methods which use *electrets*, Electronic Magnets {\color{red} cite}. These electrects hold constant charge and polarization for years and they can be used in electrostatic harvesters which do not require an external exitation source. While electrostatic harvesters have reached the required power levels, they are not readily available at the moment. Vibration characteristics of tyre pose additional challenges to electrostatic harvesters, as the plates must be protected against contact to one another during shocks. {\color{red} cite}
 
-Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to coil. Coil opposes the change in magnetic field by inducing electrical current in device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre. An added bonus to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency rate to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function  as a dampener to system, so no extra dampening is required. Primary concern is the survivability of a magnet in an environment with heavy shocks and vibration. 
+Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to coil. Coil opposes the change in magnetic field by inducing electrical current in device. {\color{red} cite} A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre. An added bonus to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function  as a dampener to system, so no extra dampening is required. Primary concern is the survivability of a magnet in an environment with heavy shocks and vibration. 
 
-An in-depth overview is done to broadband piezoelectric and electromagnetic methods, as they are best fits to environment and previous work has proved it's possible to generate required amounts of power with both methods.
+An in-depth overview is done to piezoelectric and electromagnetic methods, as they are best fits to environment and previous work has proved it's possible to generate required amounts of power with both methods.{\color{red} cite}
 
-\subsubsection{Broadband piezoelectric harvesting}
+\subsubsection{Resonant piezoelectric harvesting}
 A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This tuning is done by attaching a mass to the end of cantilever. This sort of tuned approach is not feasible in the environment of the tire, as the piezoelectric harvester has to be compliant enough to vibrate in low accelerations of few g's and stiff enough to withstand centripetal shocks of several hundred g's. {\color{red} Cite}. 
 
-The harvester is instead configured as a patch fixed to surface of the tire from one end. Other end will be freely moving to allow flexing and compressing for the element as recommended by Thunder and Lightning piezos {\color{red} cite datasheet / app note}. Usually this kind of approach is avoided, as it is less efficient at harvesting energy from surroundings. Tyre however has plenty of energy especially at higher speeds, so the efficiency of the harvester doesn't have to be high.
+\subsubsection{Impact based piezoelectric harvesting}
+As the resonant harvesting is not feasible in the environment inside tire, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tire. These impacts would provide energy once per rotation of a tire. This method has been tried before by {\color{red} Cite} and it was found to provide up to 4 mW of power in average. 
 
-\subsubsection{Resonant electromagnetical harvesting}
-As the electromagnetical harvester does not bend in any direction, it's better suited to be built straight up along Z-axis. The structure can be made strong enough to survive the shocks present without compromising on the harvester operation. A magnet can be suspended with a spring inside a coil. When there is vibration in addition to relatively constant centripetal force, the magnet will move along the shaft of the coil and generate electricity. 
+\subsubsection{Electromagnetical harvesting}
+As the electromagnetical harvester does not bend in any direction, it's better suited to be built straight up along Z-axis. The structure can be made strong enough to survive the shocks present without compromising on the harvester operation. A magnet can be suspended with a spring inside a coil. When there is vibration in addition to relatively constant centripetal force, the magnet will move along the shaft of the coil and generate electricity.
 
-A non-linear spring can be utilised to keep the magnet as well centered as possible over a wide range of tyre speeds. This non-linearity could also be used to shift the resonant frequency of generator to track the frequency of vibration inside the tyre. 
+A non-linear spring can be utilised to keep the magnet as well centered as possible over a wide range of tyre speeds. Theoretically this non-linearity could also be used to shift the resonant frequency of generator to track the frequency of vibration inside the tyre. In practise the movement of magnet would drive the spring outside of the resonant area. 
+
+\subsection{Electromagnetical harvester design}
+A theoretical design of linear generator was made. Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside tire to rotational movement would add to complexity and cost of the tire, generator is design to use the linear motion as the power source.
+
+Basic principle of operation is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles. Multiple phase designs can be made smaller and lighter at the expense of more complex control circuitry. {\color{red} cite}. 
+
+Adding poles to design increases the output voltage \color{red} cite a study of multi-pole} and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator. 
+
+A simulink model was built to verify feasibility of the linear generator. The model included real acceleration data from previous studies made by {\color{red} cite} and a model of generator as well as a simplified capacitive-resistive load. There is an abundance of previous work done on simulating linear generators  {\color{red} cite}, however a simplified model was used at this stage to get a proof-of-concept level generator. Further work remains in optimizing the design in terms of size, mass, power output, usable speed range, cost and long-term reliability.
+
+First design decision was whether to use a moving magnet or moving coil type of a design. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coil require flying leads  {\color{red} cite development of a moving magnet linear}.  which is a long-term reliability concern  {\color{red} cite linear electric actuators and generators}.  {\color{red} cite book Boldea, Nasar Linear electric actuators and generators p 203}. conclude that moving coil designs aren't practically interesting, so the design is focused on moving magnet generator. 
+
+A rough model for designing initial prototypes was done previously by  {\color{red} cite backpack harvester}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
+
+\begin{table}[htb]
+%% Taulukon teksti
+\caption{\label{power_consumption_table} Current and power consumption of system at different activity levels.}
+\begin{center}
+\fbox{
+\begin{tabular}{l l l}
+\textbf{Parameter}		& \textbf{Increasing} 	& \textbf{Decreasing}	\\ \hline
+Number of turns per pole	& Higher voltage	& Smaller size 		\\ \hline
+Number of poles			& Increased frequency	& Decreased frequency	\\ \hline
+Distance between poles  	& More space for wiring & Higher voltage	\\ \hline
+Wiring radius		  	& 0.9 $\mu A$ 		& 275 $\mu A$ 		\\ \hline
+Magnetic field strength  	& 0.9 $\mu A$ 		& 275 $\mu A$ 		\\ \hline
+Wire diameter		  	& 0.9 $\mu A$ 		& 275 $\mu A$ 		\\ \hline
+\end{tabular}
+}
+\end{center}
+\end{table}
+
+
 
  
+
+
+
+ 
+
+
 
 
 
