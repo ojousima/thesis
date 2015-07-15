@@ -54,32 +54,33 @@ A rough model for designing initial prototypes was done previously by  {\color{r
 
 \begin{table}[htb]
 %% Taulukon teksti
-\caption{\label{power_consumption_table} Current and power consumption of system at different activity levels.}
+\caption{\label{parameters_of_lg} Effect of parameters of generator}
 \begin{center}
 \fbox{
 \begin{tabular}{l l l}
-\textbf{Parameter}		& \textbf{Increasing} 	& \textbf{Decreasing}	\\ \hline
-Number of turns per pole	& Higher voltage	& Smaller size 		\\ \hline
-Number of poles			& Increased frequency	& Decreased frequency	\\ \hline
-Distance between poles  	& More space for wiring & Higher voltage	\\ \hline
-Wiring radius		  	& 0.9 $\mu A$ 		& 275 $\mu A$ 		\\ \hline
-Magnetic field strength  	& 0.9 $\mu A$ 		& 275 $\mu A$ 		\\ \hline
-Wire diameter		  	& 0.9 $\mu A$ 		& 275 $\mu A$ 		\\ \hline
+\textbf{Parameter}		& \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
+Number of turns in generator	& Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
+Number of poles			& Increased frequency		& Decreased frequency	\\ \hline
+Distance between poles  	& More space for wiring 	& Higher voltage, smaller size	\\ \hline
+Wiring radius		  	& More power			& Smaller length of wiring 	\\ \hline
+Magnetic field strength  	& Increased power 		& Smaller magnets 		\\ \hline
+Wire diameter		  	& Decreased wiring resistance 	& More turns in same space 	\\ \hline
+Gap to wiring			& Stronger side walls		& Incresed efficiency 
 \end{tabular}
 }
 \end{center}
 \end{table}
 
+Energy harvester designs often use several poles to increase the frequency of the power output {\color{red}cite}. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point a moot, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimized to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. 
 
+There are two different approaches to generator structure. One is magnets inside, and coils on the outer rim of the generator. Other is to use ring magnets on the outer rim and have the coils on the inside. Both methods have their advantages: Having magnets on the outside allows larger and therefore stronger magnets and creates horizontal support for the magnets as they slide along the shaft. Having coils on the outside increases wiring radius which results in greater power if other parameters are held equal. In-depth study of both concepts is done to select optimal structure for generator. 
 
- 
+The height of the generator is constrained at  {\color{yellow} confirm} 45 mm. Initially the height of {\color{gray} the} generator was selected to be 35-40 mm to leave some margin while still being as tall as possible. Lower weight is desirable to avoid unbalancing the tyre, but there is no specific absolute maximum mass for the device. 
 
+A method to counter the centripetal acceleration is needed to avoid jamming the magnet on the bottom of the generator. Ideally, such method would always balance the magnet in the middle of generator against any external constant force, but active control is not achievable without adding to complexity and power consumption of the generator itself. Passive negative feedback method has to be used instead. 
 
+Springs are often chosen {\color{red} cite few sources} to balance the magnets, but as the centripetal acceleration grows exponentially with the speed of the car, any linear spring would be usable only for very limited range of speeds. Non-linear conical springs which have the added benefit of compressing into very small height are available.
 
- 
+Another approach would be to use two additional magnets fixed to top and bottom of the generator in repulsive configuration. Force between magnets is inversely propotional to fourth power of the distance {\color{red} cite}, which leads to a strong negative feedback on the position of the magnet. 
 
-
-
-
-
-
+Magnetic floating is very attaractive solution, as magnets can be very thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. {\color{yellow} picture?}
