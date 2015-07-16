@@ -44,7 +44,7 @@ A theoretical design of linear generator was made. Most common generator designs
 
 Basic principle of operation is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles. Multiple phase designs can be made smaller and lighter at the expense of more complex control circuitry. {\color{red} cite}. 
 
-Adding poles to design increases the output voltage \color{red} cite a study of multi-pole} and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator. 
+Adding poles to design increases the output voltage {\color{red} cite a study of multi-pole} and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator. 
 
 A simulink model was built to verify feasibility of the linear generator. The model included real acceleration data from previous studies made by {\color{red} cite} and a model of generator as well as a simplified capacitive-resistive load. There is an abundance of previous work done on simulating linear generators  {\color{red} cite}, however a simplified model was used at this stage to get a proof-of-concept level generator. Further work remains in optimizing the design in terms of size, mass, power output, usable speed range, cost and long-term reliability.
 
@@ -83,4 +83,29 @@ Springs are often chosen {\color{red} cite few sources} to balance the magnets, 
 
 Another approach would be to use two additional magnets fixed to top and bottom of the generator in repulsive configuration. Force between magnets is inversely propotional to fourth power of the distance {\color{red} cite}, which leads to a strong negative feedback on the position of the magnet. 
 
-Magnetic floating is very attaractive solution, as magnets can be very thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. {\color{yellow} picture?}
+Magnetic floating is very attaractive solution, as magnets can be very thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. {\color{yellow} picture?} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have any grooves filled with suitable epoxy and the shaft should be sanded or turned to final diameter to ensure smooth sliding across the length of shaft.
+
+\subsection{Materials for the harvester}
+Material for the shaft has a few requirements. It has to have at least as good temperature characteristics as the magnet being used and it must be hard enough to not deform under impacts. Low friction coefficient is desirable as this leads to smaller losses, and long time durability under wear is of course desired. Being lightweight and easily machinable are also desired characteristics. As the generator is small, volumetric cost of the material is of little concern. For the electro-magnetic generator design material also has to be non-ferromagnetic {\color{red} verify?}. Table {\color{yellow} refer?} has comparison of different materials considered for the application.
+
+\begin{table}[htb]
+%% Taulukon teksti
+\caption{\label{parameters_of_materials} Materials for the shaft of generator}
+\begin{center}
+\fbox{
+\begin{tabular}{l l l l l l}
+\textbf{Material}& 
+\textbf{Hardness \cite{PlasticsInternational2015}}& 
+\textbf{Friction \cite{Etra}} & 
+\textbf{Durability \cite{Etra}} & 
+\textbf{Temperature \cite{Etra}}\\ \hline
+PTFE(Teflon)      & Very low   & Lowest                      & Lowest    & -190... + 250 \degree C \\ \hline
+Polycarbonate     & Very high  & High  \cite{Goodfellow}     & -         & -60... + 125 \degree C \\ \hline
+PA 6 (Nylon)      & Low        & Medium                      & High      & -40... + 80 \degree C  \\ \hline
+Oil-infused Nylon & Low        & Very low                    & Very high & -20... + 105 \degree C \\ \hline
+Acryllic          & High       & -                           & -         & -40... + 70 \degree C \\ \hline
+Polyacetal (POM C)& Medium     & Low                         & Low       & -50... + 105 \degree C \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{table}
