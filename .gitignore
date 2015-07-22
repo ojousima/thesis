@@ -16,6 +16,7 @@
 *.ans
 simulation/FEMM/*.csv
 simulation/FEMM/*.png
+simulation/FEMM/temp.fem
 
 #libreoffice, gedit backupfiles
 *~
