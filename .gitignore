@@ -4,3 +4,19 @@
 *.tar.gz
 *.out
 *.aux
+*.bbl
+*.blg
+*.toc
+
+#LTSPICE raw data
+*.raw
+
+#FEMM analysis outputs
+*.bmp
+*.ans
+simulation/FEMM/*.csv
+simulation/FEMM/*.png
+
+#libreoffice, gedit backupfiles
+*~
+*#
