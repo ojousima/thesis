@@ -1,69 +1,16 @@
 \section{Background}
-%\section{Aikaisempi tutkimus}
 
-\subsection{Power requirements of a sensor}
-The sensor system will be in three distinct states. One is sleeping, conserving power as much as possible while car is not moving.
-Second state is measuring, when the radio connection is off but electronics are active and gathering data.
-Third state is transmitting, when the data is relayed to drive computer in car.
+\subsection{Basics of tyre}
+\subsubsection{Structure of a tyre}
 
-Energy and power consumption are estimated by reviewing a few suitable components and their power requirements. 
-Energy management is handled by a specialized integrated circuit (IC), for example LTC3331 \cite{Technology}.
+\subsection{Environment inside tyre}
+The energy harvester will be placed inside the tyre. Previous studies in have shown that the tyre will experience acceleration in all three axes {\color{red} cite previous work of department}. Tangential and centripetal accelerations are dominant, they can reach amplitudes of up to 150g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
 
-Communication is handled by a Bluetooth-low energy (BLE) module, which contains a general-purpose microcontroller for application flow control.
-We use BLE113 {\color{red} refer to datasheet} as an example of such module.
+Temperature inside of the tire will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions {\color{red} source, Finnish only?}.
 
-Finally there is an accelerometer which is used for gathering data out of the system, ADXL375 {\color{red} reference to datasheet} is used as an example. ADXL is a low-power digital accelerometer with dynamic range of 200g. Table \ref{power_consumption_table}  summarizes the estimated power requirement of each subsection of system. System level voltage is selected to be 2.5 V, as that is lowest voltage which LTC3331 can supply and allows all devices to function. Lowest possible voltage is selected to reduce the power draw.
-
-\begin{table}[htb]
-%% Taulukon teksti
-\caption{\label{power_consumption_table} Current and power consumption of system at different activity levels.}
-\begin{center}
-\fbox{
-\begin{tabular}{l l r r}
-\textbf{Device}		& \textbf{Sleep} 	& \textbf{Monitoring}	& \textbf{Communicating}\\ \hline
-LTC3331			& 0.2 $\mu A$		& 80 $\mu A$ 		& 16 250 $\mu A$ 		\\ \hline
-BLE113			& 0.9 $\mu A$ 		& 275 $\mu A$ 		& 26 000 $\mu A$	\\ \hline 
-ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline \hline
-\textbf{Total power}	& 3   $\mu W$		& 1 200 $\mu W$		& 110 000 $\mu W$	
-\end{tabular}
-}
-\end{center}
-\end{table}
-
-Power consumption grows by orders of magnitude when the activity is stepped up to next level. Therefore it's important to keep the system in sleep whenever possible, for example when the car is parked and wake up only periodically to check if movement has started. Monitoring starts once car is moving, and device will send brief pulses over the radio link when necessary.
-
-Battery manager power draw is estimated by calculating required power to supply the rest of the circuit at 80 \% efficiency.
-
-\subsection{Powering the sensor}
-Traditionally wireless sensors have been powered with either primary or rechargable batteries. These systems need service at regular intervals to change or recharge the batteries. In applications where battery cannot be reached, battery lifetime often limits the lifetime of whole system. Alternative approach has been to use generators, such as fuel cells or even radioactive power sources. These systems often have a poor power density and decreasing efficiency when scaled down to small size \cite{Knight2008}. 
-
-This work explores ways to utilise energy present in tyre to power the sensor itself. A single tyre can waste as much as 500 W of power at high speeds {\color{red} source}, so harvesting even 1/100 000ths of wasted power would be enough for a well designed low-power sensor and transmitter.
-
-There are many different energy harvesting solutions which use fundamentally different physical principles and energy sources, such as thermal, solar, radio waves and mechanical. {\color{red} source}. As the energy harvester is inside tyre, solar harvesting is unfeasible. Radio wave harvesting methods rely on external radio transmissions for gathering power. As the device should work regardless of external environment, these methods are not suited for application. Thermal methods require significant temperature gradients {\color{red} source}, but previous work shows that car tire can reach only ambient plus few tens of \degree C {\color{red} source}. Therefore thermal methods would be ineffective. 
-
-Mechanical energy harvesting is a natural choice, as there is abundant amount of mechanical energy available as accelerations, vibrations and centrifugal{\color{red}?} force available inside the tyre. There are various different approaches for harvesting mechanical energy, including piezoelectronic, electrostatic, electromagnetic and microelectromechanical systems (MEMS) {\color{red} source}. To select optimal method for energy harvesting, more information about the characteristics of mechanical energy is required.
-
-{\color{yellow} refer to \cite[p.10]{Kubba2014}}
-
-The power requirements of system create additional constraints on energy harvesting method, as the energy harvester must be able to supply enough energy and power to system.
-
-\subsection{Environment inside tire}
-The energy harvester will be placed inside the tyre. Previous studies in department have shown
-that the tyre will experience acceleration in all three axes {\color{red} source}. Tangential and centripetal accelerations are dominant,
-they can reach amplitudes of up to 150g in text fixture. 
-
-In addition, literature suggests shock survival of up to {\color{red}n hundered g} is required for reliability. {\color{red} source}
-
-Temperature inside of the tire will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be
-in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions.
-
-As cars move from place to place, any energy source from environment outside the tire cannot be relied upon. 
-{\color{blue} Merge with Acceleration and vibration characteristics?}
-
-\subsection{Acceleration and vibration characteristics of tyre}
 Previous work by {\color{red}[Niskanen, Tuononen]} was used to as a basis for analysis of characteristics of acceleration inside tire. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tire. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. 
 
-Figures {\color{red}[Kuva 1, Kuva2 ]} are time domain representations of the acceleration along 3 axes {\color{red}Lis\"a\"a kuva jossa akselien suunnat}. First figure shows 10 rotations if tyre, contact with drum is clearly visible as a sudden shock. Second figure is a zoom into one rotation.
+Figures {\color{red}[Kuva 1, Kuva2 ]} are time domain representations of the acceleration along 3 axes {\color{red}Lis\"a\"a kuva jossa akselien suunnat}. First figure shows 10 rotations of tyre, contact with drum is clearly visible as a sudden shock. Second figure is a zoom into one rotation.
 
 Frequency domain representations were calculated in Matlab. There are two main contributors to base frequencies: first is the rotational frequency of tyre itself and second is the impact when the tyre deforms as it contacts the drum.. There is clearly visible series of frequency components spaced at the rotational frequency of tyre as well as shock harmonics at upper frequencies. 
 
@@ -100,3 +47,107 @@ Frequency domain representations were calculated in Matlab. There are two main c
 \end{figure}
 
 It's important to notice that the sensor used was piezoelectric, which forms a highpass filter as the operation is based on charge between layers. This charge dissipates over time, so the steady-state centripetal acceleration reads as zero. There is a constant acceleration on the device caused by rotational movement by the tire. 
+
+
+\subsection{Energy harvesting}
+\subsubsection{Overview of methods}
+First step of designing a system for energy harvesting was to identify the currently known methods and their properties. Kubba et al. \cite{Kubba2014} have done a study on tyre pressure sensor technology, they present electromagnetic, electrostatic, piezoelectric and thermal solutions as possible candidates for energy harvesting. In addition, triboelectric and magnetostrictive methods have been proposed by Bowen et al \cite{Bowen2014}. Outside of the context of tyres, Paradiso et al. \cite{Paradiso2005} present solar and radiowave harvesting techniques. Radioactive power source has been suggested by Lal et al \cite{Lal2004}. 
+
+Electromagnetic power sources are based on Faraday's law of electromagnetic induction. A magnet and a coil are put in motion relative to each other, and the changing magnetic flux through the coils of the generator produces voltage. Current through such device is determined by load resistance. Technology is widely used in power generation, where a primary power source such as wind or flow of water provides rotation for the generator. While conventional designs use rotational movement, linear generator designs exist. Boldea and Nasar \cite{Boldea1999} provide an overview of linear generator and actuator theory. 
+
+Electrostatic devices charge plates of a capacitor and use mechanical vibration to vary the structure of the capacitor. As the capacitance value changes with the structure, energy can be harvested from increased potential energy in capacitor. Drawback of this method is the required control electronics and high polarization voltages needed for maximal efficiency. There are also electrostatic methods which use electrets. These electrects hold constant charge and polarization for years and they can be used in electrostatic harvesters which do not require an external exitation source \cite{Boisseau2012}. As electret elements and electrostatic generators are not readily available, they have been excluded from this study.
+
+Piezoelectric materials generate charge in response of mechanical stress. This stress can be caused by firmly attaching the piezoelectric element to a surface which deforms (simply supported) or by leaving one end of the element free-hanging while other end is fixed (cantilevered). Dynamics of the generator are very different for the different configurations, Kim et al. \cite{Kim2014a} provides a model for impact-based piezoelectric harvester while Erturk et al. have done in-depth analysis of cantilevered piezoelectric modeling \cite{Erturk2009}. 
+
+Thermal solutions can be further diveded into subcategories. Seeback-effect where a temperature gradient in a semiconductor material causes voltage between poles of the material is widely used in temperature sensing, but to generate appreciable amounts of power large temperature gradients of over hundred \degree C are required \cite{Amatya2010} which is not practical inside tyre. Pyroelectric materials do not require differential of temperature, they generate energy when the temperature of the entire element changes \cite{Zhang2011}. As the temperature inside tyre remains rather constant over long periods of time, these methods are not practical for this application.
+
+Triboelectricity generates power using friction between two materials, a classic example of this is Benjamin Franklin's experiments on charging various rods by rubbing them against different materials. A flexible triboelectric generator has been presented by Fan et al. \cite{Fan2012}. Triboelectric sheets are not readily available and their construction is complex, so triboelectric generation is excluded from this work. 
+
+Magnetostrictive materials change their magnetic field in response to external mechanical sterss. This change can be utilised to create a magnetic flux through coils as in electromagnetic generators. A magnetostrictive generator was built by Wang et al. \cite{Wang2006}. 
+
+Solar energy can be harvested by using sun as a energy source for a thermal energy harvesting or by utilizing the photovoltaic effect to generate electricity from photons hitting photovoltaic material. Photovoltaic technology is mature and widely used, but as there is no source of light inside tyre, photovoltaic methods are not suited for the application.
+
+Radio wave harvesting uses antennas to collect energy from ambient radio transmissions, such as WiFi- and cellural signals. Patel et al \cite{Patel2014} have built a demonstration device which uses TV broadcasts as an energy source. The tyre material dampens any RF broadcasts, which makes RF energy harvesting poorly suited for the application.
+
+Radioactive energy harvesting resembles battery or fuel cell. A radioactive material is deposited in generator near piezoelectric cantilever. Radioactive decay charges proof mass of piezoelectric cantilever until the proof mass contacts the radioactive material by electrostatic attaraction, at which point the electrical charge is balanced and piezoelectric beam begins resonant vibration as in normal piezoelectric harvesting. Such a battery has lifetime limited only by half-life of the used material. Lal and Blanchard \cite{Lal2004} present such a battery. This kind of battery would be redundant for the application, as there already exists energy in rotation of tyre which can be used to energise the cantilever. 
+
+In conclusion, a wide range of energy harvesting technologies have been identified. As their primary properties are known, we can narrow down the suitable technology to electromagnetic, piezoelectric and magnetostrictive. These technologies are studied further to identify optimal choice for the application.
+
+\subsubsection{Resonant piezoelectric harvesting}
+A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This tuning is done by attaching a mass to the end of cantilever. This sort of tuned approach is not difficult in the environment of the tire, as the piezoelectric harvester has to be compliant enough to vibrate in low accelerations of few tens of g's and stiff enough to withstand centripetal shocks of several thousands of g's. Various endstop-structures have been proposed and tested, TODO
+
+
+
+\subsubsection{Impact based piezoelectric harvesting}
+As the resonant harvesting is not feasible in the environment inside tire, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tire. These impacts would provide energy once per rotation of a tire. This method has been tried before by {\color{red} Cite} and it was found to provide up to 4 mW of power in average. TODO
+
+
+
+\subsubsection{Electromagnetical harvesting}
+Electromagnetical harvesting is based on Faraday's law of induction: A loop of wire aquires electromotive force (EMF) in response to a changing magnetic field. More formally:
+
+\begin{equation}
+
+  \varepsilon = - \frac{d \Phi_{\Beta}}{d t}, 
+
+\end{equation}
+
+where $\varepsilon$ is the EMF, \Phi_{\Beta} is time, and t is time. For a tightly wound coil of wire, the equation can be stated as 
+
+\begin{equation} \label{eq:emf}
+
+  \varepsilon = -N \frac{d \Phi_{\Beta}}{d t}, 
+
+\end{equation}
+
+where N is the number of turns in a coil. \cite[p.999]{universityphysics}
+
+It's important to notice that magnetic flux through wire $\Phi_{\Beta}$ can change for a variety of reasons: the source of field can be in motion, strength of field can vary, the coil can be in motion, and the shape of coil can vary. In energy harvesting application in an environment with vibrations motional energy is readily available, so we focus on energy harvesting methods which either move the source of magnetic field or the coil itself.
+
+It's obvious from equation \eqref{eq:emf} that energy available increases with the strength of magnetic source, number of turns in a coil and rate of change in the magnetic field. 
+
+Magnetic source can be either permanent magnet or a electrically induced source as in induction motors. Induction-based generators require reactive power to start up, which means that any harvester design incorporating an induction generator would need a secondary power source to start the inductive generator. Hence the focus of this thesis will be in permanent magnet designs.
+
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=4cm]{images/cited/lgm}
+\end{center}
+\caption{A magnetically balanced linear generator Tornincasa et al. \cite{Tornincasa2012}}.
+\label{lgm}
+\end{figure}
+
+\subsubsection{Magnetostrictive harvesting}
+TODO: Magnetostrictive harvesting resembles piezoelectric harvesting. Figure \ref{magneto} shows proposed system, where magnetostrictive cantilever is sandwiched between biasing magnets and a pickup coil.  
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=4cm]{images/cited/magneto}
+\end{center}
+\caption{A magnetostrictive energy harvester by Wang et al. \cite{Wang2006}}.
+\label{magneto}
+\end{figure}
+
+\begin{comment}
+
+\subsection{Powering the sensor}
+Traditionally wireless sensors have been powered with either primary or rechargeable batteries. These systems need service at regular intervals to change or recharge the batteries. In applications where battery cannot be accessed, battery lifetime often limits the lifetime of whole system. Alternative approach has been to use generators, such as fuel cells or even radioactive power sources. These systems often have a poor power density and decreasing efficiency when scaled down to small size \cite{Knight2008}. 
+
+This work explores ways to utilise energy present in tyre to power the sensor itself. A single tyre can waste as much as 500 W of power at high speeds {\color{red} source}, so harvesting even 1/100 000ths of wasted power would be enough for a well designed low-power sensor and transmitter.
+
+There are many different energy harvesting solutions which use fundamentally different physical principles and energy sources, such as thermal, solar, radio waves and mechanical. {\color{red} source}. As the energy harvester is inside tyre, solar harvesting is unfeasible. Radio wave harvesting methods rely on external radio transmissions for gathering power. As the device should work regardless of external environment, these methods are not suited for application. Thermal methods require significant temperature gradients {\color{red} source}, but previous work shows that car tire can reach only ambient plus few tens of \degree C {\color{red} source}. Therefore thermal methods would be ineffective. 
+
+Mechanical energy harvesting is a natural choice, as there is abundant amount of mechanical energy available as accelerations, vibrations and centripetal force available inside the tyre. There are various different approaches for harvesting mechanical energy, including piezoelectronic, electrostatic, electromagnetic and microelectromechanical systems (MEMS) {\color{red} source}. To select optimal method for energy harvesting, more information about the characteristics of mechanical energy is required.
+
+{\color{yellow} refer to \cite[p.10]{Kubba2014}}
+
+The power requirements of system create additional constraints on energy harvesting method, as the energy harvester must be able to supply enough energy and power to system. In a real-world application the power management system must be able to store energy for some period of time so sensor can operate continuosly. 
+
+
+
+
+As the electromagnetical harvester does not bend in any direction, it's better suited to be built straight up along Z-axis. The structure can be made strong enough to survive the shocks present without compromising on the harvester operation. A magnet can be suspended with a spring inside a coil, or by using another magnet in a repulsing configuration as presented by Torincasa et al. \cite{Tornincasa2012}. When there is vibration in addition to relatively constant centripetal force, the magnet will move along the shaft of the coil and generate electricity. Figure \ref{lgm} shows the structure of built generator. 
+
+A non-linear spring can be utilised to keep the magnet as well centered as possible over a wide range of tyre speeds. Theoretically this non-linearity could also be used to shift the resonant frequency of generator to track the frequency of vibration inside the tyre. In practise the movement of magnet would drive the spring outside of the resonant area. 
+\end{comment}
