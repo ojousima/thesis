@@ -73,12 +73,15 @@ Radioactive energy harvesting resembles battery or fuel cell. A radioactive mate
 
 In conclusion, a wide range of energy harvesting technologies have been identified. As their primary properties are known, we can narrow down the suitable technology to electromagnetic, piezoelectric and magnetostrictive. These technologies are studied further to identify optimal choice for the application.
 
-\subsubsection{Resonant piezoelectric harvesting}
-A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This tuning is done by attaching a mass to the end of cantilever. This sort of tuned approach is not difficult in the environment of the tire, as the piezoelectric harvester has to be compliant enough to vibrate in low accelerations of few tens of g's and stiff enough to withstand centripetal shocks of several thousands of g's. Various endstop-structures have been proposed and tested, TODO
+\subsubsection{Resonance-based piezoelectric harvesting}
+Piezoelectric materials produce voltage in response to mechanical stress. The effect is bidirectional, piezoelectric element can also produce mechanical strain in response to applied voltage. The material has crystalline structure with electrical dipoles in balanced state when no stress is applied. Mechanical stress unbalances these dipoles, creating element which resembles electronically a charged capacitor. 
+
+A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. In some applications, such as in machines running at the frequency of power grid (50 HZ or 60 HZ) this kind of frequency-tuning is relatively straightforward. 
 
 
 
-\subsubsection{Impact based piezoelectric harvesting}
+
+\subsubsection{Impact-based piezoelectric harvesting}
 As the resonant harvesting is not feasible in the environment inside tire, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tire. These impacts would provide energy once per rotation of a tire. This method has been tried before by {\color{red} Cite} and it was found to provide up to 4 mW of power in average. TODO
 
 
@@ -113,6 +116,46 @@ Magnetic source can be either permanent magnet or a electrically induced source 
 \caption{A magnetically balanced linear generator Tornincasa et al. \cite{Tornincasa2012}}.
 \label{lgm}
 \end{figure}
+
+In addition to voltage available from the generator, it's important to consider source impedance. A very simple electrical equivalent model of the generator is presented in \ref{gen_simple}, where generator is presented as a voltage source in series with lumped inductor and resistor \cite{Jirutitijaroen2012}. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=2cm]{images/own_dwg/gen_simple}
+\end{center}
+\caption{A simple electromachanical generator equivalent circuit.}.
+\label{gen_simple}
+\end{figure}
+
+This model is greatly simplified and it does not account for factors such as effect of electromagnetical force on mechanical structure of the generator. Even with these limitations, model is still useful as it can be used to determine an optimal load for the generator. 
+
+The power output can be written formally as:
+
+\begin{equation} \label{eq:gen_simple_power}
+  P_{generated}(s) = V_{generated}(s)*I_{generated}(s),
+\end{equation}
+
+where $P_{generated}(s), V_{generated}(s), I_{generated}(s)$ are complex laplace-domain power, voltage and current dependent on frequency. It can be seen that power is generated only when there is a load available, as without load there is no current flow into our out of generator. Voltage is determined by EMF as described above. Current can be written as: 
+
+\begin{equation} \label{eq:gen_simple_current}
+  I_{generated}(s) = \frac{V_{generated}(s)}{Z_{generator}(s)+Z_{load}(s)},
+\end{equation}
+
+where substituting $Z_{generator}(s) $ and $ Z_{load}(s)$ are complex impedances of load and generator. This equation is valid only for linear systems, so for example rectifying and converting power with switch mode power supply (SMPS) reduces accuracy of the equation. Substituting \eqref{eq:gen_simple_current} into \eqref{eq:gen_simple_power} we obtain:
+
+\begin{equation}
+  P_{generated}(s) = V_{generated}(s)*\frac{V_{generated}(s)}{Z_{generator}(s)+Z_{load}(s)}.
+\end{equation}
+
+Total power into load can be written as:
+
+\begin{equation} \label{eq:generator_load_power}
+  P_{load}(s) = V_{generated}(s)*\frac{Z_{load}(s)}{Z_{generator}(s)+Z_{load}(s)}*\frac{V_{generated}(s)}{Z_{generator}(s)+Z_{load}(s)}.
+\end{equation}
+
+It's easy to see from \eqref{eq:generator_load_power} that if load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when $Z_{generator}(s) = Z_{load}(s)$. Another consideration is efficiency of the generator. The electrical efficiency is defined as ratio of power flowing into load and total power generated. It's easily seen from equation \eqref{eq:generator_load_power} that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tire, so it makes sense to try to match the load impedance for maximum power.
+
+
 
 \subsubsection{Magnetostrictive harvesting}
 TODO: Magnetostrictive harvesting resembles piezoelectric harvesting. Figure \ref{magneto} shows proposed system, where magnetostrictive cantilever is sandwiched between biasing magnets and a pickup coil.  
