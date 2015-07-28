@@ -47,9 +47,7 @@ Battery manager power draw is estimated by calculating required power to supply 
 
 
 \subsection{Electromagnetical harvester design}
-
-
-
+\subsubsection{Basics of electromagnetical vibration harvester}
 Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to coil. Coil opposes the change in magnetic field by inducing electrical current in device. {\color{red} cite} A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre. An added bonus to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function  as a dampener to system, so no extra dampening is required. Primary concern is the survivability of a magnet in an environment with heavy shocks and vibration. 
 
 A theoretical design of linear generator was made. Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside tire to rotational movement would add to complexity and cost of the tire, generator is design to use the linear motion as the power source.
@@ -97,13 +95,58 @@ Another approach would be to use two additional magnets fixed to top and bottom 
 
 Magnetic floating is very attaractive solution, as magnets can be very thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. {\color{yellow} picture?} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have any grooves filled with suitable epoxy and the shaft should be sanded or turned to final diameter to ensure smooth sliding across the length of shaft.
 
+\subsubsection{Analytical model of electromagnetical vibration harvester}
+A common starting point for analysis of linear generator is to model the mechanical domain as Mass-Spring-Dampener system decipted in figure \ref{MSD}. A mass "floats" in system, a spring balances the mass towards balance and a damper represents frictional forces opposing any movement of mass. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=6cm]{images/own_dwg/MSD.jpg}
+\end{center}
+\caption{\label{MSD} Mass-spring-damper system.}
+\end{figure}
+
+Input Y is the force applied to the base of system, output U is the position of mass block relative to "zero". Zero is usually set to point where mass settles when no input, including gravity, is applied to system. Paramters m, B, and k are mass, damping constant and spring constant of system, respectively. Input-output-equation in time domain can be written as: 
+
+\begin{equation}\label{eq:MSD_basic}
+  m * \ddot{U}(t) + B * \dot{U}(t) + k * U(t) = Y(t). 
+\end{equation}
+
+As the force $ Y(t) $ is defined as $ Y(t) = m*a(t) $, and the acceleration $ a(t)$ can be considered constant regardless of any reasonable mass $ m $ of system, equation \eqref{eq:MSD_basic} can be written as:
+
+\begin{equation}\label{eq:MSD_acceleration}
+ \ddot{U}(t) + \frac{B * \dot{U}(t)}{m} + \frac{k * U(t)}{m} = a(t). 
+\end{equation}
+
+This form is convenient for analysis, as the acceleration measurements from previous research are available and they represent real-world values. Mass m can be considered constant, as the system does not exchange matter with surrounding environment. As magnetic suspension was selected, the paramter k cannot be considered as a constant, but rather a function of mass position $k(U)$. Centripetal force can be considered as a constant DC-component of function $Y(t)$, and is not included in analysis of function $k(U)$. According to D. Amrani \cite{Amrani2015} force between two magnets can be approximated as
+
+\begin{equation}\label{eq:magnetic_force}
+  F(x) = \frac{3 \mu_0 m_1 m_2}{2 \pi} * \frac{1}{x^4},
+\end{equation}
+
+where $F(x)$ is force as a function of distance x between magnets, $\mu_0$ is the permeability of vacuum, $ m_1 $ and $ m_2 $ are magnetic dipole moments of magnets under examination. This equation is only valid when x >> h, where h is thickness of the magnet. As two magnets are used to suspend the rotor magnet, total force acting on mass becomes 
+
+\begin{equation}\label{eq:magnetic_force_middle}
+  F(x) = \frac{3 \mu_0 m_r m_l}{2 \pi} * \frac{1}{(x_0+x)^4} - \frac{3 \mu_0 m_r m_u}{2 \pi} * \frac{1}{(x_0-x)^4},
+\end{equation}
+
+where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, upper suspending magnet, and rotor magnet. $x_0$ is the distance to middle point of generator and $x$ is the displacement of rotor magnet from aforementioned middle point, positive direction being upwards. Figure {\color{red}draw figure} shows the system.
+
+Regrettably, the expression \eqref{eq:magnetic_force_middle} is very inaccurate for magnets where diameter is large compared to thickness of magnet, and the problems are compounded when distance between magnets is small. Therefore final design should be optimized using measurement data or finite element analysis (FEA) for determining $k(U)$. 
+
+Damping parameter $B$ is likevise a function electromagnetic force acting on magnet, friction between magnet and stator and pneumatic damping caused by compression of air in generator. Tornincase et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $B_{emf}, B_{friction}, and B_{air}$, respectively. $B_{emf}$ represents power extracted from the system into electrical current, it can be written as:
+
+\begin{equation}\label{eq:emf_force_middle}
+  \varepsilon = 
+  B_{emf} = -n * 
+\end{equation}
+
 \subsection{Piezoelectric design}
 A previous work by 
 
 \subsection{Hybrid design}
 
 \subsection{Electrical design}
-The analog sections of circuit were simulated using LTSpice IV {\color{red} reference}. Accelerometer and bluetooth module were modelled as parallel current sinks which took energy from the circuit in pulses. Energy harvesting was simulated as a high.impedance AC voltage source. 
+The analog sections of circuit were simulated using LTSpice IV {\color{red} reference}. Accelerometer and bluetooth module were modeled as parallel current sinks which took energy from the circuit in pulses. Energy harvesting was simulated as a high.impedance AC voltage source. 
 Battery was modelled as a voltage source with high-value capacitor and low-value resistor in series.
 
 \subsection{Materials for the harvester}
