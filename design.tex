@@ -105,16 +105,16 @@ A common starting point for analysis of linear generator is to model the mechani
 \caption{\label{MSD} Mass-spring-damper system.}
 \end{figure}
 
-Input Y is the force applied to the base of system, output U is the position of mass block relative to "zero". Zero is usually set to point where mass settles when no input, including gravity, is applied to system. Paramters m, B, and k are mass, damping constant and spring constant of system, respectively. Input-output-equation in time domain can be written as: 
+Input Y is the force applied to the base of system, output U is the position of mass block relative to "zero". Zero is usually set to point where mass settles when no input, including gravity, is applied to system. Paramters m, D, and k are mass, damping constant and spring constant of system, respectively. Input-output-equation in time domain can be written as: 
 
 \begin{equation}\label{eq:MSD_basic}
-  m * \ddot{U}(t) + B * \dot{U}(t) + k * U(t) = Y(t). 
+  m * \ddot{U}(t) + D * \dot{U}(t) + k * U(t) = Y(t). 
 \end{equation}
 
 As the force $ Y(t) $ is defined as $ Y(t) = m*a(t) $, and the acceleration $ a(t)$ can be considered constant regardless of any reasonable mass $ m $ of system, equation \eqref{eq:MSD_basic} can be written as:
 
 \begin{equation}\label{eq:MSD_acceleration}
- \ddot{U}(t) + \frac{B * \dot{U}(t)}{m} + \frac{k * U(t)}{m} = a(t). 
+ \ddot{U}(t) + \frac{D * \dot{U}(t)}{m} + \frac{k * U(t)}{m} = a(t). 
 \end{equation}
 
 This form is convenient for analysis, as the acceleration measurements from previous research are available and they represent real-world values. Mass m can be considered constant, as the system does not exchange matter with surrounding environment. As magnetic suspension was selected, the paramter k cannot be considered as a constant, but rather a function of mass position $k(U)$. Centripetal force can be considered as a constant DC-component of function $Y(t)$, and is not included in analysis of function $k(U)$. According to D. Amrani \cite{Amrani2015} force between two magnets can be approximated as
@@ -133,11 +133,10 @@ where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, up
 
 Regrettably, the expression \eqref{eq:magnetic_force_middle} is very inaccurate for magnets where diameter is large compared to thickness of magnet, and the problems are compounded when distance between magnets is small. Therefore final design should be optimized using measurement data or finite element analysis (FEA) for determining $k(U)$. 
 
-Damping parameter $B$ is likevise a function electromagnetic force acting on magnet, friction between magnet and stator and pneumatic damping caused by compression of air in generator. Tornincase et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $B_{emf}, B_{friction}, and B_{air}$, respectively. $B_{emf}$ represents power extracted from the system into electrical current, it can be written as:
+Damping parameter $D$ is likevise a function electromagnetic force acting on magnet, friction between magnet and stator and pneumatic damping caused by compression of air in generator. Tornincase et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $D_{emf}, D_{friction}, and D_{air}$, respectively. $D_{emf}$ represents power extracted from the system into electrical current, it can be written as:
 
 \begin{equation}\label{eq:emf_force_middle}
-  \varepsilon = 
-  B_{emf} = -n * 
+  D_{emf} = BIl
 \end{equation}
 
 \subsection{Piezoelectric design}
