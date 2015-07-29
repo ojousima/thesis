@@ -135,9 +135,50 @@ Regrettably, the expression \eqref{eq:magnetic_force_middle} is very inaccurate 
 
 Damping parameter $D$ is likevise a function electromagnetic force acting on magnet, friction between magnet and stator and pneumatic damping caused by compression of air in generator. Tornincase et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $D_{emf}, D_{friction}, and D_{air}$, respectively. $D_{emf}$ represents power extracted from the system into electrical current, it can be written as:
 
-\begin{equation}\label{eq:emf_force_middle}
-  D_{emf} = BIl
+\begin{equation}\label{eq:d_emd}
+  D_{emf} = BIlsin(\phi),
 \end{equation}
+
+where $B$ is magnetic field affecting coil (presumed constant), $I$ is current through wire depending on load and generator properties, $l$ is total length of wire in coil and $\phi$ is angle between coil and magnetic field, presumed to be 90 \degree. Assuming the load impedance is the complex conjugate of coil impedance for maximum power harvesting, we can substitute the $I$ with equations \eqref{eq:emf} and \eqref{eq:gen_simple_current}, which results in: 
+
+\begin{equation}
+  D_{emf} = B \frac{\varepsilon}{2*Re(Z_{generator})} l sin(90 \degree),
+\end{equation}
+
+where $Z_{generator}$ is the impedance of generator. As the load impedance is complex conjugate of generator impedance, their series connection has only real (purely resistive) component. This assumption fails on real-world application with non-linear rectification and DC/DC conversion, but it can be used as a basis for analytical examination of the generator. As $\varepsilon$ can be substituted with \eqref{eq:emf}, we obtain:
+
+\begin{equation}\label{eq:d_emf_with_epsilon}
+  D_{emf} = B \frac{-N \frac{d \Phi_{B}}{d t}}{2*Re(Z_{generator})} l sin(90 \degree),
+\end{equation}
+
+The relationship between $N \Phi_{B}$ and $Re(Z_{generator})$ can be further studied by writing 
+
+\begin{equation}\label{eq:phiB_substitution}
+  \Phi_{B} = \iint_{\Sigma (t)} B(r, t) \,dA,
+\end{equation}
+
+ where $ \iint_{\Sigma (t)} $ signifies possibility of loop area changing over time and $\,dA$ is element of surface area. If we assume the coil to be a perfect tightly wound circle which does not deform over time, we can write the relationship between number of turns in coil, area of coil, and resistance of coil as:
+
+\begin{equation}\label{eq:nA_R}
+  R = N 2\pi A \rho_{wire},
+\end{equation}
+
+where $\rho_{wire}$ is resistivity of coil wire. Substituting \eqref{eq:nA_R} and \eqref{eq:phiB_substitution} into \eqref{eq:d_emf_with_epsilon} we finally obtain reasonably accurate expression for $D_{emf}$ which accounts for all the design parameters affecting it:
+\begin{equation}\label{eq:d_emf_complete}
+  D_{emf} = B \frac{-N \frac{d [\iint B(r, t) \,dA]}{d t}}{2*N 2\pi A \rho_{wire}} l sin(90 \degree).
+\end{equation}
+
+A few observations can be made from this equation: first, the magnetic field strength $B$ and it's derivate in respect to time increase the $D_{emf}$ which signifies the electrically extracted useful power. Therefore it makes sense to use as strong magnets as possible, as long as other parameters aren't adversely affected. Second, both the number of turns and the loop area are as multipliers and divisors, which means  they should be optimized to find best applicable values. Third, resistivity of wire limits power that can be extracted, so intuition would lead to minimizing wire resistance. In practise the wire resistivity can be decreased by increasing wire diameter, which in turn leads to lesser number of turns in same volume and mass of coil. Therefore, also wire diameter and material should be optimized to find desirable compromise in generator design. 
+
+Next we examine $D_{friction}$ in detail. Friction is modelled as Couloumb fricion:
+\begin{equation}\label{eq:couloumb_friction}
+  F_s = \mu_sN,
+  F_k = \mu_kN,
+\end{equation}
+
+where $F_s $ and $ F_k $ are static and kinetic friction forces opposing movement, $\mu_s$ and $\mu_k$ are friction coefficients in static and kinetic situations and $N$ is normal force along X- or Y- axis. Normal forces are estimated by using existing acceleration data and calculated mass of magnet. Coefficients of friction are looked up from supplier of stator material. Transfer between static and kinetic models is assumed to be a step, if velocity of magnet is 0 along Z-axis, $\mu_s$ is used, $\mu_k$ othervise.
+
+
 
 \subsection{Piezoelectric design}
 A previous work by 
