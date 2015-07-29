@@ -132,19 +132,19 @@ This model is greatly simplified and it does not account for factors such as eff
 The power output can be written formally as:
 
 \begin{equation} \label{eq:gen_simple_power}
-  P_{generated}(s) = V_{generated}(s)*I_{generated}(s),
+  P_{generated}(s) = \varepsilon(s)*I_{generated}(s),
 \end{equation}
 
 where $P_{generated}(s), V_{generated}(s), I_{generated}(s)$ are complex laplace-domain power, voltage and current dependent on frequency. It can be seen that power is generated only when there is a load available, as without load there is no current flow into our out of generator. Voltage is determined by EMF as described above. Current can be written as: 
 
 \begin{equation} \label{eq:gen_simple_current}
-  I_{generated}(s) = \frac{V_{generated}(s)}{Z_{generator}(s)+Z_{load}(s)},
+  I_{generated}(s) = \frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)},
 \end{equation}
 
 where substituting $Z_{generator}(s) $ and $ Z_{load}(s)$ are complex impedances of load and generator. This equation is valid only for linear systems, so for example rectifying and converting power with switch mode power supply (SMPS) reduces accuracy of the equation. Substituting \eqref{eq:gen_simple_current} into \eqref{eq:gen_simple_power} we obtain:
 
 \begin{equation}
-  P_{generated}(s) = V_{generated}(s)*\frac{V_{generated}(s)}{Z_{generator}(s)+Z_{load}(s)}.
+  P_{generated}(s) = \varepsilon(s)*\frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)}.
 \end{equation}
 
 Total power into load can be written as:
