@@ -4,13 +4,13 @@
 \subsubsection{Structure of a tyre}
 
 \subsection{Environment inside tyre}
-The energy harvester will be placed inside the tyre. Previous studies in have shown that the tyre will experience acceleration in all three axes {\color{red} cite previous work of department}. Tangential and centripetal accelerations are dominant, they can reach amplitudes of up to 150g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
+The energy harvester will be placed inside the tyre. Previous studies by Niskanen et al \cite{Niskanen2014}. have shown that the tyre will experience acceleration in all three axes. Tangential and centripetal accelerations are dominant, they can reach amplitudes of up to 150 g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
 
 Temperature inside of the tire will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions {\color{red} source, Finnish only?}.
 
-Previous work by {\color{red}[Niskanen, Tuononen]} was used to as a basis for analysis of characteristics of acceleration inside tire. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tire. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. 
+Previous work \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside tire. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tire. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. 
 
-Figures {\color{red}[Kuva 1, Kuva2 ]} are time domain representations of the acceleration along 3 axes {\color{red}Lis\"a\"a kuva jossa akselien suunnat}. First figure shows 10 rotations of tyre, contact with drum is clearly visible as a sudden shock. Second figure is a zoom into one rotation.
+Figures \ref{80_TD} and \ref{80_TD_zoom} are time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}{\color{red}Lis\"a\"a kuva jossa akselien suunnat}. First figure shows 10 rotations of tyre, contact with drum is clearly visible as a sudden shock. Second figure is a zoom into one rotation.
 
 Frequency domain representations were calculated in Matlab. There are two main contributors to base frequencies: first is the rotational frequency of tyre itself and second is the impact when the tyre deforms as it contacts the drum.. There is clearly visible series of frequency components spaced at the rotational frequency of tyre as well as shock harmonics at upper frequencies. 
 
@@ -18,8 +18,16 @@ Frequency domain representations were calculated in Matlab. There are two main c
 \begin{center}
 \includegraphics[height=8cm]{images/80kmh_timedomain}
 \end{center}
+\caption{Axis in measurement by Matilainen et al \cite{Matilainen2012}}
+\label{80_TD}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=8cm]{images/80kmh_timedomain}
+\end{center}
 \caption{Kuvateksti, jossa on liitteen numerointi {\color{red}lahdeviittaus}}
-\label{liitekuva}
+\label{80_TD}
 \end{figure}
 
 \begin{figure}[htb]
@@ -27,7 +35,7 @@ Frequency domain representations were calculated in Matlab. There are two main c
 \includegraphics[height=8cm]{images/80kmh_timedomain_onerotation}
 \end{center}
 \caption{Kuvateksti, jossa on liitteen numerointi {\color{red}l\"ahdeviittaus}}
-\label{liitekuva}
+\label{80_TD_zoom}
 \end{figure}
 
 \begin{figure}[htb]
@@ -35,7 +43,7 @@ Frequency domain representations were calculated in Matlab. There are two main c
 \includegraphics[height=8cm]{images/FFT-80}
 \end{center}
 \caption{Kuvateksti, jossa on liitteen numerointi {\color{red}l\"ahdeviittaus}}
-\label{liitekuva}
+\label{80_FFT}
 \end{figure}
 
 \begin{figure}[htb]
@@ -43,11 +51,10 @@ Frequency domain representations were calculated in Matlab. There are two main c
 \includegraphics[height=8cm]{images/FFT-80-zoom}
 \end{center}
 \caption{Kuvateksti, jossa on liitteen numerointi {\color{red}l\"ahdeviittaus}}
-\label{liitekuva}
+\label{80_FFT_zoom}
 \end{figure}
 
 It's important to notice that the sensor used was piezoelectric, which forms a highpass filter as the operation is based on charge between layers. This charge dissipates over time, so the steady-state centripetal acceleration reads as zero. There is a constant acceleration on the device caused by rotational movement by the tire. 
-
 
 \subsection{Energy harvesting}
 \subsubsection{Overview of methods}
@@ -76,18 +83,13 @@ In conclusion, a wide range of energy harvesting technologies have been identifi
 \subsubsection{Resonance-based piezoelectric harvesting}
 Piezoelectric materials produce voltage in response to mechanical stress. The effect is bidirectional, piezoelectric element can also produce mechanical strain in response to applied voltage. The material has crystalline structure with electrical dipoles in balanced state when no stress is applied. Mechanical stress unbalances these dipoles, creating element which resembles electronically a charged capacitor. 
 
-A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. In some applications, such as in machines running at the frequency of power grid (50 HZ or 60 HZ) this kind of frequency-tuning is relatively straightforward. 
-
-
-
+A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. In some applications, such as in machines running at the frequency of power grid (50 HZ or 60 HZ) this kind of frequency-tuning is relatively straightforward. TODO
 
 \subsubsection{Impact-based piezoelectric harvesting}
 As the resonant harvesting is not feasible in the environment inside tire, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tire. These impacts would provide energy once per rotation of a tire. This method has been tried before by {\color{red} Cite} and it was found to provide up to 4 mW of power in average. TODO
 
-
-
 \subsubsection{Electromagnetical harvesting}
-Electromagnetical harvesting is based on Faraday's law of induction: A loop of wire aquires electromotive force (EMF) in response to a changing magnetic field. More formally:
+Electromagnetical harvesting is based on Faraday's law of induction: A loop of wire acquires electromotive force (EMF) in response to a changing magnetic field. More formally:
 
 \begin{equation}
   \varepsilon = - \frac{d \Phi_ {B}}{d t} , 
@@ -106,8 +108,6 @@ It's important to notice that magnetic flux through wire $ \Phi_{B} $ can change
 It's obvious from equation \eqref{eq:emf} that energy available increases with the strength of magnetic source, number of turns in a coil and rate of change in the magnetic field. 
 
 Magnetic source can be either permanent magnet or a electrically induced source as in induction motors. Induction-based generators require reactive power to start up, which means that any harvester design incorporating an induction generator would need a secondary power source to start the inductive generator. Hence the focus of this thesis will be in permanent magnet designs.
-
-
 
 \begin{figure}[htb]
 \begin{center}
