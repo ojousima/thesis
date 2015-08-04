@@ -48,7 +48,7 @@ Battery manager power draw is estimated by calculating required power to supply 
 
 \subsection{Electromagnetical harvester design}
 \subsubsection{Basics of electromagnetical vibration harvester}
-Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to coil. Coil opposes the change in magnetic field by inducing electrical current in device. {\color{red} cite} A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre. An added bonus to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function  as a dampener to system, so no extra dampening is required. Primary concern is the survivability of a magnet in an environment with heavy shocks and vibration. 
+Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to coil. Coil opposes the change in magnetic field by inducing electrical current in device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre. An added bonus to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function  as a damper to system, so no extra dampening is required. Primary concern is the survivability of a magnet in an environment with heavy shocks and vibration. 
 
 A theoretical design of linear generator was made. Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside tire to rotational movement would add to complexity and cost of the tire, generator is design to use the linear motion as the power source.
 
@@ -56,30 +56,9 @@ Basic principle of operation is similar to traditional rotational generator. A m
 
 Adding poles to design increases the output voltage {\color{red} cite a study of multi-pole} and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator. 
 
-A simulink model was built to verify feasibility of the linear generator. The model included real acceleration data from previous studies made by {\color{red} cite} and a model of generator as well as a simplified capacitive-resistive load. There is an abundance of previous work done on simulating linear generators  {\color{red} cite}, however a simplified model was used at this stage to get a proof-of-concept level generator. Further work remains in optimizing the design in terms of size, mass, power output, usable speed range, cost and long-term reliability.
-
 First design decision was whether to use a moving magnet or moving coil type of a design. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coil require flying leads  {\color{red} cite development of a moving magnet linear}.  which is a long-term reliability concern  {\color{red} cite linear electric actuators and generators}.  {\color{red} cite book Boldea, Nasar Linear electric actuators and generators p 203}. conclude that moving coil designs aren't practically interesting, so the design is focused on moving magnet generator. 
 
 A rough model for designing initial prototypes was done previously by  {\color{red} cite backpack harvester}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
-
-\begin{table}[htb]
-%% Taulukon teksti
-\caption{\label{parameters_of_lg} Effect of parameters of generator}
-\begin{center}
-\fbox{
-\begin{tabular}{l l l}
-\textbf{Parameter}		& \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
-Number of turns in generator	& Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
-Number of poles			& Increased frequency		& Decreased frequency	\\ \hline
-Distance between poles  	& More space for wiring 	& Higher voltage, smaller size	\\ \hline
-Wiring radius		  	& More power			& Smaller length of wiring 	\\ \hline
-Magnetic field strength  	& Increased power 		& Smaller magnets 		\\ \hline
-Wire diameter		  	& Decreased wiring resistance 	& More turns in same space 	\\ \hline
-Gap to wiring			& Stronger side walls		& Incresed efficiency 
-\end{tabular}
-}
-\end{center}
-\end{table}
 
 Energy harvester designs often use several poles to increase the frequency of the power output {\color{red}cite}. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point a moot, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimized to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. 
 
@@ -178,18 +157,88 @@ Next we examine $D_{friction}$ in detail. Friction is modelled as Couloumb frici
 
 where $F_s $ and $ F_k $ are static and kinetic friction forces opposing movement, $\mu_s$ and $\mu_k$ are friction coefficients in static and kinetic situations and $N$ is normal force along X- or Y- axis. Normal forces are estimated by using existing acceleration data and calculated mass of magnet. Coefficients of friction are looked up from supplier of stator material. Transfer between static and kinetic models is assumed to be a step, if velocity of magnet is 0 along Z-axis, $\mu_s$ is used, $\mu_k$ othervise.
 
+Finally, there is pneumatic damping of the system, $D_{air}$. In a closed tube, the central magnet can be thought as a piston dividing generator into two chambers. If there is insignificant airflow between chambers, any force caused by pressure deltas between chambers act as a spring. However, some airflow is to be expected due to clearance between magnet and stator. Tornincasa et al. \cite{Tornincasa2012} modelled this effect by adding a virtual centrepoint for pneumatic spring, this centre moves through a virtual damper which models the airflow between chambers. End result is that pneumatic spring takes some energy from movement, and this energy stored into pneumatic spring is dissipated as the centre moves until potential energy stored in the spring is zero. 
+
+The force from pressure differential is:
+
+\begin{equation}
+  F_{\delta p} = \frac{\pi d^2}{4}(p_{lower}-p_{upper}),
+\end{equation}
+
+where $d$ is diameter of magnet and $p_{lower}-p_{upper}$ are pressures in chambers. Pressures can be estimated from ideal gas law:
+
+\begin{equation}
+  pV = NRT
+\end{equation}
+where $p$ is pressure, $V$ is volume, $N$ is amount, $R$ is ideal gas constant and $T$ is temperature. Temperature is assumed to be constant. Initial pressure is assumed to be same as tyre pressure and magnet is assumed to be exactly in midpoint at start. Change of volume can be calculated from change of height caused by movement of the magnet. 
+
+Mass flow between sections can be estimated with equation given by For et al. \cite{Fox2008}:
+
+\begin{equation}
+  \dot{m}_{1\arrow2} = \frac{\rho \pi d \delta_r^3}{12\mu h}(p_1-p_2),
+\end{equation}
+
+where $\rho$ is air density, $\delta_r$ is radial clearance, $\mu$ is dynamic viscosity and $h$ is the height of magnet. \cite{tornincasa2012}
+
+There is also frictional dissipative force as the air passes along the edges of the cylinder. This frictional force has magnitude of: 
+
+\begin{equation}
+  F = \mu * \rho * \frac{\pi d h \dot{z}}{\delta} \cite{Medhat2008}. 
+\end{equation}
+
+Analytical expressions for the equations governing the mechanical movement of magnet inside generator have now been identified. Some of the non-linear functions are hard to solve analytically, therefore experimental or FEA methods should be used for creating approximations for these functions.
+
+The analytical effect of these parameters is summarized in table \ref{parameters_of_lg}
+
+\begin{table}[htb]
+%% Taulukon teksti
+\caption{\label{parameters_of_lg} Effect of parameters of generator}
+\begin{center}
+\fbox{
+\begin{tabular}{l l l}
+\textbf{Parameter}		& \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
+Number of turns in generator	& Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
+Number of poles			& Increased frequency		& Decreased frequency	\\ \hline
+Distance between poles  	& More space for wiring 	& Higher voltage, smaller size	\\ \hline
+Wiring radius		  	& More power			& Smaller length of wiring 	\\ \hline
+Magnetic field strength  	& Increased power 		& Smaller magnets 		\\ \hline
+Wire diameter		  	& Decreased wiring resistance 	& More turns in same space 	\\ \hline
+Gap to wiring			& Stronger side walls		& Incresed efficiency 
+\end{tabular}
+}
+\end{center}
+\end{table}
 
 
-\subsection{Piezoelectric design}
+\subsubsection{Experimental and FEA modeling of electromagnetic harvester}
+As some parameters of the harvester are difficult to solve analytically, these parameters are solved using experimental and FEA methods. 
+
+\subsection{Piezoelectric harvester design}
 A previous work by 
 
-\subsection{Hybrid design}
+\subsection{Hybrid harvester design}
 
-\subsection{Electrical design}
-The analog sections of circuit were simulated using LTSpice IV {\color{red} reference}. Accelerometer and bluetooth module were modeled as parallel current sinks which took energy from the circuit in pulses. Energy harvesting was simulated as a high.impedance AC voltage source. 
+\subsection{Electronic design}
+\subsubsection{Simulation of circuit}
+The analog sections of circuit were simulated using LTSpice IV \cite{ltspice}. Accelerometer and bluetooth module were modeled as parallel current sinks which took energy from the circuit in pulses. Energy harvesting was simulated as a high.impedance AC voltage source. 
 Battery was modelled as a voltage source with high-value capacitor and low-value resistor in series.
 
-\subsection{Materials for the harvester}
+\subsubsection{Schematic design}
+The printed circuit board (PCB) schematic is a logical representation of the components and how they connect to each other. The schematic is designed in accordance to datasheets, reference designs and application notes of main circuit components. As the design operates in high-vibration environment with wide temperature variations, special care is used to select components which have well-defined temperature and mechanical characteristics. 
+
+As the circuit is a low-power design, careful attention has to be paid to parasitic properties and non-ideal behaviour of components. For example electrolytic capacitor can have leakage current of several microamperes \cite{Both2001}, which is in the same order of magnitude as the targeted sleep current consumption of system. Likevise any signaling current should be kept at minimum. 
+
+Another important point of view is the modularity and testability of the circuit. All critical lines should have provision for testing and debugging for development and verification of circuit functionality. 
+
+Power supply has some conflicting requirements, as any noise in power  degrades radio and measurement performance, but on the other hand the power supply should be efficient switch mode power supply to keep power consumption at minimum.
+
+
+\subsubsection{Circuit layout}
+The PCB layout defines the physical placement of the components on the circuit board. Special care must be used in placement of accelerometer to measure vibration of tyre itself rather than resonances of PCB. Components have to be placed in a manner which minimizes effect of vibrations on them. 
+
+
+
+\subsection{Mechanical design}
 Material for the shaft has a few requirements. It has to have at least as good temperature characteristics as the magnet being used and it must be hard enough to not deform under impacts. Low friction coefficient is desirable as this leads to smaller losses, and long time durability under wear is of course desired. Being lightweight and easily machinable are also desired characteristics. As the generator is small, volumetric cost of the material is of little concern. For the electro-magnetic generator design material also has to be non-ferromagnetic {\color{red} verify?}. Table {\color{yellow} refer?} has comparison of different materials considered for the application.
 
 \begin{table}[htb]
