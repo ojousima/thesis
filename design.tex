@@ -70,7 +70,15 @@ A method to counter the centripetal acceleration is needed to avoid jamming the 
 
 Springs are often chosen {\color{red} cite few sources} to balance the magnets, but as the centripetal acceleration grows exponentially with the speed of the car, any linear spring would be usable only for very limited range of speeds. Non-linear conical springs which have the added benefit of compressing into very small height are available.
 
-Another approach would be to use two additional magnets fixed to top and bottom of the generator in repulsive configuration. Force between magnets is inversely propotional to fourth power of the distance {\color{red} cite}, which leads to a strong negative feedback on the position of the magnet. 
+Another approach would be to use two additional magnets fixed to top and bottom of the generator in repulsive configuration. Force between magnets is inversely propotional to fourth power of the distance \cite{Amrani2015}, which leads to a strong negative feedback on the position of the magnet. Tornincasa et al. \cite{Tornincasa2012} proposed one such design, shown in figure \ref{lgm}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=4cm]{images/cited/lgm}
+\end{center}
+\caption{A magnetically balanced linear generator Tornincasa et al. \cite{Tornincasa2012}}.
+\label{lgm}
+\end{figure}
 
 Magnetic floating is very attaractive solution, as magnets can be very thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. {\color{yellow} picture?} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have any grooves filled with suitable epoxy and the shaft should be sanded or turned to final diameter to ensure smooth sliding across the length of shaft.
 
@@ -239,7 +247,7 @@ The PCB layout defines the physical placement of the components on the circuit b
 
 
 \subsection{Mechanical design}
-Material for the shaft has a few requirements. It has to have at least as good temperature characteristics as the magnet being used and it must be hard enough to not deform under impacts. Low friction coefficient is desirable as this leads to smaller losses, and long time durability under wear is of course desired. Being lightweight and easily machinable are also desired characteristics. As the generator is small, volumetric cost of the material is of little concern. For the electro-magnetic generator design material also has to be non-ferromagnetic {\color{red} verify?}. Table {\color{yellow} refer?} has comparison of different materials considered for the application.
+Material for the shaft has a few requirements. It has to have at least as good temperature characteristics as the magnet being used and it must be hard enough to not deform under impacts. Low friction coefficient is desirable as this leads to smaller losses, and long time durability under wear is of course desired. Being lightweight and easily machinable are also desired characteristics. As the generator is small, volumetric cost of the material is of little concern. For the electro-magnetic generator design material ferromagnetism has to be considered. Table \ref{parameters_of_materials} has comparison of different materials considered for the application.
 
 \begin{table}[htb]
 %% Taulukon teksti
