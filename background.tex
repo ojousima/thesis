@@ -1,56 +1,55 @@
 \section{Background}
 
-\subsection{Basics of tyre}
-\subsubsection{Structure of a tyre}
+\subsection{Structure of a tyre}
 
 \subsection{Environment inside tyre}
 The energy harvester will be placed inside the tyre. Previous studies by Niskanen et al \cite{Niskanen2014}. have shown that the tyre will experience acceleration in all three axes. Tangential and centripetal accelerations are dominant, they can reach amplitudes of up to 150 g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
 
-Temperature inside of the tire will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions {\color{red} source, Finnish only?}.
+Temperature inside of the tire will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions {\color{red} reasonable tempetature range?}.
 
 Previous work \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside tire. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tire. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. 
 
-Figures \ref{80_TD} and \ref{80_TD_zoom} are time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}{\color{red}Lis\"a\"a kuva jossa akselien suunnat}. First figure shows 10 rotations of tyre, contact with drum is clearly visible as a sudden shock. Second figure is a zoom into one rotation.
-
-Frequency domain representations were calculated in Matlab. There are two main contributors to base frequencies: first is the rotational frequency of tyre itself and second is the impact when the tyre deforms as it contacts the drum.. There is clearly visible series of frequency components spaced at the rotational frequency of tyre as well as shock harmonics at upper frequencies. 
+Figures \ref{80_TD} and \ref{80_TD_zoom} are time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}. First figure shows 10 rotations of tyre, contact with drum is clearly visible as a sudden shock. Second figure is a zoom into one rotation.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=8cm]{images/80kmh_timedomain}
+\includegraphics[height=4cm]{images/cited/matilainen2012}
 \end{center}
-\caption{Axis in measurement by Matilainen et al \cite{Matilainen2012}}
+\caption{Axes in measurement by Matilainen et al. \cite{Matilainen2012}}
+\label{80_TD}
+\end{figure}
+
+Frequency domain representations were calculated in Matlab. There are two main contributors to base frequencies: first is the rotational frequency of tyre itself and second is the impact when the tyre deforms as it contacts the drum.. There is clearly visible series of frequency components spaced at the rotational frequency of tyre as well as shock harmonics at upper frequencies. Figures \ref{80_FFT} and \ref{80_FFT_zoom} show the total frequency spectrum and the dominant frequency components. {\color{red} Images to be redrawn, labeled properly, font size increased, combined into one. Check the windowing.}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=4cm]{images/80kmh_timedomain}
+\end{center}
+\caption{Acceleration of inner lining of tyre at 80 km/h in time domain.}
 \label{80_TD}
 \end{figure}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=8cm]{images/80kmh_timedomain}
+\includegraphics[height=4cm]{images/80kmh_timedomain_onerotation}
 \end{center}
-\caption{Kuvateksti, jossa on liitteen numerointi {\color{red}lahdeviittaus}}
-\label{80_TD}
-\end{figure}
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=8cm]{images/80kmh_timedomain_onerotation}
-\end{center}
-\caption{Kuvateksti, jossa on liitteen numerointi {\color{red}l\"ahdeviittaus}}
+\caption{Acceleration of tyre inner lining in single rotation at 80 km/h. }
 \label{80_TD_zoom}
 \end{figure}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=8cm]{images/FFT-80}
+\includegraphics[height=4cm]{images/FFT-80}
 \end{center}
-\caption{Kuvateksti, jossa on liitteen numerointi {\color{red}l\"ahdeviittaus}}
+\caption{Frequency domain representation of acceleration data.}
 \label{80_FFT}
 \end{figure}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=8cm]{images/FFT-80-zoom}
+\includegraphics[height=4cm]{images/FFT-80-zoom}
 \end{center}
-\caption{Kuvateksti, jossa on liitteen numerointi {\color{red}l\"ahdeviittaus}}
+\caption{Most of the energy is found in 10-100 Hz range.}
 \label{80_FFT_zoom}
 \end{figure}
 
