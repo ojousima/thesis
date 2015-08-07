@@ -1,7 +1,7 @@
 \section{Design}
 
 \subsection{System-level design}
-The complete system will consist of energy harvesting source, energy storage for times when harvested energy is not available, AC/DC and DC/DC converters for maintaining required voltage levels in different blocks of system, accelerometer for measuring the accleration in tyre and bluetooth/microcontroller module for transmitting data from acceleromoter. Figure \ref{system_blog_diagram} shows the power and data flow between subsections of system. 
+The complete system will consist of energy harvesting source, energy storage for times when harvested energy is not available, AC/DC and DC/DC converters for maintaining required voltage levels in different blocks of system, accelerometer for measuring the accleration in tyre and radio/microcontroller module for transmitting data from acceleromoter. Figure \ref{system_blog_diagram} shows the power and data flow between subsections of system. 
 
 
 \begin{figure}[htb]
@@ -41,32 +41,30 @@ ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline \hline
 \end{center}
 \end{table}
 
-Power consumption grows by orders of magnitude when the activity is stepped up to next level. Therefore it's important to keep the system in sleep whenever possible, for example when the car is parked and wake up only periodically to check if movement has started. Monitoring starts once car is moving, and device will send brief pulses over the radio link when necessary.
+Power consumption grows by orders of magnitude when the activity is stepped up to the next level. Therefore it's important to keep the system in sleep whenever possible, for example when the car is parked and wake up only periodically to check if movement has started. Monitoring starts once car is moving, and device will send brief pulses over the radio link when necessary.
 
 Battery manager power draw is estimated by calculating required power to supply the rest of the circuit at 80 \% efficiency.
 
 
 \subsection{Electromagnetical harvester design}
 \subsubsection{Basics of electromagnetical vibration harvester}
-Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to coil. Coil opposes the change in magnetic field by inducing electrical current in device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre. An added bonus to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function  as a damper to system, so no extra dampening is required. Primary concern is the survivability of a magnet in an environment with heavy shocks and vibration. 
+Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to a coil. The coil opposes the change in magnetic field by inducing electrical current in the device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre, an added benefit to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function as a damper to system, so no extra damping is required. Modern neodymium magnets do not lose their magnetization by vibration, so long magnet can be reliable for a long time period. 
 
-A theoretical design of linear generator was made. Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside tire to rotational movement would add to complexity and cost of the tire, generator is design to use the linear motion as the power source.
+A theoretical design of linear generator (LG) was made. Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside the tyre to rotational movement would add to complexity and cost of the tyre, generator is designed to use the linear motion as the power source.
 
-Basic principle of operation is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles. Multiple phase designs can be made smaller and lighter at the expense of more complex control circuitry. {\color{red} cite}. 
+Basic principle of operation of LG is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles, where phases refer to parallelly connected coils and poles refer to serially connected coils. Multiple phase designs can have lower resistive losses in wiring, as the resistive losses are propotional to square of the current. However paralleling phases requires separate rectification for each phase, which leads to increased rectification losses. Adding poles to design increases the output voltage and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator{\color{red} cite a study of multi-pole}. 
 
-Adding poles to design increases the output voltage {\color{red} cite a study of multi-pole} and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator. 
+Energy harvester designs sometimes use several poles to increase the frequency of the power output {\color{red}cite}. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point irrelevant, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimized to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. Mechanical design can utilise resonant vibration to function as energy storage device instead of electrical or electronic storage.
 
 First design decision was whether to use a moving magnet or moving coil type of a design. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coil require flying leads  {\color{red} cite development of a moving magnet linear}.  which is a long-term reliability concern  {\color{red} cite linear electric actuators and generators}.  {\color{red} cite book Boldea, Nasar Linear electric actuators and generators p 203}. conclude that moving coil designs aren't practically interesting, so the design is focused on moving magnet generator. 
 
 A rough model for designing initial prototypes was done previously by  {\color{red} cite backpack harvester}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
 
-Energy harvester designs often use several poles to increase the frequency of the power output {\color{red}cite}. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point a moot, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimized to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. 
-
 There are two different approaches to generator structure. One is magnets inside, and coils on the outer rim of the generator. Other is to use ring magnets on the outer rim and have the coils on the inside. Both methods have their advantages: Having magnets on the outside allows larger and therefore stronger magnets and creates horizontal support for the magnets as they slide along the shaft. Having coils on the outside increases wiring radius which results in greater power if other parameters are held equal. In-depth study of both concepts is done to select optimal structure for generator. 
 
 The height of the generator is constrained at  {\color{yellow} confirm} 45 mm. Initially the height of {\color{gray} the} generator was selected to be 35-40 mm to leave some margin while still being as tall as possible. Lower weight is desirable to avoid unbalancing the tyre, but there is no specific absolute maximum mass for the device. 
 
-A method to counter the centripetal acceleration is needed to avoid jamming the magnet on the bottom of the generator. Ideally, such method would always balance the magnet in the middle of generator against any external constant force, but active control is not achievable without adding to complexity and power consumption of the generator itself. Passive negative feedback method has to be used instead. 
+A method to counter the centripetal acceleration is needed to keep the magnet on the centre of the generator. Ideally, such method would always balance the magnet in the middle of generator against any external constant force, but active control is not achievable without adding to complexity and power consumption of the generator itself. Passive negative feedback method has to be used instead. 
 
 Springs are often chosen {\color{red} cite few sources} to balance the magnets, but as the centripetal acceleration grows exponentially with the speed of the car, any linear spring would be usable only for very limited range of speeds. Non-linear conical springs which have the added benefit of compressing into very small height are available.
 
@@ -76,14 +74,14 @@ Another approach would be to use two additional magnets fixed to top and bottom 
 \begin{center}
 \includegraphics[height=4cm]{images/cited/lgm}
 \end{center}
-\caption{A magnetically balanced linear generator Tornincasa et al. \cite{Tornincasa2012}}.
+\caption{A magnetically balanced linear generator by Tornincasa et al. \cite{Tornincasa2012}}.
 \label{lgm}
 \end{figure}
 
-Magnetic floating is very attaractive solution, as magnets can be very thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. {\color{yellow} picture?} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have any grooves filled with suitable epoxy and the shaft should be sanded or turned to final diameter to ensure smooth sliding across the length of shaft.
+Magnetic floating is an attaractive solution, as magnets can be thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. {\color{yellow} picture?} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have any grooves filled with suitable epoxy and the shaft should be sanded or turned to final diameter to ensure smooth sliding of the magnet across the length of the shaft.
 
 \subsubsection{Analytical model of electromagnetical vibration harvester}
-A common starting point for analysis of linear generator is to model the mechanical domain as Mass-Spring-Dampener system decipted in figure \ref{MSD}. A mass "floats" in system, a spring balances the mass towards balance and a damper represents frictional forces opposing any movement of mass. 
+A common starting point for analysis of linear generator is to model the mechanical domain as Mass-Spring-Dampener system decipted in figure \ref{MSD}. A mass "floats" in system, a spring balances the mass towards centre and a damper represents frictional forces opposing any movement of mass. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -120,7 +118,7 @@ where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, up
 
 Regrettably, the expression \eqref{eq:magnetic_force_middle} is very inaccurate for magnets where diameter is large compared to thickness of magnet, and the problems are compounded when distance between magnets is small. Therefore final design should be optimized using measurement data or finite element analysis (FEA) for determining $k(U)$. 
 
-Damping parameter $D$ is likevise a function electromagnetic force acting on magnet, friction between magnet and stator and pneumatic damping caused by compression of air in generator. Tornincase et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $D_{emf}, D_{friction}, and D_{air}$, respectively. $D_{emf}$ represents power extracted from the system into electrical current, it can be written as:
+Damping parameter $D$ is likevise a function electromagnetic force acting on magnet, friction between magnet and stator and pneumatic damping caused by compression of air in generator. Tornincasa et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $D_{emf}, D_{friction},$ and $D_{air}$, respectively. $D_{emf}$ represents power extracted from the system into electrical current, it can be written as:
 
 \begin{equation}\label{eq:d_emd}
   D_{emf} = BIlsin(\phi),
@@ -186,7 +184,7 @@ Mass flow between sections can be estimated with equation given by For et al. \c
   \dot{m}_{1\arrow2} = \frac{\rho \pi d \delta_r^3}{12\mu h}(p_1-p_2),
 \end{equation}
 
-where $\rho$ is air density, $\delta_r$ is radial clearance, $\mu$ is dynamic viscosity and $h$ is the height of magnet. \cite{tornincasa2012}
+where $\rho$ is air density, $\delta_r$ is radial clearance, $\mu$ is dynamic viscosity and $h$ is the height of magnet. \cite{Tornincasa2012}
 
 There is also frictional dissipative force as the air passes along the edges of the cylinder. This frictional force has magnitude of: 
 
@@ -204,14 +202,14 @@ The analytical effect of these parameters is summarized in table \ref{parameters
 \begin{center}
 \fbox{
 \begin{tabular}{l l l}
-\textbf{Parameter}		& \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
-Number of turns in generator	& Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
-Number of poles			& Increased frequency		& Decreased frequency	\\ \hline
-Distance between poles  	& More space for wiring 	& Higher voltage, smaller size	\\ \hline
-Wiring radius		  	& More power			& Smaller length of wiring 	\\ \hline
-Magnetic field strength  	& Increased power 		& Smaller magnets 		\\ \hline
-Wire diameter		  	& Decreased wiring resistance 	& More turns in same space 	\\ \hline
-Gap to wiring			& Stronger side walls		& Incresed efficiency 
+\textbf{Parameter}	 & \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
+N_{turns}                & Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
+N_{pole}		 & Increased frequency		& Decreased frequency	\\ \hline
+l_{pole}                 & More space for wiring 	& Higher voltage, smaller size	\\ \hline
+A_{loop}		 & More power			& Smaller length of wiring 	\\ \hline
+B                        & Increased power 	 & Smaller magnets 		\\ \hline
+r_{wire}		 & Decreased wiring resistance 	& More turns in same space 	\\ \hline
+Gap to wiring		 & Stronger side walls		& Incresed efficiency 
 \end{tabular}
 }
 \end{center}
