@@ -7,9 +7,7 @@ The energy harvester will be placed inside the tyre. Previous studies by Niskane
 
 Temperature inside of the tire will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions {\color{red} reasonable tempetature range?}.
 
-Previous work \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tire. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. 
-
-Figures \ref{80_TD} and \ref{80_TD_zoom} are time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}. Figure \ref{80_TD} shows 10 rotations of tyre, contact with drum is clearly visible as a sudden shock. Figure \ref{80_TD_zoom}is a zoom into one rotation.
+Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tire. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figures \ref{80_TD} and \ref{80_TD_zoom} are time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -53,7 +51,7 @@ Frequency domain representations were calculated in Matlab. There are two main c
 \label{80_FFT_zoom}
 \end{figure}
 
-It's important to notice that the sensor used was piezoelectric, which forms a highpass filter as the operation is based on charge between layers. This charge dissipates over time, so the steady-state centripetal acceleration reads as zero. Any device on the rotating tyre will experience centripetal acceleration (acceleration towrds centre of rotation) at the amplitude of 
+It's important to notice that the sensor used was piezoelectric, which forms a highpass filter as the operation of sensor is based on charge between layers. This charge dissipates over time, so the steady-state centripetal acceleration reads as zero. Any device on the rotating tyre will experience centripetal acceleration (acceleration towrds centre of rotation) at the amplitude of: 
 
 \begin{equation}
   a_{centripetal} = \omega^2 r,
@@ -71,7 +69,7 @@ Electrostatic devices charge plates of a capacitor and use mechanical vibration 
 
 Piezoelectric materials generate charge in response of mechanical stress. This stress can be caused by firmly attaching the piezoelectric element to a surface which deforms (simply supported) or by leaving one end of the element free-hanging while other end is fixed (cantilevered). Dynamics of the generator are very different for the different configurations, Kim et al. \cite{Kim2014a} provides a model for impact-based piezoelectric harvester while Erturk et al. have done in-depth analysis of cantilevered piezoelectric modeling \cite{Erturk2009}. 
 
-Thermal solutions can be further diveded into subcategories. Seeback-effect where a temperature gradient in a semiconductor material causes voltage between poles of the material is widely used in temperature sensing, but to generate appreciable amounts of power large temperature gradients of over hundred \degree C are required according to study by Amatya et al. \cite{Amatya2010} which is not practical inside tyre. Pyroelectric materials do not require differential of temperature, they generate energy when the temperature of the entire element changes \cite{Zhang2011}. As the temperature inside tyre remains rather constant over long periods of time, these methods are not practical for this application.
+Thermal solutions can be further diveded into subcategories. Seeback-effect where a temperature gradient in a semiconductor material causes voltage between poles of the material is widely used in temperature sensing, but to generate appreciable amounts of power large temperature gradients of over hundred \degree C are required according to study by Amatya et al. \cite{Amatya2010}. Such temperature gradients are not practical inside the tyre. Pyroelectric materials do not require differential of temperature, they generate energy when the temperature of the entire element changes \cite{Zhang2011}. As the temperature inside tyre remains rather constant over long periods of time, these methods are not practical for this application.
 
 Triboelectricity generates power using friction between two materials, a classic example of this is Benjamin Franklin's experiments on charging various rods by rubbing them against different materials. A flexible triboelectric generator has been presented by Fan et al. \cite{Fan2012}. Triboelectric sheets are not readily available and their construction is complex, so triboelectric generation is excluded from this work. 
 
@@ -100,21 +98,21 @@ Electromagnetical harvesting is based on Faraday's law of induction: A loop of w
   \varepsilon = - \frac{d \Phi_ {B}}{d t} , 
 \end{equation}
 
-where $\varepsilon$ is the EMF, $\Phi_{B}$ is magnetic flux through loop area, and $t$ is time. For a tightly wound coil of wire, the equation can be stated as 
+where $\varepsilon$ is the EMF, $\Phi_{B}$ is magnetic flux through loop area, and $t$ is time. Negative sign signifies that emf opposes the change of magnetic flux. For a tightly wound coil of wire, the equation can be stated as: 
 
 \begin{equation} \label{eq:emf}
-  \varepsilon = -N \frac{d \Phi_{B}}{d t} , 
+  \varepsilon = -N_{turns} \frac{d \Phi_{B}}{d t} , 
 \end{equation}
 
-where N is the number of turns in a coil. \cite[p.999]{universityphysics}
+where $N_{turns}$ is the number of turns in a coil. \cite[p.999]{universityphysics}
 
 It's important to notice that magnetic flux through wire $ \Phi_{B} $ can change for a variety of reasons: the source of field can be in motion, strength of field can vary, the coil can be in motion, and the shape of coil can vary. In an energy harvesting application in an environment with vibrations motional energy is readily available, so we focus on energy harvesting methods which either move the source of magnetic field or the coil itself.
 
-It's obvious from equation \eqref{eq:emf} that energy available increases with the strength of magnetic source, number of turns in a coil and rate of change in the magnetic field. 
+It can be determined from equation \eqref{eq:emf} that the energy available increases with the strength of magnetic source, number of turns in a coil and rate of change in the magnetic field. 
 
-Magnetic source can be either permanent magnet or a electrically induced source as in induction motors. Induction-based generators require reactive power to start up, which means that any harvester design incorporating an induction generator would need a secondary power source to start the inductive generator. Hence the focus of this thesis will be in permanent magnet designs.
+Magnetic source can be either a permanent magnet or an electrically induced source as in induction motors. Induction-based generators require reactive power to start up, which means that any harvester design incorporating an induction generator would need a secondary power source to start the inductive generator. Hence the focus of this thesis will be in permanent magnet designs.
 
-In addition to voltage available from the generator, it's important to consider source impedance. A very simple electrical equivalent model of the generator is presented in figure \ref{gen_simple}, where generator is presented as a voltage source in series with lumped inductor and resistor \cite{Jirutitijaroen2012}. 
+In addition to voltage available from the generator, it's important to consider the source impedance. A very simple electrical equivalent model of the generator is presented in figure \ref{gen_simple}, where generator is presented as a voltage source in series with lumped inductor and resistor \cite{Jirutitijaroen2012}. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -124,7 +122,7 @@ In addition to voltage available from the generator, it's important to consider 
 \label{gen_simple}
 \end{figure}
 
-This model is greatly simplified and it does not account for factors such as effect of electromagnetical force on mechanical structure of the generator. Even with these limitations, model is still useful as it can be used to determine an optimal load for the generator. 
+This model is greatly simplified and it does not account for factors such as effect of electromagnetical force on mechanical structure of the generator. Even with these limitations, the model is still useful as it can be used to determine an optimal load for the generator. 
 
 The power output can be written formally as:
 
@@ -132,7 +130,7 @@ The power output can be written formally as:
   P_{generated}(s) = \varepsilon(s)*I_{generated}(s),
 \end{equation}
 
-where $P_{generated}(s), \varepsilon(s), I_{generated}(s)$ are complex laplace-domain power, voltage and current dependent on frequency. It can be seen that power is generated only when there is a load available, as without load there is no current flow into our out of generator. Voltage is determined by EMF as described above. Current can be written as: 
+where $P_{generated}(s), \varepsilon(s), I_{generated}(s)$ are complex frequency-domain power, voltage and current dependent. Voltage is determined by EMF as described above. Current can be written as: 
 
 \begin{equation} \label{eq:gen_simple_current}
   I_{generated}(s) = \frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)},
@@ -150,9 +148,9 @@ Total power into load can be written as:
   P_{load}(s) = \varepsilon(s)*\frac{Z_{load}(s)}{Z_{generator}(s)+Z_{load}(s)}*\frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)}.
 \end{equation}
 
-It's easy to see from \eqref{eq:generator_load_power} that if load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tire, so it makes sense to try to match the load impedance for maximum power.
+It's easy to see from \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tire, so it makes sense to try to match the load impedance for maximum power.
 
-In energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
+In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
 
 \subsubsection{Magnetostrictive harvesting}
 TODO: Magnetostrictive harvesting resembles piezoelectric harvesting. Figure \ref{magneto} shows proposed system, where magnetostrictive cantilever is sandwiched between biasing magnets and a pickup coil.  
