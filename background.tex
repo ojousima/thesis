@@ -126,7 +126,7 @@ The power output can be written formally as:
   P_{generated}(s) = \varepsilon(s)*I_{generated}(s),
 \end{equation}
 
-where $P_{generated}(s), V_{generated}(s), I_{generated}(s)$ are complex laplace-domain power, voltage and current dependent on frequency. It can be seen that power is generated only when there is a load available, as without load there is no current flow into our out of generator. Voltage is determined by EMF as described above. Current can be written as: 
+where $P_{generated}(s), \varepsilon(s), I_{generated}(s)$ are complex laplace-domain power, voltage and current dependent on frequency. It can be seen that power is generated only when there is a load available, as without load there is no current flow into our out of generator. Voltage is determined by EMF as described above. Current can be written as: 
 
 \begin{equation} \label{eq:gen_simple_current}
   I_{generated}(s) = \frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)},
@@ -141,10 +141,10 @@ where substituting $Z_{generator}(s) $ and $ Z_{load}(s)$ are complex impedances
 Total power into load can be written as:
 
 \begin{equation} \label{eq:generator_load_power}
-  P_{load}(s) = V_{generated}(s)*\frac{Z_{load}(s)}{Z_{generator}(s)+Z_{load}(s)}*\frac{V_{generated}(s)}{Z_{generator}(s)+Z_{load}(s)}.
+  P_{load}(s) = \varepsilon(s)*\frac{Z_{load}(s)}{Z_{generator}(s)+Z_{load}(s)}*\frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)}.
 \end{equation}
 
-It's easy to see from \eqref{eq:generator_load_power} that if load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator. The electrical efficiency is defined as ratio of power flowing into load and total power generated. It's easily seen from equation \eqref{eq:generator_load_power} that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tire, so it makes sense to try to match the load impedance for maximum power.
+It's easy to see from \eqref{eq:generator_load_power} that if load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tire, so it makes sense to try to match the load impedance for maximum power.
 
 In energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
 
