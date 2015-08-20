@@ -217,7 +217,27 @@ $\delta_r$               & Stronger side walls		& Incresed efficiency
 
 
 \subsubsection{Experimental and FEA modeling of electromagnetic harvester}
-As some parameters of the harvester are difficult to solve analytically, these parameters are solved using experimental and FEA methods. 
+As some parameters of the harvester are difficult to solve analytically, these parameters are solved using experimental and FEA methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite(femm) was used to create an axisymmetric model of magnets in generator. Figure \ref{femm_tube} shows the used model. Model has two biasing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. Magnets have height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. Generator has total height of 25 mm, leaving rotor magnet 17.5 mm room for movement inside generator.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=6cm]{images/own_dwg/magnet_tube_model.jpg}
+\end{center}
+\caption{\label{femm} Forces acting on magnet}
+\end{figure}
+
+Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for net magnetic force acting on rotor magnet. A LUA script was used to move the rotor magnet from bottom of the generator to top in 0.1 mm increments and values obtained from analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on magnet, positive force meaning force towards the upper magnet and zero height being at the bottom of cylinder. For reference the centrifugal force acting on magnet was also calculated at various speeds, assuming weight of the magnet is 1,67 g and radius to bottom of generator is 275 mm.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=6cm]{images/own_dwg/femm_fvsd_dualmagnet.jpg}
+\end{center}
+\caption{\label{femm_forces} Forces acting on magnet}
+\end{figure}
+
+It can be seen that net force on rotor magnet is dominated by the magnetic forces. while centrifugal force on magnet is negligible in comparison. 
+
+Second use for this FEA analysis is to create look-up table for flux linkage into coils of generator. 
 
 \subsection{Piezoelectric harvester design}
 A previous work by 
