@@ -4,7 +4,7 @@ log = openfile("result.log", "w")
 open("moving_magnet.fem")
 mi_saveas("temp.fem")
 
-for n=1,(200) do
+for n=1,(175) do
 
 	mi_analyse(1)
 	mi_loadsolution()
