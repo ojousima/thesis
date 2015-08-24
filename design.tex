@@ -201,14 +201,14 @@ The analytical effect of these parameters is summarized in table \ref{parameters
 \begin{center}
 \fbox{
 \begin{tabular}{l l l}
-\textbf{Parameter}	 & \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
-N_{turns}                & Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
-N_{pole}		 & Increased frequency		& Decreased frequency	\\ \hline
-l_{pole}                 & More space for wiring 	& Higher voltage, smaller size	\\ \hline
-A_{loop}		 & More power			& Smaller length of wiring 	\\ \hline
-B                        & Increased power 	        & Smaller magnets 		\\ \hline
-r_{wire}		 & Decreased wiring resistance 	& More turns in same space 	\\ \hline
-$\delta_{r}$             & Stronger side walls		& Incresed efficiency 
+\textbf{Parameter}	      & \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
+N_{turns}                     & Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
+N_{pole}		      & Increased frequency		& Decreased frequency	\\ \hline
+l_{pole}                      & More space for wiring 	& Higher voltage, smaller size	\\ \hline
+A_{loop}		      & More power			& Smaller length of wiring 	\\ \hline
+B                             & Increased power 	        & Smaller magnets 		\\ \hline
+r_{wire}		      & Decreased wiring resistance 	& More turns in same space 	\\ \hline
+\(\displaystyle \delta_{r} \) & Stronger side walls		& Incresed efficiency 
 \end{tabular}
 }
 \end{center}
@@ -236,7 +236,16 @@ Weighted stress tensor integration over rotor magnet volume as implemented by FE
 
 It can be seen that net force on rotor magnet is dominated by the magnetic forces. while centrifugal force on magnet is negligible in comparison. 
 
-Second use for this FEA analysis is to create look-up table for flux linkage into coils of generator. 
+Second use for this FEA analysis is to create look-up table for flux linkage into coils of generator. The methodology was similar to determining forces affecting the rotor magnet: a LUA script was ran to sweep possible magnet positions, and look-up table of flux linkage into coils was created. For the purposes of analysis, difference of flux linkage was calculated between each point. The change of flux linkage is a very important parameter, as the power generated is proportional to $\frac{d \Phi_{B}}{d t}$. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=6cm]{images/own_dwg/femm_flux_dualmagnet.jpg}
+\end{center}
+\caption{\label{fig:femm_linkage} Flux linkage and rate of change in 0.1 mm steps in generator.}
+\end{figure}
+
+Based on these results, a magnet moving at the speed of $0.1 mm / s $ would induce voltage of up to $1.5 mV$ in each winding of the coil. If we assume coil to have 100 turns, travel length of the magnet to be 1 mm, and frequency of magnet moving inside generator to be 10 Hz the peak voltage out of generator would be sufficient to power the circuitry and charge battery of sensor.
 
 \subsection{Piezoelectric harvester design}
 A previous work by 
@@ -245,8 +254,22 @@ A previous work by
 
 \subsection{Electronic design}
 \subsubsection{Simulation of circuit}
-The analog sections of circuit were simulated using LTSpice IV \cite{ltspice}. Accelerometer and bluetooth module were modeled as parallel current sinks which took energy from the circuit in pulses. Energy harvesting was simulated as a high.impedance AC voltage source. 
-Battery was modelled as a voltage source with high-value capacitor and low-value resistor in series.
+The analog sections of circuit were simulated using LTSpice IV \cite{ltspice}. Microcontroller, radiolink and accelerometer were simulated as resistive load. Battery was modelled as a voltage source with high-value capacitor and low-value resistor in series. Piezoelectric harvesting was modelled both as high-voltage source with capacitor in series and current source with capacitor in parallel. Electromagnetic harvesting was modelled as low-impedance low-voltage source. 
+
+{\color{red} once lookup-tables can be generated, create maximum power point tracking.} LTC3331 presents an interesting opportunity for maximum power point tracking (MPPT). While the impedances of individual components cannot be tuned in real-time, the microcontroller can determine rotation frequency of tyre from accelerometer readings and determine the maximum power point. LTC3331 can adjust the target voltage for energy storage buffer capacitor, which enables MPPT-control of system.
+
+The simulation model is shown in figure \ref{fig:ltspice_sim}. Connections were adjusted as needed to generate simulation data for different purposes, such measuring energy efficiency, transient response, MPPT etc.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=12cm]{images/own_dwg/ltspice_ltc3331.jpg}
+\end{center}
+\caption{\label{fig:ltspice_sim} LTSpice \cite{ltspice} simulation of electrical circuit}
+\end{figure}
+
+--simulated efficiency
+--simulated mppt
+--figures
 
 \subsubsection{Schematic design}
 The printed circuit board (PCB) schematic is a logical representation of the components and how they connect to each other. The schematic is designed in accordance to datasheets, reference designs and application notes of main circuit components. As the design operates in high-vibration environment with wide temperature variations, special care is used to select components which have well-defined temperature and mechanical characteristics. 
