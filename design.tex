@@ -276,9 +276,15 @@ The printed circuit board (PCB) schematic is a logical representation of the com
 
 As the circuit is a low-power design, careful attention has to be paid to parasitic properties and non-ideal behaviour of components. For example electrolytic capacitor can have leakage current of several microamperes \cite{Both2001}, which is in the same order of magnitude as the targeted sleep current consumption of system. Likevise any signaling current should be kept at minimum. 
 
-Another important point of view is the modularity and testability of the circuit. All critical lines should have provision for testing and debugging for development and verification of circuit functionality. 
+Another important point of view is the modularity and testability of the circuit. All critical lines have provision for testing and debugging for development and verification of circuit functionality. 
 
-Power supply has some conflicting requirements, as any noise in power  degrades radio and measurement performance, but on the other hand the power supply should be efficient switch mode power supply to keep power consumption at minimum.
+Power supply has some conflicting requirements, as any noise in power degrades radio and measurement performance, but on the other hand the power supply should be efficient switch mode power supply to keep power consumption at minimum. LTC3331 has switch-mode power supplies which can be used to generate supply rails for the rest of circuit, these are used and noise is dealt with by passive filtering.
+
+Most of the power supply design is relatively straightforward application of ideas presented in LTC3331 datasheet, but a few special considerations have been given to minimize sleep power consumption. First of all, the configuration pins need to be controllable to enable MPPT. Any leakage current has to be minimized, and control is not needed while energy is not harvested. Therefore, energy harvesting under voltage lockout pins are connected to EH\_ON pin of the LTC3331 through a high-value resistor. As the leakage current of input pins is 10 nA at maximum, their parasitic leakage current can be considered neglible. 
+
+When the EH\_ON signal gets asserted, the UV\_LO pins are pulled high through the high-value resistors. Control logic can then ground signals through MOSFETs. This causes higher leakage currents, but some inefficiencies are acceptable while the energy comes from harvesting sources. Interfacing to control electronics is likevise done by interfacing pull-up resistors through mosfets. Special care must be taken to select models with low drain-source leakage current to mimize power consumption while energy harvesting is not active. Gate-source leakage current is less critical, as the gates are driven high only when harvested energy is available, but naturally it's still desirable to mimize all wasted power in system.
+
+Microcontroller and radio communications are integrated in same module to minimize component count and programming effort. A module with integrated radio antenna is selected to further reduce design complexity. While t
 
 
 \subsubsection{Circuit layout}
@@ -310,5 +316,7 @@ Polyacetal (POM C)& Medium     & Low                         & Low       & -50..
 }
 \end{center}
 \end{table}
+
+
 
 
