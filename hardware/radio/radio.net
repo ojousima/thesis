@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/otso/git/thesis/hardware/radio/radio.sch)
-    (date "Sat 05 Sep 2015 15:51:24 EEST")
+    (date "Sat 05 Sep 2015 16:07:26 EEST")
     (tool "Eeschema (2015-07-10 BZR 5924)-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -270,6 +270,7 @@
       (tstamp 55EA7A3A))
     (comp (ref IC301)
       (value ATMEGA328-P)
+      (footprint Housings_QFP:TQFP-32_7x7mm_Pitch0.8mm)
       (libsource (lib atmel) (part ATMEGA328-P))
       (sheetpath (names /Control/) (tstamps /55E9A1B4/))
       (tstamp 55EA8691))
