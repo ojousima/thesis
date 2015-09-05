@@ -1,0 +1,29 @@
+* C:\Users\Otso\Desktop\thesis\thesis\simulation\LTSPICE\LTC3331.asc
+XU1 0 0 N010 N010 0 0 0 N002 N005 N007 N009 N003 N004 N008 N006 BB_IN VIN3 VIN3 VIN3 BB_IN BAT_IN 0 BB_IN 0 0 VIN3 N011 N001 N012 VIN3 0 0 0 LTC3331
+C1 BB_IN 0 22µ
+R1 N011 BB_IN 120k
+C2 N007 N009 1µ
+C3 N007 0 22µ
+C4 N010 0 4.7µ
+L1 N006 N008 22µ Rser=1
+L2 N003 N004 22µ Rser=1
+C5 VIN3 0 0µ1
+C6 N004 0 22µ
+V1 N013 0 3.8 Rser=10
+C7 BAT_IN 0 1µ
+S1 BB_IN BAT_IN N014 0 MYSW
+V3 N014 0 0
+C8 BAT_IN N013 10
+I1 N005 N002 SINE(0 202u 11 0.2 0 0 1k)
+C9 N002 N005 39n
+I2 N004 0 PULSE(0 400u 4 10u 10u 100 101 10)
+I3 N004 0 PULSE(0 26m 5 10n 10n 10m 10 1)
+.tran 0 10 1 startup
+.model MYSW SW(Ron=1 Roff=100Meg Vt=.5 Vh=-.4)
+* Energy harvesting source
+* Simulate battery \nconnecting to circuit
+* Simulated \nload
+* Energy \nstorage
+.lib LTC3331.sub
+.backanno
+.end
