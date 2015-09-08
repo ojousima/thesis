@@ -24,4 +24,5 @@ simulation/FEMM/temp.fem
 
 #Kicad Backup files
 *-bak
+*.bak
 *_saved_*
