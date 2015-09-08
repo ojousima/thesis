@@ -40,11 +40,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 5
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
+Title "Energy harvesting sensor board with BLE radio"
+Date "2015-09-08"
+Rev "e6b12b6"
+Comp "Aalto University / Otso Jousimaa"
+Comment1 "First draft for review"
 Comment2 ""
 Comment3 ""
 Comment4 ""
