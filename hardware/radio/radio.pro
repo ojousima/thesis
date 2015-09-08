@@ -1,4 +1,4 @@
-update=4.9.2015 16:49:57
+update=7.9.2015 15:11:02
 version=1
 last_client=kicad
 [pcbnew]
@@ -64,3 +64,13 @@ LibName32=ESD_Protection
 LibName33=nordicsemi
 LibName34=sensors
 LibName35=rfcom
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
