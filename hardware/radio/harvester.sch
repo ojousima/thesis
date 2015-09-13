@@ -41,10 +41,10 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 5
 Title "Energy harvesting sensor board with BLE radio"
-Date "2015-09-08"
-Rev "e6b12b6"
+Date "2015-09-14"
+Rev "bff4fab"
 Comp "Aalto University / Otso Jousimaa"
-Comment1 "First draft for review"
+Comment1 "First production draft"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -424,7 +424,7 @@ L INDUCTOR L202
 U 1 1 55EA02AC
 P 7600 2500
 F 0 "L202" V 7550 2500 50  0000 C CNN
-F 1 "INDUCTOR" V 7700 2500 50  0000 C CNN
+F 1 "AISC-1210HS-220K-T2" V 7850 2500 50  0000 C CNN
 F 2 "Resistors_SMD:R_1210" H 7600 2500 60  0001 C CNN
 F 3 "" H 7600 2500 60  0000 C CNN
 	1    7600 2500
@@ -435,7 +435,7 @@ L INDUCTOR L201
 U 1 1 55EA045E
 P 8350 2200
 F 0 "L201" V 8300 2200 50  0000 C CNN
-F 1 "INDUCTOR" V 8450 2200 50  0000 C CNN
+F 1 "AISC-1210HS-220K-T2" V 8200 2200 50  0000 C CNN
 F 2 "Resistors_SMD:R_1210" H 8350 2200 60  0001 C CNN
 F 3 "" H 8350 2200 60  0000 C CNN
 	1    8350 2200
