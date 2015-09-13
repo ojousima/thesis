@@ -1,8 +1,14 @@
 (export (version D)
   (design
+<<<<<<< HEAD
     (source C:/Users/Otso/Desktop/thesis/thesis/hardware/radio/radio.sch)
     (date "13.9.2015 18:29:35")
     (tool "Eeschema (2015-07-08 BZR 5908, Git 901e961)-product")
+=======
+    (source /home/otso/git/thesis/hardware/radio/radio.sch)
+    (date "Sun 13 Sep 2015 18:46:31 EEST")
+    (tool "Eeschema (2015-07-10 BZR 5924)-product")
+>>>>>>> Assign Q1 footprint
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title "Energy harvesting sensor board with BLE radio")
@@ -319,6 +325,7 @@
       (tstamp 55EA7A3A))
     (comp (ref Q1)
       (value Q_NMOS_DGS)
+      (footprint TO_SOT_Packages_SMD:SOT-23)
       (libsource (lib device) (part Q_NMOS_DGS))
       (sheetpath (names "/Power management/") (tstamps /55E9A1B1/))
       (tstamp 55F1D0B7))
@@ -426,6 +433,7 @@
       (tstamp 55EACC71))
     (comp (ref Q301)
       (value Q_NMOS_DGS)
+      (footprint TO_SOT_Packages_SMD:SOT-23)
       (libsource (lib device) (part Q_NMOS_DGS))
       (sheetpath (names /Control/) (tstamps /55E9A1B4/))
       (tstamp 55EAF184))
