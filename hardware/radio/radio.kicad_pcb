@@ -1,15 +1,25 @@
 (kicad_pcb (version 4) (host pcbnew "(2015-07-08 BZR 5908, Git 901e961)-product")
 
   (general
+<<<<<<< HEAD
     (links 184)
     (no_connects 124)
+=======
+    (links 190)
+    (no_connects 127)
+>>>>>>> Assign Q1 footprint
     (area 74.949999 68.949999 110.050001 110.050001)
     (thickness 1.6)
     (drawings 41)
     (tracks 359)
     (zones 0)
+<<<<<<< HEAD
     (modules 73)
     (nets 92)
+=======
+    (modules 74)
+    (nets 89)
+>>>>>>> Assign Q1 footprint
   )
 
   (page A4)
@@ -2575,6 +2585,40 @@
       (net 8 "Net-(BT201-Pad1)"))
     (pad 2 thru_hole circle (at 1.25 0) (size 1 1) (drill 0.6) (layers *.Cu *.Mask F.SilkS)
       (net 5 "Net-(C204-Pad1)"))
+  )
+
+  (module TO_SOT_Packages_SMD:SOT-23 (layer F.Cu) (tedit 553634F8) (tstamp 55F59DB6)
+    (at 122.25 107.5)
+    (descr "SOT-23, Standard")
+    (tags SOT-23)
+    (path /55E9A1B1/55F1D0B7)
+    (attr smd)
+    (fp_text reference Q1 (at 0 -2.25) (layer F.SilkS)
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_text value Q_NMOS_DGS (at 0 2.3) (layer F.Fab)
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_line (start -1.65 -1.6) (end 1.65 -1.6) (layer F.CrtYd) (width 0.05))
+    (fp_line (start 1.65 -1.6) (end 1.65 1.6) (layer F.CrtYd) (width 0.05))
+    (fp_line (start 1.65 1.6) (end -1.65 1.6) (layer F.CrtYd) (width 0.05))
+    (fp_line (start -1.65 1.6) (end -1.65 -1.6) (layer F.CrtYd) (width 0.05))
+    (fp_line (start 1.29916 -0.65024) (end 1.2509 -0.65024) (layer F.SilkS) (width 0.15))
+    (fp_line (start -1.49982 0.0508) (end -1.49982 -0.65024) (layer F.SilkS) (width 0.15))
+    (fp_line (start -1.49982 -0.65024) (end -1.2509 -0.65024) (layer F.SilkS) (width 0.15))
+    (fp_line (start 1.29916 -0.65024) (end 1.49982 -0.65024) (layer F.SilkS) (width 0.15))
+    (fp_line (start 1.49982 -0.65024) (end 1.49982 0.0508) (layer F.SilkS) (width 0.15))
+    (pad 1 smd rect (at -0.95 1.00076) (size 0.8001 0.8001) (layers F.Cu F.Paste F.Mask)
+      (net 85 "Net-(BT201-Pad2)"))
+    (pad 2 smd rect (at 0.95 1.00076) (size 0.8001 0.8001) (layers F.Cu F.Paste F.Mask)
+      (net 8 "Net-(BT201-Pad1)"))
+    (pad 3 smd rect (at 0 -0.99822) (size 0.8001 0.8001) (layers F.Cu F.Paste F.Mask)
+      (net 3 GND))
+    (model TO_SOT_Packages_SMD.3dshapes/SOT-23.wrl
+      (at (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (dimension 11 (width 0.3) (layer Dwgs.User)
