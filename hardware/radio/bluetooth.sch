@@ -109,7 +109,7 @@ P2_1-PROG
 Text HLabel 9400 4400 2    60   Input ~ 0
 P2_2-PROG
 Text HLabel 9400 4500 2    60   Input ~ 0
-VCC
+VCC_BLE
 Text HLabel 9400 4600 2    60   Input ~ 0
 GND
 Entry Wire Line
@@ -126,8 +126,8 @@ Wire Bus Line
 	3400 2200 3400 4100
 Wire Bus Line
 	3400 2200 5650 2200
-Text Label 3800 2600 2    60   ~ 0
-VCC
+Text Label 3550 2400 0    60   ~ 0
+VCC_BLE
 Text Label 3850 4000 2    60   ~ 0
 GND
 Wire Wire Line
@@ -161,10 +161,10 @@ Wire Wire Line
 	3900 4900 3650 4900
 Connection ~ 3650 4900
 $Comp
-L GND #PWR041
+L GND #PWR038
 U 1 1 55EB72D9
 P 3650 5150
-F 0 "#PWR041" H 3650 4900 50  0001 C CNN
+F 0 "#PWR038" H 3650 4900 50  0001 C CNN
 F 1 "GND" H 3650 5000 50  0000 C CNN
 F 2 "" H 3650 5150 60  0000 C CNN
 F 3 "" H 3650 5150 60  0000 C CNN
@@ -174,7 +174,7 @@ $EndComp
 Text Label 9350 4600 2    60   ~ 0
 GND
 Text Label 9350 4500 2    60   ~ 0
-VCC
+VCC_BLE
 Text Label 9350 4400 2    60   ~ 0
 P2_2-PROG
 Text Label 9350 4300 2    60   ~ 0
@@ -269,28 +269,8 @@ $EndComp
 Wire Wire Line
 	3550 2600 3550 2400
 Connection ~ 3550 2600
-$Comp
-L VCC #PWR042
-U 1 1 55EB8217
-P 3550 2400
-F 0 "#PWR042" H 3550 2250 50  0001 C CNN
-F 1 "VCC" H 3550 2550 50  0000 C CNN
-F 2 "" H 3550 2400 60  0000 C CNN
-F 3 "" H 3550 2400 60  0000 C CNN
-	1    3550 2400
-	1    0    0    -1  
-$EndComp
-$Comp
-L VCC #PWR043
-U 1 1 55EB8235
-P 3000 2150
-F 0 "#PWR043" H 3000 2000 50  0001 C CNN
-F 1 "VCC" H 3000 2300 50  0000 C CNN
-F 2 "" H 3000 2150 60  0000 C CNN
-F 3 "" H 3000 2150 60  0000 C CNN
-	1    3000 2150
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3000 2150 3000 2300
+Text Label 3000 2150 0    60   ~ 0
+VCC_BLE
 $EndSCHEMATC
