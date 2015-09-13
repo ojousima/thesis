@@ -1,25 +1,15 @@
-(kicad_pcb (version 4) (host pcbnew "(2015-07-08 BZR 5908, Git 901e961)-product")
+(kicad_pcb (version 4) (host pcbnew "(2015-07-10 BZR 5924)-product")
 
   (general
-<<<<<<< HEAD
-    (links 184)
-    (no_connects 124)
-=======
-    (links 190)
+    (links 187)
     (no_connects 127)
->>>>>>> Assign Q1 footprint
     (area 74.949999 68.949999 110.050001 110.050001)
     (thickness 1.6)
     (drawings 41)
     (tracks 359)
     (zones 0)
-<<<<<<< HEAD
-    (modules 73)
-    (nets 92)
-=======
     (modules 74)
-    (nets 89)
->>>>>>> Assign Q1 footprint
+    (nets 92)
   )
 
   (page A4)
@@ -2587,8 +2577,8 @@
       (net 5 "Net-(C204-Pad1)"))
   )
 
-  (module TO_SOT_Packages_SMD:SOT-23 (layer F.Cu) (tedit 553634F8) (tstamp 55F59DB6)
-    (at 122.25 107.5)
+  (module TO_SOT_Packages_SMD:SOT-23 (layer F.Cu) (tedit 553634F8) (tstamp 55F59EE9)
+    (at 117 114.75)
     (descr "SOT-23, Standard")
     (tags SOT-23)
     (path /55E9A1B1/55F1D0B7)
