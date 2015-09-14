@@ -39,3 +39,4 @@ hardware/radio/gerber/picture.JPG
 *.gbo
 *.zip
 hardware/radio/_autosave-radio.kicad_pcb
+hardware/radio/gerber/radio.txt
