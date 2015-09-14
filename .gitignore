@@ -26,3 +26,15 @@ simulation/FEMM/temp.fem
 *-bak
 *.bak
 *_saved_*
+hardware/radio/gerber/picture.JPG
+*.gbl
+*.gl2
+*.gl3
+*.gto
+*.gtp
+*.gtl
+*.gbs
+*.gbr
+*.gts
+*.gbo
+*.zip
