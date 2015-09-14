@@ -314,16 +314,35 @@ Radio link is implemented with BLE113 module. The module could act as stand-alon
 
 There is an accelometer ADXL375 onboard the PCB to study applications of tyre sensor system. Schematic of sensor section is shown in figure \ref{fig:sensor_circuit}. The power supply section has a separate digital Input/Output (IO) supply voltage which is further filtered for analog sections of board by FB501 and C502. Both supplies are fed by same system level power bus from LTC3331.
 
-ADXL375 is capable of both SPI and I2C communication, SPI communication was selected to facilitate faster communication to minimize time control circuit has to be in awake and to avoid additional power drain through the required pull-up resistors of I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be 
+ADXL375 is capable of both SPI and I2C communication, SPI communication was selected to facilitate faster communication to minimize time control circuit has to be in awake and to avoid additional power drain through the required pull-up resistors of I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{SN74AUP1T32}, which has minimal static power current consumption of 0.1 microamperes. 
 
+\begin{figure}
+    \centering
+    \def\svgwidth{\columnwidth}
+    \input{images/own_dwg/circuit/sensor.pdf_tex}
+    \caption{\label{fig:sensor_circuit} Bluetooth connectivity built around BLE113}
+\end{figure}
+
+As the circuit will be facing extreme accelerations, all the components are surface mounted. This gives maximal solder pad area to height ratios, which helps to maintain the integrity of circuit. Larger components, such as inductors can be additionally glued for increased mechanical reliability.
 
 
 \subsubsection{Circuit layout}
-The PCB layout defines the physical placement of the components on the circuit board. Special care must be used in placement of accelerometer to measure vibration of tyre itself rather than resonances of PCB. Components have to be placed in a manner which minimizes effect of vibrations on them. 
+The PCB layout defines the physical placement of the components on the circuit board. Usually circuits are laid out by defining the outline of the board. Then any mechanical constraints, such as mounting holes and connectors are placed. Next step is to place the main ICs. As the main features of circuit are defined, subsections of circuit is planned. Critical and sensitive components such as crystals and antennas are placed as first priority. Then the power supply lines and power supply components are placed, in this case the inductors and capacitors of SMPS are placed as close as possible to relevant pins. 
 
+The circuit is laid out on 4-layer PCB, where inner layers are dedicated to ground and power planes. This means that power supply decoupling needs a lot less care than on 2-layer board, generally a via straight from power pin to relevant plane gives low-impedance supply to circuit. Power supply decoupling capacitors are still placed as close as possible to relevant pins and power supplies are fed directly from capacitors when possible to minimize power supply noise leaking into power planes.
 
+Finally the rest of the circuit is laid out. As the currents flowing on board are relatively small and signal rates are low, routing can be rather carefree on non-critical sections. Final board is shown in figure \ref{fig:pcb_render}.
 
-\subsection{Mechanical design}
+\begin{figure}
+    \centering
+    \def\svgwidth{\columnwidth}
+    \input{images/own_dwg/circuit/pcb_render.pdf_tex}
+    \caption{\label{fig:pcb_render} Render of the final PCB}
+\end{figure}
+
+In addition to mechanical and electrical properties, the PCB also acts as heat sink for mid-power components. In this circuit only LTC3331 needs special attention to thermal design, it is cooled by several vias under the pad of circuit into ground plane. As copper is excellent conductor for heat, any thermal output from LTC3331 gets coupled to groundplane where it can spread to a wider area.
+
+\subsection{Mechanical design of generator}
 Material for the shaft has a few requirements. It has to have at least as good temperature characteristics as the magnet being used and it must be hard enough to not deform under impacts. Low friction coefficient is desirable as this leads to smaller losses, and long time durability under wear is of course desired. Being lightweight and easily machinable are also desired characteristics. As the generator is small, volumetric cost of the material is of little concern. For the electro-magnetic generator design material ferromagnetism has to be considered. Table \ref{parameters_of_materials} has comparison of different materials considered for the application.
 
 \begin{table}[htb]
@@ -347,7 +366,6 @@ Polyacetal (POM C)& Medium     & Low                         & Low       & -50..
 }
 \end{center}
 \end{table}
-
 
 
 
