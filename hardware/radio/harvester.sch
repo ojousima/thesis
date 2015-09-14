@@ -196,7 +196,7 @@ F 3 "" H 2850 4100 30  0000 C CNN
 	1    2850 4100
 	1    0    0    -1  
 $EndComp
-Text Notes 1100 4250 0    60   ~ 0
+Text Notes 1500 4200 0    60   ~ 0
 User selectable \noutput voltage\n000: 1.8V\n001: 2.5V\n010: 2.8V\n011: 3.0V\n100: 3.3V\n101: 3.6V\n110: 4.5V\n111: 5.0V
 Text Label 2600 3250 0    60   ~ 0
 VIN3
@@ -299,7 +299,7 @@ F 3 "" H 5900 5950 60  0000 C CNN
 	1    5900 5950
 	1    0    0    -1  
 $EndComp
-Text Notes 1100 7300 0    60   ~ 0
+Text Notes 1500 7250 0    60   ~ 0
 User selectable \nFloat/Connect/Disconnect\n000: 3.45/2.35/2.04\n001: 4.0/3.03/2.70\n010: 4.1/3.03/2.70\n011: 4.2/3.03/2.70\n100: 3.45/2.85/2.51\n101: 4.0/3.53/3.20\n110: 4.1/3.53/3.20\n111: 4.2/3.53/3.20
 $Comp
 L R R210
@@ -380,7 +380,7 @@ F 3 "" H 2850 6100 60  0000 C CNN
 	1    2850 6100
 	1    0    0    -1  
 $EndComp
-Text Notes 1100 5800 0    60   ~ 0
+Text Notes 1500 5750 0    60   ~ 0
 User selectable \nPeak current (Lmin)\n000: 5mA / 1000µH\n001: 10mA / 470µH\n010: 15mA / 330µH\n011: 25mA / 220µH\n100: 50mA / 100µH\n101: 100mA / 47µH\n110: 150mA / 33µH\n111: 250mA / 22µH
 Text Label 5650 3450 0    60   ~ 0
 OUT2
@@ -433,34 +433,34 @@ $EndComp
 $Comp
 L INDUCTOR L201
 U 1 1 55EA045E
-P 8350 2200
-F 0 "L201" V 8300 2200 50  0000 C CNN
-F 1 "AISC-1210HS-220K-T2" V 8200 2200 50  0000 C CNN
-F 2 "Resistors_SMD:R_1210" H 8350 2200 60  0001 C CNN
-F 3 "" H 8350 2200 60  0000 C CNN
-	1    8350 2200
+P 8150 2200
+F 0 "L201" V 8100 2200 50  0000 C CNN
+F 1 "AISC-1210HS-220K-T2" V 8000 2200 50  0000 C CNN
+F 2 "Resistors_SMD:R_1210" H 8150 2200 60  0001 C CNN
+F 3 "" H 8150 2200 60  0000 C CNN
+	1    8150 2200
 	0    1    1    0   
 $EndComp
 $Comp
 L C C203
 U 1 1 55EA08DD
-P 8800 2700
-F 0 "C203" H 8825 2800 50  0000 L CNN
-F 1 "C" H 8825 2600 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 8838 2550 30  0001 C CNN
-F 3 "" H 8800 2700 60  0000 C CNN
-	1    8800 2700
+P 8600 2700
+F 0 "C203" H 8625 2800 50  0000 L CNN
+F 1 "C" H 8625 2600 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 8638 2550 30  0001 C CNN
+F 3 "" H 8600 2700 60  0000 C CNN
+	1    8600 2700
 	1    0    0    -1  
 $EndComp
 $Comp
 L GND #PWR020
 U 1 1 55EA0A97
-P 8800 3000
-F 0 "#PWR020" H 8800 2750 50  0001 C CNN
-F 1 "GND" H 8800 2850 50  0000 C CNN
-F 2 "" H 8800 3000 60  0000 C CNN
-F 3 "" H 8800 3000 60  0000 C CNN
-	1    8800 3000
+P 8600 3000
+F 0 "#PWR020" H 8600 2750 50  0001 C CNN
+F 1 "GND" H 8600 2850 50  0000 C CNN
+F 2 "" H 8600 3000 60  0000 C CNN
+F 3 "" H 8600 3000 60  0000 C CNN
+	1    8600 3000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -518,22 +518,22 @@ F 3 "" H 7400 4250 60  0000 C CNN
 	1    7400 4250
 	1    0    0    -1  
 $EndComp
-Text Label 8200 3700 0    60   ~ 0
+Text Label 8000 3700 0    60   ~ 0
 EH_ON
 Text Label 7800 3200 0    60   ~ 0
 VIN2
 Text Label 7400 3300 0    60   ~ 0
 VIN3
-Text Label 9150 2200 0    60   ~ 0
+Text Label 8950 2200 0    60   ~ 0
 VOUT
 Entry Wire Line
-	9650 5700 9750 5600
+	8200 5700 8300 5600
 Entry Wire Line
-	9650 5800 9750 5700
+	8200 5800 8300 5700
 Entry Wire Line
-	9650 5900 9750 5800
+	8200 5900 8300 5800
 Entry Wire Line
-	9650 6000 9750 5900
+	8200 6000 8300 5900
 Entry Wire Line
 	4950 4700 5050 4600
 Entry Wire Line
@@ -542,25 +542,25 @@ Entry Wire Line
 	4950 4500 5050 4400
 Entry Wire Line
 	4950 4400 5050 4300
-Text Label 9750 5600 0    60   ~ 0
+Text Label 8300 5600 0    60   ~ 0
 UV3
-Text Label 9750 5700 0    60   ~ 0
+Text Label 8300 5700 0    60   ~ 0
 UV2
-Text Label 9750 5800 0    60   ~ 0
+Text Label 8300 5800 0    60   ~ 0
 UV1
-Text Label 9750 5900 0    60   ~ 0
+Text Label 8300 5900 0    60   ~ 0
 UV0
-Text HLabel 10150 5600 2    60   Input ~ 0
+Text HLabel 8700 5600 2    60   Input ~ 0
 UV3
-Text HLabel 10150 5700 2    60   Input ~ 0
+Text HLabel 8700 5700 2    60   Input ~ 0
 UV2
-Text HLabel 10150 5800 2    60   Input ~ 0
+Text HLabel 8700 5800 2    60   Input ~ 0
 UV1
-Text HLabel 10150 5900 2    60   Input ~ 0
+Text HLabel 8700 5900 2    60   Input ~ 0
 UV0
-Text HLabel 9500 2200 2    60   Output ~ 0
+Text HLabel 9300 2200 2    60   Output ~ 0
 VOUT
-Text HLabel 9500 2300 2    60   Output ~ 0
+Text HLabel 9300 2300 2    60   Output ~ 0
 EH_ON
 $Comp
 L Battery BT201
@@ -598,15 +598,15 @@ $EndComp
 $Comp
 L GND #PWR024
 U 1 1 55EB3C4E
-P 9400 2700
-F 0 "#PWR024" H 9400 2450 50  0001 C CNN
-F 1 "GND" H 9400 2550 50  0000 C CNN
-F 2 "" H 9400 2700 60  0000 C CNN
-F 3 "" H 9400 2700 60  0000 C CNN
-	1    9400 2700
+P 9200 2700
+F 0 "#PWR024" H 9200 2450 50  0001 C CNN
+F 1 "GND" H 9200 2550 50  0000 C CNN
+F 2 "" H 9200 2700 60  0000 C CNN
+F 3 "" H 9200 2700 60  0000 C CNN
+	1    9200 2700
 	1    0    0    -1  
 $EndComp
-Text HLabel 9500 2500 2    60   Output ~ 0
+Text HLabel 9300 2500 2    60   Output ~ 0
 GND
 Text Notes 3900 6200 0    60   ~ 0
 Reverse \nbattery \nprotection
@@ -645,8 +645,8 @@ F 3 "" H 3600 5600 60  0000 C CNN
 	1    3600 5600
 	0    1    1    0   
 $EndComp
-Text Notes 3000 1600 0    60   ~ 0
-Current and voltage \nmeasurement
+Text Notes 2650 2050 0    60   ~ 0
+Current\nmeasurement
 $Comp
 L TEST W201
 U 1 1 55F5A019
@@ -845,9 +845,9 @@ Wire Wire Line
 Wire Bus Line
 	4950 4400 4950 6300
 Wire Bus Line
-	4950 6300 9650 6300
+	4950 6300 8200 6300
 Wire Bus Line
-	9650 6300 9650 5700
+	8200 6300 8200 5700
 Wire Wire Line
 	6500 5600 6500 5700
 Wire Wire Line
@@ -863,20 +863,20 @@ Wire Wire Line
 Wire Wire Line
 	7250 2600 7100 2600
 Wire Wire Line
-	7100 2200 8050 2200
+	7100 2200 7850 2200
 Wire Wire Line
-	8650 2200 8800 2200
+	8450 2200 9300 2200
 Wire Wire Line
-	8800 2200 8800 2550
+	8600 2200 8600 2550
 Wire Wire Line
-	8800 2350 7900 2350
+	8600 2350 7900 2350
 Wire Wire Line
 	7900 2350 7900 2300
 Wire Wire Line
 	7900 2300 7100 2300
-Connection ~ 8800 2350
+Connection ~ 8600 2350
 Wire Wire Line
-	8800 2850 8800 3000
+	8600 2850 8600 3000
 Wire Wire Line
 	5900 2850 5750 2850
 Wire Wire Line
@@ -913,7 +913,7 @@ Wire Wire Line
 Wire Wire Line
 	7400 3300 7400 3850
 Wire Wire Line
-	7100 3700 9150 3700
+	7100 3700 8950 3700
 Wire Wire Line
 	7100 3200 7800 3200
 Wire Wire Line
@@ -923,20 +923,17 @@ Wire Wire Line
 Wire Wire Line
 	7800 4150 7800 4250
 Wire Wire Line
-	8750 2200 9500 2200
-Connection ~ 8750 2200
+	8300 5600 8700 5600
 Wire Wire Line
-	9750 5600 10150 5600
+	8300 5700 8700 5700
 Wire Wire Line
-	9750 5700 10150 5700
+	8300 5800 8700 5800
 Wire Wire Line
-	9750 5800 10150 5800
+	8300 5900 8700 5900
 Wire Wire Line
-	9750 5900 10150 5900
+	8950 3700 8950 2300
 Wire Wire Line
-	9150 3700 9150 2300
-Wire Wire Line
-	9150 2300 9500 2300
+	8950 2300 9300 2300
 Wire Wire Line
 	5150 5000 5150 6950
 Wire Wire Line
@@ -954,9 +951,9 @@ Wire Wire Line
 	5500 5850 5500 5950
 Connection ~ 5500 5850
 Wire Wire Line
-	9400 2700 9400 2500
+	9200 2700 9200 2500
 Wire Wire Line
-	9400 2500 9500 2500
+	9200 2500 9300 2500
 Wire Wire Line
 	4600 2500 5900 2500
 Wire Wire Line
@@ -1053,4 +1050,5 @@ Text Label 4400 3100 0    60   ~ 0
 BB_IN
 Text Label 2600 6350 0    60   ~ 0
 BB_IN
+Connection ~ 8600 2200
 $EndSCHEMATC

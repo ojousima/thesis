@@ -71,11 +71,23 @@ Entry Wire Line
 Entry Wire Line
 	5550 4600 5650 4700
 Wire Bus Line
-	5650 2200 5650 4800
+	5650 2200 5650 4600
 Wire Bus Line
-	5650 4800 8700 4800
+	5650 4600 5650 4700
 Wire Bus Line
-	8700 4800 8700 4300
+	5650 4700 5650 4800
+Wire Bus Line
+	5650 4800 5850 4800
+Wire Bus Line
+	5850 4800 5850 4700
+Wire Bus Line
+	5850 4700 5850 4600
+Wire Bus Line
+	5850 4600 5850 4500
+Wire Bus Line
+	5850 4500 5850 4400
+Wire Bus Line
+	5850 4400 5850 4300
 Text Label 3800 2900 2    60   ~ 0
 RESET
 Text Label 5450 4600 2    60   ~ 0
@@ -83,47 +95,61 @@ P2_2-PROG
 Text Label 5450 4500 2    60   ~ 0
 P2_1-PROG
 Entry Wire Line
-	8700 4700 8800 4600
+	5850 4700 5950 4600
 Entry Wire Line
-	8700 4600 8800 4500
+	5850 4600 5950 4500
 Entry Wire Line
-	8700 4500 8800 4400
+	5850 4500 5950 4400
 Entry Wire Line
-	8700 4400 8800 4300
+	5850 4400 5950 4300
 Entry Wire Line
-	8700 4300 8800 4200
+	5850 4300 5950 4200
 Wire Wire Line
-	8800 4200 9400 4200
+	5950 4200 6550 4200
 Wire Wire Line
-	8800 4300 9400 4300
+	5950 4300 6550 4300
 Wire Wire Line
-	8800 4400 9400 4400
+	5950 4400 6550 4400
 Wire Wire Line
-	8800 4500 9400 4500
+	5950 4500 6550 4500
 Wire Wire Line
-	8800 4600 9400 4600
-Text HLabel 9400 4200 2    60   Input ~ 0
+	5950 4600 6550 4600
+Text HLabel 6550 4200 2    60   Input ~ 0
 RESET
-Text HLabel 9400 4300 2    60   Input ~ 0
+Text HLabel 6550 4300 2    60   Input ~ 0
 P2_1-PROG
-Text HLabel 9400 4400 2    60   Input ~ 0
+Text HLabel 6550 4400 2    60   Input ~ 0
 P2_2-PROG
-Text HLabel 9400 4500 2    60   Input ~ 0
+Text HLabel 6550 4500 2    60   Input ~ 0
 VCC_BLE
-Text HLabel 9400 4600 2    60   Input ~ 0
+Text HLabel 6550 4600 2    60   Input ~ 0
 GND
 Entry Wire Line
 	3400 3000 3500 2900
 Wire Wire Line
-	3500 4000 3900 4000
+	3500 4000 3550 4000
+Wire Wire Line
+	3550 4000 3650 4000
+Wire Wire Line
+	3650 4000 3900 4000
 Entry Wire Line
 	3400 4100 3500 4000
 Entry Wire Line
 	3400 2700 3500 2600
 Wire Wire Line
-	3900 2600 3500 2600
+	3900 2600 3850 2600
+Wire Wire Line
+	3850 2600 3600 2600
+Wire Wire Line
+	3600 2600 3550 2600
+Wire Wire Line
+	3550 2600 3500 2600
 Wire Bus Line
-	3400 2200 3400 4100
+	3400 2200 3400 2700
+Wire Bus Line
+	3400 2700 3400 3000
+Wire Bus Line
+	3400 3000 3400 4100
 Wire Bus Line
 	3400 2200 5650 2200
 Text Label 3550 2400 0    60   ~ 0
@@ -133,7 +159,25 @@ GND
 Wire Wire Line
 	3900 4100 3650 4100
 Wire Wire Line
-	3650 4000 3650 5150
+	3650 4000 3650 4100
+Wire Wire Line
+	3650 4100 3650 4200
+Wire Wire Line
+	3650 4200 3650 4300
+Wire Wire Line
+	3650 4300 3650 4400
+Wire Wire Line
+	3650 4400 3650 4500
+Wire Wire Line
+	3650 4500 3650 4600
+Wire Wire Line
+	3650 4600 3650 4700
+Wire Wire Line
+	3650 4700 3650 4800
+Wire Wire Line
+	3650 4800 3650 4900
+Wire Wire Line
+	3650 4900 3650 5150
 Connection ~ 3650 4000
 Connection ~ 3650 4100
 Wire Wire Line
@@ -171,15 +215,15 @@ F 3 "" H 3650 5150 60  0000 C CNN
 	1    3650 5150
 	1    0    0    -1  
 $EndComp
-Text Label 9350 4600 2    60   ~ 0
+Text Label 6500 4600 2    60   ~ 0
 GND
-Text Label 9350 4500 2    60   ~ 0
+Text Label 6500 4500 2    60   ~ 0
 VCC_BLE
-Text Label 9350 4400 2    60   ~ 0
+Text Label 6500 4400 2    60   ~ 0
 P2_2-PROG
-Text Label 9350 4300 2    60   ~ 0
+Text Label 6500 4300 2    60   ~ 0
 P2_1-PROG
-Text Label 9350 4200 2    60   ~ 0
+Text Label 6500 4200 2    60   ~ 0
 RESET
 Wire Wire Line
 	3900 2700 3600 2700
@@ -222,7 +266,11 @@ $EndComp
 Wire Wire Line
 	3850 2600 3850 3100
 Wire Wire Line
-	3500 3100 3900 3100
+	3500 3100 3700 3100
+Wire Wire Line
+	3700 3100 3850 3100
+Wire Wire Line
+	3850 3100 3900 3100
 Wire Wire Line
 	3900 3100 3900 3250
 Connection ~ 3850 2600
@@ -235,7 +283,11 @@ Connection ~ 3700 3100
 Wire Wire Line
 	3500 3550 3500 3650
 Wire Wire Line
-	3500 3650 3900 3650
+	3500 3650 3550 3650
+Wire Wire Line
+	3550 3650 3700 3650
+Wire Wire Line
+	3700 3650 3900 3650
 Wire Wire Line
 	3900 3650 3900 3550
 Wire Wire Line
