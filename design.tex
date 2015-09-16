@@ -281,7 +281,7 @@ Another important point of view is the modularity and testability of the circuit
 \begin{figure}
     \centering
     \def\svgwidth{\columnwidth}
-    \input{images/own_dwg/circuit/blocklevel.pdf_tex}
+    \input{images/own_dwg/circuit/radio.pdf_tex}
     \caption{\label{fig:circuit_blocklevel} System level design of electronics}
 \end{figure}
 
@@ -290,16 +290,16 @@ Power supply has some conflicting requirements, as any noise in power degrades r
 \begin{figure}
     \centering
     \def\svgwidth{\columnwidth}
-    \input{images/own_dwg/circuit/psu.pdf_tex}
+    \input{images/own_dwg/circuit/harvester.pdf_tex}
     \caption{\label{fig:psu_circuit} Power supply with harvesting input, battery management and SMPS voltage output.}
 \end{figure}
 
-Central controller is built around ATMEGA328 \cite{atmega328} microcontroller. The controller uses SPI and UART serial communication between sections of the system, and it has parallel connection to LTC3331 to set the energy harvester voltage levels for MPPT. LTC3331 has EH_ON output, which rises to logic high level of approximately 4.8 volts when the circuit is being supplied by harvested energy rahter than by a battery. This voltage level is above the circuit supply voltage, and therefore interfacing it directly to ATMEGA328 would be damaging. Interfacing is done by N-MOSFET BSH105 \cite{BSH105} and internal pullup-resistor on ATMEGA328. When harvested energy is available, pull-up of ATMEGA328 becomes grounded through BSH105. This causes somewhat significant current leakage, in range of tens of microamperes while pull-up is being pulled down. However this leakage is present only while harvested energy is available, so it will not drain the battery of circuit. While harvested energy is not available, the MOSFET is shut off. Special care was taken to select a model of MOSFET with small off leakage to avoid drain while system is being run on battery power, BSH105 is specified to have leakage in range of tens of nanoamperes. 
+Central controller is built around ATMEGA328 \cite{atmega328} microcontroller. The controller uses SPI and UART serial communication between sections of the system, and it has parallel connection to LTC3331 to set the energy harvester voltage levels for MPPT. LTC3331 has EH\_ON output, which rises to logic high level of approximately 4.8 volts when the circuit is being supplied by harvested energy rahter than by a battery. This voltage level is above the circuit supply voltage, and therefore interfacing it directly to ATMEGA328 would be damaging. Interfacing is done by N-MOSFET BSH105 \cite{BSH105} and internal pullup-resistor on ATMEGA328. When harvested energy is available, pull-up of ATMEGA328 becomes grounded through BSH105. This causes somewhat significant current leakage, in range of tens of microamperes while pull-up is being pulled down. However this leakage is present only while harvested energy is available, so it will not drain the battery of circuit. While harvested energy is not available, the MOSFET is shut off. Special care was taken to select a model of MOSFET with small off leakage to avoid drain while system is being run on battery power, BSH105 is specified to have leakage in range of tens of nanoamperes. 
 
 \begin{figure}
     \centering
     \def\svgwidth{\columnwidth}
-    \input{images/own_dwg/circuit/atmega.pdf_tex}
+    \input{images/own_dwg/circuit/control.pdf_tex}
     \caption{\label{fig:atmega_circuit} Control circuit with external interrupts from sensor and energy harvesting.}
 \end{figure}
 
@@ -333,11 +333,11 @@ The circuit is laid out on 4-layer PCB, where inner layers are dedicated to grou
 
 Finally the rest of the circuit is laid out. As the currents flowing on board are relatively small and signal rates are low, routing can be rather carefree on non-critical sections. Final board is shown in figure \ref{fig:pcb_render}.
 
-\begin{figure}
-    \centering
-    \def\svgwidth{\columnwidth}
-    \input{images/own_dwg/circuit/pcb_render.pdf_tex}
-    \caption{\label{fig:pcb_render} Render of the final PCB}
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=6cm]{images/own_dwg/circuit/render.jpg}
+  \end{center}
+  \caption{\label{fig:pcb_render} Render of the final PCB}}
 \end{figure}
 
 In addition to mechanical and electrical properties, the PCB also acts as heat sink for mid-power components. In this circuit only LTC3331 needs special attention to thermal design, it is cooled by several vias under the pad of circuit into ground plane. As copper is excellent conductor for heat, any thermal output from LTC3331 gets coupled to groundplane where it can spread to a wider area.
