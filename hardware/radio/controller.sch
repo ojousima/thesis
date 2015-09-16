@@ -232,23 +232,23 @@ F 3 "" H 2900 2400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Entry Wire Line
-	9050 1300 9150 1200
+	6850 1300 6950 1200
 Entry Wire Line
-	9050 1400 9150 1300
+	6850 1400 6950 1300
 Entry Wire Line
-	9050 1500 9150 1400
+	6850 1500 6950 1400
 Entry Wire Line
-	9050 1600 9150 1500
+	6850 1600 6950 1500
 Entry Wire Line
-	9050 1700 9150 1600
+	6850 1700 6950 1600
 Entry Wire Line
-	9050 1800 9150 1700
+	6850 1800 6950 1700
 Entry Wire Line
-	9050 1900 9150 1800
+	6850 1900 6950 1800
 Entry Wire Line
-	9050 1200 9150 1100
+	6850 1200 6950 1100
 Entry Wire Line
-	9050 1100 9150 1000
+	6850 1100 6950 1000
 Entry Wire Line
 	5700 2200 5800 2100
 Text Label 5700 2200 2    60   ~ 0
@@ -263,47 +263,47 @@ Text Label 5700 3800 2    60   ~ 0
 INT0
 Text Label 5700 3900 2    60   ~ 0
 INT1
-Text Label 9450 1000 2    60   ~ 0
+Text Label 7250 1000 2    60   ~ 0
 SPI_SS
-Text Label 9450 1100 2    60   ~ 0
+Text Label 7250 1100 2    60   ~ 0
 MISO
-Text Label 9450 1200 2    60   ~ 0
+Text Label 7250 1200 2    60   ~ 0
 MOSI
-Text Label 9450 1300 2    60   ~ 0
+Text Label 7250 1300 2    60   ~ 0
 RESET
-Text Label 9450 1400 2    60   ~ 0
+Text Label 7250 1400 2    60   ~ 0
 SCK
-Text Label 9450 1500 2    60   ~ 0
+Text Label 7250 1500 2    60   ~ 0
 SW_RX
-Text Label 9450 1600 2    60   ~ 0
+Text Label 7250 1600 2    60   ~ 0
 SW_TX
-Text Label 9450 1700 2    60   ~ 0
+Text Label 7250 1700 2    60   ~ 0
 RX
-Text Label 9450 1800 2    60   ~ 0
+Text Label 7250 1800 2    60   ~ 0
 TX
 Entry Wire Line
-	9050 2000 9150 1900
-Text Label 9450 1900 2    60   ~ 0
+	6850 2000 6950 1900
+Text Label 7250 1900 2    60   ~ 0
 INT0
-Text HLabel 9550 1000 2    60   Output ~ 0
+Text HLabel 7350 1000 2    60   Output ~ 0
 SPI_SS
-Text HLabel 9550 1100 2    60   Input ~ 0
+Text HLabel 7350 1100 2    60   Input ~ 0
 MISO
-Text HLabel 9550 1200 2    60   Output ~ 0
+Text HLabel 7350 1200 2    60   Output ~ 0
 MOSI
-Text HLabel 9550 1300 2    60   Input ~ 0
+Text HLabel 7350 1300 2    60   Input ~ 0
 RESET
-Text HLabel 9550 1400 2    60   BiDi ~ 0
+Text HLabel 7350 1400 2    60   BiDi ~ 0
 SCK
-Text HLabel 9550 1500 2    60   Input ~ 0
+Text HLabel 7350 1500 2    60   Input ~ 0
 SW_RX
-Text HLabel 9550 1600 2    60   Output ~ 0
+Text HLabel 7350 1600 2    60   Output ~ 0
 SW_TX
-Text HLabel 9550 1700 2    60   Input ~ 0
+Text HLabel 7350 1700 2    60   Input ~ 0
 RX
-Text HLabel 9550 1800 2    60   Output ~ 0
+Text HLabel 7350 1800 2    60   Output ~ 0
 TX
-Text HLabel 9550 1900 2    60   Input ~ 0
+Text HLabel 7350 1900 2    60   Input ~ 0
 INT0
 Text HLabel 2850 4650 0    60   Input ~ 0
 GND
@@ -384,7 +384,9 @@ Entry Wire Line
 Entry Wire Line
 	2600 3800 2700 3900
 Wire Wire Line
-	5400 2600 7100 2600
+	5400 2600 7000 2600
+Wire Wire Line
+	7000 2600 7100 2600
 Wire Wire Line
 	5400 2700 6850 2700
 Wire Wire Line
@@ -392,7 +394,9 @@ Wire Wire Line
 Wire Wire Line
 	6850 2800 7600 2800
 Wire Wire Line
-	7600 2600 7600 2850
+	7600 2600 7600 2800
+Wire Wire Line
+	7600 2800 7600 2850
 Wire Wire Line
 	7600 2600 7500 2600
 Connection ~ 7600 2800
@@ -406,9 +410,25 @@ Wire Wire Line
 Wire Wire Line
 	7600 3150 7600 3250
 Wire Bus Line
-	5800 2000 5800 3850
+	5800 2000 5800 2100
 Wire Bus Line
-	9050 2000 5800 2000
+	5800 2100 5800 2200
+Wire Bus Line
+	5800 2200 5800 2300
+Wire Bus Line
+	5800 2300 5800 2400
+Wire Bus Line
+	5800 2400 5800 2750
+Wire Bus Line
+	5800 2750 5800 3500
+Wire Bus Line
+	5800 3500 5800 3600
+Wire Bus Line
+	5800 3600 5800 3700
+Wire Bus Line
+	5800 3700 5800 3850
+Wire Bus Line
+	6850 2000 5800 2000
 Wire Wire Line
 	5700 2500 5400 2500
 Wire Wire Line
@@ -418,9 +438,13 @@ Wire Wire Line
 Wire Wire Line
 	5400 2100 5700 2100
 Wire Wire Line
-	5400 3450 6450 3450
+	5400 3450 5700 3450
 Wire Wire Line
-	6450 3400 6450 3500
+	5700 3450 6450 3450
+Wire Wire Line
+	6450 3400 6450 3450
+Wire Wire Line
+	6450 3450 6450 3500
 Wire Wire Line
 	6450 3050 6450 3100
 Connection ~ 6450 3450
@@ -434,16 +458,28 @@ Wire Wire Line
 Wire Wire Line
 	3500 4200 3200 4200
 Wire Wire Line
-	3200 4100 3200 4750
+	3200 4100 3200 4200
+Wire Wire Line
+	3200 4200 3200 4300
+Wire Wire Line
+	3200 4300 3200 4650
+Wire Wire Line
+	3200 4650 3200 4750
 Wire Wire Line
 	3500 4300 3200 4300
 Connection ~ 3200 4300
 Wire Wire Line
 	3450 2300 3500 2300
 Wire Wire Line
-	3450 2000 3450 2300
+	3450 2000 3450 2100
 Wire Wire Line
-	2900 2000 3500 2000
+	3450 2100 3450 2300
+Wire Wire Line
+	2900 2000 3250 2000
+Wire Wire Line
+	3250 2000 3450 2000
+Wire Wire Line
+	3450 2000 3500 2000
 Connection ~ 3450 2000
 Wire Wire Line
 	3500 2600 3200 2600
@@ -455,7 +491,25 @@ Connection ~ 2900 2000
 Wire Wire Line
 	2900 2350 2900 2400
 Wire Bus Line
-	9050 1000 9050 2000
+	6850 1000 6850 1100
+Wire Bus Line
+	6850 1100 6850 1200
+Wire Bus Line
+	6850 1200 6850 1300
+Wire Bus Line
+	6850 1300 6850 1400
+Wire Bus Line
+	6850 1400 6850 1500
+Wire Bus Line
+	6850 1500 6850 1600
+Wire Bus Line
+	6850 1600 6850 1700
+Wire Bus Line
+	6850 1700 6850 1800
+Wire Bus Line
+	6850 1800 6850 1900
+Wire Bus Line
+	6850 1900 6850 2000
 Wire Wire Line
 	5400 3800 5700 3800
 Wire Wire Line
@@ -465,25 +519,25 @@ Wire Wire Line
 Wire Wire Line
 	5400 3900 5900 3900
 Wire Wire Line
-	9150 1000 9550 1000
+	6950 1000 7350 1000
 Wire Wire Line
-	9150 1100 9550 1100
+	6950 1100 7350 1100
 Wire Wire Line
-	9150 1200 9550 1200
+	6950 1200 7350 1200
 Wire Wire Line
-	9150 1300 9550 1300
+	6950 1300 7350 1300
 Wire Wire Line
-	9150 1400 9550 1400
+	6950 1400 7350 1400
 Wire Wire Line
-	9150 1500 9550 1500
+	6950 1500 7350 1500
 Wire Wire Line
-	9150 1600 9550 1600
+	6950 1600 7350 1600
 Wire Wire Line
-	9150 1700 9550 1700
+	6950 1700 7350 1700
 Wire Wire Line
-	9550 1800 9150 1800
+	7350 1800 6950 1800
 Wire Wire Line
-	9150 1900 9550 1900
+	6950 1900 7350 1900
 Wire Wire Line
 	2900 1950 2550 1950
 Wire Wire Line
@@ -506,7 +560,15 @@ Wire Wire Line
 Wire Wire Line
 	5900 4200 5400 4200
 Wire Bus Line
-	6000 3050 6000 4450
+	6000 3050 6000 3150
+Wire Bus Line
+	6000 3150 6000 3250
+Wire Bus Line
+	6000 3250 6000 4000
+Wire Bus Line
+	6000 4000 6000 4300
+Wire Bus Line
+	6000 4300 6000 4450
 Wire Bus Line
 	6000 4450 5450 4450
 Wire Bus Line
@@ -518,7 +580,15 @@ Wire Bus Line
 Wire Bus Line
 	3300 4450 2700 4450
 Wire Bus Line
-	2700 4450 2700 3500
+	2700 4450 2700 3900
+Wire Bus Line
+	2700 3900 2700 3800
+Wire Bus Line
+	2700 3800 2700 3700
+Wire Bus Line
+	2700 3700 2700 3600
+Wire Bus Line
+	2700 3600 2700 3500
 Wire Wire Line
 	2300 3050 2300 3200
 Wire Wire Line
@@ -548,12 +618,12 @@ Entry Wire Line
 Text Label 5700 4000 2    60   ~ 0
 BLE_RS
 Entry Wire Line
-	9050 1000 9150 900 
+	6850 1000 6950 900 
 Wire Wire Line
-	9150 900  9550 900 
-Text HLabel 9550 900  2    60   Output ~ 0
+	6950 900  7350 900 
+Text HLabel 7350 900  2    60   Output ~ 0
 BLE_RS
-Text Label 9450 900  2    60   ~ 0
+Text Label 7250 900  2    60   ~ 0
 BLE_RS
 Text Label 2300 2550 0    60   ~ 0
 INT1
@@ -618,7 +688,9 @@ F 3 "" H 3250 2400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2900 1950 2900 2050
+	2900 1950 2900 2000
+Wire Wire Line
+	2900 2000 2900 2050
 Text Label 6450 3050 0    60   ~ 0
 VCC_uc
 Wire Wire Line
