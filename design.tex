@@ -201,13 +201,13 @@ The analytical effect of these parameters is summarized in table \ref{parameters
 \begin{center}
 \fbox{
 \begin{tabular}{l l l}
-\textbf{Parameter}	      & \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
-N_{turns}                     & Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
-N_{pole}		      & Increased frequency		& Decreased frequency	\\ \hline
-l_{pole}                      & More space for wiring 	& Higher voltage, smaller size	\\ \hline
-A_{loop}		      & More power			& Smaller length of wiring 	\\ \hline
-B                             & Increased power 	        & Smaller magnets 		\\ \hline
-r_{wire}		      & Decreased wiring resistance 	& More turns in same space 	\\ \hline
+\textbf{Parameter}          & \textbf{Increasing} 		& \textbf{Decreasing}	\\ \hline
+\(\displaystyle N_{turns} \)& Higher voltage		& Smaller size, less wiring resistance 		\\ \hline
+\(\displaystyle N_{pole} \) & Increased frequency		& Decreased frequency	\\ \hline
+\(\displaystyle l_{pole} \) & More space for wiring 	& Higher voltage, smaller size	\\ \hline
+\(\displaystyle A_{loop} \) & More power			& Smaller length of wiring 	\\ \hline
+B                           & Increased power 	        & Smaller magnets 		\\ \hline
+\(\displaystyle r_{wire}\)  & Decreased wiring resistance 	& More turns in same space 	\\ \hline
 \(\displaystyle \delta_{r} \) & Stronger side walls		& Incresed efficiency 
 \end{tabular}
 }
@@ -219,19 +219,19 @@ r_{wire}		      & Decreased wiring resistance 	& More turns in same space 	\\ \h
 As some parameters of the harvester are difficult to solve analytically, these parameters are solved using experimental and FEA methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite{Meeker2013} was used to create an axisymmetric model of magnets in generator. Figure \ref{femm_tube} shows the used model. Model has two biasing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. Magnets have height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. Generator has total height of 25 mm, leaving rotor magnet 17.5 mm room for movement inside generator.
 
 \begin{figure}[htb]
-\begin{center}
-\includegraphics[height=6cm]{images/own_dwg/magnet_tube_model.jpg}
-\end{center}
-\caption{\label{femm_tube} FEM model of generator magnetics}
+  \begin{center}
+  \includegraphics[height=6cm]{images/own_dwg/magnet_tube_model.jpg}
+  \end{center}
+  \caption{\label{femm_tube} FEM model of generator magnetics}
 \end{figure}
 
 Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for net magnetic force acting on rotor magnet. A LUA script was used to move the rotor magnet from bottom of the generator to top in 0.1 mm increments and values obtained from analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on magnet, positive force meaning force towards the upper magnet and zero height being at the bottom of cylinder. For reference the centrifugal force acting on magnet was also calculated at various speeds, assuming weight of the magnet is 1,67 g and radius to bottom of generator is 275 mm.
 
 \begin{figure}[htb]
-\begin{center}
-\includegraphics[height=6cm]{images/own_dwg/femm_fvsd_dualmagnet.jpg}
-\end{center}
-\caption{\label{femm_forces} Forces acting on magnet}
+  \begin{center}
+  \includegraphics[height=6cm]{images/own_dwg/femm_fvsd_dualmagnet.jpg}
+  \end{center}
+  \caption{\label{femm_forces} Forces acting on magnet}
 \end{figure}
 
 It can be seen that net force on rotor magnet is dominated by the magnetic forces. while centrifugal force on magnet is negligible in comparison. 
@@ -278,7 +278,7 @@ As the circuit is a low-power design, careful attention has to be paid to parasi
 
 Another important point of view is the modularity and testability of the circuit. All critical lines have provision for testing and debugging for development and verification of circuit functionality. Figure \ref{fig:circuit_blocklevel} shows the interconnections in system.  The power supply can be cut off to separate sections of circuit for current measurement as needed. This has additional benefit of leaving places for power supply filtering components in case some section of circuit emits electrical noise through power supply lines.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/radio.pdf_tex}
@@ -287,7 +287,7 @@ Another important point of view is the modularity and testability of the circuit
 
 Power supply has some conflicting requirements, as any noise in power degrades radio and measurement performance, but on the other hand the power supply should be efficient switch mode power supply to keep power consumption at minimum. LTC3331 has switch-mode power supplies which can be used to generate supply rails for the rest of circuit, these are used and noise is dealt with by passive filtering. Most of the power supply design \ref{fig:psu_circuit} is relatively straightforward application of ideas presented in LTC3331 datasheet, but a few special considerations have been given to tailor the power supply for application. Device is configurable by soldering appropriate resistors, and the energy harvesting 
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/harvester.pdf_tex}
@@ -296,7 +296,7 @@ Power supply has some conflicting requirements, as any noise in power degrades r
 
 Central controller is built around ATMEGA328 \cite{atmega328} microcontroller. The controller uses SPI and UART serial communication between sections of the system, and it has parallel connection to LTC3331 to set the energy harvester voltage levels for MPPT. LTC3331 has EH\_ON output, which rises to logic high level of approximately 4.8 volts when the circuit is being supplied by harvested energy rahter than by a battery. This voltage level is above the circuit supply voltage, and therefore interfacing it directly to ATMEGA328 would be damaging. Interfacing is done by N-MOSFET BSH105 \cite{BSH105} and internal pullup-resistor on ATMEGA328. When harvested energy is available, pull-up of ATMEGA328 becomes grounded through BSH105. This causes somewhat significant current leakage, in range of tens of microamperes while pull-up is being pulled down. However this leakage is present only while harvested energy is available, so it will not drain the battery of circuit. While harvested energy is not available, the MOSFET is shut off. Special care was taken to select a model of MOSFET with small off leakage to avoid drain while system is being run on battery power, BSH105 is specified to have leakage in range of tens of nanoamperes. 
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/control.pdf_tex}
@@ -305,7 +305,7 @@ Central controller is built around ATMEGA328 \cite{atmega328} microcontroller. T
 
 Radio link is implemented with BLE113 module. The module could act as stand-alone controller for the system, but radio link has been separated from control logic to allow focused study of different sections of circuit.  Schematic  \ref{fig:bluetooth_circuit} is very simple, power supply is decoupled by bypassing capacitors as recommended by datasheet and programming header has been brought out. Communication to microcontroller is handled by universal asynchronous receiver/transmitter (UART) communication using 2.5 V level signaling. 
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/bluetooth.pdf_tex}
@@ -314,16 +314,18 @@ Radio link is implemented with BLE113 module. The module could act as stand-alon
 
 There is an accelometer ADXL375 onboard the PCB to study applications of tyre sensor system. Schematic of sensor section is shown in figure \ref{fig:sensor_circuit}. The power supply section has a separate digital Input/Output (IO) supply voltage which is further filtered for analog sections of board by FB501 and C502. Both supplies are fed by same system level power bus from LTC3331.
 
-ADXL375 is capable of both SPI and I2C communication, SPI communication was selected to facilitate faster communication to minimize time control circuit has to be in awake and to avoid additional power drain through the required pull-up resistors of I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{SN74AUP1T32}, which has minimal static power current consumption of 0.1 microamperes. 
+ADXL375 is capable of both SPI and I2C communication, SPI communication was selected to facilitate faster communication to minimize time control circuit has to be in awake and to avoid additional power drain through the required pull-up resistors of I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{orgate}, which has minimal static power current consumption of 0.1 microamperes. 
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/sensor.pdf_tex}
     \caption{\label{fig:sensor_circuit} Bluetooth connectivity built around BLE113}
 \end{figure}
 
-As the circuit will be facing extreme accelerations, all the components are surface mounted. This gives maximal solder pad area to height ratios, which helps to maintain the integrity of circuit. Larger components, such as inductors can be additionally glued for increased mechanical reliability.
+As the circuit will be subject to extreme accelerations, all the components are surface mounted. This gives maximal solder pad area to height ratios, which helps to maintain the integrity of circuit. Larger components, such as inductors can be additionally glued for increased mechanical reliability.
+
+
 
 
 \subsubsection{Circuit layout}
@@ -337,7 +339,7 @@ Finally the rest of the circuit is laid out. As the currents flowing on board ar
   \begin{center}
     \includegraphics[height=6cm]{images/own_dwg/circuit/render.jpg}
   \end{center}
-  \caption{\label{fig:pcb_render} Render of the final PCB}}
+  \caption{\label{fig:pcb_render} Render of the final PCB}
 \end{figure}
 
 In addition to mechanical and electrical properties, the PCB also acts as heat sink for mid-power components. In this circuit only LTC3331 needs special attention to thermal design, it is cooled by several vias under the pad of circuit into ground plane. As copper is excellent conductor for heat, any thermal output from LTC3331 gets coupled to groundplane where it can spread to a wider area.
