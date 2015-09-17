@@ -1,4 +1,4 @@
-update=Sun 13 Sep 2015 17:48:26 EEST
+update=Wed 16 Sep 2015 14:54:54 EEST
 version=1
 last_client=kicad
 [cvpcb]
@@ -45,16 +45,6 @@ LibName32=ESD_Protection
 LibName33=nordicsemi
 LibName34=sensors
 LibName35=rfcom
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=Pcbnew
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [pcbnew]
 version=1
 PageLayoutDescrFile=
@@ -74,3 +64,13 @@ SolderMaskMinWidth=0
 DrawSegmentWidth=0.2
 BoardOutlineThickness=0.09999999999999999
 ModuleOutlineThickness=0.15
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=printout/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
