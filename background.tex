@@ -150,6 +150,16 @@ As the resonant harvesting is not feasible in the environment inside tire, anoth
 
 As 4mW is plenty in field of low-power electronics, this approach deserves an in-depth study. Thunder TH-5C piezos have been used in previous studies of piezoelectronic harvesting and they have produced promising results, so they were selected as the piezoelectonic element for this thesis.
 
+Piezoelectronic elements are often electrically modeled as current source with parallel capacitor or voltage source with series capacitor, as shown in figure \ref{fig:piezo_equivalents} by Kanda et al \cite{Kanda2012}. There are also a lot more complex models which account for mechanical phenomena in piezo, as well as loading effects coupling on mechanical model. For the purposes of model identification for the piezo only simplest voltage source (a) and current source (b) models are explored.
+
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=4cm]{images/cited/kanda2012}
+  \end{center}
+  \caption{Electrical equivalent models for piezoelectric element \cite{Kanda2012}.}
+  \label{fiq:tracking_piezo}
+\end{figure}
+
 Series of tests were ran to determine characteristics of piezoelectric power generation under impacts. Mossi et al \cite{Mossi} have produced a recommended test process for Thunder piezoelectronic actuators shown in figure \ref{fiq:thunder_eval}.
 
 \begin{figure}[htb]
@@ -169,6 +179,71 @@ This setup was replicated using a solenoid actuator as impact force generator, p
   \caption{Test platform for piezo characteristics.}
   \label{fiq:piezo_impact}
 \end{figure}
+
+The measurement results are shown in figure \ref{fiq:piezo_measurement_chart}. Output voltage scales with square of impact force, which makes sense as work done can be expressed as $W = F * d$, where $W$ is work, $F$ is force and $d$ is distance force acts on object. As the displacement of piezo grows with the applied force, total work and therefore energy grows with both terms. 
+
+Peak voltage grows with the load resistance. This makes sense in both voltage source and current source models, as the capacitor starts to discharge through load resistance instantly when voltage is applied over it. The relationship between voltage and load resistance seems to be logartithmic, which would be in good agreement with the logarithmic discharge curve of capacitor-resitor system. Peak voltages were read out from digital display and they can be considered reasonably accurate.
+
+The time constants for voltage halving was graphically measured from oscilloscope waveforms, and this data was used to calculate the capacitance of TH-5C. These measurements are a lot less accurate, as readouts from oscilloscope screen have resolution of approximately half of line division, leaving accuracy of measurements at $\pm 2.5 ms$. These results are plotted in figure \ref{fig:piezo_time_capacitance}
+
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=4cm]{images/own_pic/piezo_capacitance}
+  \end{center}
+  \caption{Measured half-time of system and calculated capacitance of piezo.}
+  \label{fig:piezo_time_capacitance}
+\end{figure}
+
+The half-time data can be used to calculate capacitance of piezo using the RC-time constant of circuit:
+
+\begin{equation}
+  C=\frac{t}{-ln(½)R} 
+\end{equation}
+
+ TH-5C provides value of 39nF as the capacitance, while these calculated values are notably higher and rise with the loading of piezo. Most likely explanation of this observation is the mechanical response time of system: solenoid plunger will take some milliseconds to reach new force equiliberium, and this effect becomes more pronounced at smaller time constants of RC-system. 
+ 
+ {\color{red}TODO: Determine risetime from experimental data, compare to values given in solenoid datasheet}
+
+ Using the known voltages, time constants and load resistances power and energy in impact can be determined:
+ 
+ \begin{equation}
+   TODO
+\end{equation}
+ 
+ The calculations are plotted in graph \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
+ 
+ Interestingly the peak work done by piezo to resistor seems to be almost constant on all load levels. This is probably a consequence of logartithmic voltage-load relationship described above. There is a possibly significant result based on these findings: total energy obtainable from harvester grows with load resistance. However, this is applicable only for resistive load under impact-based energy generation.
+ 
+ \begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=4cm]{images/own_pic/piezo_power}
+  \end{center}
+  \caption{Calculated piezo power and energy output}
+  \label{fig:piezo_power_energy}
+\end{figure}
+
+Based on these results, an electrical equivalent model of circuit was designed. The model is shown in figure \ref{fig:piezo_ltspice_equivalent}. Model has two parallel current sources, one to simulate impact of on piezo and other to simulate release of the impact. Capacitance in parallel is set to 39 nF as given in datasheet, load resistance is parametrised to step through the experimental values. 
+
+Model was tuned by first calculating the total current transfer to reach the open circuit voltage over capacitor. Then rise times of current sources were adjusted until simulated data matched experimental data.
+The simulated data is plotted with experimental data in figure \ref{fiq:piezo_simulation_experimental}.
+
+ \begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=4cm]{images/own_pic/piezo_equivalent_model}
+  \end{center}
+  \caption{Equivalent model of piezo}
+  \label{fig:piezo_ltspice_equivalent}
+\end{figure}
+
+ \begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=4cm]{images/own_pic/piezo_sim_validation}
+  \end{center}
+  \caption{Equivalent model of piezo}
+  \label{fiq:piezo_simulation_experimental}
+\end{figure}
+
+The experimental and simulated data are in good agreement. The simulation can be used as basis for modeling the behaviour of piezoelectronic element for the purposes of experimenting with maximum power point tracking algorithms as well as to estimate circuit efficiencies.
 
 \subsubsection{Electromagnetical harvesting}
 Electromagnetical harvesting is based on Faraday's law of induction: A loop of wire acquires electromotive force (EMF) in response to a changing magnetic field. More formally:
