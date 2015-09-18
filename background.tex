@@ -42,9 +42,9 @@ reached.
 \subsection{Environment inside tyre}
 The energy harvester will be placed inside the tyre. Previous studies by Niskanen et al \cite{Niskanen2014}. have shown that the tyre will experience acceleration in all three axes. Tangential and centripetal accelerations are dominant, they can reach amplitudes up to 150 g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
 
-Temperature inside of the tire will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions {\color{red} reasonable tempetature range?}.
+Temperature inside of the tyre will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions {\color{red} reasonable tempetature range?}.
 
-Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tire. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figures \ref{80_TD} and \ref{80_TD_zoom} are time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}.
+Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figures \ref{80_TD} and \ref{80_TD_zoom} are time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -121,19 +121,19 @@ Radioactive energy harvesting resembles battery or fuel cell. A radioactive mate
 In conclusion, a wide range of energy harvesting technologies have been identified. As their primary properties are known, we can narrow down the suitable technology to electromagnetic, piezoelectric and magnetostrictive. These technologies are studied further to identify optimal choice for the application.
 
 \subsubsection{Resonance-based piezoelectric harvesting}
-Piezoelectric materials produce voltage in response to mechanical stress. The effect is bidirectional, piezoelectric element can also produce mechanical strain in response to applied voltage. The material has crystalline structure with electrical dipoles in balanced state when no stress is applied. Mechanical stress unbalances these dipoles, creating element which resembles electronically a charged capacitor. 
+Piezoelectric materials produce voltage in response to mechanical stress. The effect is bidirectional, piezoelectric element can also produce mechanical strain in response to applied voltage. The material has crystalline structure with electrical dipoles in balanced state when no stress is applied. Mechanical stress unbalances these dipoles, creating element which electronically resembles a charged capacitor. 
 
-A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This kind of system is shown in figure \ref{fiq:resonant_piezo}. In some applications, such as in machines running at the frequency of power grid (50 HZ or 60 HZ) this kind of frequency-tuning is relatively straightforward.
+A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This kind of system is shown in figure \ref{fiq:resonant_piezo}. In some applications, such as in machines running at the frequency of power grid (50 Hz or 60 Hz) this kind of frequency-tuning is relatively straightforward.
 
 \begin{figure}[htb]
   \begin{center}
   \includegraphics[height=4cm]{images/cited/arroyo2012}
   \end{center}
-  \caption{Piezoelectonic generator configured as cantilever by Arroyo et al \cite{Arroyo2012}.}
+  \caption{Piezoelectronic generator configured as cantilever by Arroyo et al \cite{Arroyo2012}.}
   \label{fiq:resonant_piezo}
 \end{figure}
 
-This kind of resonant harvesting is challenging in tyre. The energy harvester has a very sharp peak efficiency frequencies, and dominant frequency of tyre varies with the speed of car. On the other hand, there is almost guaranteed broadband energy available from moments where tyre contacts road. There is also some research on tuning the resonant frequency of cantilevered piezoelectronic harvester by Singh et al \cite{Singh2012}. They used intelligently driven SMPS to impedance-match the load to piezoelectonic element. As the electro-mechanical nature of piezo means changing load changes the mechanical properties of element, resonance frequency can track the dominant frequency of system within some limits. Figure \ref{fiq:tracking_piezo} shows the tracking behaviour Singh et al achieved, resonance can be adjusted in range of 65 - 70 Hz.
+This kind of resonant harvesting is challenging in tyre. The energy harvester has a very sharp peak efficiency frequencies, and dominant frequency of tyre varies with the speed of car. On the other hand, there is almost guaranteed broadband energy available from moments where tyre contacts road. There is also some research on tuning the resonant frequency of cantilevered piezoelectronic harvester by Singh et al \cite{Singh2012}. They used intelligently driven SMPS to impedance-match the load to piezoelectronic element. As the electro-mechanical nature of piezo means changing load changes the mechanical properties of element, resonance frequency can track the dominant frequency of system within some limits. Figure \ref{fiq:tracking_piezo} shows the tracking behaviour Singh et al achieved, resonance can be adjusted in range of 65 - 70 Hz.
 
 \begin{figure}[htb]
   \begin{center}
@@ -143,10 +143,10 @@ This kind of resonant harvesting is challenging in tyre. The energy harvester ha
   \label{fiq:tracking_piezo}
 \end{figure}
 
-The results of Singh et al. can be considered as the state-of-art for resonance-based piezoelectric harvesting in tyre, and their power output was around $40 \micro W$ at peak efficiency. Therefore other methods have to be explored for energy harvester design.
+The results of Singh et al. can be considered as the state-of-art for resonance-based piezoelectric harvesting in tyre, and their power output was around $40 \mu W$ at peak efficiency. Therefore other methods have to be explored for energy harvester design.
 
 \subsubsection{Impact-based piezoelectric harvesting}
-As the resonant harvesting is not feasible in the environment inside tire, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tire. These impacts would provide energy once per rotation of a tire. This method has been tried before by Manla et al \cite{Manla2009}. Their generator produced 4 mW electrical power.
+As the resonant harvesting is not feasible in the environment inside tyre, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tyre. These impacts would provide energy once per rotation of a tyre. This method has been tried before by Manla et al \cite{Manla2009}. Their generator produced 4 mW electrical power.
 
 As 4mW is plenty in field of low-power electronics, this approach deserves an in-depth study. Thunder TH-5C piezos have been used in previous studies of piezoelectronic harvesting and they have produced promising results, so they were selected as the piezoelectonic element for this thesis.
 
@@ -170,7 +170,7 @@ Series of tests were ran to determine characteristics of piezoelectric power gen
   \label{fiq:thunder_eval}
 \end{figure}
 
-This setup was replicated using a solenoid actuator as impact force generator, precision scale as load cell to measure impact force and oscilloscope to view output waveforms. An eraser was cut to shape to act as preload bellow to spread the impact over larger surface area of piezo, displacement was not measured. The test setup is shown in figure \ref{fiq:piezo_impact}- An electronics prototyping platform, "breadboard", was used to house test electronics including resistive ladder and Arduino to trigger the solenoid at adjustable duty cycles. Load force was controlled by setting the stroke length of solenoid shaft and finetuned by adjusting voltage over solenoid. 
+This setup was replicated using a solenoid actuator as impact force generator, precision scale as load cell to measure impact force and oscilloscope to view output waveforms. An eraser was cut to shape to act as preload bellow to spread the impact over larger surface area of piezo, displacement was not measured. The test setup is shown in figure \ref{fiq:piezo_impact}. An electronics prototyping platform, "breadboard", was used to house test electronics including resistive ladder and Arduino to trigger the solenoid at adjustable duty cycles. Load force was controlled by setting the stroke length of solenoid shaft and fine tuned by adjusting voltage over solenoid. 
 
 \begin{figure}[htb]
   \begin{center}
@@ -310,7 +310,7 @@ Total power into load can be written as:
   P_{load}(s) = \varepsilon(s)*\frac{Z_{load}(s)}{Z_{generator}(s)+Z_{load}(s)}*\frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)}.
 \end{equation}
 
-It's easy to see from \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tire, so it makes sense to try to match the load impedance for maximum power.
+It's easy to see from \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tyre, so it makes sense to try to match the load impedance for maximum power.
 
 In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
 
@@ -334,7 +334,7 @@ Traditionally wireless sensors have been powered with either primary or recharge
 
 This work explores ways to utilise energy present in tyre to power the sensor itself. A single tyre can waste as much as 500 W of power at high speeds {\color{red} source}, so harvesting even 1/100 000ths of wasted power would be enough for a well designed low-power sensor and transmitter.
 
-There are many different energy harvesting solutions which use fundamentally different physical principles and energy sources, such as thermal, solar, radio waves and mechanical. {\color{red} source}. As the energy harvester is inside tyre, solar harvesting is unfeasible. Radio wave harvesting methods rely on external radio transmissions for gathering power. As the device should work regardless of external environment, these methods are not suited for application. Thermal methods require significant temperature gradients {\color{red} source}, but previous work shows that car tire can reach only ambient plus few tens of \degree C {\color{red} source}. Therefore thermal methods would be ineffective. 
+There are many different energy harvesting solutions which use fundamentally different physical principles and energy sources, such as thermal, solar, radio waves and mechanical. {\color{red} source}. As the energy harvester is inside tyre, solar harvesting is unfeasible. Radio wave harvesting methods rely on external radio transmissions for gathering power. As the device should work regardless of external environment, these methods are not suited for application. Thermal methods require significant temperature gradients {\color{red} source}, but previous work shows that car tyre can reach only ambient plus few tens of \degree C {\color{red} source}. Therefore thermal methods would be ineffective. 
 
 Mechanical energy harvesting is a natural choice, as there is abundant amount of mechanical energy available as accelerations, vibrations and centripetal force available inside the tyre. There are various different approaches for harvesting mechanical energy, including piezoelectronic, electrostatic, electromagnetic and microelectromechanical systems (MEMS) {\color{red} source}. To select optimal method for energy harvesting, more information about the characteristics of mechanical energy is required.
 
