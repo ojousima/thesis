@@ -123,13 +123,13 @@ In conclusion, a wide range of energy harvesting technologies have been identifi
 \subsubsection{Resonance-based piezoelectric harvesting}
 Piezoelectric materials produce voltage in response to mechanical stress. The effect is bidirectional, piezoelectric element can also produce mechanical strain in response to applied voltage. The material has crystalline structure with electrical dipoles in balanced state when no stress is applied. Mechanical stress unbalances these dipoles, creating element which resembles electronically a charged capacitor. 
 
-A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This kind of system is shown in figure \ref(fiq:resonant_piezo). In some applications, such as in machines running at the frequency of power grid (50 HZ or 60 HZ) this kind of frequency-tuning is relatively straightforward.
+A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This kind of system is shown in figure \ref{fiq:resonant_piezo}. In some applications, such as in machines running at the frequency of power grid (50 HZ or 60 HZ) this kind of frequency-tuning is relatively straightforward.
 
 \begin{figure}[htb]
   \begin{center}
   \includegraphics[height=4cm]{images/cited/arroyo2012}
   \end{center}
-  \caption{Piezoelectonic generator configured as cantileverl by Arroyo et al \cite{Arroyo2012}.}
+  \caption{Piezoelectonic generator configured as cantilever by Arroyo et al \cite{Arroyo2012}.}
   \label{fiq:resonant_piezo}
 \end{figure}
 
@@ -139,7 +139,7 @@ This kind of resonant harvesting is challenging in tyre. The energy harvester ha
   \begin{center}
   \includegraphics[height=4cm]{images/cited/singh2012}
   \end{center}
-  \caption{Piezoelectonic generator configured as cantileverl by Arroyo et al \cite{Singh2012}.}
+  \caption{Frequency tuning results by Singh et al \cite{Singh2012}.}
   \label{fiq:tracking_piezo}
 \end{figure}
 
@@ -154,23 +154,23 @@ Piezoelectronic elements are often electrically modeled as current source with p
 
 \begin{figure}[htb]
   \begin{center}
-  \includegraphics[height=4cm]{images/cited/kanda2012}
+  \includegraphics[height=6cm]{images/cited/kanda2012}
   \end{center}
   \caption{Electrical equivalent models for piezoelectric element \cite{Kanda2012}.}
-  \label{fiq:tracking_piezo}
+  \label{fig:piezo_equivalents}
 \end{figure}
 
 Series of tests were ran to determine characteristics of piezoelectric power generation under impacts. Mossi et al \cite{Mossi} have produced a recommended test process for Thunder piezoelectronic actuators shown in figure \ref{fiq:thunder_eval}.
 
 \begin{figure}[htb]
   \begin{center}
-  \includegraphics[height=4cm]{images/cited/mossi}
+  \includegraphics[height=6cm]{images/cited/mossi}
   \end{center}
   \caption{Recommended evaluation platform for Thunder piezos \cite{Mossi}.}
-  \label{fiq:tracking_piezo}
+  \label{fiq:thunder_eval}
 \end{figure}
 
-This setup was replicated using a solenoid actuator as impact force generator, precision scale as load cell to measure impact force and oscilloscope to view output waveforms. An eraser was cut to shape to act as preload bellow to spread the impact over larger surface area of piezo, displacement was not measured. The test setup is shown in figure \ref{fiq:piezo_impact} An electronics prototyping platform, "breadboard", was used to house test electronics including resistive ladder and Arduino to trigger the solenoid at adjustable duty cycles. Load force was controlled by setting the stroke length of solenoid shaft and finetuned by adjusting voltage over solenoid. 
+This setup was replicated using a solenoid actuator as impact force generator, precision scale as load cell to measure impact force and oscilloscope to view output waveforms. An eraser was cut to shape to act as preload bellow to spread the impact over larger surface area of piezo, displacement was not measured. The test setup is shown in figure \ref{fiq:piezo_impact}- An electronics prototyping platform, "breadboard", was used to house test electronics including resistive ladder and Arduino to trigger the solenoid at adjustable duty cycles. Load force was controlled by setting the stroke length of solenoid shaft and finetuned by adjusting voltage over solenoid. 
 
 \begin{figure}[htb]
   \begin{center}
@@ -181,6 +181,14 @@ This setup was replicated using a solenoid actuator as impact force generator, p
 \end{figure}
 
 The measurement results are shown in figure \ref{fiq:piezo_measurement_chart}. Output voltage scales with square of impact force, which makes sense as work done can be expressed as $W = F * d$, where $W$ is work, $F$ is force and $d$ is distance force acts on object. As the displacement of piezo grows with the applied force, total work and therefore energy grows with both terms. 
+
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=4cm]{images/own_pic/piezo_measurements}
+  \end{center}
+  \caption{Measured output voltage at different loads and impact forces.}
+  \label{fiq:piezo_measurement_chart}
+\end{figure}
 
 Peak voltage grows with the load resistance. This makes sense in both voltage source and current source models, as the capacitor starts to discharge through load resistance instantly when voltage is applied over it. The relationship between voltage and load resistance seems to be logartithmic, which would be in good agreement with the logarithmic discharge curve of capacitor-resitor system. Peak voltages were read out from digital display and they can be considered reasonably accurate.
 
@@ -197,7 +205,7 @@ The time constants for voltage halving was graphically measured from oscilloscop
 The half-time data can be used to calculate capacitance of piezo using the RC-time constant of circuit:
 
 \begin{equation}
-  C=\frac{t}{-ln(½)R} 
+  C=\frac{t}{-ln(\frac{1}{2})R} 
 \end{equation}
 
  TH-5C provides value of 39nF as the capacitance, while these calculated values are notably higher and rise with the loading of piezo. Most likely explanation of this observation is the mechanical response time of system: solenoid plunger will take some milliseconds to reach new force equiliberium, and this effect becomes more pronounced at smaller time constants of RC-system. 
