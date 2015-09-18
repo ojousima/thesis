@@ -247,6 +247,19 @@ Second use for this FEA analysis is to create look-up table for flux linkage int
 
 Based on these results, a magnet moving at the speed of $0.1 mm / s $ would induce voltage of up to $1.5 mV$ in each winding of the coil. If we assume coil to have 100 turns, travel length of the magnet to be 1 mm, and frequency of magnet moving inside generator to be 10 Hz the peak voltage out of generator would be sufficient to power the circuitry and charge battery of sensor.
 
+A prototype generator was built to test the concept feasibility and identify any practical issues in the generator construction. Generator was machined out of 21mm diameter nylon tubing with 12 mm inner diameter. A groove was machined on the outer diameter to hold the coiling in place. Inner diameter of the groove was 14 mm and height 3 mm. 0.1 mm diameter wire was used to build the coil. To determine the number of turns in coil, coil resistance was measured to determine the length of wire and number of turn was calculated using known length of loop turn and total length of wire. Coil resistance was 42 ohms as the resistance of wire is approximately 2.2 ohms / meter the total length is approximately 19 meters. As one loop has length of 44 mm, coil had roughly 400 turns. 
+
+The prototype was connected on a  Brüel & Kjær shaker type 4905 and driven using  Brüel & Kjær power amplifier type 2707. Input signal was generated using NI-USB6218 DAQ and output was measured directly from leads of the generator. Vertical displacement of generator was limited to $7.5 mm$. Output signal was a sine wave with amplitude of \plusminus 5 volts, which was amplified by gain of 8 above frequencies of 30 Hz. At lower frequencies the gain was limited to stay within allowed displacement. Measured graphs are shown in figure \ref{fiq:lg_proto_results}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[height=8cm]{images/own_measure/lg_proto.jpg}
+  \end{center}
+  \caption{\label{fiq:lg_proto_results} Measured open-loop voltage outputs at various frequencies}
+\end{figure}
+
+At low frequencies the magnets do not overcome friction and only measurement noise is present in signal. In addition to white noise in measurement there is 
+
 \subsection{Piezoelectric harvester design}
 A previous work by 
 
@@ -278,16 +291,18 @@ As the circuit is a low-power design, careful attention has to be paid to parasi
 
 Another important point of view is the modularity and testability of the circuit. All critical lines have provision for testing and debugging for development and verification of circuit functionality. Figure \ref{fig:circuit_blocklevel} shows the interconnections in system.  The power supply can be cut off to separate sections of circuit for current measurement as needed. This has additional benefit of leaving places for power supply filtering components in case some section of circuit emits electrical noise through power supply lines.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/radio.pdf_tex}
     \caption{\label{fig:circuit_blocklevel} System level design of electronics}
 \end{figure}
 
-Power supply has some conflicting requirements, as any noise in power degrades radio and measurement performance, but on the other hand the power supply should be efficient switch mode power supply to keep power consumption at minimum. LTC3331 has switch-mode power supplies which can be used to generate supply rails for the rest of circuit, these are used and noise is dealt with by passive filtering. Most of the power supply design \ref{fig:psu_circuit} is relatively straightforward application of ideas presented in LTC3331 datasheet, but a few special considerations have been given to tailor the power supply for application. Device is configurable by soldering appropriate resistors, and the energy harvesting 
+Power supply has some conflicting requirements, as any noise in power degrades radio and measurement performance, but on the other hand the power supply should be efficient switch mode power supply to keep power consumption at minimum. LTC3331 has switch-mode power supplies which can be used to generate supply rails for the rest of circuit, these are used and noise is dealt with by passive filtering. Most of the power supply design \ref{fig:psu_circuit} is relatively straightforward application of ideas presented in LTC3331 datasheet, but a few special considerations have been given to tailor the power supply for application. Device is configurable by soldering appropriate resistors, and the energy harvesting MPPT can be controlled by external microcontroller using signals UV[0:3]. 
 
-\begin{figure}[h]
+Battery configuration allows different chemistries to be tested, as the under- and overvoltage lockout levels are user selectable. If a non-rechargable battery is desired, battery charging can be disabled by omitting resistor R201. 
+
+\begin{figure}
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/harvester.pdf_tex}
@@ -296,7 +311,9 @@ Power supply has some conflicting requirements, as any noise in power degrades r
 
 Central controller is built around ATMEGA328 \cite{atmega328} microcontroller. The controller uses SPI and UART serial communication between sections of the system, and it has parallel connection to LTC3331 to set the energy harvester voltage levels for MPPT. LTC3331 has EH\_ON output, which rises to logic high level of approximately 4.8 volts when the circuit is being supplied by harvested energy rahter than by a battery. This voltage level is above the circuit supply voltage, and therefore interfacing it directly to ATMEGA328 would be damaging. Interfacing is done by N-MOSFET BSH105 \cite{BSH105} and internal pullup-resistor on ATMEGA328. When harvested energy is available, pull-up of ATMEGA328 becomes grounded through BSH105. This causes somewhat significant current leakage, in range of tens of microamperes while pull-up is being pulled down. However this leakage is present only while harvested energy is available, so it will not drain the battery of circuit. While harvested energy is not available, the MOSFET is shut off. Special care was taken to select a model of MOSFET with small off leakage to avoid drain while system is being run on battery power, BSH105 is specified to have leakage in range of tens of nanoamperes. 
 
-\begin{figure}[H]
+Most important power saving is achieved through careful design of software. Sleep power states of ATMEGA328 consume miniscule amount of power when compared to active state, therefore minimizing active time of circuit is a high priority. If the program is not CPU time limited, clock rate can be scaled down to 1 MHz using internal clock divider. Maximum CPU frequency can be incresed by selecting another crystal, but increasing clock frequency will require higher supply voltage which in turn leads to higher overall power consumption in entire system.
+
+\begin{figure}
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/control.pdf_tex}
@@ -305,27 +322,29 @@ Central controller is built around ATMEGA328 \cite{atmega328} microcontroller. T
 
 Radio link is implemented with BLE113 module. The module could act as stand-alone controller for the system, but radio link has been separated from control logic to allow focused study of different sections of circuit.  Schematic  \ref{fig:bluetooth_circuit} is very simple, power supply is decoupled by bypassing capacitors as recommended by datasheet and programming header has been brought out. Communication to microcontroller is handled by universal asynchronous receiver/transmitter (UART) communication using 2.5 V level signaling. 
 
-\begin{figure}[h]
+BLE113 can be forced to sleep by external control if needed and it can operate autonomously while main controller is sleeping. Data payload can be up to 20 bytes per packet as specified by BLE protocol {\color{red}cite}, maximum data throughput is defined by connection interval. As transmitting data consumes active time and therefore power, data transmissions should be minimized while harvested energy is not available.
+
+\begin{figure}
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/bluetooth.pdf_tex}
-    \caption{\label{fig:bluetooth_circuit} Bluetooth connectivity built around BLE113}
+    \caption{\label{fig:bluetooth_circuit} Bluetooth connectivity built with BLE113 module}
 \end{figure}
 
 There is an accelometer ADXL375 onboard the PCB to study applications of tyre sensor system. Schematic of sensor section is shown in figure \ref{fig:sensor_circuit}. The power supply section has a separate digital Input/Output (IO) supply voltage which is further filtered for analog sections of board by FB501 and C502. Both supplies are fed by same system level power bus from LTC3331.
 
 ADXL375 is capable of both SPI and I2C communication, SPI communication was selected to facilitate faster communication to minimize time control circuit has to be in awake and to avoid additional power drain through the required pull-up resistors of I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{orgate}, which has minimal static power current consumption of 0.1 microamperes. 
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/sensor.pdf_tex}
-    \caption{\label{fig:sensor_circuit} Bluetooth connectivity built around BLE113}
+    \caption{\label{fig:sensor_circuit} Accelerometer circuit}
 \end{figure}
 
 As the circuit will be subject to extreme accelerations, all the components are surface mounted. This gives maximal solder pad area to height ratios, which helps to maintain the integrity of circuit. Larger components, such as inductors can be additionally glued for increased mechanical reliability.
 
-
+{\color{red} table to sum expected ON times and power consumption?}
 
 
 \subsubsection{Circuit layout}
