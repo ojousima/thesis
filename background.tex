@@ -44,7 +44,7 @@ The energy harvester will be placed inside the tyre. Previous studies by Niskane
 
 Temperature inside of the tyre will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual Finnish ambient conditions {\color{red} reasonable tempetature range?}.
 
-Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figures \ref{80_TD} and \ref{80_TD_zoom} are time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}.
+Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figure \ref{80_TD} shows time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -58,7 +58,7 @@ Frequency domain representations were calculated in Matlab. There are two main c
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=4cm]{images/80kmh_timedomain}
+\includegraphics[height=6cm]{images/matlab_figures/80kmh_timedomain_combined}
 \end{center}
 \caption{Acceleration of inner lining of tyre at 80 km/h in time domain.}
 \label{80_TD}
@@ -66,23 +66,7 @@ Frequency domain representations were calculated in Matlab. There are two main c
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=4cm]{images/80kmh_timedomain_onerotation}
-\end{center}
-\caption{Acceleration of tyre inner lining in single rotation at 80 km/h. }
-\label{80_TD_zoom}
-\end{figure}
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=4cm]{images/FFT-80}
-\end{center}
-\caption{Frequency domain representation of acceleration data.}
-\label{80_FFT}
-\end{figure}
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=4cm]{images/FFT-80-zoom}
+\includegraphics[height=4cm]{images/matlab_figures/FFT-80_combined}
 \end{center}
 \caption{Most of the energy is found in 10-100 Hz range.}
 \label{80_FFT_zoom}
