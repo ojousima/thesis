@@ -80,8 +80,8 @@ It's important to notice that the sensor used was piezoelectric, which forms a h
 
 where $\omega$ is the rotation speed of tyre and $r$ is the radius of rotation.
 
-\subsection{Energy harvesting}
-\subsubsection{Overview of methods}
+\section{Energy harvesting}
+\subsection{Overview of methods}
 First step of designing a system for energy harvesting was to identify the currently known methods and their properties. Kubba et al. \cite{Kubba2014} have done a study on tyre pressure sensor technology, they present electromagnetic, electrostatic, piezoelectric and thermal solutions as possible candidates for energy harvesting. In addition, triboelectric and magnetostrictive methods have been proposed by Bowen et al \cite{Bowen2014}. Outside of the context of tyres, Paradiso et al. \cite{Paradiso2005} present solar and radiowave harvesting techniques. Radioactive power source has been suggested by Lal et al \cite{Lal2004}. 
 
 Electromagnetic power sources are based on Faraday's law of electromagnetic induction. A magnet and a coil are put in motion relative to each other, and the changing magnetic flux through the coils of the generator produces voltage. Current through such device is determined by load resistance. Technology is widely used in power generation, where a primary power source such as wind or flow of water provides rotation for the generator. While conventional designs use rotational movement, linear generator designs exist. Boldea and Nasar \cite{Boldea1999} provide an overview of linear generator and actuator theory. 
@@ -104,7 +104,7 @@ Radioactive energy harvesting resembles battery or fuel cell. A radioactive mate
 
 In conclusion, a wide range of energy harvesting technologies have been identified. As their primary properties are known, we can narrow down the suitable technology to electromagnetic, piezoelectric and magnetostrictive. These technologies are studied further to identify optimal choice for the application.
 
-\subsubsection{Resonance-based piezoelectric harvesting}
+\subsection{Resonance-based piezoelectric harvesting}
 Piezoelectric materials produce voltage in response to mechanical stress. The effect is bidirectional, piezoelectric element can also produce mechanical strain in response to applied voltage. The material has crystalline structure with electrical dipoles in balanced state when no stress is applied. Mechanical stress unbalances these dipoles, creating element which electronically resembles a charged capacitor. 
 
 A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This kind of system is shown in figure \ref{fiq:resonant_piezo}. In some applications, such as in machines running at the frequency of power grid (50 Hz or 60 Hz) this kind of frequency-tuning is relatively straightforward.
@@ -129,7 +129,7 @@ This kind of resonant harvesting is challenging in tyre. The energy harvester ha
 
 The results of Singh et al. can be considered as the state-of-art for resonance-based piezoelectric harvesting in tyre, and their power output was around $40 \mu W$ at peak efficiency. Therefore other methods have to be explored for energy harvester design.
 
-\subsubsection{Impact-based piezoelectric harvesting}
+\subsection{Impact-based piezoelectric harvesting}
 As the resonant harvesting is not feasible in the environment inside tyre, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tyre. These impacts would provide energy once per rotation of a tyre. This method has been tried before by Manla et al \cite{Manla2009}. Their generator produced 4 mW electrical power.
 
 As 4mW is plenty in field of low-power electronics, this approach deserves an in-depth study. Thunder TH-5C piezos have been used in previous studies of piezoelectronic harvesting and they have produced promising results, so they were selected as the piezoelectonic element for this thesis.
@@ -234,7 +234,7 @@ The simulated data is plotted figure \ref{fiq:piezo_simulation_experimental}.
 
 The experimental and simulated data are in good agreement. The simulation can be used as basis for modeling the behaviour of piezoelectronic element for the purposes of experimenting with maximum power point tracking algorithms as well as to estimate circuit efficiencies.
 
-\subsubsection{Electromagnetical harvesting}
+\subsection{Electromagnetical harvesting}
 Electromagnetical harvesting is based on Faraday's law of induction: A loop of wire acquires electromotive force (EMF) in response to a changing magnetic field. More formally:
 
 \begin{equation}
@@ -328,7 +328,7 @@ The prototype was connected on a  Brüel & Kjær shaker type 4905 and driven usi
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[height=8cm]{images/own_measurement/lg_proto.jpg}
+  \includegraphics[height=6cm]{images/own_measurement/lg_proto.jpg}
   \end{center}
   \caption{\label{fiq:lg_proto_results} Measured open-loop voltage outputs at various frequencies}
 \end{figure}
