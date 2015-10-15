@@ -322,7 +322,7 @@ These results were used to generate look-up tables for Simulink model shown in f
   \begin{center}
   \includegraphics[height=6cm]{images/own_dwg/simulink_waveforms.jpg}
   \end{center}
-  \caption{\label{simulink_waveforms} Waveforms of system}
+  \caption{\label{fiq:simulink_waveforms} Waveforms of system}
 \end{figure}
 
 A prototype generator was built to test the concept feasibility and identify any practical issues in the generator construction. Generator was machined out of 21mm diameter nylon tubing with 12 mm inner diameter. A groove was machined on the outer diameter to hold the coiling in place. Inner diameter of the groove was 14 mm and height 3 mm. 0.1 mm diameter wire was used to build the coil. To determine the number of turns in coil, coil resistance was measured to determine the length of wire and number of turn was calculated using known length of loop turn and total length of wire. Coil resistance was 42 ohms as the resistance of wire is approximately 2.2 ohms / meter the total length is approximately 19 meters. As one loop has length of 44 mm, coil had roughly 400 turns. 
@@ -337,3 +337,9 @@ The prototype was connected on a  Brüel & Kjær shaker type 4905 and driven usi
 \end{figure}
 
 While waveforms are similar in experimental setup as they are in simulation, amplitude of measured signal is order of magnitude lower. Further work is required to determine the source of this discrepancy. 
+
+As the coil resistance of prototype generator was measured to be $42 \Omega$, we can predict the theoretical maximum peak power into optimised load to be 
+
+\begin{equation}
+  P = \frac{1}{2}\frac{U^2}{2*R_{generator}} \approx 130 \mu W.
+\end{equation}
