@@ -192,14 +192,11 @@ The half-time data can be used to calculate capacitance of piezo using the RC-ti
   C=\frac{t}{-ln(\frac{1}{2})R} 
 \end{equation}
 
- TH-5C provides value of 39nF as the capacitance, while these calculated values are notably higher and rise with the loading of piezo. Most likely explanation of this observation is the mechanical response time of system: solenoid plunger will take some milliseconds to reach new force equiliberium, and this effect becomes more pronounced at smaller time constants of RC-system. 
+ TH-5C provides value of 39nF as the capacitance, while these calculated values are notably higher and rise with the loading of piezo. Most likely explanation of this observation is the mechanical response time of system: solenoid plunger will take some milliseconds to reach new force equiliberium, and this effect becomes more pronounced at smaller time constants of RC-system. Using the known voltage and capacitance energy and peak power in impact can be determined:
  
- {\color{red}TODO: Determine risetime from experimental data, compare to values given in solenoid datasheet}
-
- Using the known voltages, time constants and load resistances power and energy in impact can be determined:
- 
- \begin{equation}
-   TODO
+\begin{equation}
+   E = \frac{1}{2}V^2C
+   P_[peak} = \frac{V^2}{R}
 \end{equation}
  
  The calculations are plotted in graph \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
@@ -214,10 +211,10 @@ The half-time data can be used to calculate capacitance of piezo using the RC-ti
   \label{fig:piezo_power_energy}
 \end{figure}
 
-Based on these results, an electrical equivalent model of circuit was designed. The model is shown in figure \ref{fig:piezo_ltspice_equivalent}. Model has two parallel current sources, one to simulate impact of on piezo and other to simulate release of the impact. Capacitance in parallel is set to 39 nF as given in datasheet, load resistance is parametrised to step through the experimental values. 
+Based on these results, an electrical equivalent model of circuit was designed. The model is shown in figure \ref{fig:piezo_ltspice_equivalent}. Model has two parallel current sources, one to simulate impact of plunger on piezo and other to simulate release of the impact. Capacitance in parallel is set to 39 nF as given in datasheet, load resistance is parametrised to step through the experimental values. 
 
-Model was tuned by first calculating the total current transfer to reach the open circuit voltage over capacitor. Then rise times of current sources were adjusted until simulated data matched experimental data.
-The simulated data is plotted with experimental data in figure \ref{fiq:piezo_simulation_experimental}.
+Model was tuned by first calculating the total current transfer to reach the open circuit voltage over capacitor. Then maximum current of current sources was matched to reach peak voltage over highest load.
+The simulated data is plotted figure \ref{fiq:piezo_simulation_experimental}.
 
  \begin{figure}[htb]
   \begin{center}
