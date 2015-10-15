@@ -297,39 +297,3 @@ Total power into load can be written as:
 It's easy to see from \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tyre, so it makes sense to try to match the load impedance for maximum power.
 
 In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
-
-\begin{comment}
-
-\subsubsection{Magnetostrictive harvesting}
-TODO: Magnetostrictive harvesting resembles piezoelectric harvesting. Figure \ref{magneto} shows proposed system, where magnetostrictive cantilever is sandwiched between biasing magnets and a pickup coil.  
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=4cm]{images/cited/magneto}
-\end{center}
-\caption{A magnetostrictive energy harvester by Wang et al. \cite{Wang2006}}.
-\label{magneto}
-\end{figure}
-
-
-
-\subsection{Powering the sensor}
-Traditionally wireless sensors have been powered with either primary or rechargeable batteries. These systems need service at regular intervals to change or recharge the batteries. In applications where battery cannot be accessed, battery lifetime often limits the lifetime of whole system. Alternative approach has been to use generators, such as fuel cells or even radioactive power sources. These systems often have a poor power density and decreasing efficiency when scaled down to small size \cite{Knight2008}. 
-
-This work explores ways to utilise energy present in tyre to power the sensor itself. A single tyre can waste as much as 500 W of power at high speeds {\color{red} source}, so harvesting even 1/100 000ths of wasted power would be enough for a well designed low-power sensor and transmitter.
-
-There are many different energy harvesting solutions which use fundamentally different physical principles and energy sources, such as thermal, solar, radio waves and mechanical. {\color{red} source}. As the energy harvester is inside tyre, solar harvesting is unfeasible. Radio wave harvesting methods rely on external radio transmissions for gathering power. As the device should work regardless of external environment, these methods are not suited for application. Thermal methods require significant temperature gradients {\color{red} source}, but previous work shows that car tyre can reach only ambient plus few tens of \degree C {\color{red} source}. Therefore thermal methods would be ineffective. 
-
-Mechanical energy harvesting is a natural choice, as there is abundant amount of mechanical energy available as accelerations, vibrations and centripetal force available inside the tyre. There are various different approaches for harvesting mechanical energy, including piezoelectronic, electrostatic, electromagnetic and microelectromechanical systems (MEMS) {\color{red} source}. To select optimal method for energy harvesting, more information about the characteristics of mechanical energy is required.
-
-{\color{yellow} refer to \cite[p.10]{Kubba2014}}
-
-The power requirements of system create additional constraints on energy harvesting method, as the energy harvester must be able to supply enough energy and power to system. In a real-world application the power management system must be able to store energy for some period of time so sensor can operate continuosly. 
-
-
-
-
-As the electromagnetical harvester does not bend in any direction, it's better suited to be built straight up along Z-axis. The structure can be made strong enough to survive the shocks present without compromising on the harvester operation. A magnet can be suspended with a spring inside a coil, or by using another magnet in a repulsing configuration as presented by Torincasa et al. \cite{Tornincasa2012}. When there is vibration in addition to relatively constant centripetal force, the magnet will move along the shaft of the coil and generate electricity. Figure \ref{lgm} shows the structure of built generator. 
-
-A non-linear spring can be utilised to keep the magnet as well centered as possible over a wide range of tyre speeds. Theoretically this non-linearity could also be used to shift the resonant frequency of generator to track the frequency of vibration inside the tyre. In practise the movement of magnet would drive the spring outside of the resonant area. 
-\end{comment}
