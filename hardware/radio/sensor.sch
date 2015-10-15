@@ -63,17 +63,11 @@ $EndComp
 Wire Wire Line
 	3250 3350 4850 3350
 Wire Wire Line
-	4250 3250 4400 3250
-Wire Wire Line
-	4400 3250 4850 3250
+	4250 3250 4850 3250
 Wire Wire Line
 	4850 3550 4700 3550
 Wire Wire Line
-	4700 3550 4700 3650
-Wire Wire Line
-	4700 3650 4700 3750
-Wire Wire Line
-	4700 3750 4700 4150
+	4700 3550 4700 4150
 Wire Wire Line
 	4850 3650 4700 3650
 Connection ~ 4700 3650
@@ -115,9 +109,7 @@ F 3 "" H 7950 3450 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	6900 3050 8800 3050
-Wire Wire Line
-	8800 3050 9200 3050
+	6900 3050 9200 3050
 Wire Wire Line
 	8100 3100 8650 3100
 Wire Wire Line
@@ -200,11 +192,7 @@ Wire Wire Line
 	4400 3700 4400 3250
 Connection ~ 4400 3250
 Wire Wire Line
-	3250 3100 3250 3250
-Wire Wire Line
-	3250 3250 3250 3350
-Wire Wire Line
-	3250 3350 3250 3700
+	3250 3100 3250 3700
 Wire Wire Line
 	3550 3250 3250 3250
 Connection ~ 3250 3250
@@ -212,9 +200,7 @@ Connection ~ 3250 3350
 Wire Wire Line
 	4400 4000 4400 4150
 Wire Wire Line
-	3250 4000 3250 4100
-Wire Wire Line
-	3250 4100 3250 4150
+	3250 4000 3250 4150
 $Comp
 L GND #PWR038
 U 1 1 55EC414E
