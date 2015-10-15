@@ -295,11 +295,42 @@ It's easy to see from \eqref{eq:generator_load_power} that if the load impedance
 
 In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
 
+As some parameters of the harvester are difficult to solve analytically, these parameters are solved using experimental and FEA methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite{Meeker2013} was used to create an axisymmetric model of magnets in generator. Figure \ref{femm_forces} shows the used model. Model has two biasing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. Magnets have height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. Generator has total height of 25 mm, leaving rotor magnet 17.5 mm room for movement inside generator.
 
- \begin{figure}[htb]
+Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for net magnetic force acting on rotor magnet. A LUA script was used to move the rotor magnet from bottom of the generator to top in 0.1 mm increments and values obtained from analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on magnet, positive force meaning force towards the upper magnet and zero height being at the bottom of cylinder. For reference the centrifugal force acting on magnet was also calculated at various speeds, assuming weight of the magnet is 1,67 g and tyre radius to bottom of generator is 275 mm.
+
+\begin{figure}[htb]
   \begin{center}
-  \includegraphics[height=4cm]{images/own_dwg/ltspice_piezo_simulation}
+  \includegraphics[height=6cm]{images/own_dwg/femm_fvsd_dualmagnet.jpg}
   \end{center}
-  \caption{Simulated piezoelement output voltage and power waveforms. Loads are stepped through list to match experimental values. Green: 50k; Blue: 150k; Red: 250k; Turqoise: 350k; Violet: 450k; Gray: 550k}
-  \label{fiq:piezo_simulation_experimental}
+  \caption{\label{femm_forces} Steady-state forces acting on magnet}
 \end{figure}
+
+These results were used to generate look-up tables for Simulink model shown in figure \ref{fig:simulink}. The model accounts for magnetic, electromagnetic, frictional and pneumatic forces acting on generator. A chirp signal with amplitude of tens of g's was given as an input to model to study the output voltage amplitudes, frequency response and waveforms. The simulated output frequency responce (frequency growing from 10 to 500 Hz) and waveforms at low frequencies are shown in figure \ref{fig:simulink_waveforms}.
+
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=8cm]{images/own_dwg/simulink.jpg}
+  \end{center}
+  \caption{\label{fig:simulink} Simulink model of system}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=6cm]{images/own_dwg/simulink_waveforms.jpg}
+  \end{center}
+  \caption{\label{femm_forces} Wavefroms of system}
+\end{figure}
+
+A prototype generator was built to test the concept feasibility and identify any practical issues in the generator construction. Generator was machined out of 21mm diameter nylon tubing with 12 mm inner diameter. A groove was machined on the outer diameter to hold the coiling in place. Inner diameter of the groove was 14 mm and height 3 mm. 0.1 mm diameter wire was used to build the coil. To determine the number of turns in coil, coil resistance was measured to determine the length of wire and number of turn was calculated using known length of loop turn and total length of wire. Coil resistance was 42 ohms as the resistance of wire is approximately 2.2 ohms / meter the total length is approximately 19 meters. As one loop has length of 44 mm, coil had roughly 400 turns. 
+
+The prototype was connected on a  Brüel & Kjær shaker type 4905 and driven using  Brüel & Kjær power amplifier type 2707. Input signal was generated using NI-USB6218 DAQ and output was measured directly from leads of the generator. Vertical displacement of generator was limited to $7.5 mm$. Output signal was a sine wave with amplitude of \plusminus 5 volts, which was amplified by gain of 8 above frequencies of 30 Hz. At lower frequencies the gain was limited to stay within allowed displacement. Measured graphs are shown in figure \ref{fiq:lg_proto_results}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[height=8cm]{images/own_measurement/lg_proto.jpg}
+  \end{center}
+  \caption{\label{fiq:lg_proto_results} Measured open-loop voltage outputs at various frequencies}
+\end{figure}
+
+While waveforms are similar in experimental setup as they are in simulation, amplitude of measured signal is order of magnitude lower. Further work is required to determine the source of this disparency. 
