@@ -27,22 +27,22 @@ wedge which reduces shear between belts.
 \end{figure}
 
 
-In endurance testing of tyres the car is driven at test track in three shifts, until
-desired number of course driving kilometers have been reached. In outdoor testing
+In endurance testing of tyres the car is driven at test track in three shifts until
+desired number of course driving kilometres have been reached. In outdoor testing
 each company has their own proprietary test protocol. Indoor testing has standards,
 which mandates pressure, ambient temperature and speed as well as time driven.
 According to Gent et al. \cite{Gent2005} this indoor testing takes 34 hours of driving at 120
 km/h.
-3
+
 In addition to endurance testing, there is high-speed testing where tyre speed is
 gradually accelerated in steps of 10 km/h at regular intervals until target speed is
-reached.
+reached. Energy harvester should survive these tests to be considered a viable design for road conditions.
 
 
 \subsection{Environment inside tyre}
 The energy harvester will be placed inside the tyre. Previous studies by Niskanen et al \cite{Niskanen2014}. have shown that the tyre will experience acceleration in all three axes. Tangential and centripetal accelerations are dominant, they can reach amplitudes up to 150 g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
 
-Temperature inside of the tyre will reach equilliberium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual ambient conditions. 
+Temperature inside of the tyre will reach equilibrium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual ambient conditions. 
 
 Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figure \ref{80_TD} shows time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}.
 
@@ -54,7 +54,7 @@ Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for 
 \label{tyre_axes}
 \end{figure}
 
-Frequency domain representations were calculated in Matlab. There are two main contributors to base frequencies: first is the rotational frequency of tyre itself and second is the impact when the tyre deforms as it contacts the drum.. There is clearly visible series of frequency components spaced at the rotational frequency of tyre as well as shock harmonics at upper frequencies. Figures \ref{80_FFT} and \ref{80_FFT_zoom} show the total frequency spectrum and the dominant frequency components.
+Frequency domain representations were calculated in Matlab. There are two main contributors to base frequencies: first is the rotational frequency of tyre itself and second is the impact when the tyre deforms as it contacts the drum.. There is clearly visible series of frequency components spaced at the rotational frequency of tyre as well as shock harmonics at upper frequencies. Figure \ref{80_FFT_zoom} shows the total frequency spectrum and the dominant frequency components.
 
 \begin{figure}[htb]
 \begin{center}
@@ -72,7 +72,7 @@ Frequency domain representations were calculated in Matlab. There are two main c
 \label{80_FFT_zoom}
 \end{figure}
 
-It's important to notice that the sensor used was piezoelectric, which forms a highpass filter as the operation of sensor is based on charge between layers. This charge dissipates over time, so the steady-state centripetal acceleration reads as zero. Any device on the rotating tyre will experience centripetal acceleration (acceleration towrds centre of rotation) at the amplitude of: 
+It's important to notice that the sensor used was piezoelectric, which forms a highpass filter as the operation of sensor is based on charge between layers. This charge dissipates over time, so the steady-state centripetal acceleration reads as zero. Any device on the rotating tyre will experience centripetal acceleration (acceleration toward centre of rotation) at the amplitude of: 
 
 \begin{equation}
   a_{centripetal} = \omega^2 r,
@@ -82,25 +82,25 @@ where $\omega$ is the rotation speed of tyre and $r$ is the radius of rotation.
 
 \section{Energy harvesting}
 \subsection{Overview of methods}
-First step of designing a system for energy harvesting was to identify the currently known methods and their properties. Kubba et al. \cite{Kubba2014} have done a study on tyre pressure sensor technology, they present electromagnetic, electrostatic, piezoelectric and thermal solutions as possible candidates for energy harvesting. In addition, triboelectric and magnetostrictive methods have been proposed by Bowen et al \cite{Bowen2014}. Outside of the context of tyres, Paradiso et al. \cite{Paradiso2005} present solar and radiowave harvesting techniques. Radioactive power source has been suggested by Lal et al \cite{Lal2004}. 
+First step of designing a system for energy harvesting was to identify the currently known methods and their properties. Kubba et al. \cite{Kubba2014} have done a study on tyre pressure sensor technology, they present electromagnetic, electrostatic, piezoelectric and thermal solutions as possible candidates for energy harvesting. In addition, triboelectric and magnetostrictive methods have been proposed by Bowen et al \cite{Bowen2014}. Outside of the context of tyres, Paradiso et al. \cite{Paradiso2005} present solar and radio wave harvesting techniques. Radioactive power source has been suggested by Lal et al \cite{Lal2004}. 
 
 Electromagnetic power sources are based on Faraday's law of electromagnetic induction. A magnet and a coil are put in motion relative to each other, and the changing magnetic flux through the coils of the generator produces voltage. Current through such device is determined by load resistance. Technology is widely used in power generation, where a primary power source such as wind or flow of water provides rotation for the generator. While conventional designs use rotational movement, linear generator designs exist. Boldea and Nasar \cite{Boldea1999} provide an overview of linear generator and actuator theory. 
 
-Electrostatic devices charge plates of a capacitor and use mechanical vibration to vary the structure of the capacitor. As the capacitance value changes with the structure, energy can be harvested from increased potential energy in capacitor. Drawback of this method is the required control electronics and high polarization voltages needed for maximal efficiency. There are also electrostatic methods which use electrets. These electrects hold constant charge and polarization for years and they can be used in electrostatic harvesters which do not require an external exitation source \cite{Boisseau2012}. As electret elements and electrostatic generators are not readily available, they have been excluded from this study.
+Electrostatic devices charge plates of a capacitor and use mechanical vibration to vary the structure of the capacitor. As the capacitance value changes with the structure, energy can be harvested from increased potential energy in capacitor. Drawback of this method is the required control electronics and high polarisation voltages needed for maximal efficiency. There are also electrostatic methods which use electrets. These electrets hold constant charge and polarisation for years and they can be used in electrostatic harvesters which do not require an external excitation source \cite{Boisseau2012}. As electret elements and electrostatic generators are not readily available, they have been excluded from this study.
 
-Piezoelectric materials generate charge in response of mechanical stress. This stress can be caused by firmly attaching the piezoelectric element to a surface which deforms (simply supported) or by leaving one end of the element free-hanging while other end is fixed (cantilevered). Dynamics of the generator are very different for the different configurations, Kim et al. \cite{Kim2014a} provides a model for impact-based piezoelectric harvester while Erturk et al. have done in-depth analysis of cantilevered piezoelectric modeling \cite{Erturk2009}. 
+Piezoelectric materials generate charge in response of mechanical stress. This stress can be caused by firmly attaching the piezoelectric element to a surface which deforms (simply supported) or by leaving one end of the element free-hanging while other end is fixed (cantilevered). Dynamics of the generator are very different for the different configurations, Kim et al. \cite{Kim2014a} provides a model for impact-based piezoelectric harvester while Erturk et al. have done in-depth analysis of cantilevered piezoelectric modelling \cite{Erturk2009}. 
 
-Thermal solutions can be further diveded into subcategories. Seeback-effect where a temperature gradient in a semiconductor material causes voltage between poles of the material is widely used in temperature sensing, but to generate appreciable amounts of power large temperature gradients of over hundred \degree C are required according to study by Amatya et al. \cite{Amatya2010}. Such temperature gradients are not practical inside the tyre. Pyroelectric materials do not require differential of temperature, they generate energy when the temperature of the entire element changes \cite{Zhang2011}. As the temperature inside tyre remains rather constant over long periods of time, these methods are not practical for this application.
+Thermal solutions can be further divided into subcategories. Seebeck-effect where a temperature gradient in a semiconductor material causes voltage between poles of the material is widely used in temperature sensing, but to generate appreciable amounts of power large temperature gradients of over hundred \degree C are required according to study by Amatya et al. \cite{Amatya2010}. Such temperature gradients are not practical inside the tyre. Pyroelectric materials do not require differential of temperature, they generate energy when the temperature of the entire element changes \cite{Zhang2011}. As the temperature inside tyre remains rather constant over long periods of time, these methods are not practical for this application.
 
 Triboelectricity generates power using friction between two materials, a classic example of this is Benjamin Franklin's experiments on charging various rods by rubbing them against different materials. A flexible triboelectric generator has been presented by Fan et al. \cite{Fan2012}. Triboelectric sheets are not readily available and their construction is complex, so triboelectric generation is excluded from this work. 
 
-Magnetostrictive materials change their magnetic field in response to external mechanical sterss. This change can be utilised to create a magnetic flux through coils as in electromagnetic generators. A magnetostrictive generator was built by Wang et al. \cite{Wang2006}. 
+Magnetostrictive materials change their magnetic field in response to external mechanical stress. This change can be utilised to create a magnetic flux through coils as in electromagnetic generators. A magnetostrictive generator was built by Wang et al. \cite{Wang2006}. 
 
-Solar energy can be harvested by using sun as a energy source for a thermal energy harvesting or by utilizing the photovoltaic (PV) effect to generate electricity from photons hitting PV material. PV technology is mature and widely used, and PV cells attached to rim of tyre could produce ample power during summertime. PV cells would however incur extra maintenance as the rims would have to be cleaned whenever power output falls. 
+Solar energy can be harvested by using sun as a energy source for a thermal energy harvesting or by utilising the photovoltaic (PV) effect to generate electricity from photons hitting PV material. PV technology is mature and widely used, and PV cells attached to rim of tyre could produce ample power during summertime. PV cells would however incur extra maintenance as the rims would have to be cleaned whenever power output falls. 
 
-Radio wave harvesting uses antennas to collect energy from ambient radio transmissions, such as WiFi- and cellural signals. Patel et al \cite{Patel2014} have built a demonstration device which uses TV broadcasts as an energy source. The tyre material dampens any Radio frequency (RF) broadcasts, which makes RF energy harvesting poorly suited for the application.
+Radio wave harvesting uses antennas to collect energy from ambient radio transmissions, such as WiFi- and cellular signals. Patel et al \cite{Patel2014} have built a demonstration device which uses TV broadcasts as an energy source. The tyre material dampens any Radio frequency (RF) broadcasts, which makes RF energy harvesting poorly suited for the application.
 
-Radioactive energy harvesting resembles battery or fuel cell. A radioactive material is deposited in generator near piezoelectric cantilever. Radioactive decay charges proof mass of piezoelectric cantilever until the proof mass contacts the radioactive material by electrostatic attaraction, at which point the electrical charge is balanced and piezoelectric beam begins resonant vibration as in normal piezoelectric harvesting. Such a battery has lifetime limited only by half-life of the used material. Lal and Blanchard \cite{Lal2004} present such a battery. This kind of battery would be redundant for the application, as there already exists energy in rotation of tyre which can be used to energise the cantilever. 
+Radioactive energy harvesting resembles battery or fuel cell. A radioactive material is deposited in generator near piezoelectric cantilever. Radioactive decay charges proof mass of piezoelectric cantilever until the proof mass contacts the radioactive material by electrostatic attraction, at which point the electrical charge is balanced and piezoelectric beam begins resonant vibration as in normal piezoelectric harvesting. Such a battery has lifetime limited only by half-life of the used material. Lal and Blanchard \cite{Lal2004} present such a battery. This kind of battery would be redundant for the application, as there already exists energy in rotation of tyre which can be used to energise the cantilever. 
 
 In conclusion, a wide range of energy harvesting technologies have been identified. As their primary properties are known, we can narrow down the suitable technology to electromagnetic, piezoelectric and magnetostrictive. These technologies are studied further to identify optimal choice for the application.
 
@@ -113,11 +113,11 @@ A common approach to piezoelectric harvesting is to configure the element as a c
   \begin{center}
   \includegraphics[height=4cm]{images/cited/arroyo2012}
   \end{center}
-  \caption{Piezoelectronic generator configured as cantilever by Arroyo et al \cite{Arroyo2012}.}
+  \caption{Piezoelectric generator configured as cantilever by Arroyo et al \cite{Arroyo2012}.}
   \label{fiq:resonant_piezo}
 \end{figure}
 
-This kind of resonant harvesting is challenging in tyre. The energy harvester has a very sharp peak efficiency frequencies, and dominant frequency of tyre varies with the speed of car. On the other hand, there is almost guaranteed broadband energy available from moments where tyre contacts road. There is also some research on tuning the resonant frequency of cantilevered piezoelectronic harvester by Singh et al \cite{Singh2012}. They used intelligently driven SMPS to impedance-match the load to piezoelectronic element. As the electro-mechanical nature of piezo means changing load changes the mechanical properties of element, resonance frequency can track the dominant frequency of system within some limits. Figure \ref{fiq:tracking_piezo} shows the tracking behaviour Singh et al achieved, resonance can be adjusted in range of 65 - 70 Hz.
+This kind of resonant harvesting is challenging in tyre. The energy harvester has a very sharp peak efficiency frequencies, and dominant frequency of tyre varies with the speed of car. On the other hand, there is almost guaranteed broadband energy available from moments where tyre contacts road. There is also some research on tuning the resonant frequency of cantilevered piezoelectric harvester by Singh et al \cite{Singh2012}. They used intelligently driven SMPS to impedance-match the load to piezoelectric element. As the electro-mechanical nature of piezo means changing load changes the mechanical properties of element, resonance frequency can track the dominant frequency of system within some limits. Figure \ref{fiq:tracking_piezo} shows the tracking behaviour Singh et al achieved, resonance can be adjusted in range of 65 - 70 Hz.
 
 \begin{figure}[htb]
   \begin{center}
@@ -132,9 +132,9 @@ The results of Singh et al. can be considered as the state-of-art for resonance-
 \subsection{Impact-based piezoelectric harvesting}
 As the resonant harvesting is not feasible in the environment inside tyre, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tyre. These impacts would provide energy once per rotation of a tyre. This method has been tried before by Manla et al \cite{Manla2009}. Their generator produced 4 mW electrical power.
 
-As 4mW is plenty in field of low-power electronics, this approach deserves an in-depth study. Thunder TH-5C piezos have been used in previous studies of piezoelectronic harvesting and they have produced promising results, so they were selected as the piezoelectonic element for this thesis.
+As 4mW is plenty in field of low-power electronics, this approach deserves an in-depth study. Thunder TH-5C piezos have been used in previous studies of piezoelectric harvesting and they have produced promising results, so they were selected as the piezoelectric element for this thesis.
 
-Piezoelectronic elements are often electrically modeled as current source with parallel capacitor or voltage source with series capacitor, as shown in figure \ref{fig:piezo_equivalents} by Kanda et al \cite{Kanda2012}. There are also a lot more complex models which account for mechanical phenomena in piezo, as well as loading effects coupling on mechanical model. For the purposes of model identification for the piezo only simplest voltage source (a) and current source (b) models are explored.
+piezoelectric elements are often electrically modelled as current source with parallel capacitor or voltage source with series capacitor, as shown in figure \ref{fig:piezo_equivalents} by Kanda et al \cite{Kanda2012}. There are also a lot more complex models which account for mechanical phenomena in piezo, as well as loading effects coupling on mechanical model. For the purposes of model identification for the piezo only simplest voltage source (a) and current source (b) models are explored.
 
 \begin{figure}[htb]
   \begin{center}
@@ -144,7 +144,7 @@ Piezoelectronic elements are often electrically modeled as current source with p
   \label{fig:piezo_equivalents}
 \end{figure}
 
-Series of tests were ran to determine characteristics of piezoelectric power generation under impacts. Mossi et al \cite{Mossi} have produced a recommended test process for Thunder piezoelectronic actuators shown in figure \ref{fiq:thunder_eval}.
+Series of tests were ran to determine characteristics of piezoelectric power generation under impacts. Mossi et al \cite{Mossi} have produced a recommended test process for Thunder piezoelectric actuators shown in figure \ref{fiq:thunder_eval}.
 
 \begin{figure}[htb]
   \begin{center}
@@ -174,7 +174,7 @@ The measurement results are shown in figure \ref{fiq:piezo_measurement_chart}. O
   \label{fiq:piezo_measurement_chart}
 \end{figure}
 
-Peak voltage grows with the load resistance. This makes sense in both voltage source and current source models, as the capacitor starts to discharge through load resistance instantly when voltage is applied over it. The relationship between voltage and load resistance seems to be logartithmic, which would be in good agreement with the logarithmic discharge curve of capacitor-resitor system. Peak voltages were read out from digital display and they can be considered reasonably accurate.
+Peak voltage grows with the load resistance. This makes sense in both voltage source and current source models, as the capacitor starts to discharge through load resistance instantly when voltage is applied over it. The relationship between voltage and load resistance seems to be logarithmic, which would be in good agreement with the logarithmic discharge curve of capacitor-resistor system. Peak voltages were read out from digital display and they can be considered reasonably accurate.
 
 The time constants for voltage halving was graphically measured from oscilloscope waveforms, and this data was used to calculate the capacitance of TH-5C. These measurements are a lot less accurate, as readouts from oscilloscope screen have resolution of approximately half of line division, leaving accuracy of measurements at $\pm 2.5 ms$. These results are plotted in figure \ref{fig:piezo_time_capacitance}
 
@@ -192,16 +192,19 @@ The half-time data can be used to calculate capacitance of piezo using the RC-ti
   C=\frac{t}{-ln(\frac{1}{2})R} 
 \end{equation}
 
- TH-5C provides value of 39nF as the capacitance, while these calculated values are notably higher and rise with the loading of piezo. Most likely explanation of this observation is the mechanical response time of system: solenoid plunger will take some milliseconds to reach new force equiliberium, and this effect becomes more pronounced at smaller time constants of RC-system. Using the known voltage and capacitance energy and peak power in impact can be determined:
+ TH-5C provides value of 39nF as the capacitance, while these calculated values are notably higher and rise with the loading of piezo. Most likely explanation of this observation is the mechanical response time of system: solenoid plunger will take some milliseconds to reach new force equilibrium, and this effect becomes more pronounced at smaller time constants of RC-system. Using the known voltage and capacitance energy and peak power in impact can be determined:
  
 \begin{equation}
    E = \frac{1}{2}V^2C
+\end{equation}
+
+\begin{equation}
    P_[peak} = \frac{V^2}{R}
 \end{equation}
  
  The calculations are plotted in graph \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
  
- Interestingly the peak work done by piezo to resistor seems to be almost constant on all load levels. This is probably a consequence of logartithmic voltage-load relationship described above. There is a possibly significant result based on these findings: total energy obtainable from harvester grows with load resistance. However, this is applicable only for resistive load under impact-based energy generation.
+ Interestingly the peak work done by piezo to resistor seems to be almost constant on all load levels. This is probably a consequence of logarithmic voltage-load relationship described above. There is a possibly significant result based on these findings: total energy obtainable from harvester grows with load resistance. However, this is applicable only for resistive load under impact-based energy generation.
  
  \begin{figure}[htb]
   \begin{center}
@@ -228,14 +231,14 @@ The simulated data is plotted figure \ref{fiq:piezo_simulation_experimental}.
   \begin{center}
   \includegraphics[height=4cm]{images/own_dwg/ltspice_piezo_simulation}
   \end{center}
-  \caption{Simulated piezoelement output voltage and power waveforms. Loads are stepped through list to match experimental values. Green: 50k; Blue: 150k; Red: 250k; Turqoise: 350k; Violet: 450k; Gray: 550k}
+  \caption{Simulated piezoelement output voltage and power waveforms. Loads are stepped through list to match experimental values at 2000 gf impact force. Green: 50k; Blue: 150k; Red: 250k; Turquoise: 350k; Violet: 450k; Gray: 550k}
   \label{fiq:piezo_simulation_experimental}
 \end{figure}
 
-The experimental and simulated data are in good agreement. The simulation can be used as basis for modeling the behaviour of piezoelectronic element for the purposes of experimenting with maximum power point tracking algorithms as well as to estimate circuit efficiencies.
+The experimental and simulated data are not in a good agreement. While maximum and minimum load voltage and power are close to estimated values, this is by design as model is tuned to these measurements. Problems occur in interpolating the results, as output voltages are notably higher than measured values. This provides a result which sets the maximum power load near the value which provides output voltage of half of the open loop voltage. This is especially interesting as LTC3331 datasheet \cite{LTC3331} suggests to set the circuit to track the load at this same half-point of open loop voltage. Both LTC3331 and LTSpice are made by Linear Technology, so independent verification of this result would be needed. 
 
-\subsection{Electromagnetical harvesting}
-Electromagnetical harvesting is based on Faraday's law of induction: A loop of wire acquires electromotive force (EMF) in response to a changing magnetic field. More formally:
+\subsection{Electromagnetic harvesting}
+Electromagnetic harvesting is based on Faraday's law of induction: A loop of wire acquires electromotive force (EMF) in response to a changing magnetic field. More formally:
 
 \begin{equation}
   \varepsilon = - \frac{d \Phi_ {B}}{d t} , 
@@ -261,11 +264,11 @@ In addition to voltage available from the generator, it's important to consider 
 \begin{center}
 \includegraphics[height=2cm]{images/own_dwg/gen_simple}
 \end{center}
-\caption{A simple electromachanical generator equivalent circuit.}.
+\caption{A simple electromechanical generator equivalent circuit.}.
 \label{gen_simple}
 \end{figure}
 
-This model is greatly simplified and it does not account for factors such as effect of electromagnetical force on mechanical structure of the generator. Even with these limitations, the model is still useful as it can be used to determine an optimal load for the generator. 
+This model is greatly simplified and it does not account for factors such as effect of electromagnetic force on mechanical structure of the generator. Even with these limitations, the model is still useful as it can be used to determine an optimal load for the generator. 
 
 The power output can be written formally as:
 
@@ -293,11 +296,11 @@ Total power into load can be written as:
 
 It's easy to see from \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tyre, so it makes sense to try to match the load impedance for maximum power.
 
-In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
+In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downward down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
 
 As some parameters of the harvester are difficult to solve analytically, these parameters are solved using experimental and FEA methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite{Meeker2013} was used to create an axisymmetric model of magnets in generator. Figure \ref{femm_forces} shows the used model. Model has two biasing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. Magnets have height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. Generator has total height of 25 mm, leaving rotor magnet 17.5 mm room for movement inside generator.
 
-Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for net magnetic force acting on rotor magnet. A LUA script was used to move the rotor magnet from bottom of the generator to top in 0.1 mm increments and values obtained from analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on magnet, positive force meaning force towards the upper magnet and zero height being at the bottom of cylinder. For reference the centrifugal force acting on magnet was also calculated at various speeds, assuming weight of the magnet is 1,67 g and tyre radius to bottom of generator is 275 mm.
+Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for net magnetic force acting on rotor magnet. A LUA script was used to move the rotor magnet from bottom of the generator to top in 0.1 mm increments and values obtained from analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on magnet, positive force meaning force toward the upper magnet and zero height being at the bottom of cylinder. For reference the centrifugal force acting on magnet was also calculated at various speeds, assuming weight of the magnet is 1,67 g and tyre radius to bottom of generator is 275 mm.
 
 \begin{figure}[htb]
   \begin{center}
@@ -306,7 +309,7 @@ Weighted stress tensor integration over rotor magnet volume as implemented by FE
   \caption{\label{femm_forces} Steady-state forces acting on magnet}
 \end{figure}
 
-These results were used to generate look-up tables for Simulink model shown in figure \ref{fig:simulink}. The model accounts for magnetic, electromagnetic, frictional and pneumatic forces acting on generator. A chirp signal with amplitude of tens of g's was given as an input to model to study the output voltage amplitudes, frequency response and waveforms. The simulated output frequency responce (frequency growing from 10 to 500 Hz) and waveforms at low frequencies are shown in figure \ref{fig:simulink_waveforms}.
+These results were used to generate look-up tables for Simulink model shown in figure \ref{fig:simulink}. The model accounts for magnetic, electromagnetic, frictional and pneumatic forces acting on generator. A chirp signal with amplitude of tens of g's was given as an input to model to study the output voltage amplitudes, frequency response and waveforms. The simulated output frequency response (frequency growing from 10 to 500 Hz) and waveforms at low frequencies are shown in figure \ref{fig:simulink_waveforms}.
 
 \begin{figure}[htb]
   \begin{center}
@@ -319,7 +322,7 @@ These results were used to generate look-up tables for Simulink model shown in f
   \begin{center}
   \includegraphics[height=6cm]{images/own_dwg/simulink_waveforms.jpg}
   \end{center}
-  \caption{\label{femm_forces} Wavefroms of system}
+  \caption{\label{femm_forces} Waveforms of system}
 \end{figure}
 
 A prototype generator was built to test the concept feasibility and identify any practical issues in the generator construction. Generator was machined out of 21mm diameter nylon tubing with 12 mm inner diameter. A groove was machined on the outer diameter to hold the coiling in place. Inner diameter of the groove was 14 mm and height 3 mm. 0.1 mm diameter wire was used to build the coil. To determine the number of turns in coil, coil resistance was measured to determine the length of wire and number of turn was calculated using known length of loop turn and total length of wire. Coil resistance was 42 ohms as the resistance of wire is approximately 2.2 ohms / meter the total length is approximately 19 meters. As one loop has length of 44 mm, coil had roughly 400 turns. 
@@ -333,4 +336,4 @@ The prototype was connected on a  Brüel & Kjær shaker type 4905 and driven usi
   \caption{\label{fiq:lg_proto_results} Measured open-loop voltage outputs at various frequencies}
 \end{figure}
 
-While waveforms are similar in experimental setup as they are in simulation, amplitude of measured signal is order of magnitude lower. Further work is required to determine the source of this disparency. 
+While waveforms are similar in experimental setup as they are in simulation, amplitude of measured signal is order of magnitude lower. Further work is required to determine the source of this discrepancy. 

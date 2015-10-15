@@ -6,12 +6,12 @@ Second state is measuring, when the radio connection is off but electronics are 
 Third state is transmitting, when the data is relayed to drive computer in car.
 
 Energy and power consumption are estimated by reviewing a few suitable components and their power requirements. 
-Energy management is handled by a specialized integrated circuit (IC), for example LTC3331 \cite{Technology}.
+Energy management is handled by a specialised integrated circuit (IC), for example LTC3331 \cite{Technology}.
 
 Communication is handled by a Bluetooth-low energy (BLE) module, which contains a general-purpose microcontroller for application flow control.
 We use BLE113 \cite{Bluegiga2013} as an example of such module.
 
-Finally there is an accelerometer which is used for gathering data out of the system, ADXL375 \cite{ADXLDatasheet} is used as an example. ADXL is a low-power digital accelerometer with dynamic range of 200g. Table \ref{power_consumption_table}  summarizes the estimated power requirement of each subsection of system. System level voltage is selected to be 2.5 V, as that is lowest voltage which LTC3331 can supply and allows all devices to function. Lowest possible voltage is selected to reduce the power draw.
+Finally there is an accelerometer which is used for gathering data out of the system, ADXL375 \cite{ADXLDatasheet} is used as an example. ADXL is a low-power digital accelerometer with dynamic range of 200g. Table \ref{power_consumption_table}  summarises the estimated power requirement of each subsection of system. System level voltage is selected to be 2.5 V, as that is lowest voltage which LTC3331 can supply and allows all devices to function. Lowest possible voltage is selected to reduce the power draw.
 
 \begin{table}[htb]
 \caption{\label{power_consumption_table} Current and power consumption of system at different activity levels.}
@@ -35,7 +35,7 @@ Battery manager power draw is estimated by calculating required power to supply 
 \subsubsection{Schematic design}
 The printed circuit board (PCB) schematic is a logical representation of the components and how they connect to each other. The schematic is designed in accordance to datasheets, reference designs and application notes of main circuit components. As the design operates in high-vibration environment with wide temperature variations, special care is used to select components which have well-defined temperature and mechanical characteristics. 
 
-As the circuit is a low-power design, careful attention has to be paid to parasitic properties and non-ideal behaviour of components. For example electrolytic capacitor can have leakage current of several microamperes \cite{Both2001}, which is in the same order of magnitude as the targeted sleep current consumption of system. Likewise any signaling current should be kept at minimum. 
+As the circuit is a low-power design, careful attention has to be paid to parasitic properties and non-ideal behaviour of components. For example electrolytic capacitor can have leakage current of several microamperes \cite{Both2001}, which is in the same order of magnitude as the targeted sleep current consumption of system. Likewise any signalling current should be kept at minimum. 
 
 Another important point of view is the modularity and testability of the circuit. All critical lines have provision for testing and debugging for development and verification of circuit functionality. Figure \ref{fig:circuit_blocklevel} shows the interconnections in system.  The power supply can be cut off to separate sections of circuit for current measurement as needed. This has additional benefit of leaving places for power supply filtering components in case some section of circuit emits electrical noise through power supply lines.
 
@@ -48,7 +48,7 @@ Another important point of view is the modularity and testability of the circuit
 
 Power supply has some conflicting requirements, as any noise in power degrades radio and measurement performance, but on the other hand the power supply should be efficient switch mode power supply to keep power consumption at minimum. LTC3331 has switch-mode power supplies which can be used to generate supply rails for the rest of circuit, these are used and noise is dealt with by passive filtering. Most of the power supply design \ref{fig:psu_circuit} is relatively straightforward application of ideas presented in LTC3331 datasheet, but a few special considerations have been given to tailor the power supply for application. Device is configurable by soldering appropriate resistors, and the energy harvesting MPPT can be controlled by external microcontroller using signals UV[0:3]. 
 
-Battery configuration allows different chemistries to be tested, as the under- and overvoltage lockout levels are user selectable. If a non-rechargable battery is desired, battery charging can be disabled by omitting resistor R201. 
+Battery configuration allows different chemistries to be tested, as the under- and overvoltage lockout levels are user selectable. If a non-rechargeable battery is desired, battery charging can be disabled by omitting resistor R201. 
 
 \begin{figure}
     \centering
