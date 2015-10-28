@@ -80,9 +80,9 @@ It's important to notice that the sensor used was piezoelectric, which forms a h
 
 where $\omega$ is the rotation speed of tyre and $r$ is the radius of rotation.
 
-\section{Energy harvesting}
-\subsection{Overview of methods}
-First step of designing a system for energy harvesting was to identify the currently known methods and their properties. Kubba et al. \cite{Kubba2014} have done a study on tyre pressure sensor technology, they present electromagnetic, electrostatic, piezoelectric and thermal solutions as possible candidates for energy harvesting. In addition, triboelectric and magnetostrictive methods have been proposed by Bowen et al \cite{Bowen2014}. Outside of the context of tyres, Paradiso et al. \cite{Paradiso2005} present solar and radio wave harvesting techniques. Radioactive power source has been suggested by Lal et al \cite{Lal2004}. 
+\subsection{Energy harvesting}
+\subsubsection{Overview of methods}
+First step of designing a system for energy harvesting was to identify the currently known methods and their properties. Kubba et al. \cite{Kubba2014} have done a study on tyre pressure sensor technology, they present electromagnetic, electrostatic, piezoelectric and thermal solutions as possible candidates for energy harvesting. In addition, triboelectric and magnetostrictive methods have been proposed by Bowen et al \cite{Bowen2014}. Outside of the context of tyres, Paradiso et al. \cite{Paradiso2005} present solar and radiowave harvesting techniques. Radioactive power source has been suggested by Lal et al \cite{Lal2004}. 
 
 Electromagnetic power sources are based on Faraday's law of electromagnetic induction. A magnet and a coil are put in motion relative to each other, and the changing magnetic flux through the coils of the generator produces voltage. Current through such device is determined by load resistance. Technology is widely used in power generation, where a primary power source such as wind or flow of water provides rotation for the generator. While conventional designs use rotational movement, linear generator designs exist. Boldea and Nasar \cite{Boldea1999} provide an overview of linear generator and actuator theory. 
 
@@ -104,7 +104,7 @@ Radioactive energy harvesting resembles battery or fuel cell. A radioactive mate
 
 In conclusion, a wide range of energy harvesting technologies have been identified. As their primary properties are known, we can narrow down the suitable technology to electromagnetic, piezoelectric and magnetostrictive. These technologies are studied further to identify optimal choice for the application.
 
-\subsection{Resonance-based piezoelectric harvesting}
+\subsubsection{Resonance-based piezoelectric harvesting}
 Piezoelectric materials produce voltage in response to mechanical stress. The effect is bidirectional, piezoelectric element can also produce mechanical strain in response to applied voltage. The material has crystalline structure with electrical dipoles in balanced state when no stress is applied. Mechanical stress unbalances these dipoles, creating element which electronically resembles a charged capacitor. 
 
 A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This kind of system is shown in figure \ref{fiq:resonant_piezo}. In some applications, such as in machines running at the frequency of power grid (50 Hz or 60 Hz) this kind of frequency-tuning is relatively straightforward.
@@ -129,12 +129,12 @@ This kind of resonant harvesting is challenging in tyre. The energy harvester ha
 
 The results of Singh et al. can be considered as the state-of-art for resonance-based piezoelectric harvesting in tyre, and their power output was around $40 \mu W$ at peak efficiency. Therefore other methods have to be explored for energy harvester design.
 
-\subsection{Impact-based piezoelectric harvesting}
+\subsubsection{Impact-based piezoelectric harvesting}
 As the resonant harvesting is not feasible in the environment inside tyre, another method would be to use an impactor to hit a piezoelectric plate on every cycle of a tyre. These impacts would provide energy once per rotation of a tyre. This method has been tried before by Manla et al \cite{Manla2009}. Their generator produced 4 mW electrical power.
 
 As 4mW is plenty in field of low-power electronics, this approach deserves an in-depth study. Thunder TH-5C piezos have been used in previous studies of piezoelectric harvesting and they have produced promising results, so they were selected as the piezoelectric element for this thesis.
 
-piezoelectric elements are often electrically modelled as current source with parallel capacitor or voltage source with series capacitor, as shown in figure \ref{fig:piezo_equivalents} by Kanda et al \cite{Kanda2012}. There are also a lot more complex models which account for mechanical phenomena in piezo, as well as loading effects coupling on mechanical model. For the purposes of model identification for the piezo only simplest voltage source (a) and current source (b) models are explored.
+Piezoelectric elements are often electrically modelled as current source with parallel capacitor or voltage source with series capacitor, as shown in figure \ref{fig:piezo_equivalents} by Kanda et al \cite{Kanda2012}. There are also a lot more complex models which account for mechanical phenomena in piezo, as well as loading effects coupling on mechanical model. For the purposes of model identification for the piezo only simplest voltage source (a) and current source (b) models are explored.
 
 \begin{figure}[htb]
   \begin{center}
@@ -237,7 +237,7 @@ The simulated data is plotted figure \ref{fiq:piezo_simulation_experimental}.
 
 The experimental and simulated data are not in a good agreement. While maximum and minimum load voltage and power are close to estimated values, this is by design as model is tuned to these measurements. Problems occur in interpolating the results, as output voltages are notably higher than measured values. This provides a result which sets the maximum power load near the value which provides output voltage of half of the open loop voltage. This is especially interesting as LTC3331 datasheet \cite{LTC3331} suggests to set the circuit to track the load at this same half-point of open loop voltage. Both LTC3331 and LTSpice are made by Linear Technology, so independent verification of this result would be needed. 
 
-\subsection{Electromagnetic harvesting}
+\subsubsection{Electromagnetic harvesting}
 Electromagnetic harvesting is based on Faraday's law of induction: A loop of wire acquires electromotive force (EMF) in response to a changing magnetic field. More formally:
 
 \begin{equation}
@@ -296,50 +296,4 @@ Total power into load can be written as:
 
 It's easy to see from \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tyre, so it makes sense to try to match the load impedance for maximum power.
 
-In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downward down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
-
-As some parameters of the harvester are difficult to solve analytically, these parameters are solved using experimental and FEA methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite{Meeker2013} was used to create an axisymmetric model of magnets in generator. Figure \ref{femm_forces} shows the used model. Model has two biasing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. Magnets have height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. Generator has total height of 25 mm, leaving rotor magnet 17.5 mm room for movement inside generator.
-
-Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for net magnetic force acting on rotor magnet. A LUA script was used to move the rotor magnet from bottom of the generator to top in 0.1 mm increments and values obtained from analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on magnet, positive force meaning force toward the upper magnet and zero height being at the bottom of cylinder. For reference the centrifugal force acting on magnet was also calculated at various speeds, assuming weight of the magnet is 1,67 g and tyre radius to bottom of generator is 275 mm.
-
-\begin{figure}[htb]
-  \begin{center}
-  \includegraphics[height=6cm]{images/own_dwg/femm_fvsd_dualmagnet.jpg}
-  \end{center}
-  \caption{\label{femm_forces} Steady-state forces acting on magnet}
-\end{figure}
-
-These results were used to generate look-up tables for Simulink model shown in figure \ref{fig:simulink}. The model accounts for magnetic, electromagnetic, frictional and pneumatic forces acting on generator. A chirp signal with amplitude of tens of g's was given as an input to model to study the output voltage amplitudes, frequency response and waveforms. The simulated output frequency response (frequency growing from 10 to 500 Hz) and waveforms at low frequencies are shown in figure \ref{fig:simulink_waveforms}.
-
-\begin{figure}[htb]
-  \begin{center}
-  \includegraphics[height=8cm]{images/own_dwg/simulink.jpg}
-  \end{center}
-  \caption{\label{fig:simulink} Simulink model of system}
-\end{figure}
-
-\begin{figure}[htb]
-  \begin{center}
-  \includegraphics[height=6cm]{images/own_dwg/simulink_waveforms.jpg}
-  \end{center}
-  \caption{\label{fig:simulink_waveforms} Waveforms of system}
-\end{figure}
-
-A prototype generator was built to test the concept feasibility and identify any practical issues in the generator construction. Generator was machined out of 21mm diameter nylon tubing with 12 mm inner diameter. A groove was machined on the outer diameter to hold the coiling in place. Inner diameter of the groove was 14 mm and height 3 mm. 0.1 mm diameter wire was used to build the coil. To determine the number of turns in coil, coil resistance was measured to determine the length of wire and number of turn was calculated using known length of loop turn and total length of wire. Coil resistance was 42 ohms as the resistance of wire is approximately 2.2 ohms / meter the total length is approximately 19 meters. As one loop has length of 44 mm, coil had roughly 400 turns. 
-
-The prototype was connected on a  Brüel & Kjær shaker type 4905 and driven using  Brüel & Kjær power amplifier type 2707. Input signal was generated using NI-USB6218 DAQ and output was measured directly from leads of the generator. Vertical displacement of generator was limited to $7.5 mm$. Output signal was a sine wave with amplitude of \plusminus 5 volts, which was amplified by gain of 8 above frequencies of 30 Hz. At lower frequencies the gain was limited to stay within allowed displacement. Measured graphs are shown in figure \ref{fiq:lg_proto_results}.
-
-\begin{figure}[h]
-\begin{center}
-  \includegraphics[height=6cm]{images/own_measurement/lg_proto.jpg}
-  \end{center}
-  \caption{\label{fiq:lg_proto_results} Measured open-loop voltage outputs at various frequencies}
-\end{figure}
-
-While waveforms are similar in experimental setup as they are in simulation, amplitude of measured signal is order of magnitude lower. Further work is required to determine the source of this discrepancy. 
-
-As the coil resistance of prototype generator was measured to be $42 \Omega$, we can predict the theoretical maximum peak power into optimised load to be 
-
-\begin{equation}
-  P = \frac{1}{2}\frac{U^2}{2*R_{generator}} \approx 130 \mu W.
-\end{equation}
+In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
