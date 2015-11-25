@@ -12,6 +12,11 @@ The complete system will consist of energy harvesting source, energy storage for
 \label{liitekuva}
 \end{figure}
 
+Energy harvester can be any suitable source for electrical energy. Energy management section rectifies AC voltage and buffers the rectified voltage on a capacitor. The energy storage can be a supercapacitor or rechargeable battery. Both of these storage technologies can benefit from having a low equivalent series resistance (ESR) capacitor in parallel to supply any sudden peak currents. Energy management circuitry chooses whether to use harvested energy or stored energy and regulates the energy to voltage level compatible with the system. Digital components require their own local power buffer capacitors to supply high-frequency currents required by megahertz clocks onboard these circuits.
+
+Microcontroller is used to manage the application layer of system. For example the microcontroller can send status updates over radiolink more often if there is harvested energy available and reduce system power consumption when system is running on stored energy.
+
+Next section presents details of expected power consumption and duty cycles for various components. A few components are selected to provide examples of suitable system power.
 
 \subsection{Power requirements of a system}
 The sensor system will be in three distinct states. One is sleeping, conserving power as much as possible while car is not moving.
@@ -41,10 +46,13 @@ ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline \hline
 \end{center}
 \end{table}
 
-Power consumption grows by orders of magnitude when the activity is stepped up to the next level. Therefore it's important to keep the system in sleep whenever possible, for example when the car is parked and wake up only periodically to check if movement has started. Monitoring starts once car is moving, and device will send brief pulses over the radio link when necessary.
+Current consumption levels for BLE113 and ADXL375 are taken from the datasheets of the components. Battery manager power draw is estimated by calculating required power to supply the rest of the circuit at 80 \% efficiency. Power consumption is calculated from current draw with assumption that system voltage will be constant $2.5 V$.
 
-Battery manager power draw is estimated by calculating required power to supply the rest of the circuit at 80 \% efficiency.
+Power consumption grows by orders of magnitude when the activity is stepped up to the next level. Therefore it is important to keep the system in sleep whenever possible, for example when the car is parked and wake up only periodically to check if movement has started. Monitoring starts once car is moving, and device will send brief pulses over the radio link when necessary.
 
+When the power consumption is compared to values achieved in previous studies of energy harvesting, it can be seen that sleep current can be compensated by a reasonable harvester design. Powering constant monitoring would be a greater challenge, but with realm of feasibility. Providing power for continuous radio transmissions is not feasible even with current state-of-the-art harvester designs. 
+
+Next sections detail designs and preliminary analysis of electromagnetic generator designs. The initial designs are then evaluated based on their ability to supply required power levels to circuitry.
 
 \subsection{Electromagnetical harvester design}
 \subsubsection{Basics of electromagnetical vibration harvester}
