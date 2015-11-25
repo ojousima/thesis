@@ -17,6 +17,8 @@
 simulation/FEMM/*.csv
 simulation/FEMM/*.png
 simulation/FEMM/temp.fem
+*.poly
+*.pbc
 
 #libreoffice, gedit backupfiles
 *~
@@ -40,3 +42,8 @@ hardware/radio/gerber/picture.JPG
 *.zip
 hardware/radio/_autosave-radio.kicad_pcb
 hardware/radio/gerber/radio.txt
+
+#Computer generated 3D files
+*.stl
+*.gcode
+
