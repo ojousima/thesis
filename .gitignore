@@ -47,3 +47,4 @@ hardware/radio/gerber/radio.txt
 *.stl
 *.gcode
 
+*.db
