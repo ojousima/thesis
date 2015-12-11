@@ -48,3 +48,17 @@ hardware/radio/gerber/radio.txt
 *.gcode
 
 *.db
+*.atsuo
+software/harvester/GccApplication1/Debug/GccApplication1.elf
+*.hex
+software/harvester/GccApplication1/Debug/GccApplication1.map
+*.o
+software/harvester/GccApplication1/Debug/makedep.mk
+*.atsln
+software/harvester/GccApplication1/GccApplication1.componentinfo.xml
+software/harvester/GccApplication1/GccApplication1.cproj
+*.d
+*.lss
+*.srec
+*.eep
+software/harvester/GccApplication1/Debug/Makefile
