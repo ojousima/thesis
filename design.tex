@@ -54,39 +54,47 @@ When the power consumption is compared to values achieved in previous studies of
 
 Next sections detail designs and preliminary analysis of electromagnetic generator designs. The initial designs are then evaluated based on their ability to supply required power levels to circuitry.
 
-\subsection{Electromagnetical harvester design}
+\subsection{Electromagnetic harvester design}
 \subsubsection{Basics of electromagnetical vibration harvester}
 Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to a coil. The coil opposes the change in magnetic field by inducing electrical current in the device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre, an added benefit to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function as a damper to system, so no extra damping is required. Modern neodymium magnets do not lose their magnetization by vibration, so long magnet can be reliable for a long time period. 
 
 A theoretical design of linear generator (LG) was made. Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside the tyre to rotational movement would add to complexity and cost of the tyre, generator is designed to use the linear motion as the power source.
 
-Basic principle of operation of LG is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles, where phases refer to parallelly connected coils and poles refer to serially connected coils. Multiple phase designs can have lower resistive losses in wiring, as the resistive losses are propotional to square of the current. However paralleling phases requires separate rectification for each phase, which leads to increased rectification losses. Adding poles to design increases the output voltage and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator{\color{red} cite a study of multi-pole}. 
+Basic principle of operation of LG is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles, where phases refer to parallelly connected coils and poles refer to serially connected coils. Multiple phase designs can have lower resistive losses in wiring, as the resistive losses are propotional to square of the current. However paralleling phases requires separate rectification for each phase, which leads to increased rectification losses. Adding poles to design increases the output voltage and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator \cite{Cheng2008}. 
 
-Energy harvester designs sometimes use several poles to increase the frequency of the power output {\color{red}cite}. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point irrelevant, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimized to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. Mechanical design can utilise resonant vibration to function as energy storage device instead of electrical or electronic storage.
+Energy harvester designs sometimes use several poles to increase the frequency of the power output. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point irrelevant, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimized to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. Mechanical design can utilise resonant vibration to function as energy storage device instead of electrical or electronic storage.
 
-First design decision was whether to use a moving magnet or moving coil type of a design. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coil require flying leads  {\color{red} cite development of a moving magnet linear}.  which is a long-term reliability concern  {\color{red} cite linear electric actuators and generators}.  {\color{red} cite book Boldea, Nasar Linear electric actuators and generators p 203}. conclude that moving coil designs aren't practically interesting, so the design is focused on moving magnet generator. 
+First design decision was whether to use a moving magnet or moving coil type of a design. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coils require flying leads  \cite{Jacob2011},  which is a long-term reliability concern  \cite{Boldea1999}.  Boldea and Nasar \cite[p. 203]{Boldea1999a} conclude that moving coil designs aren't practically interesting, so the design is focused on moving magnet generator. 
 
-A rough model for designing initial prototypes was done previously by  {\color{red} cite backpack harvester}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
+A rough model for designing initial prototypes was done previously by Elmes \cite{Elmes2005}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
 
-There are two different approaches to generator structure. One is magnets inside, and coils on the outer rim of the generator. Other is to use ring magnets on the outer rim and have the coils on the inside. Both methods have their advantages: Having magnets on the outside allows larger and therefore stronger magnets and creates horizontal support for the magnets as they slide along the shaft. Having coils on the outside increases wiring radius which results in greater power if other parameters are held equal. In-depth study of both concepts is done to select optimal structure for generator. 
+There are two different approaches to generator structure. One is magnets inside, and coils on the outer rim of the generator. Other is to use ring magnets on the outer rim and have the coils on the inside. Both methods have their advantages: Having magnets on the outside allows larger and therefore stronger magnets and creates horizontal support for the magnets as they move along the shaft. Having coils on the outside increases wiring radius which results in greater power if other parameters are held equal. In-depth study of both concepts is done to select optimal structure for generator. 
 
-The height of the generator is constrained at  {\color{yellow} confirm} 45 mm. Initially the height of {\color{gray} the} generator was selected to be 35-40 mm to leave some margin while still being as tall as possible. Lower weight is desirable to avoid unbalancing the tyre, but there is no specific absolute maximum mass for the device. 
+The height of the generator is constrained at 45 mm to avoid contact between tyre rim and generator. Initially the height of the generator was selected to be 35-40 mm to leave some margin while still being as tall as possible. Lower weight is desirable to avoid unbalancing the tyre, but there is no specific absolute maximum mass for the device. 
 
 A method to counter the centripetal acceleration is needed to keep the magnet on the centre of the generator. Ideally, such method would always balance the magnet in the middle of generator against any external constant force, but active control is not achievable without adding to complexity and power consumption of the generator itself. Passive negative feedback method has to be used instead. 
 
-Springs are often chosen {\color{red} cite few sources} to balance the magnets, but as the centripetal acceleration grows exponentially with the speed of the car, any linear spring would be usable only for very limited range of speeds. Non-linear conical springs which have the added benefit of compressing into very small height are available.
+Springs are often chosen to balance the magnets, but as the centripetal acceleration grows exponentially with the speed of the car, any linear spring would be usable only for very limited range of speeds. Non-linear conical springs which have the added benefit of compressing into very small height are available.
 
 Another approach would be to use two additional magnets fixed to top and bottom of the generator in repulsive configuration. Force between magnets is inversely propotional to fourth power of the distance \cite{Amrani2015}, which leads to a strong negative feedback on the position of the magnet. Tornincasa et al. \cite{Tornincasa2012} proposed one such design, shown in figure \ref{lgm}.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=4cm]{images/cited/lgm}
+\includegraphics[height=4cm]{images/own_dwg/lgm}
 \end{center}
 \caption{A magnetically balanced linear generator by Tornincasa et al. \cite{Tornincasa2012}}.
 \label{lgm}
 \end{figure}
 
-Magnetic floating is an attaractive solution, as magnets can be thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. {\color{yellow} picture?} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have any grooves filled with suitable epoxy and the shaft should be sanded or turned to final diameter to ensure smooth sliding of the magnet across the length of the shaft.
+Magnetic floating is an attaractive solution, as magnets can be thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. \ref{fig:lg_torgue} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have reasonably smooth and low-friction material on the inner shaft to minimize losses.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=6cm]{images/own_dwg/generator_torgue}
+\end{center}
+\caption{Angle in magnet causes torgue which results in increased friction}.
+\label{fig:lg_torgue}
+\end{figure}
 
 \subsubsection{Analytical model of electromagnetical vibration harvester}
 A common starting point for analysis of linear generator is to model the mechanical domain as Mass-Spring-Dampener system decipted in figure \ref{MSD}. A mass "floats" in system, a spring balances the mass towards centre and a damper represents frictional forces opposing any movement of mass. 
@@ -122,7 +130,15 @@ where $F(x)$ is force as a function of distance x between magnets, $\mu_0$ is th
   F(x) = \frac{3 \mu_0 m_r m_l}{2 \pi} * \frac{1}{(x_0+x)^4} - \frac{3 \mu_0 m_r m_u}{2 \pi} * \frac{1}{(x_0-x)^4},
 \end{equation}
 
-where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, upper suspending magnet, and rotor magnet. $x_0$ is the distance to middle point of generator and $x$ is the displacement of rotor magnet from aforementioned middle point, positive direction being upwards. Figure {\color{red}draw figure} shows the system.
+where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, upper suspending magnet, and rotor magnet. $x_0$ is the distance to middle point of generator and $x$ is the displacement of rotor magnet from aforementioned middle point, positive direction being upwards. Figure \ref{fig:lg} shows the system.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=6cm]{images/own_dwg/generator}
+\end{center}
+\caption{Linear generator with rotor magnet balanced by endstop magnets}.
+\label{fig:lg}
+\end{figure}
 
 Regrettably, the expression \eqref{eq:magnetic_force_middle} is very inaccurate for magnets where diameter is large compared to thickness of magnet, and the problems are compounded when distance between magnets is small. Therefore final design should be optimized using measurement data or finite element analysis (FEA) for determining $k(U)$. 
 
