@@ -18,7 +18,7 @@ Microcontroller is used to manage the application layer of system. For example t
 
 Next section presents details of expected power consumption and duty cycles for various components. A few components are selected to provide examples of suitable system power.
 
-\subsection{Power requirements of a system}
+\subsection{Power requirements of a system} \label{sect:power_requirement}
 The sensor system will be in three distinct states. One is sleeping, conserving power as much as possible while car is not moving.
 Second state is measuring, when the radio connection is off but electronics are active and gathering data.
 Third state is transmitting, when the data is relayed to drive computer in car.
@@ -283,7 +283,7 @@ Peak voltages of roughly 150 mV were achieved at 100 Hz. The magnet is in almost
 
 While 150 mV is notably less than the few volts predicted by Simulink model, the basic operation principles was validated by quick experiment. The difference in output voltage is probably due to inprecise construction in prototype harvester. As the concept was proven, the design of generator was finalized. Next section details the exact construction of final electromagnetic generator. 
 
-\subsubsection{Mechanical design of electromagnetic harvester}
+\subsubsection{Mechanical design of electromagnetic harvester}\label{sect:emh_design}
 Few practical issues became evident during construction of prototype generator. Machining grooves to plastic tubes caused warping to tube, which prevented magnet from moving inside coils. Shallow grooves would not keep the coils in place, as wires being loose would fall off the groove. The tube did not offer any reasonable mount point for a printed circuit board. 
 
 Issues with grooves were solved by selecting a tube with minimal wall thickness and using separators to contain the coil. A separate housing was designed to hold the tube and to offer mounting points for the circuit board. 
@@ -291,15 +291,112 @@ Issues with grooves were solved by selecting a tube with minimal wall thickness 
 A layered design was made for the harvester. On the bottom is a solid square with 35 * 35 mm sides and holes for screws on corners. Next layer has a hole for the bottom magnet, third layer has hole for the tube. Tube has a spacer in middle to hold the coil below midpoint. Top half of harvester is symmetrical to bottom. 
 
 \subsection{Piezoelectric harvester design}
-A previous work by 
+This section details experimental identification of properties of piezoelectric element to be used in harvester. A testbed with impactor providing excitation is used to generate experimental values for power output and voltage at various operating conditions for the piezo element.
 
+Thunder(tm) piezos have been used in previous studies of piezoelectric harvesting and they have produced promising results \cite{Manla2009}, so they were selected as the piezoelectric element for this thesis.
 
+Series of tests were ran to determine characteristics of piezoelectric power generation under impacts. Mossi et al \cite{Mossi} have produced a recommended test process for Thunder piezoelectric actuators shown in figure \ref{fiq:thunder_eval}.
 
-\subsection{Electronic design}
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=6cm]{images/cited/mossi}
+  \end{center}
+  \caption{Recommended evaluation platform for Thunder piezos \cite{Mossi}.}
+  \label{fiq:thunder_eval}
+\end{figure}
+
+This setup was replicated using a solenoid actuator as impact force generator, precision scale as load cell to measure impact force and oscilloscope to view output waveforms. An eraser was cut to shape to act as preload bellow to spread the impact over larger surface area of piezo, displacement was not measured. The test setup is shown in figure \ref{fiq:piezo_impact}. An electronics prototyping platform, "breadboard", was used to house test electronics including resistive ladder and Arduino to trigger the solenoid at adjustable duty cycles. Load force was controlled by setting the stroke length of solenoid shaft and fine tuned by adjusting voltage over solenoid. 
+
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=6cm]{images/own_pic/piezo_test}
+  \end{center}
+  \caption{Test platform for piezo characteristics.}
+  \label{fiq:piezo_impact}
+\end{figure}
+
+The measurement results are shown in figure \ref{fiq:piezo_measurement_chart}. Output voltage scales with square of impact force, which makes sense as work done can be expressed as $W = F * d$, where $W$ is work, $F$ is force and $d$ is distance force acts on object. As the displacement of piezo grows with the applied force, total work and therefore energy grows with both terms. 
+
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=6cm]{images/own_measurement/piezo_measurements}
+  \end{center}
+  \caption{Measured output voltage at different loads and impact forces.}
+  \label{fiq:piezo_measurement_chart}
+\end{figure}
+
+Peak voltage grows with the load resistance. This makes sense in both voltage source and current source models, as the capacitor starts to discharge through load resistance instantly when voltage is applied over it. The relationship between voltage and load resistance seems to be logarithmic, which would be in good agreement with the logarithmic discharge curve of capacitor-resistor system. Peak voltages were read out from digital display and they can be considered reasonably accurate.
+
+The time constants for voltage halving was graphically measured from oscilloscope waveforms, and this data was used to calculate the capacitance of TH-5C. These measurements are a lot less accurate, as readouts from oscilloscope screen have resolution of approximately half of line division, leaving accuracy of measurements at $\pm 2.5 ms$. These results are plotted in figure \ref{fig:piezo_time_capacitance}
+
+\begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=4cm]{images/own_measurement/piezo_capacitance}
+  \end{center}
+  \caption{Measured half-time of system and calculated capacitance of piezo.}
+  \label{fig:piezo_time_capacitance}
+\end{figure}
+
+The half-time data can be used to calculate capacitance of piezo using the RC-time constant of circuit:
+
+\begin{equation}
+  C=\frac{t}{-ln(\frac{1}{2})R} 
+\end{equation}
+
+ TH-5C provides value of 39nF as the capacitance, while these calculated values are notably higher and rise with the loading of piezo. Most likely explanation of this observation is the mechanical response time of system: solenoid plunger will take some milliseconds to reach new force equilibrium, and this effect becomes more pronounced at smaller time constants of RC-system. Using the known voltage and capacitance energy and peak power in impact can be determined:
+ 
+\begin{equation}
+   E = \frac{1}{2}V^2C
+\end{equation}
+
+\begin{equation}
+   P_{peak} = \frac{V^2}{R}
+\end{equation}
+ 
+ The calculations are plotted in graph \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
+ 
+ Interestingly the peak work done by piezo to resistor seems to be almost constant on all load levels. This is probably a consequence of logarithmic voltage-load relationship described above. There is a possibly significant result based on these findings: total energy obtainable from harvester grows with load resistance. However, this is applicable only for resistive load under impact-based energy generation.
+ 
+ \begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=4cm]{images/own_measurement/piezo_power}
+  \end{center}
+  \caption{Calculated piezo power and energy output}
+  \label{fig:piezo_power_energy}
+\end{figure}
+
+Based on these results, an electrical equivalent model of circuit was designed. The model is shown in figure \ref{fig:piezo_ltspice_equivalent}. Model has two parallel current sources, one to simulate impact of plunger on piezo and other to simulate release of the impact. Capacitance in parallel is set to 39 nF as given in datasheet, load resistance is parametrised to step through the experimental values. 
+
+Model was tuned by first calculating the total current transfer to reach the open circuit voltage over capacitor. Then maximum current of current sources was matched to reach peak voltage over highest load.
+The simulated data is plotted figure \ref{fiq:piezo_simulation_experimental}.
+
+ \begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=6cm]{images/own_dwg/ltspice_piezo}
+  \end{center}
+  \caption{Equivalent model of piezo in LTSpice simulator}
+  \label{fig:piezo_ltspice_equivalent}
+\end{figure}
+
+ \begin{figure}[htb]
+  \begin{center}
+  \includegraphics[height=8cm]{images/own_dwg/ltspice_piezo_simulation}
+  \end{center}
+  \caption{Simulated piezoelement output voltage and power waveforms. Loads are stepped through list to match experimental values at 2000 gf impact force. Black: 50k; Blue: 150k; Red: 250k; Turquoise: 350k; Violet: 450k; Gray: 550k}
+  \label{fiq:piezo_simulation_experimental}
+\end{figure}
+
+The experimental and simulated data are not in a good agreement. While maximum and minimum load voltage and power are close to estimated values, this is by design as model is tuned to these measurements. Problems occur in interpolating the results, as output voltages are notably higher than measured values. This provides a result which sets the maximum power load near the value which provides output voltage of half of the open loop voltage. This is especially interesting as LTC3331 datasheet \cite{LTC3331} suggests to set the circuit to track the load at this same half-point of open loop voltage. Both LTC3331 and LTSpice are made by Linear Technology, so independent verification of this result would be needed. 
+
+\subsection{Electronic design} \label{sect:electronic_design}
+This section details simulation methods, schematic design and layout considerations of the harvester design. Power consumption is estimated using values given in datasheets of the components. 
+
 \subsubsection{Simulation of circuit}
+As the focus of work is in energy harvesting, only analog sections related to energy harvesting are simulated. Digital loads are simulated as current sinks. This section details the simulation model used to validate the design of circuitry.
+
 The analog sections of circuit were simulated using LTSpice IV \cite{ltspice}. Microcontroller, radiolink and accelerometer were simulated as resistive load. Battery was modelled as a voltage source with high-value capacitor and low-value resistor in series. Piezoelectric harvesting was modelled both as high-voltage source with capacitor in series and current source with capacitor in parallel. Electromagnetic harvesting was modelled as low-impedance low-voltage source. 
 
-{\color{red} once lookup-tables can be generated, create maximum power point tracking.} LTC3331 presents an interesting opportunity for maximum power point tracking (MPPT). While the impedances of individual components cannot be tuned in real-time, the microcontroller can determine rotation frequency of tyre from accelerometer readings and determine the maximum power point. LTC3331 can adjust the target voltage for energy storage buffer capacitor, which enables MPPT-control of system.
+LTC3331 presents an interesting opportunity for maximum power point tracking (MPPT). While the impedances of individual components cannot be tuned in real-time, the microcontroller can determine rotation frequency of tyre from accelerometer readings and determine the maximum power point. LTC3331 can adjust the target voltage for energy storage buffer capacitor, which enables MPPT-control of system.
 
 The simulation model is shown in figure \ref{fig:ltspice_sim}. Connections were adjusted as needed to generate simulation data for different purposes, such measuring energy efficiency, transient response, MPPT etc.
 
@@ -310,16 +407,18 @@ The simulation model is shown in figure \ref{fig:ltspice_sim}. Connections were 
 \caption{\label{fig:ltspice_sim} LTSpice \cite{ltspice} simulation of electrical circuit}
 \end{figure}
 
---simulated efficiency
---simulated mppt
---figures
+The simulation model was used to validate basic operation of circuit. Circuit operates as datasheet specified. MPPT algorithms can be developed after the experimental results from energy harvesting are obtained. 
+
+As the basic operation of circuit has been validated, next step is to design the detailed schematic for the circuit. The next section details schematic design of the circuit, starting from top-level diagram and connections between blocks, followed by detailed design of each subblock. 
 
 \subsubsection{Schematic design}
-The printed circuit board (PCB) schematic is a logical representation of the components and how they connect to each other. The schematic is designed in accordance to datasheets, reference designs and application notes of main circuit components. As the design operates in high-vibration environment with wide temperature variations, special care is used to select components which have well-defined temperature and mechanical characteristics. 
+The printed circuit board (PCB) schematic is a logical representation of the components and how they connect to each other. The schematic is designed in accordance to datasheets, reference designs and application notes of main circuit components. This section details the schematic diagram of the circuit.
+
+As the design operates in high-vibration environment with wide temperature variations, special care is used to select components which have well-defined temperature and mechanical characteristics. 
 
 As the circuit is a low-power design, careful attention has to be paid to parasitic properties and non-ideal behaviour of components. For example electrolytic capacitor can have leakage current of several microamperes \cite{Both2001}, which is in the same order of magnitude as the targeted sleep current consumption of system. Likewise any signalling current should be kept at minimum. 
 
-Another important point of view is the modularity and testability of the circuit. All critical lines have provision for testing and debugging for development and verification of circuit functionality. Figure \ref{fig:circuit_blocklevel} shows the interconnections in system.  The power supply can be cut off to separate sections of circuit for current measurement as needed. This has additional benefit of leaving places for power supply filtering components in case some section of circuit emits electrical noise through power supply lines.
+Another important point of view is the modularity and testability of the circuit. All critical lines have provision for testing and debugging for development and verification of circuit functionality. Figure \ref{fig:circuit_blocklevel} shows the interconnections in system, drawn in KiCAD \cite{KiCAD}.  The power supply can be cut off to separate sections of circuit for current measurement as needed. This has additional benefit of leaving places for power supply filtering components in case some section of circuit emits electrical noise through power supply lines.
 
 \begin{figure}
     \centering
@@ -372,17 +471,22 @@ ADXL375 is capable of both SPI and I2C communication, SPI communication was sele
     \caption{\label{fig:sensor_circuit} Accelerometer circuit}
 \end{figure}
 
-As the circuit will be subject to extreme accelerations, all the components are surface mounted. This gives maximal solder pad area to height ratios, which helps to maintain the integrity of circuit. Larger components, such as inductors can be additionally glued for increased mechanical reliability.
+As the circuit will be subject to extreme accelerations, all the components should be surface mounted. This gives maximal solder pad area to height ratios, which helps to maintain the integrity of circuit. Larger components, such as inductors can be additionally glued for increased mechanical reliability.
 
-{\color{red} table to sum expected ON times and power consumption?}
+The estimated current draw for each of the subcircuits dominated by the main integrated circuit of each subcircuit. The power consumption estimates were presented in section \ref{sect:power_requirement} table \ref{power_consumption_table}.
 
+As the schematic was finished, next task was to design the layout of the circuit. Next section describes the design process of laying out the circuit and shows the completed design of circuit board.
 
 \subsubsection{Circuit layout}
-The PCB layout defines the physical placement of the components on the circuit board. Usually circuits are laid out by defining the outline of the board. Then any mechanical constraints, such as mounting holes and connectors are placed. Next step is to place the main ICs. As the main features of circuit are defined, subsections of circuit is planned. Critical and sensitive components such as crystals and antennas are placed as first priority. Then the power supply lines and power supply components are placed, in this case the inductors and capacitors of SMPS are placed as close as possible to relevant pins. 
+The PCB layout defines the physical placement of the components on the circuit board. Process of laying out the circuit as well as the structure of printed circuit board is described in this section.
 
-The circuit is laid out on 4-layer PCB, where inner layers are dedicated to ground and power planes. This means that power supply decoupling needs a lot less care than on 2-layer board, generally a via straight from power pin to relevant plane gives low-impedance supply to circuit. Power supply decoupling capacitors are still placed as close as possible to relevant pins and power supplies are fed directly from capacitors when possible to minimize power supply noise leaking into power planes.
+Usually circuits are laid out by defining the outline of the board. Then any mechanical constraints, such as mounting holes and connectors are placed. Next step is to place the main ICs. As the main features of circuit are defined, subsections of circuit is planned. Critical and sensitive components such as crystals and antennas are placed as first priority. Then the power supply lines and power supply components are placed, in this case the inductors and capacitors of SMPS are placed as close as possible to relevant pins. 
 
-Finally the rest of the circuit is laid out. As the currents flowing on board are relatively small and signal rates are low, routing can be rather carefree on non-critical sections. Final board is shown in figure \ref{fig:pcb_render}.
+As the design operates in high-vibration environment with wide temperature variations, special care is used to select components which have well-defined temperature and mechanical characteristics.
+
+The circuit is laid out on 4-layer PCB, where inner layers are dedicated to ground and power planes. This means that power supply decoupling needs a lot less care than on 2-layer board, generally a via straight from power pin to relevant plane gives low-impedance supply to circuit. Power supply decoupling capacitors are still placed as close as possible to relevant pins and power supply pins are fed directly from capacitors when possible to minimize power supply noise leaking into power planes.
+
+Finally the rest of the circuit is laid out. As the currents flowing on board are relatively small and signal rates are low, routing can be rather carefree on non-critical sections. Final board is shown in figure \ref{fig:pcb_render}. Energy harvesting section is at left, radio is on top, control section is at right and accelerometer is at bottom. 
 
 \begin{figure}[htb]
   \begin{center}
@@ -391,14 +495,27 @@ Finally the rest of the circuit is laid out. As the currents flowing on board ar
   \caption{\label{fig:pcb_render} Render of the final PCB}
 \end{figure}
 
+The borders between sections are most clearly visible in the power planes of design shown in figure \ref{fig:pcb_planes}. Power planes for each subcircuit have been separated for testing the current consumption, and therefore the outlines of power planes follow the outlines of subcircuits.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=6cm]{images/own_dwg/circuit/powerplane.jpg}
+  \end{center}
+  \caption{\label{fig:pcb_planes} Power planes of the PCB}
+\end{figure}
+
 In addition to mechanical and electrical properties, the PCB also acts as heat sink for mid-power components. In this circuit only LTC3331 needs special attention to thermal design, it is cooled by several vias under the pad of circuit into ground plane. As copper is excellent conductor for heat, any thermal output from LTC3331 gets coupled to groundplane where it can spread to a wider area.
 
-\subsection{Mechanical design of generator}
-Material for the shaft has a few requirements. It has to have at least as good temperature characteristics as the magnet being used and it must be hard enough to not deform under impacts. Low friction coefficient is desirable as this leads to smaller losses, and long time durability under wear is of course desired. Being lightweight and easily machinable are also desired characteristics. As the generator is small, volumetric cost of the material is of little concern. For the electro-magnetic generator design material ferromagnetism has to be considered. Table \ref{parameters_of_materials} has comparison of different materials considered for the application.
+Battery holder is only large component in design where G-forces might cause a problem. The holder is on the backside of the pcb, where it can be mounted using adhesives or it can be supported by harvester top.
+
+\subsection{Mechanical design of harvester}
+This section details the mechanical considerations for both harvester types. First material options are explored, then the design for generators is presented.
+
+Material for the generator has a few requirements. It has to have at least as good temperature characteristics as the magnet being used and it must be hard enough to not deform under impacts. Low friction coefficient is desirable as this leads to smaller losses, and long time durability under wear is of course desired. Being lightweight and easily machinable are also desired characteristics. As the generator is small, volumetric cost of the material is of little concern. For the electro-magnetic generator design material ferromagnetism has to be considered. Table \ref{parameters_of_materials} has comparison of different materials considered for the application.
 
 \begin{table}[htb]
 %% Taulukon teksti
-\caption{\label{parameters_of_materials} Materials for the shaft of generator \cite{PlasticsInternational2015}, \cite{Etra}.}
+\caption{\label{parameters_of_materials} Materials for the shaft of generator \cite{PlasticsInternational2015}, \cite{Etra}, \cite{Goodfellow} \cite{McCarr}.}
 \begin{center}
 \fbox{
 \begin{tabular}{l l l l l l}
@@ -408,15 +525,34 @@ Material for the shaft has a few requirements. It has to have at least as good t
 \textbf{Durability} & 
 \textbf{Temperature}\\ \hline
 PTFE(Teflon)      & Very low   & Lowest                      & Lowest    & -190... + 250 \degree C \\ \hline
-Polycarbonate     & Very high  & High  \cite{Goodfellow}     & -         & -60... + 125 \degree C \\ \hline
+Polycarbonate     & Very high  & High       & -         & -60... + 125 \degree C \\ \hline
 PA 6 (Nylon)      & Low        & Medium                      & High      & -40... + 80 \degree C  \\ \hline
 Oil-infused Nylon & Low        & Very low                    & Very high & -20... + 105 \degree C \\ \hline
 Acryllic          & High       & -                           & -         & -40... + 70 \degree C \\ \hline
 Polyacetal (POM C)& Medium     & Low                         & Low       & -50... + 105 \degree C \\ \hline
+Carbon fiber     & Highest     & Highest                         & High       & ... + 80 \degree C \\ \hline
 \end{tabular}
 }
+
 \end{center}
 \end{table}
 
+There is no single best material for the harvester. Polycarbonate and carbon fibre would have excellent mechanical strength but they have high friction. Teflon and nylon would have lower friction, but they have poor mechanical rigidity. 
 
+In the end Acryllic was chosen as the material of the harvester. While Acryllic is not a best material by any single metric, it has the necessary properties. Wide availability and ease of machining were decisive factors for the selection of acryllic over other materials. 
+
+As the minimum diameter of harvester is defined by piezo element diameter of 34 mm, both generators are designed with 35 mm square bases. Both generators also use same mounting hole pattern for electronics - 2.75 mm holes at the corners of square.
+
+Generator was machined using slices of laser cut acryllic and standard acryllic tubing. The process is somewhat similar to 3D-printing, as several thin layers form up the final part. The acryllic parts used in generator are shown in figure \ref{fig:lasercut}.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=15cm]{images/own_dwg/mechanical/layers.jpg}
+  \end{center}
+  \caption{\label{fig:lasercut} 150 * 150 mm sheet for laser cut.}
+\end{figure}
+
+While the initial approach for building the shaft of the generator was to use lasercut rings to form the shaft, the process of lasercutting warped thinner rings and mechanical alingment of the rings was difficult. Therefore a standard 10 mm inner diameter 12 mm outer diameter tube was selected as the shaft.
+
+This section detailed the material options for the harvester structure and presented the manufacturing method. Acryllic was chosen as a compromise between material properties and availability for the generator. 
 
