@@ -14,7 +14,7 @@ The harvester was built to design presented in \ref{sect:emh_design}. Figure \re
 \end{figure}
 
 
-\subsubsection{Test setup}
+\subsubsection{Test setup} \label{sect:lg_test_setup}
 This section details the test setup on vibration exciter. The electromagnetic harvester was connected to vibration exciter Brüel & Kjær type 4905 for measuring the frequency responce and output power obtainable from the harvester. Figure \ref{fig:emh_shaker} shows the test setup. Syscomp CircuitGear CGR201 oscilloscope was used to generate test signal and take the measurements from harvester. Signal from function generator was amplified by Brüel & Kjær power amplifier type 2707.
 
 \begin{figure}[htb]
@@ -24,7 +24,7 @@ This section details the test setup on vibration exciter. The electromagnetic ha
 \caption{\label{fig:emh_shaker} Test setup for harvester.}
 \end{figure}
 
-Regrettably the test setup did not have feedback for position of harvester, so exact displacement or acceleration of harvester is unknown. The output signal from function generator had amplitude of 6 V peak-to-peak and the gain of power amplifier was set to 9.5.
+Regrettably the test setup did not have feedback for position of harvester, so exact displacement or acceleration of harvester is unknown. The output signal from function generator had amplitude of 6 volts peak-to-peak and the gain of power amplifier was set to 9.5 in initial testing, later the function generator amplitude was limited to 2 volts as the response was found to be identical on both settings.
 
 \subsubsection{Time domain results of electromagnetic harvester}
 First test on the electromagnetic harvester was to measure the timedomain waveforms on various loads and frequencies. After the open loop results were obtained the tests were run again with different resistive loads to measure the power output. Finally the power output to rectifier of harvesting circuit of was measured. This section presents the test results. 
@@ -44,18 +44,22 @@ There seems to be 90 \degree phase shift between excitation and responce. This p
 
 Amplitude of output is 2 volts and resistance of the coil was measured to be 34 ohms at DC. Inductive component of coil impedance is negligble at the frequencies of interest, so only resistive component needs to be considered. Optimal load would then be 34 ohms. When these values are substituted in time domain into equation \ref{eq:generator_load_power} in section \ref{sect:em_harvest} we obtain
 
-\begin{align}
-  P_{load}(t)& = V(t) * \frac{ 34 \Omega }{ 34 \Omega + 34 \Omega } * \frac{ V(t) }{ 34 \Omega + 34 \Omega }
-  P_{load}(t)& = \frac{V(t)^2}{136}  
+\begin{equation}
+\begin{split}
+  P_{load}(t)& = V(t) * \frac{ 34 \Omega }{ 34 \Omega + 34 \Omega } * \frac{ V(t) }{ 34 \Omega + 34 \Omega } \\
+  P_{load}(t)& = \frac{V(t)^2}{136 \Omega}  
+\end{split}
 \end{align}
 
 Peak power would be $ \approx 30 mW $. Root mean square (RMS) voltage cannot be accurately calculated from given values, as the waveform is not a perfect sine or triangle wave. If the waveform is approximated as triangle wave, the RMS power would be 
 
-\begin{align}
-  P_{rms}& = k * P_{peak}
-  P_{rms}& = \frac{1}{\sqrt{3}} * P_{peak}
+\begin{equation}
+\begin{split}
+  P_{rms}& = k * P_{peak} \\
+  P_{rms}& = \frac{1}{\sqrt{3}} * P_{peak} \\
   P_{rms}& \approx 17 mW 
-\end{align}
+\end{split}
+\end{equation}
 
 where $k$ is a constant multiplier for RMS power for triangle waves. 
 If the excitation power was increased until rotor magnet audibly contacted the endstop magnets, there was no significant change in output voltage. One possible explanation is the valley in output waveform: maybe the magnet was driven to near-contact to magnet and when the acceleration was reduced the magnet was accelerated by mainly by magnetic interaction. The end result would be that the length of the valley in output waveform would vary while the output amplitude would be limited by magnetic interaction. While further exploration of this phenomenom would be interesting, the testing would be potentially destructive and therefore the tests were left to future work.
@@ -88,28 +92,32 @@ Power waveform of harvester is presented in figure \ref{fig:inductive_power_65}.
 
 Graphically read average power output is 0.375 mW. One possible reason for the greatly lesser power output was the capacitors in voltage doubler structure: the voltage doubler has series capacitance of 10 $\mu$F, which has reactive impedance of
 
-\begin{align}
-  X_c& = \frac{1}{2 \pi f C}
-  X_c& = \frac{1}{2 \pi 65 10\mu}
+\begin{equation}
+\begin{split}
+  X_c& = \frac{1}{2 \pi f C} \\
+  X_c& = \frac{1}{2 \pi 65 10\mu} \\
   X_c& \approx 245 \Omega
+\end{split}
 \end{align}
 
 at 65 Hz. Total output impedance of circuit would be approximately 280 $\Omega$, which would limit the output current to approximately 7 mA. This theory was tested by simulating the equivalent model of input section of harvester circuit. Simulation model and results are shown in figure \ref{}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=10cm]{images/own_dwg/simulation/voltage_doubler.jpg}
+\includegraphics[height=10cm]{images/own_dwg/simulation/voltage_doubler.png}
 \end{center}
 \caption{\label{fig:simulated_doubler} LTSpice model of energy harvester input section.}
 \end{figure}
 
 The simulated data confirms the effect of input capacitor to current output of system. Current is limited to roughly 7 mA. Simulated power output was on average 2.0 mW. If the measured current is assumed to be limited by saturation, and if we assume that simulated current of 8 mA peaks would be correct, the calculated power output from experimental result would be 
 
-\begin{align}
-  P_{true}& = P_{simulated} * \frac{I_{simulated}}{I_{real}}
-  P_{true}& = 0.375 * \frac{7}{1.25}
-  P_{true}& = 2.1 mW.
-\end{align}
+\begin{equation}
+\begin{split}
+  P_{true}& = P_{simulated} * \frac{I_{simulated}}{I_{real}} \\
+  P_{true}& = 0.375 * \frac{7}{1.25} \\
+  P_{true}& = 2.1 mW. \\
+\end{split}
+\end{equation}
 
 After correcting the experimental current with simulated value, a lot more reasonable value of approximately 2 mW of generated power is obtained. 
 
@@ -145,7 +153,36 @@ The application of ferrofluid shows a strong resonance peak near 70 Hz, phase sh
 \subsection{Experimental results of piezoelectric harvester}
 
 \subsubsection{Time domain results of piezoelectric harvester}
-The test setup of piezoelectric harvester was similar to the test setup of electromagnetic harvester. This section presents the time-domain results of the piezoelectric harvester. Details of the test setup are given in section \ref{sect:}
+This section presents the time-domain results of the piezoelectric harvester. The test setup of piezoelectric harvester was similar to the test setup of electromagnetic harvester, details of the test setup are given in section \ref{sect:lg_test_setup}. Unlike electromagnetic harvester, this piezoelectric harvester did not have any obvious minimum acceleration before friction would be overcome and therefore even very small signal was obtainable. Likewise no maximum value for output signal was found by increasing the power to vibration exciter. The function generator output signal was held at 6 volts peak-to-peak for time domain tests and at 3 volts peak-to-peak for frequency domain tests to limit the loosening of screws by vibration.
+
+The piezoelectric harvester was characterized by high output voltages at high output impedances. Open loop response is shown in figure \ref{fig:piezo_td_open}. The output was not a clean sine-resembling signal as with electromagnetic harvester, it has sharp downwards peaks and a lot of high-frequency distortion.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=10cm]{images/own_measurement/generator_shaker/piezo_td_open_330hz_2_2.png}
+\end{center}
+\caption{\label{fig:piezo_td_open} Open loop response from piezoelectric harvester. Red is excitation signal, blue is response.}
+\end{figure}
+
+While output signal is off the scale, negative peaks were measured at -12 volts. Peak-to-peak amplitude was therefore roughly 20 volts. The search for maximum power point was started by modeling circuit as RC- high pass filter shown in figure\ref{fig:rc_highpass} with piezo capacitance as the series capacitor and load as the resistor. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=4cm]{images/cited/hyperphysics.jpg}
+\end{center}
+\caption{\label{fig:rc_highpass} RC high pass filter \cite{hyperphysics}.}
+\end{figure}
+
+The frequency domain results presented in section \ref{sect:piezo_fd} were used to find the maximum output frequency at 330 Hz. This frequency was taken as the target cut-off frequency for the RC-filter equation:
+
+\begin{equation}
+\begin{split}
+  F_c &= \frac{1}{2 \pi R C} \\
+  R   &= \frac{1}{2 \pi C F} \\
+  R   &= \frac{1}{2 \pi 39 nF 330 Hz} \\
+  R   &\approx 12 400 \Omega 
+\end{split}
+\end{equation}
 
 \subsection{Harvestering circuit results }
 Text on BQ25504 instead of LTC3331, possibly testbench results of LTC3331?
