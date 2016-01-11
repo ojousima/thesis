@@ -26,7 +26,7 @@ This section details the test setup on vibration exciter. The electromagnetic ha
 
 Regrettably the test setup did not have feedback for position of harvester, so exact displacement or acceleration of harvester is unknown. The output signal from function generator had amplitude of 6 volts peak-to-peak and the gain of power amplifier was set to 9.5 in initial testing, later the function generator amplitude was limited to 2 volts as the response was found to be identical on both settings.
 
-\subsubsection{Time domain results of electromagnetic harvester}
+\subsubsection{Time domain results of electromagnetic harvester}\label{sect:lg_td}
 First test on the electromagnetic harvester was to measure the timedomain waveforms on various loads and frequencies. After the open loop results were obtained the tests were run again with different resistive loads to measure the power output. Finally the power output to rectifier of harvesting circuit of was measured. This section presents the test results. 
 
 The magnet inside harvester had a notable amount of friction which had to be overcome before any output could be obtained from harvester. It was not possible to obtain very small signals from harvester, as any input strong enough to move the magnet resulted in volt-scale output. Figure \ref{fig:inductive_65_open_dry} shows an example of waveforms obtained from harvester. 
@@ -47,13 +47,13 @@ Amplitude of output is 2 volts and resistance of the coil was measured to be 34 
 \begin{equation}
 \begin{split}
   P_{load}(t)& = V(t) * \frac{ 34 \Omega }{ 34 \Omega + 34 \Omega } * \frac{ V(t) }{ 34 \Omega + 34 \Omega } \\
-  P_{load}(t)& = \frac{V(t)^2}{136 \Omega}  
+  P_{load}(t)& = \frac{V(t)^2}{136 \Omega}
 \end{split}
 \end{align}
 
 Peak power would be $ \approx 30 mW $. Root mean square (RMS) voltage cannot be accurately calculated from given values, as the waveform is not a perfect sine or triangle wave. If the waveform is approximated as triangle wave, the RMS power would be 
 
-\begin{equation}
+\begin{equation} \label{eq:rms_power}
 \begin{split}
   P_{rms}& = k * P_{peak} \\
   P_{rms}& = \frac{1}{\sqrt{3}} * P_{peak} \\
@@ -183,6 +183,22 @@ The frequency domain results presented in section \ref{sect:piezo_fd} were used 
   R   &\approx 12 400 \Omega 
 \end{split}
 \end{equation}
+
+Theory would predict the maximum power point to be near the cut-off frequency, so the generator was tested with 18k, 12k and 9k ohm resistive loads. The peak voltages and calculated power into load are presented in table \ref{tbl:piezo_harvester_shaker_output}. The power is calculated by approximating the waveform as a clean sine calculating RMS power from peak voltage values. Method is similar to equation \eqref{eq:rms_power} presented in section \ref{sect:lg_td}, but the multiplier $k$ is $\sqrt{2}$ instead of $\sqrt{3}$ as the waveform is approximated as sine rather than triangle. While the absolute value of power output suffers from approximation error, the waveforms obtained with 18 k$\Omega$ and 12 k$\Omega$
+
+\begin{table}[htb]
+\caption{\label{tbl:piezo_harvester_shaker_output} Output power of piezo harvester at various 18k, 12k and 9k \Omega loads.}
+\begin{center}
+\fbox{
+\begin{tabular}{l l l}
+\textbf{Load}          & \textbf{Amplitude} 		& \textbf{Power_{rms}}	\\ \hline
+\(\displaystyle 18k \Omega \)& 7 volts		& 1.36 mW 		\\ \hline
+\(\displaystyle 12k \Omega} \) & 6 volts	& 1.50 mW	\\ \hline
+\(\displaystyle 9k  \Omega} \) & 4 volts 	& 0.89 mW
+\end{tabular}
+}
+\end{center}
+\end{table}
 
 \subsection{Harvestering circuit results }
 Text on BQ25504 instead of LTC3331, possibly testbench results of LTC3331?
