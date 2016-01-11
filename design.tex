@@ -291,6 +291,7 @@ Issues with grooves were solved by selecting a tube with minimal wall thickness 
 A layered design was made for the harvester. On the bottom is a solid square with 35 * 35 mm sides and holes for screws on corners. Next layer has a hole for the bottom magnet, third layer has hole for the tube. Tube has a spacer in middle to hold the coil below midpoint. Top half of harvester is symmetrical to bottom. 
 
 \subsection{Piezoelectric harvester design}
+\subsubsection{Basics of piezoelectric energy harvesting }
 This section details experimental identification of properties of piezoelectric element to be used in harvester. A testbed with impactor providing excitation is used to generate experimental values for power output and voltage at various operating conditions for the piezo element.
 
 Thunder(tm) piezos have been used in previous studies of piezoelectric harvesting and they have produced promising results \cite{Manla2009}, so they were selected as the piezoelectric element for this thesis.
@@ -389,8 +390,6 @@ The simulated data is plotted figure \ref{fiq:piezo_simulation_experimental}.
 The experimental and simulated data are not in a good agreement. While maximum and minimum load voltage and power are close to estimated values, this is by design as model is tuned to these measurements. Problems occur in interpolating the results, as output voltages are notably higher than measured values. This provides a result which sets the maximum power load near the value which provides output voltage of half of the open loop voltage. This is especially interesting as LTC3331 datasheet \cite{LTC3331} suggests to set the circuit to track the load at this same half-point of open loop voltage. Both LTC3331 and LTSpice are made by Linear Technology, so independent verification of this result would be needed. 
 
 \subsection{Electronic design} \label{sect:electronic_design}
-This section details simulation methods, schematic design and layout considerations of the harvester design. Power consumption is estimated using values given in datasheets of the components. 
-
 \subsubsection{Simulation of circuit}
 As the focus of work is in energy harvesting, only analog sections related to energy harvesting are simulated. Digital loads are simulated as current sinks. This section details the simulation model used to validate the design of circuitry.
 
