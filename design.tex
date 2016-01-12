@@ -39,7 +39,7 @@ Finally there is an accelerometer which is used for gathering data out of the sy
 \textbf{Device}		& \textbf{Sleep} 	& \textbf{Monitoring}	& \textbf{Communicating}\\ \hline
 LTC3331			& 0.2 $\mu A$		& 80 $\mu A$ 		& 16 250 $\mu A$ 		\\ \hline
 BLE113			& 0.9 $\mu A$ 		& 275 $\mu A$ 		& 26 000 $\mu A$	\\ \hline 
-ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline \hline
+ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline 
 \textbf{Total power}	& 3   $\mu W$		& 1 200 $\mu W$		& 110 000 $\mu W$	
 \end{tabular}
 }
@@ -82,7 +82,7 @@ Another approach would be to use two additional magnets fixed to top and bottom 
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=4cm]{images/own_dwg/lgm}
+\includegraphics[height=4cm]{images/cited/lgm}
 \end{center}
 \caption{A magnetically balanced linear generator by Tornincasa et al. \cite{Tornincasa2012}}.
 \label{lgm}
@@ -266,7 +266,7 @@ Based on these results, a magnet moving at the speed of $0.1 mm / s $ would indu
 
 A prototype generator was built to test the concept feasibility and identify any practical issues in the generator construction. Generator was machined out of 21mm diameter nylon tubing with 12 mm inner diameter. A groove was machined on the outer diameter to hold the coiling in place. Inner diameter of the groove was 14 mm and height 3 mm. 0.1 mm diameter wire was used to build the coil. To determine the number of turns in coil, coil resistance was measured to determine the length of wire and number of turn was calculated using known length of loop turn and total length of wire. Coil resistance was 42 ohms as the resistance of wire is approximately 2.2 ohms / meter the total length is approximately 19 meters. As one loop has length of 44 mm, coil had roughly 400 turns. 
 
-The prototype was connected on a  Brüel & Kjær shaker type 4905 and driven using  Brüel & Kjær power amplifier type 2707. Input signal was generated using NI-USB6218 DAQ and output was measured directly from leads of the generator. Vertical displacement of generator was limited to $7.5 mm$. Output signal was a sine wave with amplitude of \plusminus 5 volts, which was amplified by gain of 8 above frequencies of 30 Hz. At lower frequencies the gain was limited to stay within allowed displacement. Measured graphs are shown in figure \ref{fiq:lg_proto_results}.
+The prototype was connected on a  Brüel \& Kjær shaker type 4905 and driven using  Brüel \& Kjær power amplifier type 2707. Input signal was generated using NI-USB6218 DAQ and output was measured directly from leads of the generator. Vertical displacement of generator was limited to $7.5 mm$. Output signal was a sine wave with amplitude of $\pm$ 5 volts, which was amplified by gain of 8 above frequencies of 30 Hz. At lower frequencies the gain was limited to stay within allowed displacement. Measured graphs are shown in figure \ref{fiq:lg_proto_results}.
 
 \begin{figure}[h]
 \begin{center}
