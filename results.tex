@@ -26,7 +26,7 @@ This section details the test setup on vibration exciter. The electromagnetic ha
 
 Regrettably the test setup did not have feedback for position of harvester, so exact displacement or acceleration of harvester is unknown. The output signal from function generator had amplitude of 6 volts peak-to-peak and the gain of power amplifier was set to 9.5 in initial testing, later the function generator amplitude was limited to 2 volts as the response was found to be identical on both settings.
 
-\subsubsection{Time domain results of electromagnetic harvester}\label{sect:lg_td}
+\subsubsection{Time domain results}\label{sect:lg_td}
 First test on the electromagnetic harvester was to measure the timedomain waveforms on various loads and frequencies. After the open loop results were obtained the tests were run again with different resistive loads to measure the power output. Finally the power output to rectifier of harvesting circuit of was measured. This section presents the test results. 
 
 The magnet inside harvester had a notable amount of friction which had to be overcome before any output could be obtained from harvester. It was not possible to obtain very small signals from harvester, as any input strong enough to move the magnet resulted in volt-scale output. Figure \ref{fig:inductive_65_open_dry} shows an example of waveforms obtained from harvester. 
@@ -123,7 +123,7 @@ After correcting the experimental current with simulated value, a lot more reaso
 
 This section presented the time-domain results of the electromagnetic harvester on a shaker test platform. Approximately 30 mW peak power was obtained, RMS power of 17 mW was achieved to resistive load and power output to harvester was determined to be in range between 0.4 mW and 2 mW. Next section presents the frequency domain measurements of the generator as well as studies the effect of application of ferrofluid to harvester.
 
-\subsubsection{Frequency domain results of electromagnetic harvester}
+\subsubsection{Frequency domain results}
 One of the original design goals of the harvester was to provide a wide-band energy harvester solution. This section presents the frequency domain responce of the electromagnetic harvester.
 
 Frequency domain responce was obtained by sweeping a wide-band sine signal to power amplifier and measuring the open loop responce from harvester. The first measurement was done on a harvester without ferroluid applied, figure \ref{fig:inductive_fd_dry} displays the measurement result. Above graph is output in decibels, below is the phase shift of the responce.
@@ -152,7 +152,7 @@ The application of ferrofluid shows a strong resonance peak near 70 Hz, phase sh
 
 \subsection{Experimental results of piezoelectric harvester}
 
-\subsubsection{Time domain results of piezoelectric harvester}
+\subsubsection{Time domain results}
 This section presents the time-domain results of the piezoelectric harvester. The test setup of piezoelectric harvester was similar to the test setup of electromagnetic harvester, details of the test setup are given in section \ref{sect:lg_test_setup}. Unlike electromagnetic harvester, this piezoelectric harvester did not have any obvious minimum acceleration before friction would be overcome and therefore even very small signal was obtainable. Likewise no maximum value for output signal was found by increasing the power to vibration exciter. The function generator output signal was held at 6 volts peak-to-peak for time domain tests and at 3 volts peak-to-peak for frequency domain tests to limit the loosening of screws by vibration.
 
 The piezoelectric harvester was characterized by high output voltages at high output impedances. Open loop response is shown in figure \ref{fig:piezo_td_open}. The output was not a clean sine-resembling signal as with electromagnetic harvester, it has sharp downwards peaks and a lot of high-frequency distortion.
@@ -218,9 +218,29 @@ The waveforms from 12 k$\Omega$ load and 9 k$\Omega$ load are shown in figures \
 
 The waveform on figure \ref{fig:piezo_td_9k} resembles almost a saw-tooth wave. Regardless of actual RMS value, it can be confidently said that the power output is smaller under 9 k$\Omega$ load than under 12 k$\Omega$ load. Therefore maximum power point can be concluded to be near 12 k$\Omega$ load at 330 Hz. 
 
-After testing behaviour on resistive loads, power output to harvester through rectification was tested. While the electromagnetic harvester had notably higher output to resistive load, rectification drops voltage and therefore high-voltage characteristic of piezoelectric harvester is advantageus. 
+After testing behaviour on resistive loads, power output to harvester through rectification was tested. While the electromagnetic harvester had notably higher output to resistive load, rectification drops voltage and therefore high-voltage characteristic of piezoelectric harvester is advantageous for rectification. 
 
-As with the electromagnetic harvester, current was measured using $\mu$Current at 1 mV / uA setting. While electromagnetic harvester suffered from reactance of series capacitance limiting the output of harvester, output impedance of piezoelectric harvester is a lot higher than that of additional series capacitor and therefore output was not impaired by coupling capacitance. The VI-waveforms are shown in figure \ref{}
+As with the electromagnetic harvester, current was measured using $\mu$Current at 1 mV / uA setting. While electromagnetic harvester suffered from reactance of series capacitance limiting the output of harvester, output impedance of piezoelectric harvester is a lot higher than that of additional series capacitor and therefore output was not impaired by coupling capacitance. The VI-waveforms are shown in figure \ref{fig:piezo_td_vi}. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=10cm]{images/own_measurement/generator_shaker/piezo_td_vi_330hz_2_3.png}
+\end{center}
+\caption{\label{fig:piezo_td_vi} VI-waveforms of piezoelectric harvester into rectifier. Blue is voltage, red is current with scaling of 1 mA / V.}
+\end{figure}
+
+Output of piezoelectric harvester does not follow the excitation in a similar manner to electromagnetic harvester. The output voltage is clamped by diodes of rectification circuit, and the current waveform does not follow the voltage waveform. Power output waveforms have been presented in figure \ref{}. As before, the output can be read as 1 V \= 1 mW. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=10cm]{images/own_measurement/generator_shaker/piezo_td_power_330hz_2_3.png}
+\end{center}
+\caption{\label{fig:piezo_td_vi} Power waveform of piezoelectric harvester. Scaling is 1 mW / V.}
+\end{figure}
+
+While excitation frequency of 330 Hz was not clearly visible in VI-waveforms, the rectified signal is clearly double of 330 Hz. Graphic integration suggests the power output to be in order of hundreds of microwatts, with peak power output being approximately 2.4 mW. 
+
+It can be concluded that piezoelectric harvester produces most of the power at excitation frequency, any output from internal resonances are negligble in comparison to energy obtained from external actuation.
 
 \subsection{Harvestering circuit results }
 Text on BQ25504 instead of LTC3331, possibly testbench results of LTC3331?
