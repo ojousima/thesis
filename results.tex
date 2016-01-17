@@ -123,7 +123,7 @@ After correcting the experimental current with simulated value, a lot more reaso
 
 This section presented the time-domain results of the electromagnetic harvester on a shaker test platform. Approximately 30 mW peak power was obtained, RMS power of 17 mW was achieved to resistive load and power output to harvester was determined to be in range between 0.4 mW and 2 mW. Next section presents the frequency domain measurements of the generator as well as studies the effect of application of ferrofluid to harvester.
 
-\subsubsection{Frequency domain results}
+\subsubsection{Frequency domain results} \lebel{sect:emh_fd}
 One of the original design goals of the harvester was to provide a wide-band energy harvester solution. This section presents the frequency domain responce of the electromagnetic harvester.
 
 Frequency domain responce was obtained by sweeping a wide-band sine signal to power amplifier and measuring the open loop responce from harvester. The first measurement was done on a harvester without ferroluid applied, figure \ref{fig:inductive_fd_dry} displays the measurement result. Above graph is output in decibels, below is the phase shift of the responce.
@@ -242,8 +242,22 @@ While excitation frequency of 330 Hz was not clearly visible in VI-waveforms, th
 
 It can be concluded that piezoelectric harvester produces most of the power at excitation frequency, any output from internal resonances are negligble in comparison to energy obtained from external actuation.
 
-\subsubsetction{Frequency domain results} \label{sect:piezo_fd}
+\subsubsection{Frequency domain results} \label{sect:piezo_fd}
+The frequency domain responce of piezoelectric harveser was obtained in similar manner as with the electromagnetic harvester detailed in section \ref{sect:emh_fd}. The excitation signal was swept across a wide spectrum and output from harvester was measured. Frequency domain results are presented in this section.
 
+The frequency sweep result on open circuit is shown in figure \ref{fig:piezo_fd}. A resonance peak can be found at 334 Hz. Similarly to electromagnetic harvester, the slope is a lot steeper on frequencies above the resonance peak than below. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=10cm]{images/own_measurement/generator_shaker/piezo_fd_open_2_3.png}
+\end{center}
+\caption{\label{fig:piezo_td_vi} Frequency responce of piezoelectric harvester}
+\end{figure}
+
+
+The peak frequency is somewhat poorly suited to environment in tyre presented in section \ref{sect:tyre_environment}, as the peak responce is significantly above peak frequencies encountered in tyre. Usually the frequency is tuned downwards by adding mass to harvester, however this approach is not feasible in this application as the proof mass is limited to avoid damage to piezoelement due to excessive strain. However the design goal of broad band frequency responce was better reached by this design.
+
+As the peak frequency was identified near 330 Hz, the time domain analysis were performed on the harvester. Next section details the voltage, current and power outputs into varied loads.
 
 \subsection{Harvestering circuit results }
 Text on BQ25504 instead of LTC3331, possibly testbench results of LTC3331?
