@@ -1,85 +1,3 @@
-\section{Background}
-
-\subsection{Structure of a tyre}
-
-Tyres are composed of several layers with different functions. Figure \ref{fig:tyre_structure_diagram} by Gent et
-al. \cite{Gent2005} shows the layered structure. From outer tread to inner lining, the layers are: 
-
-\begin{description}
-  \item[Tread] provides traction for driving, braking and cornering. Pattern and materials on
-tread is a compromise between wear resistance, traction, handling and rolling
-resistance
-  \item[Belts] provide mechanical strength, impact resistance and keep tyre from expanding
-under centrifugal forces.
-  \item[Body ply] provides strength to contain the air pressure.
-  \item[Innerliner] is a compound specifically designed to improve air retention in tyre.
-\end{description}
-In addition there are layers designed to improve tyre reliability, such as the belt
-wedge which reduces shear between belts.
-
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[height=8cm]{images/cited/gent2005}
-\end{center}
-\caption{Structure of a tyre \cite{Gent2005}.}
-\label{fig:tyre_structure_diagram}
-\end{figure}
-
-
-In endurance testing of tyres the car is driven at test track in three shifts until
-desired number of course driving kilometres have been reached. In outdoor testing
-each company has their own proprietary test protocol. Indoor testing has standards,
-which mandates pressure, ambient temperature and speed as well as time driven.
-According to Gent et al. \cite{Gent2005} this indoor testing takes 34 hours of driving at 120
-km/h.
-
-In addition to endurance testing, there is high-speed testing where tyre speed is
-gradually accelerated in steps of 10 km/h at regular intervals until target speed is
-reached. Energy harvester should survive these tests to be considered a viable design for road conditions.
-
-
-\subsection{Environment inside tyre}
-The energy harvester will be placed inside the tyre. Previous studies by Niskanen et al \cite{Niskanen2014}. have shown that the tyre will experience acceleration in all three axes. Tangential and centripetal accelerations are dominant, they can reach amplitudes up to 150 g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
-
-Temperature inside of the tyre will reach equilibrium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual ambient conditions. 
-
-Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figure \ref{80_TD} shows time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}.
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=4cm]{images/cited/matilainen2012}
-\end{center}
-\caption{Axes in measurement by Matilainen et al. \cite{Matilainen2012}}
-\label{tyre_axes}
-\end{figure}
-
-Frequency domain representations were calculated in Matlab. There are two main contributors to base frequencies: first is the rotational frequency of tyre itself and second is the impact when the tyre deforms as it contacts the drum.. There is clearly visible series of frequency components spaced at the rotational frequency of tyre as well as shock harmonics at upper frequencies. Figure \ref{80_FFT_zoom} shows the total frequency spectrum and the dominant frequency components.
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=6cm]{images/matlab_figures/80kmh_timedomain_combined}
-\end{center}
-\caption{Acceleration of inner lining of tyre at 80 km/h in time domain.}
-\label{80_TD}
-\end{figure}
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=4cm]{images/matlab_figures/FFT-80_combined}
-\end{center}
-\caption{Most of the energy is found in 10-100 Hz range.}
-\label{80_FFT_zoom}
-\end{figure}
-
-It's important to notice that the sensor used was piezoelectric, which forms a highpass filter as the operation of sensor is based on charge between layers. This charge dissipates over time, so the steady-state centripetal acceleration reads as zero. Any device on the rotating tyre will experience centripetal acceleration (acceleration toward centre of rotation) at the amplitude of: 
-
-\begin{equation}
-  a_{centripetal} = \omega^2 r,
-\end{equation}
-
-where $\omega$ is the rotation speed of tyre and $r$ is the radius of rotation.
-
 \subsection{Energy harvesting}
 \subsubsection{Overview of methods}
 First step of designing a system for energy harvesting was to identify the currently known methods and their properties. Kubba et al. \cite{Kubba2014} have done a study on tyre pressure sensor technology, they present electromagnetic, electrostatic, piezoelectric and thermal solutions as possible candidates for energy harvesting. In addition, triboelectric and magnetostrictive methods have been proposed by Bowen et al \cite{Bowen2014}. Outside of the context of tyres, Paradiso et al. \cite{Paradiso2005} present solar and radiowave harvesting techniques. Radioactive power source has been suggested by Lal et al \cite{Lal2004}. 
@@ -206,3 +124,84 @@ Total power into load can be written as:
 It's easy to see from \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another consideration is efficiency of the generator: the electrical efficiency is defined as ratio of power flowing into load and total power generated. Equation \eqref{eq:generator_load_power} can be used to show that when load impedance is equal to generator impedance, efficiency is $ 50 \%$. Efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in tyre, so it makes sense to try to match the load impedance for maximum power.
 
 In an energy harvesting application it is important to consider the validity of established theory when generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from generator is proportional to fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
+
+
+\subsection{Structure of a tyre}
+
+Tyres are composed of several layers with different functions. Figure \ref{fig:tyre_structure_diagram} by Gent et
+al. \cite{Gent2005} shows the layered structure. From outer tread to inner lining, the layers are: 
+
+\begin{description}
+  \item[Tread] provides traction for driving, braking and cornering. Pattern and materials on
+tread is a compromise between wear resistance, traction, handling and rolling
+resistance
+  \item[Belts] provide mechanical strength, impact resistance and keep tyre from expanding
+under centrifugal forces.
+  \item[Body ply] provides strength to contain the air pressure.
+  \item[Innerliner] is a compound specifically designed to improve air retention in tyre.
+\end{description}
+In addition there are layers designed to improve tyre reliability, such as the belt
+wedge which reduces shear between belts.
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=8cm]{images/cited/gent2005}
+\end{center}
+\caption{Structure of a tyre \cite{Gent2005}.}
+\label{fig:tyre_structure_diagram}
+\end{figure}
+
+
+In endurance testing of tyres the car is driven at test track in three shifts until
+desired number of course driving kilometres have been reached. In outdoor testing
+each company has their own proprietary test protocol. Indoor testing has standards,
+which mandates pressure, ambient temperature and speed as well as time driven.
+According to Gent et al. \cite{Gent2005} this indoor testing takes 34 hours of driving at 120
+km/h.
+
+In addition to endurance testing, there is high-speed testing where tyre speed is
+gradually accelerated in steps of 10 km/h at regular intervals until target speed is
+reached. Energy harvester should survive these tests to be considered a viable design for road conditions.
+
+
+\subsection{Environment inside tyre}
+The energy harvester will be placed inside the tyre. Previous studies by Niskanen et al \cite{Niskanen2014}. have shown that the tyre will experience acceleration in all three axes. Tangential and centripetal accelerations are dominant, they can reach amplitudes up to 150 g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
+
+Temperature inside of the tyre will reach equilibrium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual ambient conditions. 
+
+Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data was used to gather minimum and maximum values of acceleration as well as frequency components inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figure \ref{80_TD} shows time domain representations of the acceleration along 3 axes as shown in figure \ref{tyre_axes}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=4cm]{images/cited/matilainen2012}
+\end{center}
+\caption{Axes in measurement by Matilainen et al. \cite{Matilainen2012}}
+\label{tyre_axes}
+\end{figure}
+
+Frequency domain representations were calculated in Matlab. There are two main contributors to base frequencies: first is the rotational frequency of tyre itself and second is the impact when the tyre deforms as it contacts the drum.. There is clearly visible series of frequency components spaced at the rotational frequency of tyre as well as shock harmonics at upper frequencies. Figure \ref{80_FFT_zoom} shows the total frequency spectrum and the dominant frequency components.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=6cm]{images/matlab_figures/80kmh_timedomain_combined}
+\end{center}
+\caption{Acceleration of inner lining of tyre at 80 km/h in time domain.}
+\label{80_TD}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=4cm]{images/matlab_figures/FFT-80_combined}
+\end{center}
+\caption{Most of the energy is found in 10-100 Hz range.}
+\label{80_FFT_zoom}
+\end{figure}
+
+It's important to notice that the sensor used was piezoelectric, which forms a highpass filter as the operation of sensor is based on charge between layers. This charge dissipates over time, so the steady-state centripetal acceleration reads as zero. Any device on the rotating tyre will experience centripetal acceleration (acceleration toward centre of rotation) at the amplitude of: 
+
+\begin{equation}
+  a_{centripetal} = \omega^2 r,
+\end{equation}
+
+where $\omega$ is the rotation speed of tyre and $r$ is the radius of rotation.
