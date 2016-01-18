@@ -1,0 +1,732 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:bq25504
+LIBS:mbxxxs
+LIBS:mounting_hole
+LIBS:bq25504-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "BQ25504 harvester board"
+Date "2015-10-27"
+Rev "0c8c7ee"
+Comp ""
+Comment1 "First proto version"
+Comment2 "ojousima"
+Comment3 "otso@ojousima.net"
+Comment4 ""
+$EndDescr
+$Comp
+L INDUCTOR_SMALL L1
+U 1 1 5602AF94
+P 5400 3400
+F 0 "L1" H 5400 3500 50  0000 C CNN
+F 1 "1210 22µH min 500 mA | CBC3225T220MR" H 5400 3350 50  0000 C CNN
+F 2 "footprints:SMD1206_A" H 5400 3400 60  0001 C CNN
+F 3 "" H 5400 3400 60  0000 C CNN
+	1    5400 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C1
+U 1 1 5602AFDB
+P 2500 4050
+F 0 "C1" H 2525 4150 50  0000 L CNN
+F 1 "10µ" H 2525 3950 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 2538 3900 30  0001 C CNN
+F 3 "" H 2500 4050 60  0000 C CNN
+	1    2500 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R1
+U 1 1 5602B04E
+P 2800 3800
+F 0 "R1" H 2830 3820 50  0000 L CNN
+F 1 "2MEG5" H 2830 3760 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 2800 3800 60  0001 C CNN
+F 3 "" H 2800 3800 60  0000 C CNN
+	1    2800 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R2
+U 1 1 5602B097
+P 2800 4250
+F 0 "R2" H 2830 4270 50  0000 L CNN
+F 1 "6MEG04" H 2830 4210 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 2800 4250 60  0001 C CNN
+F 3 "" H 2800 4250 60  0000 C CNN
+	1    2800 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R3
+U 1 1 5602B0F0
+P 3500 4300
+F 0 "R3" H 3530 4320 50  0000 L CNN
+F 1 "1MEG" H 3530 4260 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 3500 4300 60  0001 C CNN
+F 3 "" H 3500 4300 60  0000 C CNN
+	1    3500 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R4
+U 1 1 5602B189
+P 3900 4300
+F 0 "R4" H 3930 4320 50  0000 L CNN
+F 1 "5MEG6" H 3930 4260 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 3900 4300 60  0001 C CNN
+F 3 "" H 3900 4300 60  0000 C CNN
+	1    3900 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R5
+U 1 1 5602B28D
+P 4300 4300
+F 0 "R5" H 4330 4320 50  0000 L CNN
+F 1 "4MEG22" H 4330 4260 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 4300 4300 60  0001 C CNN
+F 3 "" H 4300 4300 60  0000 C CNN
+	1    4300 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R9
+U 1 1 5602B2DC
+P 4300 4900
+F 0 "R9" H 4330 4920 50  0000 L CNN
+F 1 "5MEG6" H 4330 4860 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 4300 4900 60  0001 C CNN
+F 3 "" H 4300 4900 60  0000 C CNN
+	1    4300 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R6
+U 1 1 5602B303
+P 3500 4600
+F 0 "R6" H 3530 4620 50  0000 L CNN
+F 1 "2MEG5" H 3530 4560 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 3500 4600 60  0001 C CNN
+F 3 "" H 3500 4600 60  0000 C CNN
+	1    3500 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R7
+U 1 1 5602B340
+P 3500 4900
+F 0 "R7" H 3530 4920 50  0000 L CNN
+F 1 "2MEG5" H 3530 4860 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 3500 4900 60  0001 C CNN
+F 3 "" H 3500 4900 60  0000 C CNN
+	1    3500 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_Small R8
+U 1 1 5602B3EC
+P 3900 4900
+F 0 "R8" H 3930 4920 50  0000 L CNN
+F 1 "6MEG04" H 3930 4860 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 3900 4900 60  0001 C CNN
+F 3 "" H 3900 4900 60  0000 C CNN
+	1    3900 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L BQ25504 U1
+U 1 1 5602AF79
+P 5400 4350
+F 0 "U1" H 5400 5050 60  0000 C CNN
+F 1 "BQ25504" H 5400 4950 60  0000 C CNN
+F 2 "footprints:QFN-16-1EP_3x3mm_Pitch0.5mm" H 5400 4350 60  0001 C CNN
+F 3 "" H 5400 4350 60  0000 C CNN
+	1    5400 4350
+	1    0    0    -1  
+$EndComp
+Text Notes 6200 4350 0    40   ~ 0
+120C
+$Comp
+L C C3
+U 1 1 5602CAFF
+P 7100 4600
+F 0 "C3" H 7125 4700 50  0000 L CNN
+F 1 "100n" H 7125 4500 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 7138 4450 30  0001 C CNN
+F 3 "" H 7100 4600 60  0000 C CNN
+	1    7100 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C4
+U 1 1 5602CB34
+P 7500 4600
+F 0 "C4" H 7525 4700 50  0000 L CNN
+F 1 "10µ" H 7525 4500 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 7538 4450 30  0001 C CNN
+F 3 "" H 7500 4600 60  0000 C CNN
+	1    7500 4600
+	1    0    0    -1  
+$EndComp
+Text Notes 7000 4750 1    40   ~ 0
+Close to pin
+Text Notes 7400 4800 1    40   ~ 0
+Bulk capacitance
+$Comp
+L GND #PWR01
+U 1 1 5602CDC2
+P 2500 5150
+F 0 "#PWR01" H 2500 4900 50  0001 C CNN
+F 1 "GND" H 2500 5000 50  0000 C CNN
+F 2 "" H 2500 5150 60  0000 C CNN
+F 3 "" H 2500 5150 60  0000 C CNN
+	1    2500 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 5602CDF2
+P 2800 5150
+F 0 "#PWR02" H 2800 4900 50  0001 C CNN
+F 1 "GND" H 2800 5000 50  0000 C CNN
+F 2 "" H 2800 5150 60  0000 C CNN
+F 3 "" H 2800 5150 60  0000 C CNN
+	1    2800 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR03
+U 1 1 5602CE5A
+P 3500 5150
+F 0 "#PWR03" H 3500 4900 50  0001 C CNN
+F 1 "GND" H 3500 5000 50  0000 C CNN
+F 2 "" H 3500 5150 60  0000 C CNN
+F 3 "" H 3500 5150 60  0000 C CNN
+	1    3500 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR04
+U 1 1 5602CE8A
+P 3900 5150
+F 0 "#PWR04" H 3900 4900 50  0001 C CNN
+F 1 "GND" H 3900 5000 50  0000 C CNN
+F 2 "" H 3900 5150 60  0000 C CNN
+F 3 "" H 3900 5150 60  0000 C CNN
+	1    3900 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR05
+U 1 1 5602D178
+P 4300 5150
+F 0 "#PWR05" H 4300 4900 50  0001 C CNN
+F 1 "GND" H 4300 5000 50  0000 C CNN
+F 2 "" H 4300 5150 60  0000 C CNN
+F 3 "" H 4300 5150 60  0000 C CNN
+	1    4300 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR06
+U 1 1 5602D1E7
+P 5400 5150
+F 0 "#PWR06" H 5400 4900 50  0001 C CNN
+F 1 "GND" H 5400 5000 50  0000 C CNN
+F 2 "" H 5400 5150 60  0000 C CNN
+F 3 "" H 5400 5150 60  0000 C CNN
+	1    5400 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR07
+U 1 1 5602D6BC
+P 7100 5150
+F 0 "#PWR07" H 7100 4900 50  0001 C CNN
+F 1 "GND" H 7100 5000 50  0000 C CNN
+F 2 "" H 7100 5150 60  0000 C CNN
+F 3 "" H 7100 5150 60  0000 C CNN
+	1    7100 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR08
+U 1 1 5602D738
+P 7500 5150
+F 0 "#PWR08" H 7500 4900 50  0001 C CNN
+F 1 "GND" H 7500 5000 50  0000 C CNN
+F 2 "" H 7500 5150 60  0000 C CNN
+F 3 "" H 7500 5150 60  0000 C CNN
+	1    7500 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C2
+U 1 1 5602E053
+P 3300 4300
+F 0 "C2" H 3325 4400 50  0000 L CNN
+F 1 "10n" H 3325 4200 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 3338 4150 30  0001 C CNN
+F 3 "" H 3300 4300 60  0000 C CNN
+	1    3300 4300
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR09
+U 1 1 5602E41B
+P 3300 5150
+F 0 "#PWR09" H 3300 4900 50  0001 C CNN
+F 1 "GND" H 3300 5000 50  0000 C CNN
+F 2 "" H 3300 5150 60  0000 C CNN
+F 3 "" H 3300 5150 60  0000 C CNN
+	1    3300 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C5
+U 1 1 5602E790
+P 6300 4900
+F 0 "C5" H 6325 5000 50  0000 L CNN
+F 1 "EECRG0V155(V|H)N" V 6150 4400 50  0000 L CNN
+F 2 "footprints:EECRG0V155HN" H 6338 4750 30  0001 C CNN
+F 3 "" H 6300 4900 60  0000 C CNN
+	1    6300 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR010
+U 1 1 5602E82B
+P 6300 5150
+F 0 "#PWR010" H 6300 4900 50  0001 C CNN
+F 1 "GND" H 6300 5000 50  0000 C CNN
+F 2 "" H 6300 5150 60  0000 C CNN
+F 3 "" H 6300 5150 60  0000 C CNN
+	1    6300 5150
+	1    0    0    -1  
+$EndComp
+Text Notes 6100 5400 1    60   ~ 0
+Supercap
+$Comp
+L CONN_01X02 P2
+U 1 1 560311D8
+P 800 3950
+F 0 "P2" H 800 4100 50  0000 C CNN
+F 1 "CONN_01X02" V 900 3950 50  0000 C CNN
+F 2 "footprints:Pin_Header_Straight_1x02" H 800 3950 60  0001 C CNN
+F 3 "" H 800 3950 60  0000 C CNN
+	1    800  3950
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR011
+U 1 1 56031632
+P 2250 5150
+F 0 "#PWR011" H 2250 4900 50  0001 C CNN
+F 1 "GND" H 2250 5000 50  0000 C CNN
+F 2 "" H 2250 5150 60  0000 C CNN
+F 3 "" H 2250 5150 60  0000 C CNN
+	1    2250 5150
+	1    0    0    -1  
+$EndComp
+Text Notes 750  3500 0    60   ~ 0
+DC in
+$Comp
+L CONN_01X02 P1
+U 1 1 56031950
+P 800 2750
+F 0 "P1" H 800 2900 50  0000 C CNN
+F 1 "CONN_01X02" V 900 2750 50  0000 C CNN
+F 2 "footprints:Pin_Header_Straight_1x02" H 800 2750 60  0001 C CNN
+F 3 "" H 800 2750 60  0000 C CNN
+	1    800  2750
+	-1   0    0    1   
+$EndComp
+Text Notes 800  2400 0    60   ~ 0
+AC in
+$Comp
+L CONN_01X03 P3
+U 1 1 560326BB
+P 8400 4050
+F 0 "P3" H 8400 4250 50  0000 C CNN
+F 1 "CONN_01X03" V 8500 4050 50  0000 C CNN
+F 2 "footprints:Pin_Header_Straight_1x05" H 8400 4050 60  0001 C CNN
+F 3 "" H 8400 4050 60  0000 C CNN
+	1    8400 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR012
+U 1 1 560328DE
+P 8050 5150
+F 0 "#PWR012" H 8050 4900 50  0001 C CNN
+F 1 "GND" H 8050 5000 50  0000 C CNN
+F 2 "" H 8050 5150 60  0000 C CNN
+F 3 "" H 8050 5150 60  0000 C CNN
+	1    8050 5150
+	1    0    0    -1  
+$EndComp
+Text Label 6250 3950 0    60   ~ 0
+VBAT_OK
+Text Label 4200 3650 0    60   ~ 0
+V_IN
+Text Label 3900 3950 0    60   ~ 0
+V_OC_SAMP
+Text Label 3900 4050 0    60   ~ 0
+V_REF
+Text Label 3900 4150 0    60   ~ 0
+V_RDIV
+Text Label 4350 4450 0    60   ~ 0
+VBOV
+Text Label 4350 4550 0    60   ~ 0
+VBUV
+Text Label 4350 4650 0    60   ~ 0
+HYST
+Text Label 4350 4750 0    60   ~ 0
+PROG
+Text Label 6250 4150 0    60   ~ 0
+V_SYS
+Wire Wire Line
+	3500 4150 4600 4150
+Connection ~ 4300 4150
+Connection ~ 3900 4150
+Wire Wire Line
+	4300 4200 4300 4150
+Wire Wire Line
+	3900 4150 3900 4200
+Wire Wire Line
+	3500 4150 3500 4200
+Wire Wire Line
+	4600 4450 4300 4450
+Wire Wire Line
+	4300 4400 4300 4800
+Connection ~ 4300 4450
+Wire Wire Line
+	4600 4550 3900 4550
+Wire Wire Line
+	3900 4400 3900 4800
+Wire Wire Line
+	4600 4650 3850 4650
+Wire Wire Line
+	3850 4650 3850 4450
+Wire Wire Line
+	3850 4450 3500 4450
+Wire Wire Line
+	3500 4400 3500 4500
+Connection ~ 3500 4450
+Wire Wire Line
+	4600 4750 3500 4750
+Wire Wire Line
+	3500 4700 3500 4800
+Connection ~ 3500 4750
+Connection ~ 3900 4550
+Wire Wire Line
+	3500 5000 3500 5150
+Wire Wire Line
+	3900 5000 3900 5150
+Wire Wire Line
+	4300 5000 4300 5150
+Wire Wire Line
+	5400 5050 5400 5150
+Wire Wire Line
+	1050 3650 4600 3650
+Wire Wire Line
+	2500 3650 2500 3900
+Connection ~ 2800 3650
+Wire Wire Line
+	2800 4350 2800 5150
+Wire Wire Line
+	2500 4200 2500 5150
+Wire Wire Line
+	5150 3400 4550 3400
+Wire Wire Line
+	4550 3400 4550 3650
+Connection ~ 4550 3650
+Wire Wire Line
+	5650 3400 6300 3400
+Wire Wire Line
+	6300 3400 6300 3650
+Wire Wire Line
+	6300 3650 6200 3650
+Wire Wire Line
+	6200 4350 6550 4350
+Wire Wire Line
+	6200 4150 7900 4150
+Wire Wire Line
+	7500 4150 7500 4450
+Wire Wire Line
+	7100 4450 7100 4150
+Connection ~ 7100 4150
+Connection ~ 5400 5100
+Wire Wire Line
+	5300 5050 5300 5100
+Wire Wire Line
+	5300 5100 5600 5100
+Wire Wire Line
+	5500 5100 5500 5050
+Wire Wire Line
+	7100 4750 7100 5150
+Wire Wire Line
+	7500 4750 7500 5150
+Wire Wire Line
+	2800 3650 2800 3700
+Wire Wire Line
+	2800 3900 2800 4150
+Wire Wire Line
+	2800 3950 4600 3950
+Connection ~ 2800 3950
+Wire Wire Line
+	4600 4050 3300 4050
+Wire Wire Line
+	3300 4050 3300 4150
+Wire Wire Line
+	3300 4450 3300 5150
+Wire Wire Line
+	6200 3950 8200 3950
+Connection ~ 7500 4150
+Wire Wire Line
+	6200 4550 6600 4550
+Wire Wire Line
+	6300 4550 6300 4750
+Wire Wire Line
+	6300 5050 6300 5150
+Wire Wire Line
+	1000 3900 1050 3900
+Wire Wire Line
+	1050 3900 1050 3650
+Connection ~ 2500 3650
+Wire Wire Line
+	1000 4000 2250 4000
+Wire Wire Line
+	2250 4000 2250 5150
+Wire Wire Line
+	1000 2700 1600 2700
+Wire Wire Line
+	1000 2800 1550 2800
+Wire Wire Line
+	8200 4050 7900 4050
+Wire Wire Line
+	7900 4050 7900 4150
+Wire Wire Line
+	8200 4150 8050 4150
+Wire Wire Line
+	8050 4150 8050 5150
+Wire Wire Line
+	6550 4350 6550 4150
+Connection ~ 6550 4150
+$Comp
+L Mounting_hole NC1
+U 1 1 5614C964
+P 6800 2400
+F 0 "NC1" H 6800 2550 60  0001 C CNN
+F 1 "Mounting_hole" H 6800 2250 60  0000 C CNN
+F 2 "footprints:m2.5_mechanical_npth_mount" H 6800 2400 60  0001 C CNN
+F 3 "" H 6800 2400 60  0000 C CNN
+	1    6800 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_hole NC3
+U 1 1 5614CA74
+P 7500 2400
+F 0 "NC3" H 7500 2550 60  0001 C CNN
+F 1 "Mounting_hole" H 7500 2250 60  0000 C CNN
+F 2 "footprints:m2.5_mechanical_npth_mount" H 7500 2400 60  0001 C CNN
+F 3 "" H 7500 2400 60  0000 C CNN
+	1    7500 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_hole NC2
+U 1 1 5614CB5A
+P 6800 2750
+F 0 "NC2" H 6800 2900 60  0001 C CNN
+F 1 "Mounting_hole" H 6800 2600 60  0000 C CNN
+F 2 "footprints:m2.5_mechanical_npth_mount" H 6800 2750 60  0001 C CNN
+F 3 "" H 6800 2750 60  0000 C CNN
+	1    6800 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_hole NC4
+U 1 1 5614CB98
+P 7500 2750
+F 0 "NC4" H 7500 2900 60  0001 C CNN
+F 1 "Mounting_hole" H 7500 2600 60  0000 C CNN
+F 2 "footprints:m2.5_mechanical_npth_mount" H 7500 2750 60  0001 C CNN
+F 3 "" H 7500 2750 60  0000 C CNN
+	1    7500 2750
+	1    0    0    -1  
+$EndComp
+Text Notes 6250 2200 0    60   ~ 0
+2.75 mm, (M2.5), centers on 28 mm  edge square
+Wire Wire Line
+	5600 5100 5600 5050
+Connection ~ 5500 5100
+Wire Wire Line
+	2000 3850 2200 3850
+Wire Wire Line
+	2200 3850 2200 3650
+Connection ~ 2200 3650
+Wire Wire Line
+	1400 3850 1600 3850
+Wire Wire Line
+	1400 3850 1400 4000
+Connection ~ 1400 4000
+$Comp
+L D_Schottky D2
+U 1 1 562F11BB
+P 2350 2700
+F 0 "D2" H 2350 2800 50  0000 C CNN
+F 1 "D_Schottky" H 2350 2600 50  0000 C CNN
+F 2 "footprints:SOD-323-A" H 2350 2700 60  0001 C CNN
+F 3 "" H 2350 2700 60  0000 C CNN
+	1    2350 2700
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C6
+U 1 1 562F12E4
+P 1750 2700
+F 0 "C6" H 1775 2800 50  0000 L CNN
+F 1 "10µ" H 1775 2600 50  0000 L CNN
+F 2 "footprints:SMD0603_A" H 1788 2550 30  0001 C CNN
+F 3 "" H 1750 2700 60  0000 C CNN
+	1    1750 2700
+	0    1    1    0   
+$EndComp
+$Comp
+L D_Schottky D3
+U 1 1 562F134F
+P 2050 3100
+F 0 "D3" H 2050 3200 50  0000 C CNN
+F 1 "D_Schottky" H 2050 3000 50  0000 C CNN
+F 2 "footprints:SOD-323-A" H 2050 3100 60  0001 C CNN
+F 3 "" H 2050 3100 60  0000 C CNN
+	1    2050 3100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1900 2700 2200 2700
+Wire Wire Line
+	2050 2950 2050 2700
+Connection ~ 2050 2700
+Wire Wire Line
+	1550 2800 1550 3250
+Wire Wire Line
+	1550 3250 2300 3250
+Wire Wire Line
+	2300 3250 2300 3300
+Connection ~ 2050 3250
+$Comp
+L GND #PWR013
+U 1 1 562F188C
+P 2300 3300
+F 0 "#PWR013" H 2300 3050 50  0001 C CNN
+F 1 "GND" H 2300 3150 50  0000 C CNN
+F 2 "" H 2300 3300 60  0000 C CNN
+F 3 "" H 2300 3300 60  0000 C CNN
+	1    2300 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 2700 2950 2700
+Wire Wire Line
+	2950 2700 2950 3650
+Connection ~ 2950 3650
+Wire Notes Line
+	1500 3500 1500 2500
+Wire Notes Line
+	1500 2500 2700 2500
+Wire Notes Line
+	2700 2500 2700 3500
+Wire Notes Line
+	2700 3500 1500 3500
+Text Notes 1500 2350 0    60   ~ 0
+Voltage doubler
+$Comp
+L ZENER D1
+U 1 1 5658FD97
+P 1800 3850
+F 0 "D1" H 1800 3950 50  0000 C CNN
+F 1 "5V1" H 1800 3750 50  0000 C CNN
+F 2 "" H 1800 3850 60  0000 C CNN
+F 3 "" H 1800 3850 60  0000 C CNN
+	1    1800 3850
+	-1   0    0    1   
+$EndComp
+Wire Notes Line
+	1600 3700 2050 3700
+Wire Notes Line
+	2050 3700 2050 4250
+Wire Notes Line
+	2050 4250 1600 4250
+Wire Notes Line
+	1600 4250 1600 3700
+Text Notes 1150 4350 0    60   ~ 0
+Optional,\ncauses leakage
+$Comp
+L C C7
+U 1 1 56592FD3
+P 6600 4900
+F 0 "C7" H 6625 5000 50  0000 L CNN
+F 1 "100µ" H 6625 4800 50  0000 L CNN
+F 2 "" H 6638 4750 30  0000 C CNN
+F 3 "" H 6600 4900 60  0000 C CNN
+	1    6600 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 4550 6600 4750
+Connection ~ 6300 4550
+Wire Wire Line
+	6600 5050 6600 5150
+$Comp
+L GND #PWR014
+U 1 1 56593145
+P 6600 5150
+F 0 "#PWR014" H 6600 4900 50  0001 C CNN
+F 1 "GND" H 6600 5000 50  0000 C CNN
+F 2 "" H 6600 5150 60  0000 C CNN
+F 3 "" H 6600 5150 60  0000 C CNN
+	1    6600 5150
+	1    0    0    -1  
+$EndComp
+Text Notes 6850 4900 1    60   ~ 0
+TBD
+Text Notes 4950 3200 0    60   ~ 0
+Change footprint to 1210
+$EndSCHEMATC
