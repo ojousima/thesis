@@ -187,7 +187,7 @@ The frequency domain results presented in section \ref{sect:piezo_fd} were used 
 Theory would predict the maximum power point to be near the cut-off frequency, so the generator was tested with 18k, 12k and 9k ohm resistive loads. The peak voltages and calculated power into load are presented in table \ref{tbl:piezo_harvester_shaker_output}. The power is calculated by approximating the waveform as a clean sine calculating RMS power from peak voltage values. Method is similar to equation \eqref{eq:rms_power} presented in section \ref{sect:lg_td}, but the multiplier $k$ is $\sqrt{2}$ instead of $\sqrt{3}$ as the waveform is approximated as sine rather than triangle. While the absolute value of power output suffers from approximation error, the waveforms obtained with 18 k$\Omega$ and 12 k$\Omega$ are similar enough for comparing the outputs between loads. On 9 k$\Omega$ load the waveform was clearly more distorted, and therefore the output was notably smaller than calculated.
 
 \begin{table}[htb]
-\caption{\label{tbl:piezo_harvester_shaker_output} Output power of piezo harvester at various 18k, 12k and 9k $\Omega$ loads.}
+\caption{\label{tbl:piezo_harvester_shaker_output} Output power of piezo harvester at 18 k$\Omega$, 12 k$\Omega$ and 9 k$\Omega$ loads.}
 \begin{center}
 \fbox{
 \begin{tabular}{l l l}
@@ -331,17 +331,63 @@ With ESR known, it is possible to calculate capacitance from discharge time:
   \frac{V_t}{V_0}     &= e^{-t/RC} \\
   ln(\frac{V_t}{V_0}) &= \frac{-t}{RC} \\
   C                   &= \frac{-t}{R} \frac{1}{ ln(\frac{V_t}{V_0})} \\
-  C                   &= \frac{41.6-14.4}{100 + 18.2} \frac{1}{ ln(\frac{2.75}{3.25})} \\
-  C                   &\approx = 1.38 F
+  C                   &= \frac{41.6-14.4}{100 + 18.2} \frac{1}{ ln(\frac{2.75 V}{3.25 V})} \\
+  C                   &\approx 1.38 F
 \end{split}
 \end{equation}
 
-Therefore the capacitor ESR was found to be 18.2 ohms and capacitance 1.37 farads. This is well within the published initial values of ESR < 30 ohms and capacitance of 1.5 farad -20 % ... + 80 %, and therefore results can be considered reliable. 
+Therefore the capacitor ESR was found to be 18.2 ohms and capacitance 1.37 farads. This is well within the published initial values of ESR < 30 ohms and capacitance of 1.5 farad -20 \% ... + 80 \%, and therefore results can be considered reliable. 
 
 As the devices were proven in a laboratory setting, further test was carried out to determine the power output in simulated drive inside tyre. The test setup and results are detailed in next section.
 
 \subsection{Performance inside tyre}
 The final experiment was to install the harvester with electronics inside tyre and simulate driving conditions with dynometer platform. The test results are presented in this section. 
 
+The harvester was glued to inner lining of tyre as shown in figure \ref{fig:harvester_potted} and electrical connections were brought through a slip ring for instrumentation. The tyre was installed to test platform presented in figure \ref{fig:tyre_platform} and tyre was driven at varied speeds and loads. 
 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=8cm]{images/own_measurement/circuit/discharge.png}
+\end{center}
+\caption{\label{fig:harvester_potted}Harvester mounted inside tyre.}
+\end{figure}
 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=8cm]{images/own_measurement/circuit/discharge.png}
+\end{center}
+\caption{\label{fig:tyre_platform} Tyre assembled in test platform.}
+\end{figure}
+
+The supercapacitor was initially fully discharged. To measure boost circuit efficiency, the storage capacitor was externally charged to 3 volts and before taking measurements. Tyre was driven at varied and speeds and loads. Power output was measured by recording stored voltage in supercapacitor before and after the test with NI 9215 \cite{ni9215}.
+
+\begin{table}[htb]
+\caption{\label{tbl:piezo_harvester_tyre_output} Measured values from tyre test setup.}
+\begin{center}
+\fbox{
+\begin{tabular}{l l l}
+\textbf{Speed} & \textbf{Load} 		& \textbf{V_{0}} & \textbf{V_{end}} & \textbf{Duration} & \textbf{Power}	  \\ \hline
+0 km / h       & 2 kN 		        & 2.989 V        & 2.978 V          & 600 s             & -75  $\mu$W       	\\ \hline
+20 km / h      & 2 kN 		        & 2.674 V        & 2.676 V          & 600 s             & -34 $\mu$W       	\\ \hline
+\end{tabular}
+}
+\end{center}
+\end{table}
+
+Regrettably the device broke down during measurement at 30 km / h and therefore no accurate data was obtained. However, the results suggest that average power of 50 $\mu$W was obtained from harvester at 30 km / h speed.
+
+The harvesting circuit has considerable leakage of power, this is probably because of leakage characteristics of supercapacitor shown in figure \ref{fig:scap_leakage}. Initial leakage current of supercapacitor can be in order of tens of microamperes, and it will decrease over course of several days to specified value.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=8cm]{images/cited/mars2012.png}
+\end{center}
+\caption{\label{fig:scap_leakage} Supercapacitors have high initial leakage \cite{Mars2012}.}
+\end{figure}
+
+While leakage in harvester resulted in net negative power in the testing, it can be seen that harvester produced approximately 40 $\mu$W during 20 km / h drive at 2 kN load.
+
+This section presented the real-world powerout of piezoelectric harvester. Usable, rectified and regulated power output was 40 $\mu$W. Next section compares the obtained results to current state-of-the-art.
+
+\subsection{Comparison to state-of-art results}
+The results obtained from completed devices are compared to state of the art in this section.
