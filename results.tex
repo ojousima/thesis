@@ -123,7 +123,7 @@ After correcting the experimental current with simulated value, a lot more reaso
 
 This section presented the time-domain results of the electromagnetic harvester on a shaker test platform. Approximately 30 mW peak power was obtained, RMS power of 17 mW was achieved to resistive load and power output to harvester was determined to be in range between 0.4 mW and 2 mW. Next section presents the frequency domain measurements of the generator as well as studies the effect of application of ferrofluid to harvester.
 
-\subsubsection{Frequency domain results} \lebel{sect:emh_fd}
+\subsubsection{Frequency domain results} \label{sect:emh_fd}
 One of the original design goals of the harvester was to provide a wide-band energy harvester solution. This section presents the frequency domain responce of the electromagnetic harvester.
 
 Frequency domain responce was obtained by sweeping a wide-band sine signal to power amplifier and measuring the open loop responce from harvester. The first measurement was done on a harvester without ferroluid applied, figure \ref{fig:inductive_fd_dry} displays the measurement result. Above graph is output in decibels, below is the phase shift of the responce.
@@ -267,11 +267,12 @@ M. Rouvala kindly provided an interview \cite{Rouvala2015} to discuss the energy
 
 A few ICs from different manufacturers were considered for the new circuit, namely Seiko S-882z \cite{SeikoInstruments2010} charge pumps, Linear Technology LTC3105 \cite{ltc3015} boost charger and Texas Instruments BQ255xx -series boost chargers. As Seiko ICs are poorly available and LTC3105 requires high start-up currents, BQ25504 \cite{bq25504} was chosen as the core for harvesting circuit. The schematic of harvesting circuit is presented in figure \ref{fig:bq25504} and figure \ref{fig:bq25504_mounted} shows the assembled circuit mounted on top of piezoelectric harvester.
 
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=8cm]{images/own_dwg/circuit/bq25504.jpg}
-\end{center}
-\caption{\label{fig:bq25504} Schematic of revised harvester circuit}
+
+\begin{figure}
+    \centering
+    \def\svgwidth{\columnwidth}
+    \input{images/own_dwg/circuit/bq25504.pdf_tex}
+    \caption{\label{fig:bq25504} Schematic of revised harvester circuit}
 \end{figure}
 
 \begin{figure}[htb]
@@ -283,7 +284,7 @@ A few ICs from different manufacturers were considered for the new circuit, name
 
 The revised harvesting circuit is able to start at 0.33 V input DC voltage, or at near 0.4 V RMS amplitude AC voltage contrasted to 5 V DC level of LTC3331-based circuit. Supercapacitor was chosen as energy storage for easy measurement of accumulated harvested energy. The supercapacitor was model EECRG0V155VN \cite{panasonic_scap} with 3.6 volts maximum voltage and 1.5 farad nominal capacitance. 
 
-Maximum power point tracking is provided by sampling open-loop voltage of circuit through voltage divider R1 and R2 every 16 seconds into capacitor C2. After the sample has been stored into capacitor, BQ25504 attempts to set the current taken from input so that V_IN matches V_REF. 
+Maximum power point tracking is provided by sampling open-loop voltage of circuit through voltage divider R1 and R2 every 16 seconds into capacitor C2. After the sample has been stored into capacitor, BQ25504 attempts to set the current taken from input so that V\_IN matches V\_REF. 
 
 Regrettably this form of MPPT is not adjustable by external microcontroller: while digital potentiometers exist, their current consumption far exceeds the low-power requirements of the circuit. Therefore a fixed ratio had to be set for the circuit. The ratio was set to 80 \% to avoid overloading the piezo element, as it was previously found in section \ref{sect:piezo:_td} that overloading the element has a disasterous effect on efficiency of piezoelectric harvesting whereas underloading has much less pronounced effect on efficiency.
 
@@ -309,7 +310,7 @@ The initial discharge current can be calculated with voltage over resistor:
 \begin{split}
   I &= \frac{V}{R} \\
   I &= \frac{2.75 V}{100 \Omega} \\
-  I &\approx = 27.5 mA 
+  I &\approx 27.5 mA 
 \end{split}
 \end{equation}
 
@@ -319,7 +320,7 @@ With the initial discharge current and voltage drop known, ESR can be calculated
 \begin{split}
   ESR &= \frac{V_{initial} - V_{discharge}}{I_{discharge}} \\
   ESR &= \frac{3.25 V - 2.75 V}{27.5 mA} \\
-  ESR &\approx = 18.2 \Omega
+  ESR &\approx 18.2 \Omega
 \end{split}
 \end{equation}
 
@@ -347,28 +348,28 @@ The harvester was glued to inner lining of tyre as shown in figure \ref{fig:harv
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=8cm]{images/own_measurement/circuit/discharge.png}
+\includegraphics[height=8cm]{images/own_pic/tyre_fixture/piezo_bq_mount.jpg}
 \end{center}
 \caption{\label{fig:harvester_potted}Harvester mounted inside tyre.}
 \end{figure}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=8cm]{images/own_measurement/circuit/discharge.png}
+\includegraphics[height=8cm]{images/own_pic/tyre_fixture/dyno.jpg}
 \end{center}
 \caption{\label{fig:tyre_platform} Tyre assembled in test platform.}
 \end{figure}
 
-The supercapacitor was initially fully discharged. To measure boost circuit efficiency, the storage capacitor was externally charged to 3 volts and before taking measurements. Tyre was driven at varied and speeds and loads. Power output was measured by recording stored voltage in supercapacitor before and after the test with NI 9215 \cite{ni9215}.
+The supercapacitor was initially fully discharged. To measure boost circuit efficiency, the storage capacitor was externally charged to 3 volts and before taking measurements. Tyre was driven at varied speeds and loads. Power output was measured by recording stored voltage in supercapacitor before and after the test with NI 9215 \cite{ni9215}.
 
 \begin{table}[htb]
 \caption{\label{tbl:piezo_harvester_tyre_output} Measured values from tyre test setup.}
 \begin{center}
 \fbox{
-\begin{tabular}{l l l}
-\textbf{Speed} & \textbf{Load} 		& \textbf{V_{0}} & \textbf{V_{end}} & \textbf{Duration} & \textbf{Power}	  \\ \hline
-0 km / h       & 2 kN 		        & 2.989 V        & 2.978 V          & 600 s             & -75  $\mu$W       	\\ \hline
-20 km / h      & 2 kN 		        & 2.674 V        & 2.676 V          & 600 s             & -34 $\mu$W       	\\ \hline
+\begin{tabular}{l l l l l l}
+\textbf{Speed} & \textbf{Load} 		& \textbf{V\textsubscript{0}} & \textbf{V\textsubscript{end}} & \textbf{Duration} & \textbf{Power}	  \\ \hline
+0 km / h       & 2 kN 		        & 2.989 V        & 2.978 V          & 600 s             & -75 $\mu$W       	\\ \hline
+20 km / h      & 2 kN 		        & 2.674 V        & 2.676 V          & 600 s             & -34 $\mu$W       	
 \end{tabular}
 }
 \end{center}
