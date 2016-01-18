@@ -265,7 +265,7 @@ While the original idea was to use the circuit presented in section \ref{sect:el
 
 M. Rouvala kindly provided an interview \cite{Rouvala2015} to discuss the energy harvesting circuitry for low-output levels. According to him, best way to utilize low output levels is to chain voltage multiplier circuit stages to produce higher DC-level and then use a boost circuit to bring the harvested output into desired level. 
 
-A few ICs from different manufacturers were considered for the new circuit, namely Seiko S-882z \cite{SeikoInstruments2010} charge pumps, Linear Technology LTC3105 \cite{ltc3015} boost charger and Texas Instruments BQ255xx -series boost chargers. As Seiko ICs are poorly available and LTC3105 requires high start-up currents, BQ25504 \cite{bq25504} was chosen as the core for harvesting circuit. The schematic of harvesting circuit is presented in figure \ref{fig:bq25504}.
+A few ICs from different manufacturers were considered for the new circuit, namely Seiko S-882z \cite{SeikoInstruments2010} charge pumps, Linear Technology LTC3105 \cite{ltc3015} boost charger and Texas Instruments BQ255xx -series boost chargers. As Seiko ICs are poorly available and LTC3105 requires high start-up currents, BQ25504 \cite{bq25504} was chosen as the core for harvesting circuit. The schematic of harvesting circuit is presented in figure \ref{fig:bq25504} and figure \ref{fig:bq25504_mounted} shows the assembled circuit mounted on top of piezoelectric harvester.
 
 \begin{figure}[htb]
 \begin{center}
@@ -274,7 +274,14 @@ A few ICs from different manufacturers were considered for the new circuit, name
 \caption{\label{fig:bq25504} Schematic of revised harvester circuit}
 \end{figure}
 
-The revised harvesting circuit is able to start at 0.33 V input DC voltage, or at near 0.4 V RMS amplitude AC voltage contrasted to 5 V DC level of LTC3331-based circuit. Supercapacitor was chosen as energy storage for easy measurement of accumulated harvested energy. 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=8cm]{images/own_pic/tyre_fixture/piezo_bq_desk.jpg}
+\end{center}
+\caption{\label{fig:bq25504_mounted} BQ25504-based harvesting circuit mounted on piezoelectric harvester.}
+\end{figure}
+
+The revised harvesting circuit is able to start at 0.33 V input DC voltage, or at near 0.4 V RMS amplitude AC voltage contrasted to 5 V DC level of LTC3331-based circuit. Supercapacitor was chosen as energy storage for easy measurement of accumulated harvested energy. The supercapacitor was model EECRG0V155VN \cite{panasonic_scap} with 3.6 volts maximum voltage and 1.5 farad nominal capacitance. 
 
 Maximum power point tracking is provided by sampling open-loop voltage of circuit through voltage divider R1 and R2 every 16 seconds into capacitor C2. After the sample has been stored into capacitor, BQ25504 attempts to set the current taken from input so that V_IN matches V_REF. 
 
@@ -282,9 +289,59 @@ Regrettably this form of MPPT is not adjustable by external microcontroller: whi
 
 Resistors R3 through R9 set various operation points for the circuit. Output voltage was set to 3.3 volts, and power good -threshold was set to 3 volts on charging and 2.2 volts on discharging. 
 
+The circuit was built and found to work with both harvester designs on shaker testbed. As the circuit was usable, further work was carried out using this circuit. Next section details the measurement of supecapacitor parameters after it was soldered in circuit.
+
 \subsubsection{Measuring supercapacitor parameters}
-As the energy storage used in circuit is a supercapacitor and all subsequent measurements are based on values measured from capacitor, the supercapacitor was characterised in-circuit to obtain more accurate values for system performance. 
+As the energy storage used in circuit is a supercapacitor and all subsequent measurements are based on values measured from capacitor, the supercapacitor was characterised in-circuit to obtain more accurate values for system performance. The measuring process and results are presented in this section.
+
+Application note AN1005 from Cap-XX \cite{capxxan1005} details a simple process for measuring supercapacitor capacitance and Equvalent Series Resistance (ESR). The supercapacitor is first charged to target voltage and then discharged through a resistor. The parameters are then read from discharge waveform. A 100 ohm resistor was used as discharging resistance, discharge waveform is shown in figure \ref{fig:scap_discharge}. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=8cm]{images/own_measurement/circuit/discharge.png}
+\end{center}
+\caption{\label{fig:scap_discharge} Discharge waveform. Red is the capacitor voltage, blue is voltage over 100 ohm resistor.}
+\end{figure}
+
+The initial discharge current can be calculated with voltage over resistor:
+
+\begin{equation}
+\begin{split}
+  I &= \frac{V}{R} \\
+  I &= \frac{2.75 V}{100 \Omega} \\
+  I &\approx = 27.5 mA 
+\end{split}
+\end{equation}
+
+With the initial discharge current and voltage drop known, ESR can be calculated:
+
+\begin{equation}
+\begin{split}
+  ESR &= \frac{V_{initial} - V_{discharge}}{I_{discharge}} \\
+  ESR &= \frac{3.25 V - 2.75 V}{27.5 mA} \\
+  ESR &\approx = 18.2 \Omega
+\end{split}
+\end{equation}
+
+With ESR known, it is possible to calculate capacitance from discharge time:
+
+\begin{equation}
+\begin{split}
+  V_t                 &= V_{0}e^{-t/RC} \\
+  \frac{V_t}{V_0}     &= e^{-t/RC} \\
+  ln(\frac{V_t}{V_0}) &= \frac{-t}{RC} \\
+  C                   &= \frac{-t}{R} \frac{1}{ ln(\frac{V_t}{V_0})} \\
+  C                   &= \frac{41.6-14.4}{100 + 18.2} \frac{1}{ ln(\frac{2.75}{3.25})} \\
+  C                   &\approx = 1.38 F
+\end{split}
+\end{equation}
+
+Therefore the capacitor ESR was found to be 18.2 ohms and capacitance 1.37 farads. This is well within the published initial values of ESR < 30 ohms and capacitance of 1.5 farad -20 % ... + 80 %, and therefore results can be considered reliable. 
+
+As the devices were proven in a laboratory setting, further test was carried out to determine the power output in simulated drive inside tyre. The test setup and results are detailed in next section.
 
 \subsection{Performance inside tyre}
-Testing inside tyre, matrix of power outputs. 
+The final experiment was to install the harvester with electronics inside tyre and simulate driving conditions with dynometer platform. The test results are presented in this section. 
+
+
 
