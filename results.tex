@@ -26,6 +26,33 @@ This section details the test setup on vibration exciter. The electromagnetic ha
 
 Regrettably the test setup did not have feedback for position of harvester, so exact displacement or acceleration of harvester is unknown. The output signal from function generator had amplitude of 6 volts peak-to-peak and the gain of power amplifier was set to 9.5 in initial testing, later the function generator amplitude was limited to 2 volts as the response was found to be identical on both settings.
 
+\subsubsection{Frequency domain results} \label{sect:emh_fd}
+One of the original design goals of the harvester was to provide a wide-band energy harvester solution. This section presents the frequency domain responce of the electromagnetic harvester.
+
+Frequency domain responce was obtained by sweeping a wide-band sine signal to power amplifier and measuring the open loop responce from harvester. The first measurement was done on a harvester without ferroluid applied, figure \ref{fig:inductive_fd_dry} displays the measurement result. Above graph is output in decibels, below is the phase shift of the responce.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=10cm]{images/own_measurement/generator_shaker/inductive_fd_dry.png}
+\end{center}
+\caption{\label{fig:inductive_fd_dry} Frequency domain responce of electromagnetic harvester before application of ferrofluid.}
+\end{figure}
+
+There is a clear resonance peak near 70 Hz. The phase shift is almost exactly 180 \degree at the resonance, which is somewhat curious result as the time domain results and theory predicted the voltage would peak at 90 \degree phase when the acceleration is at zero and speed is at highest. 
+
+Amplitude does not have any specific meaning outside the context of this measurement and comparing output at different frequencies. It can be seen that original design goal of wide band responce has not been achieved very well, as the amplitude responce rolls off sharply below the effective frequency and maybe 20 dB / decade on frequencies above the peak. There is another resonance peak near 900 Hz, but this frequency is far above frequencies of interest for the application. 
+
+Ferrofluid was applied to rotor magnet in attempt to reduce the effect of friction, and bode diagram was similarily plotted to figure \ref{fig:inductive_bode_ferro}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=10cm]{images/own_measurement/generator_shaker/inductive_bode_ferro.png}
+\end{center}
+\caption{\label{fig:inductive_bode_ferro} Frequency domain responce shows a strong resonance peak after application of ferrofluid.}
+\end{figure}
+
+The application of ferrofluid shows a strong resonance peak near 70 Hz, phase shift behaviour is similar to non-lubricated experiment. Usually the systems which have second order dynamics - such as the mass damper spring system - exhibit resonance peaks when dampening factor is low. It is therefore obvious that application of ferrofluid has resulted in lesser frictional losses. Amplitude responce is also at higher level across all frequencies, suggesting a better overall performance. 
+
 \subsubsection{Time domain results}\label{sect:lg_td}
 First test on the electromagnetic harvester was to measure the timedomain waveforms on various loads and frequencies. After the open loop results were obtained the tests were run again with different resistive loads to measure the power output. Finally the power output to rectifier of harvesting circuit of was measured. This section presents the test results. 
 
@@ -123,34 +150,24 @@ After correcting the experimental current with simulated value, a lot more reaso
 
 This section presented the time-domain results of the electromagnetic harvester on a shaker test platform. Approximately 30 mW peak power was obtained, RMS power of 17 mW was achieved to resistive load and power output to harvester was determined to be in range between 0.4 mW and 2 mW. Next section presents the frequency domain measurements of the generator as well as studies the effect of application of ferrofluid to harvester.
 
-\subsubsection{Frequency domain results} \label{sect:emh_fd}
-One of the original design goals of the harvester was to provide a wide-band energy harvester solution. This section presents the frequency domain responce of the electromagnetic harvester.
-
-Frequency domain responce was obtained by sweeping a wide-band sine signal to power amplifier and measuring the open loop responce from harvester. The first measurement was done on a harvester without ferroluid applied, figure \ref{fig:inductive_fd_dry} displays the measurement result. Above graph is output in decibels, below is the phase shift of the responce.
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=10cm]{images/own_measurement/generator_shaker/inductive_fd_dry.png}
-\end{center}
-\caption{\label{fig:inductive_fd_dry} Frequency domain responce of electromagnetic harvester before application of ferrofluid.}
-\end{figure}
-
-There is a clear resonance peak near 70 Hz. The phase shift is almost exactly 180 \degree at the resonance, which is somewhat curious result as the time domain results and theory predicted the voltage would peak at 90 \degree phase when the acceleration is at zero and speed is at highest. 
-
-Amplitude does not have any specific meaning outside the context of this measurement and comparing output at different frequencies. It can be seen that original design goal of wide band responce has not been achieved very well, as the amplitude responce rolls off sharply below the effective frequency and maybe 20 dB / decade on frequencies above the peak. There is another resonance peak near 900 Hz, but this frequency is far above frequencies of interest for the application. 
-
-Ferrofluid was applied to rotor magnet in attempt to reduce the effect of friction, and bode diagram was similarily plotted to figure \ref{fig:inductive_bode_ferro}.
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=10cm]{images/own_measurement/generator_shaker/inductive_bode_ferro.png}
-\end{center}
-\caption{\label{fig:inductive_bode_ferro} Frequency domain responce shows a strong resonance peak after application of ferrofluid.}
-\end{figure}
-
-The application of ferrofluid shows a strong resonance peak near 70 Hz, phase shift behaviour is similar to non-lubricated experiment. Usually the systems which have second order dynamics - such as the mass damper spring system - exhibit resonance peaks when dampening factor is low. It is therefore obvious that application of ferrofluid has resulted in lesser frictional losses. Amplitude responce is also at higher level across all frequencies, suggesting a better overall performance. 
-
 \subsection{Experimental results of piezoelectric harvester}
+
+\subsubsection{Frequency domain results} \label{sect:piezo_fd}
+The frequency domain responce of piezoelectric harveser was obtained in similar manner as with the electromagnetic harvester detailed in section \ref{sect:emh_fd}. The excitation signal was swept across a wide spectrum and output from harvester was measured. Frequency domain results are presented in this section.
+
+The frequency sweep result on open circuit is shown in figure \ref{fig:piezo_fd}. A resonance peak can be found at 334 Hz. Similarly to electromagnetic harvester, the slope is a lot steeper on frequencies above the resonance peak than below. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[height=10cm]{images/own_measurement/generator_shaker/piezo_fd_open_2_3.png}
+\end{center}
+\caption{\label{fig:piezo_td_vi} Frequency responce of piezoelectric harvester}
+\end{figure}
+
+
+The peak frequency is somewhat poorly suited to environment in tyre presented in section \ref{sect:tyre_environment}, as the peak responce is significantly above peak frequencies encountered in tyre. Usually the frequency is tuned downwards by adding mass to harvester, however this approach is not feasible in this application as the proof mass is limited to avoid damage to piezoelement due to excessive strain. However the design goal of broad band frequency responce was better reached by this design.
+
+As the peak frequency was identified near 330 Hz, the time domain analysis were performed on the harvester. Next section details the voltage, current and power outputs into varied loads.
 
 \subsubsection{Time domain results}
 This section presents the time-domain results of the piezoelectric harvester. The test setup of piezoelectric harvester was similar to the test setup of electromagnetic harvester, details of the test setup are given in section \ref{sect:lg_test_setup}. Unlike electromagnetic harvester, this piezoelectric harvester did not have any obvious minimum acceleration before friction would be overcome and therefore even very small signal was obtainable. Likewise no maximum value for output signal was found by increasing the power to vibration exciter. The function generator output signal was held at 6 volts peak-to-peak for time domain tests and at 3 volts peak-to-peak for frequency domain tests to limit the loosening of screws by vibration.
@@ -241,23 +258,6 @@ Output of piezoelectric harvester does not follow the excitation in a similar ma
 While excitation frequency of 330 Hz was not clearly visible in VI-waveforms, the rectified signal is clearly double of 330 Hz. Graphic integration suggests the power output to be in order of hundreds of microwatts, with peak power output being approximately 2.4 mW. 
 
 It can be concluded that piezoelectric harvester produces most of the power at excitation frequency, any output from internal resonances are negligble in comparison to energy obtained from external actuation.
-
-\subsubsection{Frequency domain results} \label{sect:piezo_fd}
-The frequency domain responce of piezoelectric harveser was obtained in similar manner as with the electromagnetic harvester detailed in section \ref{sect:emh_fd}. The excitation signal was swept across a wide spectrum and output from harvester was measured. Frequency domain results are presented in this section.
-
-The frequency sweep result on open circuit is shown in figure \ref{fig:piezo_fd}. A resonance peak can be found at 334 Hz. Similarly to electromagnetic harvester, the slope is a lot steeper on frequencies above the resonance peak than below. 
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=10cm]{images/own_measurement/generator_shaker/piezo_fd_open_2_3.png}
-\end{center}
-\caption{\label{fig:piezo_td_vi} Frequency responce of piezoelectric harvester}
-\end{figure}
-
-
-The peak frequency is somewhat poorly suited to environment in tyre presented in section \ref{sect:tyre_environment}, as the peak responce is significantly above peak frequencies encountered in tyre. Usually the frequency is tuned downwards by adding mass to harvester, however this approach is not feasible in this application as the proof mass is limited to avoid damage to piezoelement due to excessive strain. However the design goal of broad band frequency responce was better reached by this design.
-
-As the peak frequency was identified near 330 Hz, the time domain analysis were performed on the harvester. Next section details the voltage, current and power outputs into varied loads.
 
 \subsection{Harvestering circuit results}
 \subsubsection{Revisited circuit design}
