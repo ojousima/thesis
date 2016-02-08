@@ -76,7 +76,7 @@ A method to counter the centripetal acceleration is needed to keep the magnet on
 
 Springs are often chosen to balance the magnets, but as the centripetal acceleration grows exponentially with the speed of the car, any linear spring would be usable only for very limited range of speeds. Non-linear conical springs which have the added benefit of compressing into very small height are available.
 
-Another approach would be to use two additional magnets fixed to top and bottom of the generator in repulsive configuration. Force between magnets is inversely propotional to fourth power of the distance \cite{Amrani2015}, which leads to a strong negative feedback on the position of the magnet. Tornincasa et al. \cite{Tornincasa2012} proposed one such design, shown in figure \ref{lgm}.
+Another approach would be to use two additional magnets fixed to top and bottom of the generator in repulsive configuration. Force between magnets is inversely proportional to fourth power of the distance \cite{Amrani2015}, which leads to a strong negative feedback on the position of the magnet. Tornincasa et al. \cite{Tornincasa2012} proposed one such design, shown in figure \ref{lgm}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -86,15 +86,17 @@ Another approach would be to use two additional magnets fixed to top and bottom 
 \label{lgm}
 \end{figure}
 
-Magnetic floating is an attaractive solution, as magnets can be thin and they do not wear out with aging. On the other hand, any imbalance in the magnets result in torgue which causes increased friction. \ref{fig:lg_torgue} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have reasonably smooth and low-friction material on the inner shaft to minimize losses.
+Magnetic floating is an attractive solution, as magnets can be thin and they do not wear out with ageing. On the other hand, any imbalance in the magnets result in torque which causes increased friction. \ref{fig:lg_torgue} This issue is further aggravated in designs where shape of the generator shaft is not a smooth cylinder. Therefore the design should have reasonably smooth and low-friction material on the inner shaft to minimize losses.
 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[height=6cm]{images/own_dwg/generator_torgue}
 \end{center}
-\caption{Angle in magnet causes torgue which results in increased friction}.
+\caption{Angle in magnet causes torque which results in increased friction}.
 \label{fig:lg_torgue}
 \end{figure}
+
+
 
 \subsubsection{Analytical model of electromagnetical vibration harvester}
 A common starting point for analysis of linear generator is to model the mechanical domain as Mass-Spring-Dampener system decipted in figure \ref{MSD}. A mass "floats" in system, a spring balances the mass towards centre and a damper represents frictional forces opposing any movement of mass. 
@@ -386,6 +388,19 @@ The simulated data is plotted figure \ref{fiq:piezo_simulation_experimental}.
 \end{figure}
 
 The experimental and simulated data are not in a good agreement. While maximum and minimum load voltage and power are close to estimated values, this is by design as model is tuned to these measurements. Problems occur in interpolating the results, as output voltages are notably higher than measured values. This provides a result which sets the maximum power load near the value which provides output voltage of half of the open loop voltage. This is especially interesting as LTC3331 datasheet \cite{LTC3331} suggests to set the circuit to track the load at this same half-point of open loop voltage. Both LTC3331 and LTSpice are made by Linear Technology, so independent verification of this result would be needed. 
+
+\subsubsection{Piezoelectric harvester design}
+The harvester was based on Thunder (TM) TH-5C \cite{th5c} piezoelectric generator. The piezoelectric element was a disc with 34 mm diameter, magnets were attached on the sides of piezo element as a proof mass. Enclosure of harvester was built using laser-cut acrylic layers. A illustration of the assembly and attachment methods is depicted in Figure \ref{fig:harvester_dwg}. To attach the harvester on tyre, a piece of stiff rubber was glued as an interface on the tyre to prevent the harvester from breaking because of deformation of the tyre. A thinner layer of flexible rubber was attached with screws on the bottom of harvester to absorb deformation of rubber below. Finally the pieces of rubber were glued together to hold the harvester in place.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=\columnwidth]{images/mounting_dwg2.jpg}
+\end{center}
+\caption{\label{fig:harvester_dwg} Illustration of the energy harvesting system mounted on a tyre.}
+\end{figure}
+
+
+
 
 \subsection{Electronic design} \label{sect:electronic_design}
 \subsubsection{Simulation of circuit}
