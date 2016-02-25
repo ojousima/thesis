@@ -36,9 +36,9 @@ Finally there is an accelerometer which is used for gathering data out of the sy
 \fbox{
 \begin{tabular}{l l r r}
 \textbf{Device}		& \textbf{Sleep} 	& \textbf{Monitoring}	& \textbf{Communicating}\\ \hline
-LTC3331			& 0.2 $\mu A$		& 80 $\mu A$ 		& 6 675 $\mu A$ 		\\ \hline
-BLE113			& 0.9 $\mu A$ 		& 275 $\mu A$ 		& 26 000 $\mu A$	\\ \hline 
-ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline 
+LTC3331			& 0.2 $\mu A$		& 80 $\mu A$ 		& 6 675 $\mu A$ 		\\ 
+BLE113			& 0.9 $\mu A$ 		& 275 $\mu A$ 		& 26 000 $\mu A$	\\ 
+ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline
 \textbf{Total power}	& 3   $\mu W$		& 1 200 $\mu W$		& 82 000 $\mu W$	
 \end{tabular}
 }
@@ -107,7 +107,7 @@ A common starting point for analysis of linear generator is to model the mechani
 \caption{\label{MSD} Mass-spring-damper system.}
 \end{figure}
 
-Mathematical representation of this system is given in Equation \eqrefeq:{MSD_basic}. Input Y is the force applied to the base of system, output U is the position of mass block relative to "zero". Zero is usually set to the point where the mass settles when no input, including gravity, is applied to the system. Parameters m, D, and k are mass, damping constant and spring constant of system, respectively. Input-output-equation in time domain can be written as: 
+Mathematical representation of this system is given in Equation \eqref{eq:MSD_basic}. Input Y is the force applied to the base of system, output U is the position of mass block relative to "zero". Zero is usually set to the point where the mass settles when no input, including gravity, is applied to the system. Parameters m, D, and k are mass, damping constant and spring constant of system, respectively. Input-output-equation in time domain can be written as: 
 
 \begin{equation}\label{eq:MSD_basic}
   m \cdot \ddot{U}(t) + D \cdot \dot{U}(t) + k \cdot U(t) = Y(t). 
@@ -421,7 +421,7 @@ Since the circuit is a low-power design, careful attention was paid to parasitic
 
 Another important point of view is the modularity and testability of the circuit. All critical lines have provision for testing and debugging for development and verification of the circuit functionality. Figure \ref{fig:circuit_blocklevel} shows the interconnections in system, drawn in KiCAD \cite{KiCAD}.  The power supply can be cut off to separate sections of circuit for current measurement as needed. This has additional benefit of leaving places for power supply filtering components in case some section of circuit emits electrical noise through power supply lines.
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/radio.pdf_tex}
@@ -432,7 +432,7 @@ Power supply has some conflicting requirements, as any noise in power degrades t
 
 Battery configuration allows different chemistries to be tested, as the under- and overvoltage lockout levels are user selectable. If a non-rechargeable battery is desired, battery charging can be disabled by omitting resistor the R201. 
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/harvester.pdf_tex}
@@ -443,7 +443,7 @@ Central controller is built around the ATMEGA328 \cite{atmega328} microcontrolle
 
 More important power savings are achieved through careful design of software. Sleep power states of ATMEGA328 consume minuscule amount of power when compared to active state, therefore minimising active time of circuit is a high priority. If the program is not CPU time limited, clock rate can be scaled down to 1 MHz using internal clock divider. Maximum CPU frequency can be increased by selecting another crystal, but increasing clock frequency will require higher supply voltage which in turn leads to higher overall power consumption in entire system.
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/control.pdf_tex}
@@ -454,7 +454,7 @@ Radio link is implemented with BLE113 module. The module could act as stand-alon
 
 The BLE113 can be forced to sleep by external control if needed and it can operate autonomously while main controller is sleeping. Data payload can be up to 23 bytes per packet as specified by BLE protocol \cite{Gomez2012}. Maximum data throughput is defined by the connection interval. As transmitting data consumes active time and therefore power, data transmissions should be minimised while harvested energy is not available.
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/bluetooth.pdf_tex}
@@ -465,7 +465,7 @@ There is an accelerometer ADXL375 onboard the Printed Circuit Board (PCB) to stu
 
 ADXL375 is capable of both SPI and I2C communication, SPI communication was selected to facilitate faster communication to minimise time control circuit has to be in active mode and to avoid an additional power drain through the required pull-up resistors of the I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{orgate}, which has minimal static power current consumption of 0.1 microamperes. 
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/sensor.pdf_tex}
