@@ -1,38 +1,37 @@
 \section{Design}
-
 \subsection{System-level design}
-The complete system will consist of energy harvesting source, energy storage for times when harvested energy is not available, AC/DC and DC/DC converters for maintaining required voltage levels in different blocks of system, accelerometer for measuring the acceleration in tyre and radio/microcontroller module for transmitting data from accelerometer. Figure \ref{fiq:system_block_diagram} shows the power and data flow between subsections of system. 
+The complete system consists of energy harvesting source, energy storage for times when harvesting energy is not possible, AC/DC and DC/DC converters for maintaining required voltage levels in different blocks of system, accelerometer for measuring the acceleration in tyre and radio/microcontroller module for transmitting the data. Figure \ref{fiq:system_block_diagram} shows the power and data flow between subsections of system. 
 
 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[height=6cm]{images/own_dwg/system_block_diagram.jpg}
 \end{center}
-\caption{\label{fiq:system_block_diagram} Block diagram of complete system.}
+\caption{\label{fiq:system_block_diagram} Block diagram of complete system. Harvested energy comes to system from top left, energy management system can charge storage when excess energy is available and use the stored energy when the harvested energy is insufficient for the system operation. On the right side is control logic and sensor. The experimental system has energy harvesting, energy storage and energy management sections, but control logic, radio comminication and sensing are outside the scope of the experimental work.}
 \label{liitekuva}
 \end{figure}
 
-Energy harvester can be any suitable source for electrical energy. Energy management section rectifies AC voltage and buffers the rectified voltage on a capacitor. The energy storage can be a supercapacitor or rechargeable battery. Both of these storage technologies can benefit from having a low equivalent series resistance (ESR) capacitor in parallel to supply any sudden peak currents. Energy management circuitry chooses whether to use harvested energy or stored energy and regulates the energy to voltage level compatible with the system. Digital components require their own local power buffer capacitors to supply high-frequency currents required by megahertz clocks onboard these circuits.
+Energy harvester can use any suitable source presented in section \ref{sect:overview} for electrical energy. Energy management section rectifies AC voltage and buffers that rectified voltage on a capacitor. The energy storage can be a supercapacitor or a rechargeable battery. Both of these storage technologies can benefit from having a low equivalent series resistance (ESR) capacitor in parallel to supply peak currents. Energy management circuitry chooses whether to use harvested energy or stored energy and regulates the energy to voltage level compatible with the system. Digital components require their own local power buffer capacitors to supply high-frequency currents required by megahertz clocks onboard these circuits.
 
 Microcontroller is used to manage the application layer of system. For example the microcontroller can send status updates over radio link more often if there is harvested energy available and reduce system power consumption when system is running on stored energy.
 
 Next section presents details of expected power consumption and duty cycles for various components. A few components are selected to provide examples of suitable system power.
 
 \subsection{Power requirements of a system} \label{sect:power_requirement}
-The sensor system will be in three distinct states. One is sleeping, conserving power as much as possible while car is not moving.
+The sensor system has in three distinct states. One is sleeping, conserving power as much as possible while the car is not moving.
 Second state is measuring, when the radio connection is off but electronics are active and gathering data.
-Third state is transmitting, when the data is relayed to drive computer in car.
+Third state is transmitting, when the data is relayed to a drive computer in the car.
 
 Energy and power consumption are estimated by reviewing a few suitable components and their power requirements. 
-Energy management is handled by a specialised integrated circuit (IC), for example LTC3331 \cite{Technology}.
+Energy management is handled by a specialised integrated circuit (IC), LTC3331 \cite{Technology}.
 
 Communication is handled by a Bluetooth-low energy (BLE) module, which contains a general-purpose microcontroller for application flow control.
-We use BLE113 \cite{Bluegiga2013} as an example of such module.
+We use BLE113 \cite{Bluegiga2013} which is such a module.
 
-Finally there is an accelerometer which is used for gathering data out of the system, ADXL375 \cite{ADXLDatasheet} is used as an example. ADXL is a low-power digital accelerometer with dynamic range of 200g. Table \ref{power_consumption_table}  summarises the estimated power requirement of each subsection of system. System level voltage is selected to be 2.5 V, as that is lowest voltage which LTC3331 can supply and allows all devices to function. Lowest possible voltage is selected to reduce the power draw.
+Finally there is an accelerometer which is used for gathering data out of the system, ADXL375 \cite{ADXLDatasheet}. ADXL375 is a low-power digital accelerometer with dynamic range of 200 g. Table \ref{power_consumption_table}  summarises the estimated power requirement of each subsection of system. System level voltage is selected to be 2.5 V, as that is lowest voltage which LTC3331 can supply and which allows all devices to function. Lowest possible voltage is selected to reduce the power draw.
 
 \begin{table}[htb]
-\caption{\label{power_consumption_table} Current and power consumption of system at different activity levels.}
+\caption{\label{power_consumption_table} Current and power consumption of system at different activity levels. Power is calculated from current by multiplying current with 2.5 V.}
 \begin{center}
 \fbox{
 \begin{tabular}{l l r r}
@@ -46,17 +45,17 @@ ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline
 \end{center}
 \end{table}
 
-Current consumption levels for BLE113 and ADXL375 are taken from the datasheets of the components. Battery manager power draw is estimated by calculating required power to supply the rest of the circuit at 80 \% efficiency. Power consumption is calculated from current draw with assumption that system voltage will be constant $2.5 V$.
+Current consumption levels for BLE113 and ADXL375 are taken from the datasheets of the components. Battery manager power draw is estimated by calculating required power to supply the rest of the circuit at 80 \% efficiency. Power consumption is calculated from current draw with assumption that system voltage will be at constant 2.5 V.
 
-Power consumption grows by orders of magnitude when the activity is stepped up to the next level. Therefore it is important to keep the system in sleep whenever possible, for example when the car is parked and wake up only periodically to check if movement has started. Monitoring starts once car is moving, and device will send brief pulses over the radio link when necessary.
+Power consumption grows by orders of magnitude when the activity is stepped up to the next level. Therefore it is important to keep the system in sleep mode whenever possible, for example when the car is parked and wake up only periodically to check if the movement has started. Monitoring starts once the car is moving, and device will send brief pulses over the radio link when necessary.
 
-When the power consumption is compared to values achieved in previous studies of energy harvesting, it can be seen that sleep current can be compensated by a reasonable harvester design. Powering constant monitoring would be a greater challenge, but with realm of feasibility. Providing power for continuous radio transmissions is not feasible even with current state-of-the-art harvester designs. 
+When the power consumption is compared to values achieved in previous studies of energy harvesting presented in Section \ref{sect:state-of-art}, it can be seen that sleep current can be compensated by a reasonable harvester design. Powering constant monitoring would be a greater challenge, but within realm of feasibility. Providing power for continuous radio transmissions is not feasible even with the current state-of-the-art harvester designs. 
 
-Next sections detail designs and preliminary analysis of electromagnetic generator designs. The initial designs are then evaluated based on their ability to supply required power levels to circuitry.
+Next sections detail designs and preliminary analysis of the electromagnetic generator designs. The initial designs are then evaluated based on their ability to supply power at the required levels to the circuitry.
 
 \subsection{Electromagnetic harvester design}
-\subsubsection{Basics of electromagnetical vibration harvester}
-Electromagnetic harvesters utilise vibration to move a magnet inside a coil. The movement of a magnet causes a changing magnetic field, which gets coupled to a coil. The coil opposes the change in magnetic field by inducing electrical current in the device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre, an added benefit to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function as a damper to system, so no extra damping is required. Modern neodymium magnets do not lose their magnetisation by vibration, so long magnet can be reliable for a long time period. 
+\subsubsection{Basics of the electromagnetical vibration harvester}
+Electromagnetic harvesters utilise vibrations to move a magnet inside a coil. The movement of a magnet creates a changing magnetic field, which gets coupled to a coil. The coil opposes the change in the magnetic field by inducing electrical current in the device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre, an added benefit to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function as a damper to the system, so ideally no extra damping is required. Modern neodymium magnets do not lose their magnetisation by vibration, so a magnet can be reliable for a long time period. 
 
 A theoretical design of linear generator (LG) was made. Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside the tyre to rotational movement would add to complexity and cost of the tyre, generator is designed to use the linear motion as the power source.
 
@@ -64,11 +63,11 @@ Basic principle of operation of LG is similar to traditional rotational generato
 
 Energy harvester designs sometimes use several poles to increase the frequency of the power output. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point irrelevant, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimised to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. Mechanical design can utilise resonant vibration to function as energy storage device instead of electrical or electronic storage.
 
-First design decision was whether to use a moving magnet or moving coil type of a design. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coils require flying leads  \cite{Jacob2011},  which is a long-term reliability concern  \cite{Boldea1999}.  Boldea and Nasar \cite[p. 203]{Boldea1999a} conclude that moving coil designs aren't practically interesting, so the design is focused on moving magnet generator. 
+First design decision was whether to use a design with a moving magnet or a moving coil. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coils require flying leads  \cite{Jacob2011},  which is a long-term reliability concern  \cite{Boldea1999}.  Boldea and Nasar \cite[p. 203]{Boldea1999a} conclude moving coil designs aren't practically interesting, so the design of the harvester is focused on moving magnet generator.
 
-A rough model for designing initial prototypes was done previously by Elmes \cite{Elmes2005}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
+A rough model for designing the initial prototypes was done previously by Elmes \cite{Elmes2005}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
 
-There are two different approaches to generator structure. One is magnets inside, and coils on the outer rim of the generator. Other is to use ring magnets on the outer rim and have the coils on the inside. Both methods have their advantages: Having magnets on the outside allows larger and therefore stronger magnets and creates horizontal support for the magnets as they move along the shaft. Having coils on the outside increases wiring radius which results in greater power if other parameters are held equal. In-depth study of both concepts is done to select optimal structure for generator. 
+There are two different approaches to the generator structure. One is to have magnets inside, and coils on the outer rim of the generator. The other is to use ring magnets on the outer rim and have the coils on the inside. Both methods have their advantages: Having magnets on the outside allows larger and therefore stronger magnets and creates horizontal support for the magnets as they move along the shaft. Having coils on the outside increases wiring radius which results in greater power if other parameters are held equal. In-depth study of both concepts is done to select optimal structure for generator. 
 
 The height of the generator is constrained at 45 mm to avoid contact between tyre rim and generator. Initially the height of the generator was selected to be 35-40 mm to leave some margin while still being as tall as possible. Lower weight is desirable to avoid unbalancing the tyre, but there is no specific absolute maximum mass for the device. 
 
