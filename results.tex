@@ -344,7 +344,7 @@ The harvester was glued to the inner lining of the tyre as shown in Figure \ref{
 \caption{\label{fig:tyre_platform} Tyre assembled in test platform.}
 \end{figure}
 
-The supercapacitor was initially fully discharged. To measure boost circuit efficiency, the storage capacitor was externally charged to 3 volts and before taking measurements. Tyre was driven at varied speeds and loads. Power output was estimated based stored voltage in supercapacitor before and after the test. The voltage was measured with NI 9215 \cite{ni9215} which has precision required for measuring millivolt-scale differences. 
+The supercapacitor was fully charged before installing in tyre. Measurements were taken next day when the voltage had stabilised near 2.670 V. Tyre was driven at varied speeds and loads. Power output was estimated based stored voltage in supercapacitor before and after the test. The voltage was measured with NI 9215 \cite{ni9215} which has precision required for measuring millivolt-scale differences. 
 
 \begin{table}[htb]
 \caption{\label{tbl:piezo_harvester_tyre_output} Measured values from tyre test setup.}
@@ -352,16 +352,15 @@ The supercapacitor was initially fully discharged. To measure boost circuit effi
 \fbox{
 \begin{tabular}{l l l l l l}
 \textbf{Speed} & \textbf{Load} 		& \textbf{V\textsubscript{0}} & \textbf{V\textsubscript{end}} & \textbf{Duration} & \textbf{Power}	  \\ \hline
-0 km / h       & 2 kN 		        & 2.989 V        & 2.978 V          & 600 s             & -75 $\mu$W       	\\ \hline
-20 km / h      & 2 kN 		        & 2.674 V        & 2.676 V          & 600 s             & -34 $\mu$W       	
+20 km / h      & 1 kN 		        & 2.674 V        & 2.674 V          & 600 s             & 0 $\mu$W       	\\ 
+20 km / h      & 2 kN 		        & 2.674 V        & 2.676 V          & 600 s             & 13 $\mu$W       	\\
+30 km / h      & 1 kN 		        & 2.676 V        & 2.680 V          & \approx 300 s     & \approx 50 $\mu$W       	
 \end{tabular}
 }
 \end{center}
 \end{table}
 
-Regrettably the supercapacitor leads to PCB broke down during measurement at 30 km / h and therefore no accurate data was obtained at that speed. However, the results suggest that average power of 50 $\mu$W was obtained from the harvester at 30 km / h speed.
-
-The harvesting circuit has a considerable leakage of power. This is probably because of the leakage characteristics of the supercapacitor shown in Figure \ref{fig:scap_leakage}. Initial leakage current of a supercapacitor can be in order of tens of microamperes, and it will decrease over course of several days to a specified value.
+Regrettably the supercapacitor leads to PCB broke down during measurement at 30 km / h and therefore no accurate data was obtained at that speed. However, the results suggest that average power of 50 $\mu$W was obtained from the harvester at 30 km / h speed. The harvesting circuit has a considerable leakage of power at initial charging. This is probably because of the leakage characteristics of the supercapacitor shown in Figure \ref{fig:scap_leakage}. Initial leakage current of a supercapacitor can be in order of tens of microamperes, and it will decrease over course of several days to a specified value \cite{Mars2012}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -370,9 +369,31 @@ The harvesting circuit has a considerable leakage of power. This is probably bec
 \caption{\label{fig:scap_leakage} Supercapacitors have high initial leakage \cite{Mars2012}.}
 \end{figure}
 
-While leakage in the harvester resulted in net negative power in the testing, it can be seen that harvester produced approximately 40 $\mu$W during 20 km / h drive under 2 kN load.
-
-This section presented the real-world power output of piezoelectric harvester. Usable, rectified and regulated power output was 40 $\mu$W. Next section compares the obtained results to current state-of-the-art.
+This section presented the real-world power output of piezoelectric harvester. Usable, rectified and regulated power output was at least 13 $\mu W$. Further experiments suggest the energy output is near 50 $\mu W$ at 30 km / h under 2 kN load, . Next section compares the obtained results to current state of art.
 
 \subsection{Comparison to state of art results}\label{sect:state-of-art}
-The results obtained from completed devices are compared to state of the art in this section.
+Energy harvesting systems for tyres have been under a lot of research. While there is no standard test process which would give accurately comparable results from different harvester designs, Kubba et al. \cite{Kubba2014} have 
+collected a comparison table of various energy harvesting systems for tyres. The results of system designed and built in this work has been appended to results and compared to some similar harvester designs in this section. Table \ref{tbl:results} shows the comparable designs.
+
+\begin{table}[htb]
+\caption{\label{tbl:results} The designed system compared to current state of art tyre energy harvester results \cite{Kubba2014}.}
+\begin{center}
+\fbox{
+\begin{tabular}{l l l l l l}
+\textbf{Harvester} & \textbf{Size} 		& \textbf{Voltage} & \textbf{Power} & \textbf{Test condition} \\ \hline
+Electromagnetic 1      & 5 mm dia * 5 mm high magnet & 1.5 V AC   & 54 $\mu W$          & 60 km / h \\
+Electromagnetic 2      & 30 mm * 30 mm * 11.7 mm & 200 mV AC   & 400   $\mu W$          & 15 g \\
+Electromagnetic 3      & 25 mm dia * ? mm & 330 mV RMS   & 349   $\mu W$          & 400 rpm \\
+Piezoelectric 1        & 55.4 mm * 15.2 mm * 1.1 mm & 6 V AC   & 100   $\mu W$          & Not specified \\
+Piezoelectric 2        & 15 mm * 6 mm * 46 mm  & 5 V AC & 47   $\mu W$                   & Not specified
+Piezoelectric 3        & not specified  & 14 V\textsubscript{p-p} AV & 10   $\mu W$      & Not specified \\ \hline
+Piezoelectric presented& 25 mm * 25 mm * 35 mm & 1 V AC & 13   $\mu W$                   & 20 km / h, 2 kN \\
+Piezoelectric presented& 25 mm * 25 mm * 35 mm & 1 V AC & 50   $\mu W$ ?                  & 30 km / h, 1 kN 
+\end{tabular}
+}
+\end{center}
+\end{table}
+
+The piezoelectric harvester presented in this work produces similar power level as other harvesters in literature. The power output values are not directly comparable as the test setup has been different in each study. However the results obtained in this work can be considered to be in agreement with values presented in literature. 
+
+A typical CR2032 lithium coin cell battery has capacity of approximately 600 mAh at 3 volts. If such a battery were to provide continuously 50 $\mu W$, the battery lifetime would be approximately 4 years. As the energy harvesting system does not produce power continuously, batteries can still provide slightly more power to system over the lifetime of a tyre. If an energy harvesting system could be produced to operate reliably at highway driving speeds, greater amount of power produced might surpass the capacity of battery.
