@@ -49,7 +49,7 @@ Current consumption levels for BLE113 and ADXL375 are taken from the datasheets 
 
 Power consumption grows by orders of magnitude when the activity is stepped up to the next level. Therefore it is important to keep the system in sleep mode whenever possible, for example when the car is parked and wake up only periodically to check if the movement has started. Monitoring starts once the car is moving, and device will send brief pulses over the radio link when necessary.
 
-When the power consumption is compared to values achieved in previous studies of energy harvesting presented in Section \ref{sect:state-of-art}, it can be seen that sleep current can be compensated by a reasonable harvester design. Powering constant monitoring would be a greater challenge, but within realm of feasibility. Providing power for continuous radio transmissions is not feasible even with the current state-of-the-art harvester designs. 
+When the power consumption is compared to values achieved in previous studies of energy harvesting presented in Section \ref{sect:state-of-art}, it can be seen that sleep current can be compensated by a reasonable harvester design. Powering constant monitoring would be a greater challenge, but possible if enough harvesters were paralleld. Providing power for continuous radio transmissions is not feasible even with the current state-of-the-art harvester designs to the best of author's knowledge. 
 
 Next sections detail designs and preliminary analysis of the electromagnetic generator designs. The initial designs are then evaluated based on their ability to supply power at the required levels to the circuitry.
 
@@ -112,25 +112,21 @@ Mathematical representation of this system is given in Equation \eqref{eq:MSD_ba
 \begin{equation}\label{eq:MSD_basic}
   m \cdot \ddot{U}(t) + D \cdot \dot{U}(t) + k \cdot U(t) = Y(t). 
 \end{equation}
-
 As the force $ Y(t) $ is defined as $ Y(t) = m \cdot a(t) $, and the acceleration $ a(t)$ can be considered constant regardless of any reasonable mass $ m $ of system, equation \eqref{eq:MSD_basic} can be written as:
 
 \begin{equation}\label{eq:MSD_acceleration}
  \ddot{U}(t) + \frac{D \cdot \dot{U}(t)}{m} + \frac{k \cdot U(t)}{m} = a(t). 
 \end{equation}
-
 This form is more convenient for analysis, as the acceleration measurements from previous research are available and they represent real-world values. Mass $m$ can be considered constant, as the system does not exchange matter with surrounding environment. As magnetic suspension was selected, the parameter $k$ cannot be considered as a constant, but rather a function of mass position $k(U)$. Centripetal force can be considered as a constant DC-component of function $Y(t)$, and is not included in analysis of function $k(U)$. According to D. Amrani \cite{Amrani2015} force between two magnets can be approximated as
 
 \begin{equation}\label{eq:magnetic_force}
   F(x) = \frac{3 \mu_0 m_1 m_2}{2 \pi} \cdot \frac{1}{x^4},
 \end{equation}
-
 where $F(x)$ is force as a function of distance $x$ between magnets, $\mu_0$ is the permeability of vacuum, $ m_1 $ and $ m_2 $ are magnetic dipole moments of magnets under examination. This equation is only valid when $x >> h$, where $h$ is thickness of the magnet. As two magnets are used to suspend the rotor magnet, total force acting on mass becomes 
 
 \begin{equation}\label{eq:magnetic_force_middle}
   F(x) = \frac{3 \mu_0 m_r m_l}{2 \pi} \cdot \frac{1}{(x_0+x)^4} - \frac{3 \mu_0 m_r m_u}{2 \pi} \cdot \frac{1}{(x_0-x)^4},
 \end{equation}
-
 where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, upper suspending magnet, and rotor magnet. $x_0$ is the distance to middle point of generator and $x$ is the displacement of rotor magnet from aforementioned middle point, positive direction being upwards. Figure \ref{fig:lg} shows the system.
 
 \begin{figure}[htb]
@@ -141,38 +137,33 @@ where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, up
 \label{fig:lg}
 \end{figure}
 
-However, the Equation \eqref{eq:magnetic_force_middle} is very inaccurate for magnets where diameter is large compared to thickness of magnet, and the problems are compounded when distance between magnets is small. Therefore final design was optimised using finite element analysis (FEA) for determining $k(U)$. 
+However, the Equation \eqref{eq:magnetic_force_middle} is very inaccurate for magnets which have the diameter larger than the thickness, and the problems are compounded when distance between magnets is small. Therefore final design was optimised using finite element analysis (FEA) for determining $k(U)$. 
 
 Damping parameter $D$ is likewise a function of electromagnetic force acting on the magnet, friction between the magnet and the stator and pneumatic damping caused by compression of air in the generator. Tornincasa et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $D_{emf}, D_{friction},$ and $D_{air}$, respectively. $D_{emf}$ represents power extracted from the system into electrical current, it can be written as:
 
 \begin{equation}\label{eq:d_emd}
   D_{emf} = BIlsin(\phi),
 \end{equation}
-
 where $B$ is magnetic field affecting coil (presumed constant), $I$ is current through wire depending on load and generator properties, $l$ is total length of wire in coil and $\phi$ is angle between coil and magnetic field, presumed to be 90 \degree. Assuming the load impedance is the complex conjugate of coil impedance for maximum power harvesting, we can substitute the $I$ with equations \eqref{eq:emf} and \eqref{eq:gen_simple_current}, which results in: 
 
 \begin{equation}
   D_{emf} = B \frac{\varepsilon}{2 \cdot Re(Z_{generator})} l sin(90 \degree),
 \end{equation}
-
 where $Z_{generator}$ is the impedance of generator. As the load impedance is complex conjugate of generator impedance, their series connection has only real (purely resistive) component. This assumption fails on real-world application with non-linear rectification and DC/DC conversion, but it can be used as a basis for analytical examination of the generator. As $\varepsilon$ can be substituted with \eqref{eq:emf}, we obtain:
 
 \begin{equation}\label{eq:d_emf_with_epsilon}
   D_{emf} = B \frac{-N \frac{d \Phi_{B}}{d t}}{2 \cdot Re(Z_{generator})} l sin(90 \degree),
 \end{equation}
-
 The relationship between $N \Phi_{B}$ and $Re(Z_{generator})$ can be further studied by writing: 
 
 \begin{equation}\label{eq:phiB_substitution}
   \Phi_{B} = \iint_{\Sigma (t)} B(r, t) \,dA,
 \end{equation}
-
 where $ \iint_{\Sigma (t)} $ signifies possibility of the loop area changing over time and $\,dA$ is an element of the surface area. If we assume the coil to be a perfect tightly wound circle which does not deform over time, we can write the relationship between number of turns in the coil, area of the coil, and resistance of the coil as:
 
 \begin{equation}\label{eq:nA_R}
   R = N 2\pi A \rho_{wire},
 \end{equation}
-
 where $\rho_{wire}$ is the resistivity of coil wire. Substituting Equations \eqref{eq:nA_R} and \eqref{eq:phiB_substitution} into Equation \eqref{eq:d_emf_with_epsilon} we finally obtain reasonably accurate expression for $D_{emf}$ which accounts for all the design parameters affecting it:
 \begin{equation}\label{eq:d_emf_complete}
   D_{emf} = B \frac{-N \frac{d [\iint B(r, t) \,dA]}{d t}}{2 \cdot N 2\pi A \rho_{wire}} l sin(90 \degree).
@@ -185,7 +176,6 @@ Next we examine $D_{friction}$ in detail. Friction is modelled as Coulomb fricti
   F_s = \mu_sN,
   F_k = \mu_kN,
 \end{equation}
-
 where $F_s $ and $ F_k $ are static and kinetic friction forces opposing movement, $\mu_s$ and $\mu_k$ are friction coefficients in static and kinetic situations and $N$ is normal force along X- or Y- axis. Normal forces are estimated by using the existing acceleration data and calculated mass of magnet. Coefficients of friction are looked up from the supplier of stator material. Transfer between static and kinetic models is assumed to be a step, if velocity of magnet is 0 along Z-axis, $\mu_s$ is used, $\mu_k$ otherwise.
 
 Finally, there is pneumatic damping of the system, $D_{air}$. In a closed tube, the central magnet can be thought of as a piston dividing the generator into two chambers. If there is an insignificant airflow between chambers, any force caused by pressure deltas between chambers act as a spring. However, some airflow is to be expected due to the clearance between the magnet and the stator. Tornincasa et al. \cite{Tornincasa2012} modelled this effect by adding a virtual centrepoint for the pneumatic spring. This centre moves through a virtual damper which models the airflow between the chambers. End result is that the pneumatic spring takes some energy from movement, and the energy stored into pneumatic spring is dissipated as the centre moves until potential energy stored in the spring is zero. 
@@ -195,7 +185,6 @@ The force from pressure differential is:
 \begin{equation}
   F_{\delta p} = \frac{\pi d^2}{4}(p_{lower}-p_{upper}),
 \end{equation}
-
 where $d$ is diameter of magnet and $p_{lower}-p_{upper}$ are pressures in chambers. Pressures can be estimated from ideal gas law:
 
 \begin{equation}
@@ -208,7 +197,6 @@ Mass flow between sections can be estimated with equation given by Fox et al. \c
 \begin{equation}
   \dot{m}_{1 \rightarrow 2} = \frac{\rho \pi d {\delta_r}^3}{12\mu h}(p_1-p_2),
 \end{equation}
-
 where $\rho$ is air density, $\delta_r$ is radial clearance, $\mu$ is dynamic viscosity and $h$ is the height of magnet. \cite{Tornincasa2012}
 
 There is also frictional dissipative force as the air passes along the edges of the cylinder. This frictional force has magnitude of: 
@@ -244,13 +232,13 @@ This section has given analytical expressions on forces acting on the magnet. Wi
 \subsubsection{Experimental and FEA modeling of the electromagnetic harvester}
 Some parameters of the harvester are difficult to solve analytically. These parameters are estimated using experimental and FEA methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite{Meeker2013} was used to create an axisymmetric model of magnets in the generator. Figure \ref{femm_forces} shows the used model. Ths model has two opposing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. The magnets have a height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. The generator has total height of 25 mm, leaving the rotor magnet 17.5 mm room for movement inside the generator.
 
-Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for the net magnetic force acting on the rotor magnet. A LUA script was used to move the rotor magnet from the bottom of the generator to the top in 0.1 mm increments and values obtained from the analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on the magnet, positive force meaning force towards the upper magnet and zero height being at in the middle of the cylider. The centrifugal force acting on magnet was also calculated at various speeds for reference, assuming weight of the magnet is 1,67 g and radius to the bottom of generator is 275 mm.
+Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for the net magnetic force acting on the rotor magnet. A LUA script was used to move the rotor magnet from the bottom of the generator to the top in 0.1 mm increments and values obtained from the analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on the magnet, positive force meaning force towards the upper magnet and zero height being at in the middle of the cylider. The centrifugal force acting on magnet was also calculated at various speeds for reference, assuming weight of the magnet is 1.67 g and radius to the bottom of generator is 275 mm.
 
 \begin{figure}[htb]
   \begin{center}
   \includegraphics[height=6cm]{images/own_dwg/femm_fvsd_dualmagnet.jpg}
   \end{center}
-  \caption{\label{femm_forces} Steady-state forces acting on magnet. The magnetic force will counteract centrifugal force at 2 mm, 5 mm and 7 mm displacement from center for speeds of 40, 80 and 120 km / h respectively.}
+  \caption{\label{femm_forces} Steady-state forces acting on a magnet. The magnetic force will counteract centrifugal force at 2 mm, 5 mm and 7 mm displacement from center for speeds of 40, 80 and 120 km / h respectively.}
 \end{figure}
 
 It can be seen that net force on rotor magnet is dominated by the magnetic forces at lower speeds. Centrifugal force on magnet becomes significant at higher speeds, and at120 km/h speed the rotor magnet can impact the bottom assuming 30 mm displacement as estimated in Figure \ref{fig:deformation} in Section \ref{sect:tyre_environment}. Second use for this FEA analysis was to create a look-up table for flux linkage into the coils of the generator. The methodology was similar to determining the forces affecting the rotor magnet: a LUA script was ran to sweep the possible magnet positions, and the look-up table of flux linkage into coils was created. For the purposes of analysis, difference of flux linkage was calculated between each point. The change of flux linkage is a very important parameter, as the power generated is proportional to $\frac{d \Phi_{B}}{d t}$. 
@@ -266,7 +254,7 @@ Based on these results, a magnet moving at the speed of $0.1 mm / s $ would indu
 
 \begin{comment}
 
-A prototype generator was built to test the concept feasibility and identify any practical issues in the generator construction. Generator was machined out of 21mm diameter nylon tubing with 12 mm inner diameter. A groove was machined on the outer diameter to hold the coiling in place. Inner diameter of the groove was 14 mm and height 3 mm. 0.1 mm diameter wire was used to build the coil. To determine the number of turns in coil, coil resistance was measured to determine the length of wire and number of turn was calculated using known length of loop turn and total length of wire. Coil resistance was 42 ohms as the resistance of wire is approximately 2.2 ohms / meter the total length is approximately 19 meters. As one loop has length of 44 mm, coil had roughly 400 turns. 
+A prototype generator was built to test the concept feasibility and identify any practical issues in the generator construction. Generator was machined out of 21mm diameter nylon tubing with 12 mm inner diameter. A groove was machined on the outer diameter to hold the coiling in place. Inner diameter of the groove was 14 mm and height 3 mm. A 0.1 mm diameter wire was used to build the coil. To determine the number of turns in coil, coil resistance was measured to determine the length of wire and number of turn was calculated using known length of loop turn and total length of wire. Coil resistance was 42 ohms as the resistance of wire is approximately 2.2 ohms / meter the total length is approximately 19 meters. As one loop has length of 44 mm, coil had roughly 400 turns. 
 
 The prototype was connected on a  Brüel \& Kjær shaker type 4905 and driven using  Brüel \& Kjær power amplifier type 2707. Input signal was generated using NI-USB6218 DAQ and output was measured directly from leads of the generator. Vertical displacement of generator was limited to $7.5 mm$. Output signal was a sine wave with amplitude of $\pm$ 5 volts, which was amplified by gain of 8 above frequencies of 30 Hz. At lower frequencies the gain was limited to stay within allowed displacement. Measured graphs are shown in figure \ref{fiq:lg_proto_results}.
 
@@ -358,7 +346,7 @@ TH-5C provides a value of 39 nF as the capacitance, while these calculated value
    P_{peak} = \frac{V^2}{R}
 \end{equation}
  
-The calculations are shown in  Figure \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
+The calculations are shown in Figure \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
  
  Interestingly the peak work done by the piezoelement to the resistor seems to be almost constant on all load levels. This is probably a consequence of the logarithmic voltage-load relationship described earlier in this section. There is a possibly significant result based on these findings: total energy obtainable from harvester grows with the load resistance. However, this is applicable only for a resistive load under impact-based energy generation.
  
@@ -516,7 +504,7 @@ Material for the generator has a few requirements. It has to have at least as go
 
 \begin{table}[htb]
 %% Taulukon teksti
-\caption{\label{parameters_of_materials} Materials for the shaft of generator \cite{PlasticsInternational2015}, \cite{Etra}, \cite{Goodfellow} \cite{McCarr}.}
+\caption{\label{parameters_of_materials} Materials for the shaft of generator \cite{PlasticsInternational2015, Etra, Goodfellow, McCarr}.
 \begin{center}
 \fbox{
 \begin{tabular}{l l l l l l}

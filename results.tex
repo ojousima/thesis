@@ -240,7 +240,7 @@ As with the electromagnetic harvester, current was measured using $\mu$Current a
 \caption{\label{fig:piezo_td_vi} VI-waveforms of piezoelectric harvester into rectifier. Blue is voltage, red is current with scaling of 1 mA / V. Current does not follow the voltage and voltage is clamped by diodes.}
 \end{figure}
 
-Output of the piezoelectric harvester does not follow the excitation in a similar manner to the electromagnetic harvester. The output voltage is clamped by the diodes of rectification circuit, and the current waveform does not follow the voltage waveform. Power output waveforms have been presented in Figure \ref{fig:piezo_td_power}. As before, the output can be read as 1 V \= 1 mW. 
+Output of the piezoelectric harvester does not follow the excitation in a similar manner to the electromagnetic harvester. The output voltage is clamped by the diodes of rectification circuit, and the current waveform does not follow the voltage waveform. Power output waveforms have been presented in Figure \ref{fig:piezo_td_power}. As before, the output can be read as 1 V = 1 mW. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -299,33 +299,25 @@ Application note AN1005 from Cap-XX \cite{an1005} details a simple process for m
 The initial discharge current can be calculated with voltage over resistor:
 
 \begin{equation}
-\begin{split}
-  I &= \frac{V}{R} \\
-  I &= \frac{2.75 V}{100 \Omega} \\
-  I &\approx 27.5 mA 
-\end{split}
+  I_{initial} = \frac{V_{initial}}{R} = \frac{2.75 V}{100 \Omega} \approx 27.5 mA 
 \end{equation}
 
 With the initial discharge current and voltage drop known, ESR can be calculated:
 
 \begin{equation}
-\begin{split}
-  ESR &= \frac{V_{initial} - V_{discharge}}{I_{discharge}} \\
-  ESR &= \frac{3.25 V - 2.75 V}{27.5 mA} \\
-  ESR &\approx 18.2 \Omega
-\end{split}
+  ESR = \frac{V_{0} - V_{initial}}{I_{initial}} = \frac{3.25 V - 2.75 V}{27.5 mA} \approx 18.2 \Omega
 \end{equation}
 
 With ESR known, it is possible to calculate capacitance from the discharge time:
 
 \begin{equation}
 \begin{split}
-  V_t                 &= V_{0}e^{-t/RC} \\
-  \frac{V_t}{V_0}     &= e^{-t/RC} \\
-  ln(\frac{V_t}{V_0}) &= \frac{-t}{RC} \\
-  C                   &= \frac{-t}{R} \frac{1}{ ln(\frac{V_t}{V_0})} \\
-  C                   &= \frac{41.6-14.4}{100 + 18.2} \frac{1}{ ln(\frac{2.75 V}{3.25 V})} \\
-  C                   &\approx 1.38 F
+  V_t                            &= V_{initial}e^{-t/R_{tot}C} \\
+  \frac{V_t}{V_{initial}}                &= e^{-t/R_{tot}C} \\
+  ln\left(\frac{V_t}{V_{initial}}\right) &= \frac{-t}{R_{tot}C} \\
+  C                              &= \frac{-t}{R_{tot}} \frac{1}{ ln\left(\frac{V_t}{V_{initial}}\right)} \\
+  C                              &= \frac{41.6-14.4}{100 + 18.2} \frac{1}{ ln\left(\frac{2.75 V}{3.25 V}\right)} \\
+  C                              &\approx 1.38 F
 \end{split}
 \end{equation}
 
@@ -352,7 +344,7 @@ The harvester was glued to the inner lining of the tyre as shown in Figure \ref{
 \caption{\label{fig:tyre_platform} Tyre assembled in test platform.}
 \end{figure}
 
-The supercapacitor was initially fully discharged. To measure boost circuit efficiency, the storage capacitor was externally charged to 3 volts and before taking measurements. Tyre was driven at varied speeds and loads. Power output was measured by recording stored voltage in supercapacitor before and after the test with NI 9215 \cite{ni9215}.
+The supercapacitor was initially fully discharged. To measure boost circuit efficiency, the storage capacitor was externally charged to 3 volts and before taking measurements. Tyre was driven at varied speeds and loads. Power output was estimated based stored voltage in supercapacitor before and after the test. The voltage was measured with NI 9215 \cite{ni9215} which has precision required for measuring millivolt-scale differences. 
 
 \begin{table}[htb]
 \caption{\label{tbl:piezo_harvester_tyre_output} Measured values from tyre test setup.}
@@ -367,7 +359,7 @@ The supercapacitor was initially fully discharged. To measure boost circuit effi
 \end{center}
 \end{table}
 
-Regrettably the device broke down during measurement at 30 km / h and therefore no accurate data was obtained. However, the results suggest that average power of 50 $\mu$W was obtained from the harvester at 30 km / h speed.
+Regrettably the supercapacitor leads to PCB broke down during measurement at 30 km / h and therefore no accurate data was obtained at that speed. However, the results suggest that average power of 50 $\mu$W was obtained from the harvester at 30 km / h speed.
 
 The harvesting circuit has a considerable leakage of power. This is probably because of the leakage characteristics of the supercapacitor shown in Figure \ref{fig:scap_leakage}. Initial leakage current of a supercapacitor can be in order of tens of microamperes, and it will decrease over course of several days to a specified value.
 
@@ -378,9 +370,9 @@ The harvesting circuit has a considerable leakage of power. This is probably bec
 \caption{\label{fig:scap_leakage} Supercapacitors have high initial leakage \cite{Mars2012}.}
 \end{figure}
 
-While leakage in the harvester resulted in net negative power in the testing, it can be seen that harvester produced approximately 40 $\mu$W during 20 km / h drive at 2 kN load.
+While leakage in the harvester resulted in net negative power in the testing, it can be seen that harvester produced approximately 40 $\mu$W during 20 km / h drive under 2 kN load.
 
 This section presented the real-world power output of piezoelectric harvester. Usable, rectified and regulated power output was 40 $\mu$W. Next section compares the obtained results to current state-of-the-art.
 
-\subsection{Comparison to state-of-art results}
+\subsection{Comparison to state of art results}\label{sect:state-of-art}
 The results obtained from completed devices are compared to state of the art in this section.
