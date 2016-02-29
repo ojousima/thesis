@@ -94,6 +94,9 @@
 %for sub/superscripts
 \usepackage{fixltx2e}
 
+%for multi-citations
+\usepackage{cite}
+
 
 %% All that is printed on paper starts here
 \begin{document}
@@ -186,13 +189,8 @@
 \keywords{Energy harvesting, tyre sensors}
 %% Abstract text
 \begin{abstractpage}[english]
-  Modern tyres have sensor systems which require energy. Currently these systems are powered by 
-  batteries, but changing batteries is cumbersome.
-  Harvesting electrical energy from tyre movement and deformation was experimented with piezoelectric and 
-  electromagnetic harvester design. Harvested power was rectified and stored into supercapacitor at voltage
-  level usable by modern microcontrollers. Tens of milliwatts of electrical power was obtained from both harvesters
-  in a vibration exciter test setup, and piezoelectric harvester produced 50 microwatts of electrical power 
-  chassis dynamometer test rig.
+Modern tyres have sensor systems which require energy. Currently these systems are powered by batteries, which limit the power available and lifetime of the systems. This study presents an energy harvester system to power sensor systems. Piezoelectric and electromagnetic harvester designs are 
+presented and the piezoelectric harvester design was selected to use in the tyre. Electrical energy was harvested from tyre rotation and deformation, harvested power was rectified and stored into a supercapacitor at voltage level usable by modern microcontrollers. Tens of milliwatts of electrical power was obtained from both harvesters in a vibration exciter test setup, and piezoelectric harvester produced 13 microwatts of electrical power in a chassis dynamometer test rig. Further testing indicates 50 microwatts of power is obtainable at a higher speed of the tyre. The power obtained from harvester is exceeds sleep mode power requirement of sensor system, and sensor system could be theoretically operated intermittenly with power available. Continuous operation of sensor system is not feasible with the presented harvester.
 \end{abstractpage}
 
 %% Force a new page so that the possible English abstract starts on a new page
@@ -213,11 +211,13 @@
 \keywords{Energian harvestointi, rangasanturit}
 %% Tiivistelmän tekstiosa
 \begin{abstractpage}[finnish]
-  Moderneissa renkaissa on anturijärjestelmiä jotka tarvitsevat energiaa. Nykyään nämä järjestelmät saavat tehonsa patteriesta,
-  mutta pattereiden vaihtaminen on työlästä. Energian harvestointia renkaan liikkeestä ja muodonmuutoksista kokeiltiin
-  pietsosähköisellä ja sähkömagneettisella harvesterilla. Harvestoitu energia tasasuunnattiin ja varastoitiin superkapasitoriin
-  moderneille mikrokontrollereille soveltuvalla jännitetasolla. Tärinägeneraattorilla harvestereista saavutettiin kymmenien milliwattien
-  sähköteho, ja pietsosähköinen keräin tuotti 50 mikrowattia tehoa dynamometritestialustalla. 
+Moderneissa renkaissa on anturijärjestelmiä jotka tarvitsevat energiaa. Nykyään nämä järjestelmät saavat tehonsa patteriesta, mikä 
+rajoittaa käytettävissä olevaa tehoa ja järjestelmän käyttöaikaa.
+Tässä työssä esitetään energianharvestointijärjestelmä rengasantureiden tarpeisiin.  
+
+Työssä esitetään pietsosähköinen ja sähkömagneettinen harvesteri, pietsosähköinen harvesteri todettiin paremmin renkaaseen soveltuvaksi. Sähköistä energiaa kerättiin renkaan pyörimisliikkeestä ja muodonmuutoksista, kerätty energia tasasuunnattiin ja varastoitiin superkapasitoriin modernille mikrokontrollerille soveltuvalla jännitetasolla. Molemmat harvesterit tuottivat kymmeniä milliwatteja tärinägeneraattorilla testattuna ja pietsosähköinen harvesteri tuotti 13 mikrowattia dynamometrialustalla. Myöhempi testaus ennustaa että pietsosähköinen generaattori voisi tuottaa 50 mikrowattia tehoa korkeammilla rengasnopeuksilla. 
+
+Harvesterista saatu teho ylittää anturijärjestelmän lepovirran kulutuksen, ja anturijärjestelmää voisi teoriassa käyttää jaksottaisesti käytettävissä olevalla teholla. Anturijärjestelmän jatkuva käyttäminen ei ole mahdollista tässä työssä esitetyllä harvesterilla. 
 \end{abstractpage}
 
 
