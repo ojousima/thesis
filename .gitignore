@@ -28,6 +28,7 @@ simulation/FEMM/temp.fem
 *-bak
 *.bak
 *_saved_*
+*.dcm
 hardware/radio/gerber/picture.JPG
 *.gbl
 *.gl2
