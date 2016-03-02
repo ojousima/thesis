@@ -1,4 +1,4 @@
-\section{Results and discussion}
+\section{Results and discussion}\label{sect:results}
 \subsection{Test setup} \label{sect:lg_test_setup}
 This section details the test setup on a vibration exciter. The harvesters were connected to vibration exciter Brüel \& Kjær type 4905 for measuring the frequency response and output power obtainable from the harvesters. Figure \ref{fig:emh_shaker} shows the test setup with electromagnetic harvester. Syscomp CircuitGear CGR201 oscilloscope was used to generate a test signal and take the measurements from the harvesters. Signal from function generator was amplified by Brüel \& Kjær power amplifier type 2707.
 
@@ -28,27 +28,17 @@ One of the original design goals of the harvester was to provide a wide-band ene
 
 Frequency domain response was obtained by sweeping a wide-band sine signal to power amplifier and measuring the open loop response from the harvester. The first measurement was done on a harvester without ferrofluid applied, Figure \ref{fig:inductive_fd_dry} displays the measurement result. Above graph is the output in decibels, below is the phase shift of the response.
 
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=10cm]{images/own_measurement/generator_shaker/inductive_fd_dry.png}
-\end{center}
-\caption{\label{fig:inductive_fd_dry} Frequency domain response of electromagnetic harvester before application of ferrofluid.}
-\end{figure}
-
-There is a clear resonance peak near 70 Hz. The phase shift is almost exactly 180\degree  at the resonance, which is somewhat curious result as the time domain results and theory predicted the voltage would peak at 90\degree  phase when the acceleration is at zero and speed is highest. 
-
-Amplitude does not have any specific meaning outside the context of this measurement and comparing output at differents frequencies. It can be seen that original design goal of wide band response has not been achieved very well, as the amplitude response rolls off sharply below the effective frequency and maybe 20 dB / decade on frequencies above the peak. There is another resonance peak near 900 Hz, but this frequency is far above frequencies of interest for the application. 
-
-Ferrofluid was applied to rotor magnet in an attempt to reduce the effect of friction, and bode diagram was similarly plotted to Figure \ref{fig:inductive_bode_ferro}.
+Ferrofluid was applied to rotor magnet in an attempt to reduce the effect of friction. After the application of ferrofluid electromagnetic harvester shows a strong resonance peak near 80 Hz. Phase shift behaviour was not affected by ferrofluid lubrication. Usually the systems which have second order dynamics - such as the mass damper spring system - exhibit resonance peaks when the damping factor is low. It is can therefore be concluded that application of ferrofluid has resulted in lesser frictional losses. Amplitude response is also at higher level across all frequencies, suggesting a better overall performance of the harvester. 
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=10cm]{images/own_measurement/generator_shaker/inductive_bode_ferro.png}
+\includegraphics[height=10cm]{images/own_measurement/generator_shaker/inductive_fd_combined.png}
 \end{center}
-\caption{\label{fig:inductive_bode_ferro} Frequency domain response shows a strong resonance peak after application of ferrofluid.}
+\caption{\label{fig:inductive_fd_dry} Frequency domain response of electromagnetic harvester before and after application of ferrofluid. Above graph is the amplitude response, bottom is the phase shift. After application of ferrofluid the resonance peak is notably sharper, indicating a higher quality factor.  }
 \end{figure}
 
-After the application of ferrofluid electromagnetic harvester shows a strong resonance peak near 70 Hz. Phase shift behaviour was not affected by ferrofluid lubrication. Usually the systems which have second order dynamics - such as the mass damper spring system - exhibit resonance peaks when the damping factor is low. It is can therefore be concluded that application of ferrofluid has resulted in lesser frictional losses. Amplitude response is also at higher level across all frequencies, suggesting a better overall performance of the harvester. 
+There is a clear resonance peak near 80 Hz. The phase shift is almost exactly 180\degree  at the resonance, which is somewhat curious result as the time domain results and theory predicted the voltage would peak at 90\degree  phase when the acceleration is at zero and speed is highest. Amplitude does not have any specific meaning outside the context of this measurement and comparing output at different frequencies.  There is another resonance peak near 900 Hz, but this frequency is far above frequencies of interest for the application. The -3 dB bandwidth is \approx 10 Hz wide, which can be compared to results of Singh et al. \cite{2012} referred in Section \ref{sect:background}. Singh et al. achieved approximately 5 Hz wide -3 dB bandwidth with piezoelectric harvester 70 Hz.
+
 
 \subsubsection{Time domain results}\label{sect:lg_td}
 The time domain waveforms of the electromagnetic harvester were measured on various loads and frequencies. After the open loop results were obtained, the tests were run again with different resistive loads to measure the power output. Finally the power output to the rectifier of the harvesting circuit of was measured. This section presents the test results. 

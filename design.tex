@@ -1,4 +1,4 @@
-\section{Design}
+\section{Design}\label{sect:design}
 \subsection{System-level design}
 The complete system consists of energy harvesting source, energy storage for times when harvesting energy is not possible, AC/DC and DC/DC converters for maintaining required voltage levels in different blocks of system, accelerometer for measuring the acceleration in tyre and radio/microcontroller module for transmitting the data. Figure \ref{fiq:system_block_diagram} shows the power and data flow between subsections of system. 
 
@@ -53,7 +53,7 @@ When the power consumption is compared to values achieved in previous studies of
 
 Next sections detail designs and preliminary analysis of the electromagnetic generator designs. The initial designs are then evaluated based on their ability to supply power at the required levels to the circuitry.
 
-\subsection{Electromagnetic harvester design}
+\subsection{Electromagnetic harvester design}\label{sect:emh_design}
 \subsubsection{Basics of the electromagnetical vibration harvester}
 Electromagnetic harvesters utilise vibrations to move a magnet inside a coil. The movement of a magnet creates a changing magnetic field, which gets coupled to a coil. The coil opposes the change in the magnetic field by inducing electrical current in the device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre, an added benefit to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function as a damper to the system, so ideally no extra damping is required. Modern neodymium magnets do not lose their magnetisation by vibration, so a magnet can be reliable for a long time period. 
 
