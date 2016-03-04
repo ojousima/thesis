@@ -7,18 +7,18 @@ The complete system consists of energy harvesting source, energy storage for tim
 \begin{center}
 \includegraphics[width=\columnwidth]{images/own_dwg/system_block_diagram.jpg}
 \end{center}
-\caption{\label{fiq:system_block_diagram} Block diagram of complete system. Harvested energy comes to system from top left, energy management system can charge storage when excess energy is available and use the stored energy when the harvested energy is insufficient for the system operation. On the right side is control logic and sensor. The experimental system has energy harvesting, energy storage and energy management sections, but control logic, radio comminication and sensing are outside the scope of the experimental work.}
+\caption{\label{fiq:system_block_diagram} Block diagram of a complete system. Harvested energy comes to system from top left, energy management system can charge storage when excess energy is available and use the stored energy when the harvested energy is insufficient for the system operation. On the right side is control logic and sensor. The experimental system has energy harvesting, energy storage and energy management sections, but control logic, radio comminication and sensing are outside the scope of the experimental work.}
 \label{liitekuva}
 \end{figure}
 
-Energy harvester can use any suitable source presented in section \ref{sect:overview} for electrical energy. Energy management section rectifies AC voltage and buffers that rectified voltage on a capacitor. The energy storage can be a supercapacitor or a rechargeable battery. Both of these storage technologies can benefit from having a low equivalent series resistance (ESR) capacitor in parallel to supply peak currents. Energy management circuitry chooses whether to use harvested energy or stored energy and regulates the energy to voltage level compatible with the system. Digital components require their own local power buffer capacitors to supply high-frequency currents required by megahertz clocks onboard these circuits.
+Energy harvester can use any suitable source presented in section \ref{sect:overview} for electrical energy. Energy management section rectifies AC voltage and buffers that rectified voltage on a capacitor. The energy storage can be a supercapacitor or a rechargeable battery. Both of these storage technologies can benefit from having an energy buffer in parallel to supply peak currents. Energy management circuitry chooses whether to use harvested energy or stored energy and regulates the energy to voltage level compatible with the system. Digital components require their own local power buffer capacitors to supply high-frequency currents required by megahertz clocks onboard these circuits.
 
-Microcontroller is used to manage the application layer of system. For example the microcontroller can send status updates over radio link more often if there is harvested energy available and reduce system power consumption when system is running on stored energy.
+Microcontroller is used to manage the application layer of system. The microcontroller can for example  send status updates over radio link more often if there is harvested energy available and reduce system power consumption when the system is running on a stored energy.
 
-Next section presents details of expected power consumption and duty cycles for various components. A few components are selected to provide examples of suitable system power.
+Next section presents details of expected power consumption and duty cycles for various components. A few components are selected to provide examples of required system power.
 
 \subsection{Power requirements of a system} \label{sect:power_requirement}
-The sensor system has in three distinct states. One is sleeping, conserving power as much as possible while the car is not moving.
+The sensor system has three distinct states. One is sleeping, conserving power as much as possible while the car is not moving.
 Second state is measuring, when the radio connection is off but electronics are active and gathering data.
 Third state is transmitting, when the data is relayed to a drive computer in the car.
 
@@ -47,7 +47,7 @@ ADXL375			& 0.1 $\mu A$ 		& 140 $\mu A$ 		& 140 $\mu A$		\\ \hline
 
 Current consumption levels for BLE113 and ADXL375 are taken from the datasheets of the components. Battery manager power draw is estimated by calculating required power to supply the rest of the circuit at 80 \% efficiency. Power consumption is calculated from current draw with assumption that system voltage will be at constant 2.5 V.
 
-Power consumption grows by orders of magnitude when the activity is stepped up to the next level. Therefore it is important to keep the system in sleep mode whenever possible, for example when the car is parked and wake up only periodically to check if the movement has started. Monitoring starts once the car is moving, and device will send brief pulses over the radio link when necessary.
+Power consumption grows by orders of magnitude when the activity is stepped up to the next level. Therefore it is important to keep the system in a sleep mode whenever possible, for example when the car is parked and wake up only periodically to check if the movement has started. Monitoring starts once the car is moving, and device will send brief pulses over the radio link when necessary.
 
 When the power consumption is compared to values achieved in previous studies of energy harvesting presented in Section \ref{sect:state-of-art}, it can be seen that sleep current can be compensated by a reasonable harvester design. Powering constant monitoring would be a greater challenge, but possible if enough harvesters were paralleld. Providing power for continuous radio transmissions is not feasible even with the current state-of-the-art harvester designs to the best of author's knowledge. 
 
@@ -55,7 +55,7 @@ Next sections detail designs and preliminary analysis of the electromagnetic gen
 
 \subsection{Electromagnetic harvester design}\label{sect:emh_design}
 \subsubsection{Basics of the electromagnetical vibration harvester}
-Electromagnetic harvesters utilise vibrations to move a magnet inside a coil. The movement of a magnet creates a changing magnetic field, which gets coupled to a coil. The coil opposes the change in the magnetic field by inducing electrical current in the device. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre, an added benefit to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function as a damper to the system, so ideally no extra damping is required. Modern neodymium magnets do not lose their magnetisation by vibration, so a magnet can be reliable for a long time period. 
+Electromagnetic harvesters utilise vibrations to move a magnet inside a coil. The movement of a magnet creates a changing magnetic field, which gets coupled to a coil. The coil opposes the change in the magnetic field by inducing electrical current in the loop. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre, an added benefit to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function as a damper to the system, so ideally no extra damping is required. Modern neodymium magnets do not lose their magnetisation by vibration, so a magnet can be reliable for a long time period. 
 
 A theoretical design of linear generator (LG) was made. Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside the tyre to rotational movement would add to complexity and cost of the tyre, generator is designed to use the linear motion as the power source.
 
@@ -63,9 +63,9 @@ Basic principle of operation of LG is similar to traditional rotational generato
 
 Energy harvester designs sometimes use several poles to increase the frequency of the power output. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point irrelevant, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimised to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. Mechanical design can utilise resonant vibration to function as energy storage device instead of electrical or electronic storage.
 
-First design decision was whether to use a design with a moving magnet or a moving coil. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coils require flying leads  \cite{Jacob2011},  which is a long-term reliability concern  \cite{Boldea1999}.  Boldea and Nasar \cite[p. 203]{Boldea1999a} conclude moving coil designs aren't practically interesting, so the design of the harvester is focused on moving magnet generator.
-
 A rough model for designing the initial prototypes was done previously by Elmes \cite{Elmes2005}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
+
+First design decision was whether to use a design with a moving magnet or a moving coil. Moving coil designs tend to have lighter moving parts which is a very important feature in high-power designs where mass of the generator is large. On the other hand, moving coils require flying leads  \cite{Jacob2011},  which is a long-term reliability concern  \cite{Boldea1999}.  Boldea and Nasar \cite[p. 203]{Boldea1999a} conclude moving coil designs aren't practically interesting, so the design of the harvester is focused on moving magnet generator.
 
 There are two different approaches to the generator structure. One is to have magnets inside, and coils on the outer rim of the generator. The other is to use ring magnets on the outer rim and have the coils on the inside. Both methods have their advantages: Having magnets on the outside allows larger and therefore stronger magnets and creates horizontal support for the magnets as they move along the shaft. Having coils on the outside increases wiring radius which results in greater power if other parameters are held equal. 
 
@@ -98,7 +98,7 @@ Magnetic floating is an attractive solution, as magnets can be thin and they do 
 
 
 \subsubsection{Analytical model of the electromagnetical vibration harvester}
-A common starting point for analysis of linear generator is to model the mechanical domain as Mass-Spring-Dampener system decipted in Figure \ref{MSD}. A mass "floats" in the system, a spring balances the mass towards the centre and a damper represents frictional forces opposing any movement of the mass. 
+A common starting point for analysis of linear generator is to model the mechanical domain as Mass-Spring-Damper system depicted in Figure \ref{MSD}. A mass "floats" in the system, a spring balances the mass towards the centre and a damper represents frictional forces opposing any movement of the mass. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -205,9 +205,7 @@ There is also frictional dissipative force as the air passes along the edges of 
   F = \mu \cdot \rho \cdot \frac{\pi d h \dot{z}}{\delta}  
 \end{equation}
 
-Analytical expressions for the equations governing the mechanical movement of magnet inside generator have now been identified. Some of the non-linear functions are hard to solve analytically, therefore experimental and FEA methods are used for creating approximations for these functions.
-
-The analytical effect of these parameters is summarised in Table \ref{parameters_of_lg}
+Analytical expressions for the equations governing the mechanical movement of magnet inside generator have now been identified. Some of the non-linear functions are hard to solve analytically, therefore experimental and FEA methods are used for creating approximations for these functions. The analytical effect of these parameters is summarised in Table \ref{parameters_of_lg}
 
 \begin{table}[htb]
 \caption{\label{parameters_of_lg} Effect of the parameters of the generator}
@@ -230,9 +228,9 @@ B                           & Increased power 	        & Smaller magnets 		\\ \h
 This section has given analytical expressions on forces acting on the magnet. With the expressions known, next section presents simulation and experimental methods for evaluating the effects of these expressions.
 
 \subsubsection{Experimental and FEA modeling of the electromagnetic harvester}
-Some parameters of the harvester are difficult to solve analytically. These parameters are estimated using experimental and FEA methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite{Meeker2013} was used to create an axisymmetric model of magnets in the generator. Figure \ref{femm_forces} shows the used model. Ths model has two opposing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. The magnets have a height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. The generator has total height of 25 mm, leaving the rotor magnet 17.5 mm room for movement inside the generator.
+Some parameters of the harvester are difficult to solve analytically. These parameters are estimated using experimental and Finite Element Analysis (FEA) methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite{Meeker2013} was used to create an axisymmetric model of magnets in the generator. Figure \ref{femm_forces} shows the used model. This model has two opposing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. The magnets have a height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. The generator has total height of 25 mm, leaving the rotor magnet 17.5 mm room for movement inside the generator.
 
-Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for the net magnetic force acting on the rotor magnet. A LUA script was used to move the rotor magnet from the bottom of the generator to the top in 0.1 mm increments and values obtained from the analysis were exported as CSV data for plotting in a spreadsheet software as well as to create a lookup-table for MATLAB/SIMULINK simulation. Figure \ref{femm_forces} shows the force on the magnet, positive force meaning force towards the upper magnet and zero height being at in the middle of the cylider. The centrifugal force acting on magnet was also calculated at various speeds for reference, assuming weight of the magnet is 1.67 g and radius to the bottom of generator is 275 mm.
+Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for the net magnetic force acting on the rotor magnet. A LUA script was used to move the rotor magnet from the bottom of the generator to the top in 0.1 mm increments and values obtained from the analysis were exported as CSV data for plotting in a spreadsheet software. Figure \ref{femm_forces} shows the force on the magnet, positive force meaning force towards the upper magnet and zero height being at in the middle of the cylinder. The centrifugal force acting on magnet was also calculated at various speeds for reference, assuming weight of the magnet is 1.67 g and radius to the bottom of generator is 275 mm.
 
 \begin{figure}[htb]
   \begin{center}
@@ -241,7 +239,7 @@ Weighted stress tensor integration over rotor magnet volume as implemented by FE
   \caption{\label{femm_forces} Steady-state forces acting on a magnet. The magnetic force will counteract centrifugal force at 2 mm, 5 mm and 7 mm displacement from center for speeds of 40, 80 and 120 km / h respectively.}
 \end{figure}
 
-It can be seen that net force on rotor magnet is dominated by the magnetic forces at lower speeds. Centrifugal force on magnet becomes significant at higher speeds, and at120 km/h speed the rotor magnet can impact the bottom assuming 30 mm displacement as estimated in Figure \ref{fig:deformation} in Section \ref{sect:tyre_environment}. Second use for this FEA analysis was to create a look-up table for flux linkage into the coils of the generator. The methodology was similar to determining the forces affecting the rotor magnet: a LUA script was ran to sweep the possible magnet positions, and the look-up table of flux linkage into coils was created. For the purposes of analysis, difference of flux linkage was calculated between each point. The change of flux linkage is a very important parameter, as the power generated is proportional to $\frac{d \Phi_{B}}{d t}$. 
+It can be seen that net force on rotor magnet is dominated by the magnetic forces at lower speeds. Centrifugal force on magnet becomes significant at higher speeds. The rotor magnet can impact the bottom assuming 20 mm displacement as estimated in Figure \ref{fig:deformation} in Section \ref{sect:tyre_environment}, therefore rubber layer to act as a bumper may be required on stator magnets. Second use for this FEA analysis was to create a look-up table for flux linkage into the coils of the generator. The methodology was similar to determining the forces affecting the rotor magnet: a LUA script was ran to sweep the possible magnet positions, and the look-up table of flux linkage into coils was created. For the purposes of analysis, difference of flux linkage was calculated between each point. The change of flux linkage is a very important parameter, as the power generated is proportional to $\frac{d \Phi_{B}}{d t}$. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -250,7 +248,7 @@ It can be seen that net force on rotor magnet is dominated by the magnetic force
 \caption{\label{fig:femm_linkage} Flux linkage and rate of change in 0.1 mm steps in generator. Derivative of flux linkage in respect to position is largest near 2 - 3 mm displacement from the centre of the coil.}
 \end{figure}
 
-Based on these results, a magnet moving at the speed of $0.1 mm / s $ would induce voltage of up to $1.5 mV$ in each winding of the coil.
+Based on these results, a magnet moving at the speed of 0.1 mm / s would induce voltage of up to 1.5 mV  in each winding of the coil.
 
 \begin{comment}
 
@@ -288,7 +286,7 @@ This section details experimental identification of properties of the piezoelect
 
 Thunder\textsuperscript{(TM)} piezos have been used in previous studies of piezoelectric harvesting and they have produced promising results \cite{Manla2009}, so they were selected as the piezoelectric element for this thesis.
 
-Series of tests were ran to determine the characteristics of piezoelectric power generation under impacts. Mossi et al \cite{Mossi} have produced a recommended test process for Thunder piezoelectric actuators shown in Figure \ref{fiq:thunder_eval}.
+Series of tests were ran to determine the characteristics of piezoelectric power generation under impacts. Mossi et al. \cite{Mossi} have produced a recommended test process for Thunder piezoelectric actuators shown in Figure \ref{fiq:thunder_eval}.
 
 \begin{figure}[htb]
   \begin{center}
@@ -326,17 +324,17 @@ The time constants for a voltage halving were graphically measured from oscillos
   \begin{center}
   \includegraphics[width=\columnwidth]{images/own_measurement/piezo_capacitance}
   \end{center}
-  \caption{Measured half-time of system and the calculated capacitance of piezo.}
+  \caption{Measured half-time of system and the calculated capacitance of the piezoelement.}
   \label{fig:piezo_time_capacitance}
 \end{figure}
 
-The half-time data can be used to calculate the capacitance of piezo using the RC-time constant of circuit:
+The half-time data can be used to calculate the capacitance of the piezoelement using the RC-time constant of circuit:
 
 \begin{equation}
   C=\frac{t}{-ln(\frac{1}{2})R} 
 \end{equation}
 
-TH-5C provides a value of 39 nF as the capacitance, while these calculated values are notably higher and rise with the loading of the piezoelement. Most likely explanation of this observation is the mechanical response time of system: the solenoid plunger will take some milliseconds to reach new force equilibrium, and this effect becomes more pronounced at smaller time constants of the RC-system. Using the known voltage and capacitance energy and peak power in impact can be determined:
+Datasheet of TH-5C provides a value of 39 nF as the capacitance, while these calculated values are notably higher and rise with the loading of the piezoelement. Most likely explanation of this observation is the mechanical response time of system: the solenoid plunger will take some milliseconds to reach new force equilibrium, and this effect becomes more pronounced at smaller time constants of the RC-system. Using the known voltage and capacitance energy and peak power in impact can be determined:
  
 \begin{equation}
    E = \frac{1}{2}V^2C
@@ -346,7 +344,7 @@ TH-5C provides a value of 39 nF as the capacitance, while these calculated value
    P_{peak} = \frac{V^2}{R}
 \end{equation}
  
-The calculations are shown in Figure \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
+The results of calculations are shown in Figure \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
  
  Interestingly the peak work done by the piezoelement to the resistor seems to be almost constant on all load levels. This is probably a consequence of the logarithmic voltage-load relationship described earlier in this section. There is a possibly significant result based on these findings: total energy obtainable from harvester grows with the load resistance. However, this is applicable only for a resistive load under impact-based energy generation.
  
@@ -354,7 +352,7 @@ The calculations are shown in Figure \ref{fig:piezo_power_energy}. As these calc
   \begin{center}
   \includegraphics[width=\columnwidth]{images/own_measurement/piezo_power}
   \end{center}
-  \caption{Calculated piezo power and energy output}
+  \caption{Calculated piezo power and energy output. Power output is almost constant at all loads, but energy generated during impact grows with load resistance.}
   \label{fig:piezo_power_energy}
 \end{figure}
 
@@ -367,7 +365,7 @@ The simulated data is plotted Figure \ref{fiq:piezo_simulation_experimental}.
   \begin{center}
   \includegraphics[height=6cm]{images/own_dwg/ltspice_piezo}
   \end{center}
-  \caption{Equivalent model of piezo in LTSpice simulator}
+  \caption{Equivalent model of piezo in LTSpice simulator.}
   \label{fig:piezo_ltspice_equivalent}
 \end{figure}
 
@@ -383,9 +381,9 @@ The experimental and simulated data are not in an agreement. While maximum and m
 
 \subsection{Electronic design} \label{sect:electronic_design}
 \subsubsection{Simulation of the circuit}
-As the focus of work is on energy harvesting, only analog sections related to energy harvesting are simulated. Digital loads are simulated as current sinks. This section details the simulation model used to validate the design of circuitry.
+As the focus of work is on energy harvesting, only analog sections related to energy harvesting are simulated. This section details the simulation model used to validate the design of circuitry.
 
-The analog sections of circuit were simulated using LTSpice IV \cite{ltspice}. Microcontroller, radio link and accelerometer were simulated as resistive load. Battery was modelled as a voltage source with high-value capacitor and low-value resistor in series. Piezoelectric harvesting was modelled both as high-voltage source with capacitor in series, and as a current source with capacitor in parallel. Electromagnetic harvesting was modelled as low-impedance low-voltage source. 
+The analog sections of circuit were simulated using LTSpice IV \cite{ltspice}. Digital loads are simulated as current sinks. Battery was modelled as a voltage source with high-value capacitor and low-value resistor in series. Piezoelectric harvesting was modelled both as high-voltage source with capacitor in series, and as a current source with capacitor in parallel. Electromagnetic harvesting was modelled as low-impedance low-voltage source. 
 
 LTC3331 presents an interesting opportunity for maximum power point tracking (MPPT). While the impedance of individual components cannot be tuned in real-time, the microcontroller can determine the rotation frequency of the tyre from the accelerometer readings and determine the maximum power point. LTC3331 can adjust the target voltage for the energy storage buffer capacitor, which enables MPPT-control of system.
 
@@ -427,7 +425,7 @@ Battery configuration allows different chemistries to be tested, as the under- a
     \caption{\label{fig:psu_circuit} Power supply with harvesting input, battery management and SMPS voltage output.}
 \end{figure}
 
-Central controller is built around the ATMEGA328 \cite{atmega328} microcontroller. The controller uses Serial Peripheral Interface (SPI) and Universal Asynchronous Receiver/Transmitter (UART) serial communication between sections of the system, and it has parallel connection to the LTC3331 to set the energy harvester voltage levels for MPPT. LTC3331 has EH\_ON output, which rises to logic high level of approximately 4.8 V when the circuit is being supplied by harvested energy rather than by a battery. This voltage level is above the circuit supply voltage, and therefore interfacing it directly to ATMEGA328 would be damaging. Interfacing is done by a N-MOSFET BSH105 \cite{BSH105} and internal pullup-resistor on ATMEGA328. When harvested energy is available, pull-up of ATMEGA328 becomes grounded through BSH105. This causes somewhat significant current leakage, in range of tens of microamperes while pull-up is being pulled down. However this leakage is present only while harvested energy is available, so it will not drain the battery of circuit. While harvested energy is not available, the MOSFET is shut off. Special care was taken to select a model of MOSFET with small off leakage to avoid drain while system is being run on battery power, BSH105 is specified to have leakage in range of tens of nanoamperes. 
+Central controller is built around the ATMEGA328 \cite{atmega328} microcontroller. The controller uses Serial Peripheral Interface (SPI) and Universal Asynchronous Receiver/Transmitter (UART) serial communication between sections of the system, and it has parallel connection to the LTC3331 to set the energy harvester voltage levels for MPPT. LTC3331 has EH\_ON output, which rises to logic high level of approximately 4.8 V when the circuit is being supplied by harvested energy rather than by a battery. This voltage level is above the circuit supply voltage, and therefore interfacing it directly to ATMEGA328 would be damaging. Interfacing is done by a Metal–Oxide–Semiconductor Field-Effect Transistor (MOSFET) BSH105 \cite{BSH105} and internal pullup-resistor on ATMEGA328. When harvested energy is available, pull-up of ATMEGA328 becomes grounded through BSH105. This causes somewhat significant current leakage, in range of tens of microamperes while pull-up is being pulled down. However this leakage is present only while harvested energy is available, so it will not drain the battery of circuit. While harvested energy is not available, the MOSFET is shut off. Special care was taken to select a model of MOSFET with small off leakage to avoid drain while system is being run on battery power, BSH105 is specified to have leakage in range of tens of nanoamperes. 
 
 More important power savings are achieved through careful design of software. Sleep power states of ATMEGA328 consume minuscule amount of power when compared to active state, therefore minimising active time of circuit is a high priority. If the program is not CPU time limited, clock rate can be scaled down to 1 MHz using internal clock divider. Maximum CPU frequency can be increased by selecting another crystal, but increasing clock frequency will require higher supply voltage which in turn leads to higher overall power consumption in entire system.
 
@@ -438,9 +436,9 @@ More important power savings are achieved through careful design of software. Sl
     \caption{\label{fig:atmega_circuit} Control circuit with external interrupts from sensor and energy harvesting.}
 \end{figure}
 
-Radio link is implemented with BLE113 module. The module could act as stand-alone controller for the system, but radio link has been separated from control logic to allow focused study of different sections of circuit.  Schematic  \ref{fig:bluetooth_circuit} is very simple, power supply is decoupled by bypassing capacitors as recommended by datasheet and programming header has been brought out. Communication to microcontroller is handled by universal asynchronous receiver/transmitter (UART) communication using 2.5 V level signalling. 
+Radio link is implemented with BLE113 module. The module could act as stand-alone controller for the system, but radio link has been separated from control logic to allow focused study of different sections of circuit.  Schematic shown in Figure \ref{fig:bluetooth_circuit} is very simple, power supply is decoupled by bypassing capacitors as recommended by the datasheet and a programming header has been brought out. Communication to microcontroller is handled by universal asynchronous receiver/transmitter (UART) communication using 2.5 V level signalling. 
 
-The BLE113 can be forced to sleep by external control if needed and it can operate autonomously while main controller is sleeping. Data payload can be up to 23 bytes per packet as specified by BLE protocol \cite{Gomez2012}. Maximum data throughput is defined by the connection interval. As transmitting data consumes active time and therefore power, data transmissions should be minimised while harvested energy is not available.
+The BLE113 can be forced to sleep by external control if needed and it can operate autonomously while the main controller is sleeping. Data payload can be up to 23 bytes per packet as specified by BLE protocol \cite{Gomez2012}. Maximum data throughput is defined by the connection interval. As transmitting data consumes active time and therefore power, data transmissions should be minimised while harvested energy is not available.
 
 \begin{figure}[htb]
     \centering
@@ -451,13 +449,13 @@ The BLE113 can be forced to sleep by external control if needed and it can opera
 
 There is an accelerometer ADXL375 onboard the Printed Circuit Board (PCB) to study applications of the tyre sensor system. Schematic of sensor section is shown in Figure \ref{fig:sensor_circuit}. The power supply section has a separate digital Input/Output (IO) supply voltage which is further filtered for the analog sections of board by FB501 and C502. Both supplies are fed by same system level power bus from LTC3331.
 
-ADXL375 is capable of both SPI and I2C communication, SPI communication was selected to facilitate faster communication to minimise time control circuit has to be in active mode and to avoid an additional power drain through the required pull-up resistors of the I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{orgate}, which has minimal static power current consumption of 0.1 microamperes. 
+ADXL375 is capable of both SPI and Inter-Integrated Circuit (I2C) communication, SPI communication was selected to facilitate faster communication to minimise time control circuit has to be in active mode and to avoid an additional power drain through the required pull-up resistors of the I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{orgate}, which has minimal static power current consumption of 0.1 microamperes. 
 
 \begin{figure}[htb]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/sensor.pdf_tex}
-    \caption{\label{fig:sensor_circuit} Accelerometer circuit}
+    \caption{\label{fig:sensor_circuit} Accelerometer circuit.}
 \end{figure}
 
 As the circuit will be subject to extreme accelerations, all the components should be surface mounted. This gives maximal solder pad area to height ratios, which helps to maintain the integrity of circuit. Larger components, such as inductors can be additionally glued for increased mechanical reliability.
@@ -484,13 +482,13 @@ Finally the rest of the circuit is laid out. As the currents flowing on board ar
   \caption{\label{fig:pcb_render} Completed assembly of designed system.}
 \end{figure}
 
-The borders between sections are most clearly visible in the power planes of design shown in Figure \ref{fig:pcb_planes}. Power planes for each subcircuit have been separated for testing the current consumption, and therefore the outlines of power planes follow the outlines of subcircuits.
+The borders between sections are most clearly visible in the power planes of design shown in Figure \ref{fig:pcb_planes}. Power planes for each subcircuit have been separated for testing the current consumption, and therefore the outlines of the power planes follow the outlines of subcircuits.
 
 \begin{figure}[htb]
   \begin{center}
     \includegraphics[height=6cm]{images/own_dwg/circuit/powerplane.jpg}
   \end{center}
-  \caption{\label{fig:pcb_planes} Power planes of the PCB}
+  \caption{\label{fig:pcb_planes} Power planes of the PCB. Energy harvesting section is on left, control section is on right, radio communication is on top and accelerometer is on bottom.}
 \end{figure}
 
 In addition to mechanical and electrical properties, the PCB also acts as heat sink for mid-power components. In this circuit only LTC3331 needs special attention to thermal design, it is cooled by several vias under the pad of circuit into ground plane. As copper is an excellent conductor for heat, any thermal output from LTC3331 gets coupled to ground plane where it can spread to a wider area.
@@ -526,19 +524,19 @@ Carbon fiber     & Highest     & Highest                         & High       & 
 \end{center}
 \end{table}
 
-From the table \ref{parameters_of_materials} can be seen that there is no single best material for the harvester. Polycarbonate and carbon fibre  have excellent mechanical strength but they have high friction. Teflon and nylon have lower friction, but they have poor mechanical rigidity. 
+From the Table \ref{parameters_of_materials} it can be seen that there is no single best material for the harvester. Polycarbonate and carbon fibre have excellent mechanical strength but they have high friction. Teflon and nylon have lower friction, but they have poor mechanical rigidity. 
 
 In the end acryllic was chosen as the material of the harvester. While acryllic is not a best material by any single metric, it has the necessary properties. Acryllic is easy to machine and readily available which were decisive factors for the selection of acrylic over other materials. 
 
-As the minimum diameter of the harvester is defined by piezoelement diameter of 34 mm, both generators are designed with 35 mm square bases. Both generators also use same mounting hole pattern for electronics - 2.75 mm holes at the corners of the square.
+As the minimum diameter of the harvester is defined by piezoelement diameter of 34 mm, both generators are designed with 35 mm square bases. Both generators also use same mounting hole pattern for electronics: 2.75 mm diameter holes at the corners of the square.
 
-The generator was machined using slices of laser cut acrylic and standard acrylic tubing. The process is somewhat similar to 3D-printing, as several thin layers form up the final part. The acrylic parts used in generator are shown in figure \ref{fig:lasercut}.
+The generator was machined using slices of laser cut acrylic and standard acrylic tubing. The process is somewhat similar to 3D-printing, as several thin layers form up the final part. The acrylic parts used in generator are shown in Figure \ref{fig:lasercut}.
 
 \begin{figure}[htb]
   \begin{center}
     \includegraphics[height=15cm]{images/own_dwg/mechanical/layers.jpg}
   \end{center}
-  \caption{\label{fig:lasercut} 150 * 150 mm sheet for laser cutting.}
+  \caption{\label{fig:lasercut} 150 * 150 mm sheet for laser cutting. Main structure is formed by squares with mounting holes. Squares have cutouts for pieces of generator, such as piezoelectric disk and stator magnets. Original idea was to make shaft of the generator out of laser cut rings, however process of laser cutting deformed thinner rings and alignment of the rings was not accurate enough for a smooth internal shaft required by rotor magnet.}
 \end{figure}
 
 While the initial approach for building the shaft of the generator was to use lasercut rings to form the shaft, the process of lasercutting warped thinner rings and mechanical alignment of the rings was difficult. Therefore a standard 10 mm inner diameter 12 mm outer diameter tube was selected as the shaft.
