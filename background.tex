@@ -34,8 +34,6 @@ Solar energy can be harvested by using sun as a energy source for a thermal ener
 In conclusion, this section has presented wide range of energy harvesting technologies. As their primary properties are known, most promising technologies for car tyre energy harvesting can be narrowed to \textbf{electromagnetic} and \textbf{piezoelectric}. These technologies are studied further in the following sections to identify optimal choice for the application.
 
 \subsubsection{Resonance-based piezoelectric harvesting}
-Resonant piezoelectric harvesters are presented in deeper detail in this section. The 
-
 Piezoelectric materials produce voltage in response to mechanical stress. The effect is bidirectional, piezoelectric element can also produce mechanical strain in response to applied voltage. The material has crystalline structure with electrical dipoles in balanced state when no stress is applied. Mechanical stress unbalances these dipoles, creating element which electronically resembles a charged capacitor. 
 
 A common approach to piezoelectric harvesting is to configure the element as a cantilever and tune the resonant frequency of the system to dominant frequency of the surrounding environment. This kind of system is shown in Figure \ref{fiq:resonant_piezo}. In some applications, such as in machines running at the frequency of power grid (50 Hz or 60 Hz) this kind of frequency-tuning is relatively straightforward.
@@ -58,7 +56,7 @@ This kind of resonant harvesting is challenging in a tyre. The energy harvester 
   \label{fiq:tracking_piezo}
 \end{figure}
 
-The results of Singh et al. can be considered as the state of art for resonance-based piezoelectric harvesting in tyre, and their power output was around 40 $\mu W$ at peak efficiency. An estimate of energy needs of tyre sensor is given in Section \ref{sect:power_requirement}, 40 $\mu W$ exceeds energy required by the sleep mode of proposed sensor.
+The results of Singh et al. can be considered as the state of the art for resonance-based piezoelectric harvesting in tyre, and their power output was around 40 $\mu W$ at peak efficiency. An estimate of energy needs of tyre sensor is given in Section \ref{sect:power_requirement}, 40 $\mu W$ exceeds energy required by the sleep mode of proposed sensor.
 
 In conclusion, resonant piezoelectric harvesting is not optimal for car tyre application, as the resonant frequency is fixed and any dynamic tracking capacity is limited. Therefore, impact-based piezoelectric harvesting is studied in next section.
 
@@ -132,7 +130,7 @@ Total power into load can be written as:
 \end{equation}
 It's easy to see from the Equation \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex a conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another issue to consider is the efficiency of the generator: the electrical efficiency is defined as a ratio of the power flowing into the load and the total power generated. The equation \eqref{eq:generator_load_power} can be used to show that when the load impedance is equal to the generator impedance, efficiency is $ 50 \%$. The efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in the tyre, so it is reasonable to try to match the load impedance for maximum power.
 
-In an energy harvesting application, it is important to consider the validity of the established theory when a generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as a coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from the generator is proportional to the fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over a microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
+In an energy harvesting application, it is important to consider the validity of the established theory when a generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as a coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from the generator is proportional to the fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below 2 mm length or in 8 mm\textsuperscript{3} volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over a microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
 
 
 \subsection{Structure of a tyre}
@@ -176,11 +174,11 @@ reached. Energy harvester should survive these tests to be considered a viable d
 \subsection{Environment inside tyre} \label{sect:tyre_environment}
 The energy harvester will be placed inside a tyre. Therefore knowledge of the environment inside the tyre is required for intelligent design of a harvester. This section presents the acceleration and mechanical characteristics inside tyre. 
 
-The tyre will experience acceleration in all three axes\cite{Niskanen2014}. Tangential and centripetal accelerations are dominant, they can reach amplitudes up to 150 g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
+The tyre will experience acceleration in all three axes\cite{Niskanen2014}. Tangential and centripetal accelerations are dominant, they can reach amplitudes up to 150 $g$ in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 $g$ is required for reliability. 
 
 Temperature inside the tyre will reach an equilibrium in ambient + 5 ... 10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual ambient conditions. 
 
-Previous work by Niskanen et al. \cite{Niskanen2014} was used as a basis for analysis of characteristics of acceleration inside the tyre. Raw data from their study was used to determine minimum and maximum values of acceleration as well as frequency components of acceleration inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figure \ref{80_TD} shows time domain amplitude of the acceleration along 3 axes as shown in Figure \ref{tyre_axes}.
+Previous work by Niskanen et al. \cite{Niskanen2014} was used as a basis for analysis of characteristics of acceleration inside the tyre. Raw data from their study was used to determine minimum and maximum values of acceleration as well as frequency components of acceleration inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Time domain amplitude of the acceleration along 3 axes as shown in Figure \ref{tyre_axes} is shown in Figure \ref{80_TD}.
 
 \begin{figure}[htb]
 \begin{center}
