@@ -9,6 +9,8 @@ This section details the test setup on a vibration exciter. The harvesters were 
 \caption{\label{fig:emh_shaker} Test setup for harvester.}
 \end{figure}
 
+The vibration exciter is electromagnetically driven platform which translates electrical signal into mechanical movement. Device under test is fastened onto test "head" of vibration exciter, and the acceleration seen by device is then controlled by electrical signal.
+
 The test setup did not have feedback for the position of the harvester, so exact displacement or acceleration of the harvester is unknown. The output signal from the function generator had amplitude of 6 V peak-to-peak and the gain of power amplifier was set to 9.5 in testing.
 
 \subsection{Experimental results of the electromagnetic harvester}
@@ -26,9 +28,9 @@ The harvester was built according to design presented in Section \ref{sect:emh_d
 \subsubsection{Frequency domain results} \label{sect:emh_fd}
 One of the original design goals of the harvester was to provide a wide-band energy harvester solution. This section presents the frequency domain response of the electromagnetic harvester.
 
-Frequency domain response was obtained by sweeping a wide-band sine signal to power amplifier and measuring the open loop response from the harvester. The first measurement was done on a harvester without ferrofluid applied, Figure \ref{fig:inductive_fd_dry} displays the measurement result. Above graph is the output in decibels, below is the phase shift of the response.
+Frequency domain response was obtained by sweeping a wide-band sine signal to power amplifier and measuring the open loop response from the harvester. The rotor magnet was stuck in the shaft of harvester at low frequencies, and the power output fell quickly on high frequencies. To solve this problem with friction, ferrofluid was applied to the rotor magnet. Ferrofluid is oil which has magnetic particles suspended in emulsion, these magnetic particles create effectively magnetic oil which stays on contact with the magnet surfaces. This approach has been used before in a ocean wave energy harvester \cite{Cheung2009}.
 
-Ferrofluid was applied to rotor magnet in an attempt to reduce the effect of friction. After the application of ferrofluid electromagnetic harvester shows a strong resonance peak near 80 Hz. Phase shift behaviour was not affected by ferrofluid lubrication. Usually the systems which have second order dynamics - such as the mass damper spring system - exhibit resonance peaks when the damping factor is low. It is can therefore be concluded that application of ferrofluid has resulted in lesser frictional losses. Amplitude response is also at higher level across all frequencies, suggesting a better overall performance of the harvester. 
+ After the application of ferrofluid electromagnetic harvester shows a strong resonance peak near 80 Hz as shown in Figure \ref{fig:inductive_fd_dry}. Above graph is the output in decibels, below is the phase shift of the response. Phase shift behaviour was not affected by ferrofluid lubrication. Usually the systems which have second order dynamics - such as the mass damper spring system - exhibit resonance peaks when the damping factor is low. It is can therefore be concluded that application of ferrofluid has resulted in lesser frictional losses. Amplitude response is also at higher level across all frequencies, suggesting a better overall performance of the harvester. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -37,7 +39,7 @@ Ferrofluid was applied to rotor magnet in an attempt to reduce the effect of fri
 \caption{\label{fig:inductive_fd_dry} Frequency domain response of electromagnetic harvester before and after application of ferrofluid. Above graph is the amplitude response, bottom is the phase shift. After application of ferrofluid the resonance peak is notably sharper, indicating a higher quality factor.  }
 \end{figure}
 
-There is a clear resonance peak near 80 Hz. The phase shift is almost exactly 180\degree  at the resonance, which is somewhat curious result as the time domain results and theory predicted the voltage would peak at 90\degree  phase when the acceleration is at zero and speed is highest. Amplitude does not have any specific meaning outside the context of this measurement and comparing output at different frequencies.  There is another resonance peak near 900 Hz, but this frequency is far above frequencies of interest for the application. The -3 dB bandwidth is $ \approx $ 10 Hz wide, which can be compared to results of Singh et al. \cite{Singh2012} referred in Section \ref{sect:background}. Singh et al. achieved approximately 5 Hz wide -3 dB bandwidth with piezoelectric harvester 70 Hz.
+The phase shift is almost exactly 180\degree \ at the resonance, which is somewhat curious result as the time domain results and theory predicted the voltage would peak at 90\degree \ phase when the acceleration is at zero and speed is highest. Amplitude does not have any specific meaning outside the context of this measurement and comparing output at different frequencies.  There is another resonance peak near 900 Hz, but this frequency is far above frequencies of interest for the application. The -3 dB bandwidth is $ \approx $ 10 Hz wide, which can be compared to results of Singh et al. \cite{Singh2012} referred in Section \ref{sect:background}. Singh et al. achieved approximately 5 Hz wide -3 dB bandwidth with piezoelectric harvester 70 Hz.
 
 
 \subsubsection{Time domain results}\label{sect:lg_td}
@@ -54,35 +56,27 @@ The magnet inside the harvester had a notable amount of friction which had to be
 
 The waveforms presented in Figure \ref{fig:inductive_65_open_dry} have some curious features: the response from the harvester is asymmetric, there is a notable valley of no output on the rising edge of the signal while no such edge is visible on falling edge. It should be noted that these valleys do not necessarily correspond to the direction of gravity: the phase of input/output signal can be inversed at any point in the signal chain as the polarity of magnet, direction of the winding of coils, and connection of wires can change.
 
-There seems to be 90\degree  phase shift between excitation and response. This phase shift was expected, as the excitation signal drives acceleration to exciter, so speed of the magnet reaches maximum at the zero-crossings of excitation. This observation matches well theory presented in Section \ref{sect:em_harvest}: Voltage is proportional to the rate of change of magnetic field. 
+There seems to be a 90\degree \ phase shift between excitation and response. This phase shift was expected, as the excitation signal drives acceleration to exciter, so speed of the magnet reaches maximum at the zero-crossings of excitation. This observation matches well theory presented in Section \ref{sect:em_harvest}: Voltage is proportional to the rate of change of magnetic field. 
 
 Amplitude of output is 2 V and the resistance of the coil was measured to be 34 $\Omega$ at DC. Inductive component of the coil impedance is negligible at the frequencies of interest, so only the resistive component needs to be considered. The Optimal load would then be 34 $\Omega$. When these values are substituted in time domain into Equation \ref{eq:generator_load_power} in Section \ref{sect:em_harvest} we obtain:
 
 \begin{equation}\label{eq:emh_resistive_power_output}
-\begin{split}
-  P_{load}(t)& = V(t) \cdot \frac{ 34 \Omega }{ 34 \Omega + 34 \Omega } \cdot \frac{ V(t) }{ 34 \Omega + 34 \Omega } \\
-  P_{load}(t)& = \frac{V(t)^2}{136 \Omega}
-\end{split}
+  P_{load}(t) = V(t) \cdot \frac{ 34 \Omega }{ 34 \Omega + 34 \Omega } \cdot \frac{ V(t) }{ 34 \Omega + 34 \Omega } = \frac{V(t)^2}{136 \Omega}
 \end{equation}
 
 When peak amplitude of 2 V is inserted to the Equation \eqref{eq:emh_resistive_power_output} peak power is $ \approx 30 mW $. Root mean square (RMS) voltages are used to express the average power over time. RMS cannot be accurately calculated from given values, as the waveform is not  mathematically perfect. If the waveform is approximated as triangle wave, the RMS power would be 
 
 \begin{equation} \label{eq:rms_power}
-\begin{split}
-  P_{rms}& = k * P_{peak} \\
-  P_{rms}& = \frac{1}{\sqrt{3}} * P_{peak} \\
-  P_{rms}& \approx 17 mW 
-\end{split}
+  P_{rms} = k * P_{peak} = \frac{1}{\sqrt{3}} * 30 mW \approx 17 mW 
 \end{equation}
-
 where $k$ is a constant multiplier for RMS power for triangle waves. 
 If the excitation power was increased until rotor magnet audibly contacted the endstop magnets, there was no significant change in output voltage. One possible explanation is the valley in output waveform: maybe the rotor magnet was driven to near-contact to stator magnet and when the acceleration was reduced the rotor magnet was accelerated mainly by the magnetic interaction. The end result would be that the length of the valley in the output waveform would vary while the output amplitude would be limited by the magnetic interaction. While further exploration of this phenomenon would be interesting, the testing would be potentially destructive and therefore those experiments were left to future work.
 
 This harvester cannot be used with the circuit designed in Section \ref{sect:electronic_design} as the output amplitude is only 2 V at any reasonable acceleration and frequency. The circuit would require minimum of 4 V to get out of the undervoltage lockout, and this is not achievable even by connecting the bridge rectifier as a voltage doubler because the energy harvesting input still has two diode drops which would keep the voltage below the required threshold.
 
-Next test was done by connecting the harvester to a boost circuit based on TI BQ25504 \cite{bq25504}. BQ25504 has a boost-mode SMPS in energy harvesting input which is able to utilise input voltages as low as 80 mV after startup and it can start up at roughly 330 mV. The detailed description of the circuit is given in Section \ref{sect:BQ25504_schematic}.
+Next test was done by connecting the harvester to a boost circuit based on TI BQ25504 \cite{bq25504}. BQ25504 has a boost-mode SMPS in energy harvesting input which is able to utilise input voltages as low as 80 mV after startup and it can start up at roughly 330 mV. The detailed description of the circuit is given in Section \ref{sect:BQ25504_schematic}. The issue with diode voltage drops was remedied by using schottcky-diodes connected as voltage doubler.
 
-To measure the actual power output, a current-to-voltage converter $\mu$Current \cite{Jones2010} was connected in series to the output of harvester. Measurement was done at scale $1 V = 1 mA$. Waveforms are shown in figure \ref{fig:inductive_vi_65}. It should be noted that the current channel might be saturated, as the $\mu$Current cannot produce output higher than 1.25 V.
+To measure the actual power output, a current-to-voltage converter $\mu$Current \cite{Jones2010} was connected in series to the output of harvester. Measurement was done at scale 1 V = 1 mA. Waveforms are shown in figure \ref{fig:inductive_vi_65}. It should be noted that the current channel might be saturated, as the $\mu$Current cannot produce output higher than 1.25 V.
 
 \begin{figure}[htb]
 \begin{center}
@@ -107,13 +101,8 @@ Power waveform of the harvester is presented in Figure \ref{fig:inductive_power_
 Graphically read average power output is 0.375 mW. One possible reason for the greatly lower power output was the capacitors in voltage doubler structure: the voltage doubler has series capacitance of 10 $\mu$F, which has a reactive impedance of
 
 \begin{equation}
-\begin{split}
-  X_c& = \frac{1}{2 \pi f C} \\
-  X_c& = \frac{1}{2 \pi 65 10\mu} \\
-  X_c& \approx 245 \Omega
-\end{split}
+  X_c = \frac{1}{2 \pi f C}  = \frac{1}{2 \pi 65 10\mu} \approx 245 \Omega
 \end{equation}
-
 at 65 Hz. Total output impedance of circuit would be approximately 280 $\Omega$, which would limit the output current to approximately 7 mA. This theory was tested by simulating the equivalent model of input section of harvester circuit. Simulation model and results are shown in Figure \ref{fig:simulated_doubler}.
 
 \begin{figure}[htb]
@@ -137,11 +126,11 @@ After correcting the experimental current with the simulated value, a lot more r
 
 This section presented the time-domain results of the electromagnetic harvester on a vibration exciter test platform. Approximately 30 mW peak power was obtained, RMS power of 17 mW was achieved to resistive load and power output to harvester was determined to be in range between 0.4 mW and 2 mW. 
 
-\subsection{Experimental results of piezoelectric harvester}
+\subsection{Experimental results of the piezoelectric harvester}
 \subsubsection{Frequency domain results} \label{sect:piezo_fd}
 The frequency domain response of the piezoelectric harvester was obtained in similar manner as with the electromagnetic harvester detailed in Section \ref{sect:emh_fd}. The excitation signal was swept across a wide spectrum and output from the harvester was measured. Frequency domain results are presented in this section.
 
-The frequency sweep result on open circuit is shown in figure \ref{fig:piezo_fd}. A resonance peak can be found at 334 Hz. Similarly to the electromagnetic harvester, the slope is a lot steeper on the frequencies above the resonance peak than below. 
+The frequency sweep result on open circuit is shown in Figure \ref{fig:piezo_fd}. A resonance peak can be found at 334 Hz. Similarly to the electromagnetic harvester, the slope is a lot steeper on the frequencies above the resonance peak than below. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -153,7 +142,7 @@ The frequency sweep result on open circuit is shown in figure \ref{fig:piezo_fd}
 
 The peak frequency is somewhat poorly suited to the environment in the tyre presented in Section \ref{sect:tyre_environment}, as the peak response is significantly above peak frequencies encountered in the tyre. Usually the frequency is tuned downwards by adding mass to the harvester, however this approach is not feasible in this application as the proof mass is limited to avoid damage to the piezoelement due to excessive strain. As the peak frequency was identified near 330 Hz, the time domain analysis were performed on the harvester. Next section details the voltage, current and power outputs into varied loads.
 
-\subsubsection{Time domain results}
+\subsubsection{Time domain results}\label{sect:piezo_td}
 This section presents the time-domain results of the piezoelectric harvester. The test setup of the piezoelectric harvester was similar to the test setup of the electromagnetic harvester, details of the test setup are given in Section \ref{sect:lg_test_setup}. Unlike the electromagnetic harvester, this piezoelectric harvester did not have any obvious minimum acceleration before the friction would be overcome and therefore even very small signal was obtainable. Likewise no maximum value for output signal was found by increasing the power to the vibration exciter. The function generator output signal was held at 6 volts peak-to-peak for the time domain tests and at 3 volts peak-to-peak for frequency domain tests to limit the loosening of the screws by vibration. Gain of the power amplifier was fixed at 9.5.
 
 The piezoelectric harvester was characterised by high output voltages at high output impedance. Open loop response is shown in Figure \ref{fig:piezo_td_open}. The output was not a clean sine-resembling signal as with the electromagnetic harvester, it has sharp downwards peaks and a lot of high-frequency distortion.
@@ -179,23 +168,21 @@ The frequency domain results presented in Section \ref{sect:piezo_fd} were used 
 \begin{equation}
 \begin{split}
   F_c &= \frac{1}{2 \pi R C} \\
-  R   &= \frac{1}{2 \pi C F} \\
-  R   &= \frac{1}{2 \pi 39 nF 330 Hz} \\
-  R   &\approx 12 400 \Omega 
+  R   &= \frac{1}{2 \pi C F}  = \frac{1}{2 \pi 39 nF 330 Hz} \approx 12 400 \Omega 
 \end{split}
 \end{equation}
 
-Theory would predict the maximum power point to be near the cut-off frequency, so the generator was tested with 18k$\Omega$, 12k$\Omega$ and 9k$\Omega$ resistive loads. The peak voltages and calculated power into the load are presented in Table \ref{tbl:piezo_harvester_shaker_output}. The power is calculated by approximating the waveform as a clean sine calculating RMS power from peak voltage values. Method is similar to Equation \eqref{eq:rms_power} presented in Section \ref{sect:lg_td}, but the multiplier $k$ is $\sqrt{2}$ instead of $\sqrt{3}$ as the waveform is approximated as a sine rather than a triangle. While the absolute value of the power output has approximation error, the waveforms obtained with 18 k$\Omega$ and 12 k$\Omega$ are similar enough for comparing the outputs between the loads. On 9 k$\Omega$ load the waveform was clearly more distorted, and therefore calculation for power has greater approximation error..
+Theory would predict the maximum power point to be near the cut-off frequency, so the generator was tested with 18k$\Omega$, 12k$\Omega$ and 9k$\Omega$ resistive loads. The peak voltages and calculated power into the load are presented in Table \ref{tbl:piezo_harvester_shaker_output}. The power is calculated by approximating the waveform as a clean sine calculating RMS power from peak voltage values. Method is similar to Equation \eqref{eq:rms_power} presented in Section \ref{sect:lg_td}, but the multiplier $k$ is $\sqrt{2}$ instead of $\sqrt{3}$ as the waveform is approximated as a sine rather than a triangle. While the absolute value of the power output has approximation error, the waveforms obtained with 18 k$\Omega$ and 12 k$\Omega$ are similar enough for comparing the outputs between the loads. On 9 k$\Omega$ load the waveform was clearly more distorted, and therefore calculation for power has greater approximation error.
 
 \begin{table}[htb]
 \caption{\label{tbl:piezo_harvester_shaker_output} Output power of piezo harvester at 18 k$\Omega$, 12 k$\Omega$ and 9 k$\Omega$ loads.}
 \begin{center}
 \fbox{
-\begin{tabular}{l l l}
+\begin{tabular}{r l l}
 \textbf{Load}          & \textbf{Amplitude} 		& \textbf{Power\textsubscript{rms}}	\\ \hline
-18k $\Omega$  & 7 volts	& 1.36 mW \\ 
-12k $\Omega$  & 6 volts	& 1.50 mW \\ 
-9k  $\Omega$  & 4 volts 	& 0.89 mW
+18 k$\Omega$  & 7 volts	& 1.36 mW \\ 
+12 k$\Omega$  & 6 volts	& 1.50 mW \\ 
+9 k $\Omega$  & 4 volts 	& 0.89 mW
 \end{tabular}
 }
 \end{center}
@@ -250,7 +237,7 @@ While the original idea was to use the circuit presented in Section \ref{sect:el
 According to Rouvala, M. \cite{Rouvala2015} best way to utilise low output levels is to chain voltage multiplier circuit stages to produce higher DC-level and then use a boost circuit to bring the harvested output into desired level. A few ICs from different manufacturers were considered for the new circuit, namely Seiko S-882z \cite{SeikoInstruments2010} charge pumps, Linear Technology LTC3105 \cite{ltc3015} boost charger and Texas Instruments BQ255xx -series boost chargers. As Seiko ICs are not readily available and LTC3105 requires high start-up currents, BQ25504 \cite{bq25504} was chosen as the core for the harvesting circuit. The schematic of harvesting circuit is presented in Figure \ref{fig:bq25504} and Figure \ref{fig:bq25504_mounted} shows the assembled circuit mounted on top of the piezoelectric harvester.
 
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \def\svgwidth{\columnwidth}
     \input{images/own_dwg/circuit/bq25504.pdf_tex}
@@ -268,13 +255,13 @@ The revised harvesting circuit is able to start at 0.33 V input DC voltage, or a
 
 Maximum power point tracking is provided by sampling open-loop voltage of the circuit through voltage divider R1 and R2 every 16 seconds into capacitor C2. After the sample has been stored into the capacitor, BQ25504 attempts to set the current taken from the input so that V\textsubscript{IN} matches V\textsubscript{REF}. 
 
-This form of MPPT is not adjustable by an external microcontroller: while digital potentiometers exist, their current consumption far exceeds the low-power requirements of the circuit. Therefore a fixed ratio had to be set for the circuit. The ratio was set to 80 \% to avoid overloading the piezo element, as it was previously found in section \ref{sect:piezo:_td} that overloading the element has a disastrous effect on efficiency of piezoelectric harvesting whereas underloading has much less pronounced effect on efficiency.
+This form of MPPT is not adjustable by an external microcontroller: while digital potentiometers exist, their current consumption far exceeds the low-power requirements of the circuit. Therefore a fixed ratio had to be set for the circuit. The ratio was set to 80 \% to avoid overloading the piezoelement, as it was previously found in section \ref{sect:piezo_td} that overloading the element has a disastrous effect on efficiency of piezoelectric harvesting whereas underloading has much less pronounced effect on the efficiency.
 
 Resistors R3 through R9 set various operation points for the circuit. Output voltage was set to 3.3 V, and power good -threshold was set to 3 V on charging and 2.2 V on discharging. 
 
 The circuit was built and found to work with both harvester designs on the vibration exciter. As the circuit was usable, further work was carried out using this circuit. Next section details the measurement of the supercapacitor parameters after it was soldered in the circuit.
 
-\subsubsection{Measuring supercapacitor parameters}
+\subsubsection{Measuring the supercapacitor parameters}
 As the energy storage used in the circuit is a supercapacitor and all subsequent measurements are based on values measured from the supercapacitor, the supercapacitor was characterised in-circuit to obtain more accurate values for the system performance. The measuring process and the results are presented in this section.
 
 Application note AN1005 from Cap-XX \cite{an1005} details a simple process for measuring supercapacitor capacitance and Equivalent Series Resistance (ESR). The supercapacitor is first charged to a target voltage and then discharged through a resistor. The parameters are then read from the discharge waveform. A 100 ohm resistor was used as the discharging resistance, the discharge waveform is shown in Figure \ref{fig:scap_discharge}. 
@@ -305,9 +292,7 @@ With ESR known, it is possible to calculate capacitance from the discharge time:
   V_t                            &= V_{initial}e^{-t/R_{tot}C} \\
   \frac{V_t}{V_{initial}}                &= e^{-t/R_{tot}C} \\
   ln\left(\frac{V_t}{V_{initial}}\right) &= \frac{-t}{R_{tot}C} \\
-  C                              &= \frac{-t}{R_{tot}} \frac{1}{ ln\left(\frac{V_t}{V_{initial}}\right)} \\
-  C                              &= \frac{41.6-14.4}{100 + 18.2} \frac{1}{ ln\left(\frac{2.75 V}{3.25 V}\right)} \\
-  C                              &\approx 1.38 F
+  C                              &= \frac{-t}{R_{tot}} \frac{1}{ ln\left(\frac{V_t}{V_{initial}}\right)} = \frac{41.6-14.4}{100 + 18.2} \frac{1}{ ln\left(\frac{2.75 V}{3.25 V}\right)} &\approx 1.38 F
 \end{split}
 \end{equation}
 
@@ -363,7 +348,7 @@ This section presented the real-world power output of piezoelectric harvester. U
 
 \subsection{Comparison to state of art results}\label{sect:state-of-art}
 Energy harvesting systems for tyres have been under a lot of research. While there is no standard test process which would give accurately comparable results from different harvester designs, Kubba et al. \cite{Kubba2014} have 
-collected a comparison table of various energy harvesting systems for tyres. The results of system designed and built in this work has been appended to results and compared to some similar harvester designs in this section. Table \ref{tbl:results} shows the comparable designs.
+collected a comparison table of various energy harvesting systems for tyres. The results of system designed and built in this work has been appended to results and compared to some similar harvester designs in this section. Table \ref{tbl:results} shows some comparable designs.
 
 \begin{table}[htb]
 \caption{\label{tbl:results} The designed system compared to current state of art tyre energy harvester results \cite{Kubba2014}.}

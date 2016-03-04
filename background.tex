@@ -1,6 +1,6 @@
 \subsection{Energy harvesting}\label{sect:background}
 \subsubsection{Overview of methods} \label{sect:overview}
-This section presents the existing energy harvesting methods. Piezoelectric harvesting and electromagnetic harvesting were found to be most promising and they are studied in greater detail in following sections.
+This section presents the existing energy harvesting methods. Piezoelectric harvesting and electromagnetic harvesting were found to be most promising and they are studied in greater detail in the following sections.
 
 \begin{description}
   \item[Electromagnetic] methods are based on magnetic induction of electricity \cite{Kubba2014}.
@@ -48,7 +48,7 @@ A common approach to piezoelectric harvesting is to configure the element as a c
   \label{fiq:resonant_piezo}
 \end{figure}
 
-This kind of resonant harvesting is challenging in tyre. The energy harvester has a very sharp peak efficiency frequencies, and dominant frequency of tyre varies with the speed of car. On the other hand, there is almost guaranteed broadband energy available from moments where tyre contacts road. There is also some research on tuning the resonant frequency of cantilevered piezoelectric harvester by Singh et al \cite{Singh2012}. They used intelligently driven Switch-Mode Power Supply (SMPS) to impedance-match the load to piezoelectric element. As the electro-mechanical nature of piezo means changing load changes the mechanical properties of element, resonance frequency can track the dominant frequency of system within some limits. Figure \ref{fiq:tracking_piezo} shows the tracking behaviour Singh et al achieved, resonance can be adjusted in range of 65 - 70 Hz.
+This kind of resonant harvesting is challenging in a tyre. The energy harvester has a very sharp peak efficiency frequencies, and dominant frequency of tyre varies with the speed of the car. On the other hand, there is almost guaranteed broadband energy available from moments where the tyre contacts road. There is also some research on tuning the resonant frequency of cantilevered piezoelectric harvester by Singh et al \cite{Singh2012}. They used intelligently driven Switch-Mode Power Supply (SMPS) to impedance-match the load to a piezoelectric element. As the electro-mechanical nature of piezoelement means changing load changes the mechanical properties of the piezoelement, resonance frequency can track the dominant frequency of system within some limits. Figure \ref{fiq:tracking_piezo} shows the tracking behaviour Singh et al. achieved, resonance can be adjusted in range of 65 - 70 Hz.
 
 \begin{figure}[htb]
   \begin{center}
@@ -63,7 +63,7 @@ The results of Singh et al. can be considered as the state of art for resonance-
 In conclusion, resonant piezoelectric harvesting is not optimal for car tyre application, as the resonant frequency is fixed and any dynamic tracking capacity is limited. Therefore, impact-based piezoelectric harvesting is studied in next section.
 
 \subsubsection{Impact-based piezoelectric harvesting}
-Previous section concluded resonant harvesting is not optimal method for the environment of application. Another method would be to use an impactor to hit a piezoelectric plate on the tyre. These impacts would provide energy once per rotation. This method has been experimented with before by Manla et al \cite{Manla2009}. Their generator produced 4 $mW$ electrical power.
+Previous section concluded resonant harvesting is not optimal method for the environment of this application. Another method would be to use an impactor to hit a piezoelectric plate on the tyre. These impacts would provide energy once per rotation. This method has been experimented with before by Manla et al \cite{Manla2009}. Their generator produced 4 $mW$ electrical power.
 
 Piezoelectric elements are often electrically modelled as current source with parallel capacitor or a voltage source with series capacitor, as shown in figure \ref{fig:piezo_equivalents} by Kanda et al \cite{Kanda2012}. There are also a lot more complex models which account for mechanical phenomena in piezoelement, as well as loading effects coupling on mechanical model. For the purposes of model identification for the piezo only simplest voltage source (a) and current source (b) models are explored.
 
@@ -75,7 +75,7 @@ Piezoelectric elements are often electrically modelled as current source with pa
   \label{fig:piezo_equivalents}
 \end{figure}
 
-The model (b) in Figure \ref{fig:piezo_equivalents} shows clearly that no DC current can flow in or out of piezo element. Maximum current in any cycle of piezo is limited by the open loop voltage which is seen on the terminals of piezo and the piezo capacitance in series. 
+The model (b) in Figure \ref{fig:piezo_equivalents} shows clearly that no DC current can flow in or out of piezo element. Maximum current in any cycle of a piezoelement is limited by the open loop voltage which is seen on the terminals of the piezoelement and piezo capacitance in series with circuit. 
 
 The implication for impact-based harvesting is somewhat discouraging: total amount of power obtainable is limited by the frequency of impacts. However, if there is any natural resonance frequency for the piezo generator, some of the energy in the impact should be in appropriate spectrum for the generator and the generator could produce decaying amount of power in-between of the impacts.
 
@@ -92,7 +92,7 @@ where $\varepsilon$ is the EMF, $\Phi_{B}$ is magnetic flux through loop area, a
 \end{equation}
 where $N_{turns}$ is the number of turns in a coil \cite[p.998]{universityphysics}.
 
-It's important to notice that magnetic flux through wire $ \Phi_{B} $ can change for a variety of reasons: the source of field can be in motion, strength of field can vary, the coil can be in motion, and the shape of coil can vary. In an energy harvesting application in an environment with vibrations motional energy is readily available, so we focus on energy harvesting methods which either move the source of magnetic field or the coil itself.
+It's important to notice that magnetic flux through wire $ \Phi_{B} $ can change for a variety of reasons: the source of field can be in motion, strength of the field can vary, the coil can be in motion, and the shape of coil can vary. In an energy harvesting application in an environment with vibrations motional energy is readily available, so we focus on energy harvesting methods which either move the source of magnetic field or the coil itself.
 
 It can be determined from the Equation \eqref{eq:emf} that the energy available increases with the strength of magnetic source, number of turns in a coil and rate of change in the magnetic field. 
 
@@ -113,26 +113,26 @@ This model is greatly simplified and it does not account for factors such as the
 The power output can be written formally as:
 
 \begin{equation} \label{eq:gen_simple_power}
-  P_{generated}(s) = \varepsilon(s)*I_{generated}(s),
+  P_{generated}(s) = \varepsilon(s) \cdot I_{generated}(s),
 \end{equation}
 where $P_{generated}(s), \varepsilon(s), I_{generated}(s)$ are complex frequency-domain power, voltage and current. Voltage is determined by EMF as described above. Current can be written as: 
 
 \begin{equation} \label{eq:gen_simple_current}
   I_{generated}(s) = \frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)},
 \end{equation}
-where $Z_{generator}(s) $ and $ Z_{load}(s)$ are complex impedances of load and generator. This equation is valid only for linear systems, so for example rectifying and converting power with switch-mode power supply (SMPS) reduces accuracy of the equation. Substituting Equation \eqref{eq:gen_simple_current} into Equation \eqref{eq:gen_simple_power} we obtain:
+where $Z_{generator}(s) $ and $ Z_{load}(s)$ are complex impedances of load and generator. This equation is valid only for linear systems, so for example rectifying and converting power with a SMPS reduces accuracy of the equation. Substituting Equation \eqref{eq:gen_simple_current} into Equation \eqref{eq:gen_simple_power} we obtain:
 
 \begin{equation}
-  P_{generated}(s) = \varepsilon(s)*\frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)}.
+  P_{generated}(s) = \varepsilon(s) \cdot \frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)}.
 \end{equation}
 Total power into load can be written as:
 
 \begin{equation} \label{eq:generator_load_power}
-  P_{load}(s) = \varepsilon(s)*\frac{Z_{load}(s)}{Z_{generator}(s)+Z_{load}(s)}*\frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)}.
+  P_{load}(s) = \varepsilon(s)  \cdot  \frac{Z_{load}(s)}{Z_{generator}(s)+Z_{load}(s)}  \cdot  \frac{\varepsilon(s)}{Z_{generator}(s)+Z_{load}(s)}.
 \end{equation}
-It's easy to see from Equation \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex a conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another issue to consider is the efficiency of the generator: the electrical efficiency is defined as ratio of the power flowing into the load and the total power generated. The equation \eqref{eq:generator_load_power} can be used to show that when the load impedance is equal to the generator impedance, efficiency is $ 50 \%$. The efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in the tyre, so it makes sense to try to match the load impedance for maximum power.
+It's easy to see from the Equation \eqref{eq:generator_load_power} that if the load impedance is infinite or zero, there is no power generated. It can be shown that maximum power is generated when load impedance is complex a conjugate of generator impedance, $Z_{generator}(s) = {Z_{load}(s)}^*$. Another issue to consider is the efficiency of the generator: the electrical efficiency is defined as a ratio of the power flowing into the load and the total power generated. The equation \eqref{eq:generator_load_power} can be used to show that when the load impedance is equal to the generator impedance, efficiency is $ 50 \%$. The efficiency rises with the load impedance, which is why generators are rarely run at their maximum power. In our application the harvested power is minuscule compared to power available in the tyre, so it is reasonable to try to match the load impedance for maximum power.
 
-In an energy harvesting application, it is important to consider the validity of established theory when a generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as a coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from the generator is proportional to the fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
+In an energy harvesting application, it is important to consider the validity of the established theory when a generator is scaled to centimetres or even smaller dimensions. Many assumptions, such as a coil being tightly wound and made of thin wire might become invalid at microscale. O'Donnel et al. \cite{ODonnell2007} have done a study on the effects of scaling dimensions downwards down to millimetre range, and they concluded that power available from the generator is proportional to the fourth power of generator dimension for cubical generators. Another of their primary findings was that a microfabricated generator becomes more effective than a traditional wire-wound generator when design is scaled below $2 mm$ length or in $8 mm^3$ volume. It can be concluded that in this application it is reasonable to use a wire-wound generator over a microfabricated one, as the generator dimensions can be an order of magnitude larger than this crossover point. 
 
 
 \subsection{Structure of a tyre}
@@ -161,26 +161,26 @@ wedge which reduces shear between belts.
 \end{figure}
 
 
-In endurance testing of the tyres, the car is driven at test track in until
-desired number of course driving kilometres have been reached. In outdoor testing
+In endurance testing of tyres, a car is driven at a test track until
+a desired number of course driving kilometres have been reached. In outdoor testing
 each company has their own proprietary test protocol. Indoor testing has standards
 which mandate pressure, ambient temperature and speed as well as time driven.
 According to Gent et al. \cite{Gent2005} this standard indoor testing takes 34 hours of driving at 120
-km/h.
+km / h.
 
 In addition to endurance testing, there is high-speed testing where tyre speed is
-gradually accelerated in steps of 10 km/h at regular intervals until the target speed is
+gradually accelerated in steps of 10 km / h at regular intervals until the target speed is
 reached. Energy harvester should survive these tests to be considered a viable design for road conditions.
 
 
 \subsection{Environment inside tyre} \label{sect:tyre_environment}
-The energy harvester will be placed inside the tyre. Therefore knowledge of the environment inside tyre is required for intelligent design of harvester. This section presents the acceleration and mechanical characteristics inside tyre. 
+The energy harvester will be placed inside a tyre. Therefore knowledge of the environment inside the tyre is required for intelligent design of a harvester. This section presents the acceleration and mechanical characteristics inside tyre. 
 
 The tyre will experience acceleration in all three axes\cite{Niskanen2014}. Tangential and centripetal accelerations are dominant, they can reach amplitudes up to 150 g in test fixture. In addition a study done by Löhndorf et al. \cite{Lohndorf2007} shows shock survival of up to 4 000 - 5 000 g is required for reliability. 
 
-Temperature inside of the tyre will reach an equilibrium in ambient + 5-10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual ambient conditions. 
+Temperature inside the tyre will reach an equilibrium in ambient + 5 ... 10 \degree C, so operation temperature should be in range of -40 to + 75 \degree C to have some safety margin on top of usual ambient conditions. 
 
-Previous work by Niskanen et al. \cite{Niskanen2014} was used to as a basis for analysis of characteristics of acceleration inside the tyre. Raw data from their study was used to determine minimum and maximum values of acceleration as well as frequency components of acceleration inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figure \ref{80_TD} shows time domain representations of the acceleration along 3 axes as shown in Figure \ref{tyre_axes}.
+Previous work by Niskanen et al. \cite{Niskanen2014} was used as a basis for analysis of characteristics of acceleration inside the tyre. Raw data from their study was used to determine minimum and maximum values of acceleration as well as frequency components of acceleration inside tyre. Data was gathered at 20 km/h, 60 km/h and 80 km/h speeds. Figure \ref{80_TD} shows time domain amplitude of the acceleration along 3 axes as shown in Figure \ref{tyre_axes}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -202,7 +202,7 @@ Frequency domain representations were calculated in Matlab. There are two main c
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[height=4cm]{images/matlab_figures/fft.jpg}
+\includegraphics[height=6cm]{images/matlab_figures/fft.jpg}
 \end{center}
 \caption{Most of the energy is found in 10-100 Hz range.}
 \label{80_FFT_zoom}
@@ -215,7 +215,7 @@ It's important to notice that the sensor used was piezoelectric, which forms a h
 \end{equation}
 where $\omega$ is the rotation speed of tyre and $r$ is the radius of rotation.
 
-The tyre structure deforms during the contact with the road. A study by Xiong et al. \cite{Xiong2014} shows the tyre can compresses over 2 cm during contact in normal driving conditions as shown in Figure \ref{fig:deformation}. The compression can be even greater if the tyre has low internal pressure. 
+The tyre structure deforms during the contact with the road. A study by Xiong et al. \cite{Xiong2014} shows the tyre can compress over 2 cm during contact to road in normal driving conditions as shown in Figure \ref{fig:deformation}. The compression can be even greater if the tyre has low internal pressure. 
 
 \begin{figure}[htb]
     \begin{center}
@@ -224,4 +224,4 @@ The tyre structure deforms during the contact with the road. A study by Xiong et
     \caption{\label{fig:deformation} The tyre radius change in one full rotation measured by the optical tyre sensor. \cite{Xiong2014}}
 \end{figure}
 
-The tyre deformation causes two distinct challenges for mechanical design of tyre: first, the deformation limits maximum height of harvester to avoid mechanical contact between rim and harvester top. Second challenge is in the mounting, as harvester base must survive deformation. In conclusion, tyre operational environment causes significant challenges for long term reliability of any device mounted inside the surface of tyre. 
+The tyre deformation causes two distinct challenges for mechanical design of harvester: first, the deformation limits maximum height of harvester to avoid mechanical contact between rim and the harvester top. Second challenge is in the mounting, as harvester the base must survive deformation. In conclusion, tyre operational environment causes significant challenges for long term reliability of any device mounted inside the surface of tyre. 
