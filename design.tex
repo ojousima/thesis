@@ -61,7 +61,7 @@ A theoretical design of linear generator (LG) was made. Most common generator de
 
 Basic principle of operation of LG is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles, where phases refer to parallel connected coils and poles refer to serially connected coils. Multiple phase designs can have lower resistive losses in wiring, as the resistive losses are proportional to square of the current. However paralleling phases requires separate rectification for each phase, which leads to increased rectification losses. Adding poles to design increases the output voltage and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator \cite{Cheng2008}. 
 
-Energy harvester designs sometimes use several poles to increase the frequency of the power output. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point irrelevant, as energy is available once per revolution of the tire when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimised to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. Mechanical design can utilise resonant vibration to function as energy storage device instead of electrical or electronic storage.
+Energy harvester designs sometimes use several poles to increase the frequency of the power output. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point irrelevant, as energy is available once per revolution of the tyre when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimised to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. Mechanical design can utilise resonant vibration to function as energy storage device instead of electrical or electronic storage.
 
 A rough model for designing the initial prototypes was done previously by Elmes \cite{Elmes2005}. As the work verified the model experimentally and found the model to be reasonably accurate, it was adapted to form basis of linear generator model. The model can account for most of the key design parameters. 
 
@@ -137,12 +137,12 @@ where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, up
 \label{fig:lg}
 \end{figure}
 
-However, the Equation \eqref{eq:magnetic_force_middle} is very inaccurate for magnets which have the diameter larger than the thickness, and the problems are compounded when distance between magnets is small. Therefore final design was optimised using finite element analysis (FEA) for determining $k(U)$. 
+However, the Equation \eqref{eq:magnetic_force_middle} is very inaccurate for magnets which have the diameter larger than the thickness, and the problems are compounded when distance between magnets is small. Therefore final design was optimised using Finite Element Analysis (FEA) for determining $k(U)$. 
 
 Damping parameter $D$ is likewise a function of electromagnetic force acting on the magnet, friction between the magnet and the stator and pneumatic damping caused by compression of air in the generator. Tornincasa et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $D_{emf}, D_{friction},$ and $D_{air}$, respectively. $D_{emf}$ represents power extracted from the system into electrical current, it can be written as:
 
 \begin{equation}\label{eq:d_emd}
-  D_{emf} = BIlsin(\phi),
+  D_{emf} = BIl \cdot sin(\phi),
 \end{equation}
 where $B$ is magnetic field affecting coil (presumed constant), $I$ is current through wire depending on load and generator properties, $l$ is total length of wire in coil and $\phi$ is angle between coil and magnetic field, presumed to be 90 \degree. Assuming the load impedance is the complex conjugate of coil impedance for maximum power harvesting, we can substitute the $I$ with equations \eqref{eq:emf} and \eqref{eq:gen_simple_current}, which results in: 
 
@@ -152,7 +152,7 @@ where $B$ is magnetic field affecting coil (presumed constant), $I$ is current t
 where $Z_{generator}$ is the impedance of generator. As the load impedance is complex conjugate of generator impedance, their series connection has only real (purely resistive) component. This assumption fails on real-world application with non-linear rectification and DC/DC conversion, but it can be used as a basis for analytical examination of the generator. As $\varepsilon$ can be substituted with \eqref{eq:emf}, we obtain:
 
 \begin{equation}\label{eq:d_emf_with_epsilon}
-  D_{emf} = B \frac{-N \frac{d \Phi_{B}}{d t}}{2 \cdot Re(Z_{generator})} l sin(90 \degree),
+  D_{emf} = B \frac{-N \frac{d \Phi_{B}}{d t}}{2 \cdot Re(Z_{generator})} l \cdot sin(90 \degree),
 \end{equation}
 The relationship between $N \Phi_{B}$ and $Re(Z_{generator})$ can be further studied by writing: 
 
@@ -205,10 +205,10 @@ There is also frictional dissipative force as the air passes along the edges of 
   F = \mu \cdot \rho \cdot \frac{\pi d h \dot{z}}{\delta}  
 \end{equation}
 
-Analytical expressions for the equations governing the mechanical movement of magnet inside generator have now been identified. Some of the non-linear functions are hard to solve analytically, therefore experimental and FEA methods are used for creating approximations for these functions. The analytical effect of these parameters is summarised in Table \ref{parameters_of_lg}
+Analytical expressions for the equations governing the mechanical movement of magnet inside generator have now been identified. Some of the non-linear functions are hard to solve analytically, therefore experimental and FEA methods are used for creating approximations for these functions. The analytical effect of these parameters is summarised in Table \ref{parameters_of_lg}.
 
 \begin{table}[htb]
-\caption{\label{parameters_of_lg} Effect of the parameters of the generator}
+\caption{\label{parameters_of_lg} Effect of the parameters of the generator.}
 \begin{center}
 \fbox{
 \begin{tabular}{l l l}
@@ -248,7 +248,7 @@ It can be seen that net force on rotor magnet is dominated by the magnetic force
 \caption{\label{fig:femm_linkage} Flux linkage and rate of change in 0.1 mm steps in generator. Derivative of flux linkage in respect to position is largest near 2 - 3 mm displacement from the centre of the coil.}
 \end{figure}
 
-Based on these results, a magnet moving at the speed of 0.1 mm / s would induce voltage of up to 1.5 mV  in each winding of the coil.
+Based on these results, a magnet moving at the speed of 0.1 mm / s would induce voltage up to 1.5 mV  in each winding of the coil.
 
 \begin{comment}
 
