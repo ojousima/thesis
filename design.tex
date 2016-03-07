@@ -142,8 +142,9 @@ However, the Equation \eqref{eq:magnetic_force_middle} is very inaccurate for ma
 
 Damping parameter $D$ is likewise a function of electromagnetic force acting on the magnet, friction between the magnet and the stator and pneumatic damping caused by compression of air in the generator. Tornincasa et al. \cite{Tornincasa2012} divided this damping parameter into three distinct terms to account for these different physical phenomena in damping. Let us call them $D_{emf}, D_{friction},$ and $D_{air}$, respectively. $D_{emf}$ represents power extracted from the system into electrical current, it can be written as:
 
+
 \begin{equation}\label{eq:d_emd}
-  D_{emf} = BIl \cdot sin(\phi),
+  D_{emf} = BIl \cdot sin(\phi),
 \end{equation}
 where $B$ is magnetic field affecting coil (presumed constant), $I$ is current through wire depending on load and generator properties, $l$ is total length of wire in coil and $\phi$ is angle between coil and magnetic field, presumed to be 90 \degree. Assuming the load impedance is the complex conjugate of coil impedance for maximum power harvesting, we can substitute the $I$ with equations \eqref{eq:emf} and \eqref{eq:gen_simple_current}, which results in: 
 
@@ -163,11 +164,11 @@ The relationship between $N \Phi_{B}$ and $Re(Z_{generator})$ can be further stu
 where $ \iint_{\Sigma (t)} $ signifies possibility of the loop area changing over time and $\,dA$ is an element of the surface area. If we assume the coil to be a perfect tightly wound circle which does not deform over time, we can write the relationship between number of turns in the coil, area of the coil, and resistance of the coil as:
 
 \begin{equation}\label{eq:nA_R}
-  R = N 2\pi \r_{coil} \frac{\rho_{wire}}{A_{wire}},
+  R = N 2\pi r_{coil} \frac{\rho_{wire}}{A_{wire}},
 \end{equation}
-where $\r_{coil}$ is the average radius of coil, $\rho_{wire}$ is the resistivity of the wire and $A_{wire}$ is the cross section of the wire. Substituting Equations \eqref{eq:nA_R} and \eqref{eq:phiB_substitution} into Equation \eqref{eq:d_emf_with_epsilon} we finally obtain expression for $D_{emf}$ which accounts for the design parameters affecting it:
+where $r_{coil}$ is the average radius of coil, $\rho_{wire}$ is the resistivity of the wire and $A_{wire}$ is the cross section of the wire. Substituting Equations \eqref{eq:nA_R} and \eqref{eq:phiB_substitution} into Equation \eqref{eq:d_emf_with_epsilon} we finally obtain expression for $D_{emf}$ which accounts for the design parameters affecting it:
 \begin{equation}\label{eq:d_emf_complete}
-  D_{emf} = B \frac{-N \frac{d [\iint B(r, t) \,dA]}{d t}}{2 \cdot N 2\pi \r_{coil} \frac{\rho_{wire}}{A_{wire}}} l sin(90 \degree).
+  D_{emf} = B \frac{-N \frac{d [\iint B(r, t) \,dA]}{d t}}{2 \cdot N 2\pi r_{coil} \frac{\rho_{wire}}{A_{wire}}} l sin(90 \degree).
 \end{equation}
 
 A few observations can be made from this equation: first, the magnetic field strength $B$ and its derivative in respect to time increase the $D_{emf}$ which signifies the electrically extracted useful power. Therefore it makes sense to use as strong magnets as possible as long as other parameters aren't adversely affected, in effect by using magnets made of strongly magnetic alloy. Second, both the number of turns $N$ and the loop area $A$ are in nominator and denominator, which means they should be optimised to find the best applicable values. Third, resistivity of wire limits the power that can be extracted, so intuition would lead to minimising the wire resistance. In practise the wire resistivity can be decreased by increasing the wire diameter, which in turn leads to lower number of turns in same the volume and mass of the coil. Therefore, also wire diameter and material should be optimised to find desirable compromise in the generator design. 
