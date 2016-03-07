@@ -7,7 +7,7 @@ The complete system consists of energy harvesting source, energy storage for tim
 \begin{center}
 \includegraphics[width=\columnwidth]{images/own_dwg/system_block_diagram.jpg}
 \end{center}
-\caption{\label{fiq:system_block_diagram} Block diagram of a complete system. Harvested energy comes to system from top left, energy management system can charge storage when excess energy is available and use the stored energy when the harvested energy is insufficient for the system operation. On the right side is control logic and sensor. The experimental system has energy harvesting, energy storage and energy management sections, but control logic, radio comminication and sensing are outside the scope of the experimental work.}
+\caption{\label{fiq:system_block_diagram} Block diagram of a complete system. Harvested energy comes to system from top left, energy management system can charge storage when excess energy is available and use the stored energy when the harvested energy is insufficient for the system operation. On the right side is control logic and sensor. The experimental system has energy harvesting, energy storage and energy management sections, but control logic, radio communication and sensing are outside the scope of the experimental work.}
 \label{liitekuva}
 \end{figure}
 
@@ -55,22 +55,22 @@ When the power consumption is compared to values achieved in previous studies of
 Next sections detail designs and preliminary analysis of the electromagnetic generator designs. The initial designs are then evaluated based on their ability to supply power at the required levels to the circuitry.
 
 \subsection{Electromagnetic harvester design}\label{sect:emh_design}
-\subsubsection{Basics of the electromagnetical vibration harvester}
+\subsubsection{Basics of the electromagnetic vibration harvester}
 Electromagnetic harvesters utilise vibrations to move a magnet inside a coil. The movement of a magnet creates a changing magnetic field, which gets coupled to a coil. The coil opposes the change in the magnetic field by inducing electrical current in the loop. A device could be built with a spring-loaded magnet to balance out the static acceleration of a tyre, an added benefit to spring loaded mechanism would be the utilisation of resonant frequency of the spring-mass system: as the system gets a shock, some of the energy would be in correct frequency range to make the magnet oscillate inside coil allowing generation of energy until next shock. The coil will also function as a damper to the system, so ideally no extra damping is required. Modern neodymium magnets do not lose their magnetisation by vibration, so a magnet can be reliable for a long time period. 
 
 Most common generator designs use a rotating magnet inside coils to generate alternating current. As the mechanical apparatus for converting the linear accelerations inside the tyre to rotational movement would add to complexity and cost of the tyre, generator is designed to use the linear motion as the power source.
 
-Basic principle of operation of LG is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles, where phases refer to parallel connected coils and poles refer to serially connected coils. Multiple phase designs can have lower resistive losses in wiring, as the resistive losses are proportional to square of the current. However paralleling phases requires separate rectification for each phase, which leads to increased rectification losses. Adding poles to design increases the output voltage and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator \cite{Cheng2008}. 
+Basic principle of operation of Linear Generator (LG) is similar to traditional rotational generator. A moving magnet creates alternating magnetic field which is coupled to coiled conductors. The conductors oppose this change of magnetic field by inducing an electrical current across their ends. The design can have multiple phases and poles, where phases refer to parallel connected coils and poles refer to serially connected coils. Multiple phase designs can have lower resistive losses in wiring, as the resistive losses are proportional to square of the current. However paralleling phases requires separate rectification for each phase, which leads to increased rectification losses. Adding poles to design increases the output voltage and frequency, but having a small airgap between the coils and magnets becomes critical to maintain efficiency of the generator \cite{Cheng2008}. 
 
 Energy harvester designs sometimes use several poles to increase the frequency of the power output. This increased frequency allows to use smaller energy storage components such as capacitors to keep the device powered until next cycle. The characteristics of the tyre make this point irrelevant, as energy is available once per revolution of the tyre when generator contacts the ground and when the contact ends. Any energy storage device has to maintain power until the next cycle, and no increase of the frequency while generator is in contact can alleviate that. Therefore number of poles is minimised to reduce complexity. Pole number is selected as two, so there is one negative and one positive pole. Mechanical design can utilise resonant vibration to function as energy storage device instead of electrical or electronic storage.
 
-A rough model for designing the initial prototypes was done previously by Elmes \cite{Elmes2005}. The work verified the model experimentally. Simulation based on model predicted 0.86 W of electrical power being produced while experimental walue was 1.0 W. The model can account for most of the key design parameters: number of phases, number of poles, magnetic field strength, wire radius, wire resistivity, winding radius and generator length. As the model was reasonably accurate and complete, it was adapted to form basis of linear generator model. 
+A rough model for designing the initial prototypes was done previously by Elmes \cite{Elmes2005}. The work verified the model experimentally. Simulation based on model predicted 0.86 W of electrical power being produced while experimental value was 1.0 W. The model can account for most of the key design parameters: number of phases, number of poles, magnetic field strength, wire radius, wire resistivity, winding radius and generator length. As the model was reasonably accurate and complete, it was adapted to form basis of linear generator model. 
 
 First design decision was whether to use a design with a moving magnet or a moving coil. Moving coils require flying leads  \cite{Jacob2011},  which is a long-term reliability concern  \cite{Boldea1999}.  Boldea and Nasar \cite[p. 203]{Boldea1999a} conclude moving coil designs aren't practically interesting, so the design of the harvester based on a moving magnet.
 
 There are two different approaches to the generator structure. One is to have magnets inside, and coils on the outer rim of the generator. The other is to use ring magnets on the outer rim and have the coils on the inside. Both methods have their advantages: Having magnets on the outside allows larger and therefore stronger magnets and creates horizontal support for the magnets as they move along the shaft. Having coils on the outside increases wiring radius which results in greater power if other parameters are held equal. 
 
-The height of the generator is constrained to avoid contact between tyre rim and generator. Initially the height of the generator was selected to be 35-40 mm to leave some margin while still being as tall as possible. Lower weight is desirable to avoid unbalancing the tyre, but there is no specific absolute maximum mass for the device. 
+The height of the generator is constrained to avoid contact between tyre rim and generator. Initially the height of the generator was selected to be 35 ... 40 mm to leave some margin while still being as tall as possible. Lower weight is desirable to avoid unbalancing the tyre, but there is no specific absolute maximum mass for the device. 
 
 A method to counter the centripetal acceleration is needed to keep the magnet on the centre of the generator. Ideally, such method would always balance the magnet in the middle of generator against any external constant force, but active control is not achievable without adding to complexity and power consumption of the generator itself. Passive negative feedback method has to be used instead. 
 
@@ -108,7 +108,7 @@ A common starting point for analysis of linear generator is to model the mechani
 \caption{\label{MSD} Mass-spring-damper system.}
 \end{figure}
 
-Mathematical representation of this system is given in Equation \eqref{eq:MSD_basic}. Input Y is the force applied to the base of system, output U is the position of mass block relative to "zero". Zero is usually set to the point where the mass settles when no input, including gravity, is applied to the system. Parameters m, D, and k are mass, damping constant and spring constant of system, respectively. Input-output-equation in time domain can be written as: 
+Mathematical representation of this system is given in Equation \eqref{eq:MSD_basic}. Input Y is the force applied to the base of system, output U is the position of mass block relative to "zero". Zero is usually set to the point where the mass settles when no input, including gravity, is applied to the system. Parameters $m$, $D$, and $k$ are mass, damping constant and spring constant of system, respectively. Input-output-equation in time domain can be written as: 
 
 \begin{equation}\label{eq:MSD_basic}
   m \cdot \ddot{U}(t) + D \cdot \dot{U}(t) + k \cdot U(t) = Y(t). 
@@ -134,7 +134,7 @@ where $m_l, m_u, m_r$ are magnetic dipole moments of lower suspending magnet, up
 \begin{center}
 \includegraphics[height=6cm]{images/own_dwg/generator}
 \end{center}
-\caption{Linear generator with rotor magnet balanced by endstop magnets}.
+\caption{Linear generator with rotor magnet balanced by endstop magnets.}
 \label{fig:lg}
 \end{figure}
 
@@ -232,7 +232,7 @@ This section has given analytical expressions on forces acting on the magnet. Wi
 \subsubsection{Experimental and FEA modelling of the electromagnetic harvester}
 Some parameters of the harvester are difficult to solve analytically. These parameters are estimated using experimental and Finite Element Analysis (FEA) methods. First one of these difficult interactions is the magnetic force between rotor magnet and balancing magnets. A magnetics FEA software FEMM \cite{Meeker2013} was used to create an axisymmetric model of magnets in the generator. Figure \ref{femm_forces} shows the used model. This model has two opposing magnets made of N40-neodymium alloy configured to repel an identical rotor magnet. The magnets have a height of 2.5 mm and diameter of 11 mm, walls of generator are modelled as air. The generator has total height of 25 mm, leaving the rotor magnet 17.5 mm room for movement inside the generator.
 
-Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for the net magnetic force acting on the rotor magnet. A LUA script was used to move the rotor magnet from the bottom of the generator to the top in 0.1 mm increments and values obtained from the analysis were exported as CSV data for plotting in a spreadsheet software. Figure \ref{femm_forces} shows the force on the magnet, positive force meaning force towards the upper magnet and zero height being at in the middle of the cylinder. The centrifugal force acting on magnet was also calculated at various speeds for reference, assuming weight of the magnet is 1.67 g and radius to the bottom of generator is 275 mm.
+Weighted stress tensor integration over rotor magnet volume as implemented by FEMM was used to determine FEA value for the net magnetic force acting on the rotor magnet. A Lua script was used to move the rotor magnet from the bottom of the generator to the top in 0.1 mm increments and values obtained from the analysis were exported as CSV data for plotting in a spreadsheet software. Figure \ref{femm_forces} shows the force on the magnet, positive force meaning force towards the upper magnet and zero height being at in the middle of the cylinder. The centrifugal force acting on magnet was also calculated at various speeds for reference, assuming weight of the magnet is 1.67 g and radius to the bottom of generator is 275 mm.
 
 \begin{figure}[htb]
   \begin{center}
@@ -241,7 +241,7 @@ Weighted stress tensor integration over rotor magnet volume as implemented by FE
   \caption{\label{femm_forces} Steady-state forces acting on a magnet. The magnetic force will counteract centrifugal force at 2 mm, 5 mm and 7 mm displacement from center for speeds of 40, 80 and 120 km / h respectively.}
 \end{figure}
 
-It can be seen that net force on rotor magnet is dominated by the magnetic forces at lower speeds from points where magnetic force graph intersects centrifugal force line. Centrifugal force on magnet becomes significant at higher speeds. The rotor magnet can impact the bottom assuming 20 mm displacement as estimated in Figure \ref{fig:deformation} in Section \ref{sect:tyre_environment}, therefore rubber layer to act as a bumper may be required on stator magnets. Second use for this FEA analysis was to create a look-up table for flux linkage into the coils of the generator. The methodology was similar to determining the forces affecting the rotor magnet: a LUA script was ran to sweep the possible magnet positions, and the look-up table of flux linkage into coils was created. For the purposes of analysis, difference of flux linkage was calculated between each point. The change of flux linkage is a very important parameter, as the power generated is proportional to $\frac{d \Phi_{B}}{d t}$. 
+It can be seen from the points where the magnetic force line intersects the centrifugal force line that net force on the rotor magnet is dominated by the magnetic forces at lower speeds. Centrifugal force on magnet becomes significant at higher speeds. The rotor magnet can impact the bottom assuming 20 mm displacement as estimated in Figure \ref{fig:deformation} in Section \ref{sect:tyre_environment}, therefore rubber layer to act as a bumper may be required on the stator magnets. Second use for this FEA analysis was to create a look-up table for flux linkage into the coils of the generator. The methodology was similar to determining the forces affecting the rotor magnet: a Lua script was ran to sweep the possible magnet positions, and the look-up table of flux linkage into coils was created. For the purposes of analysis, difference of flux linkage was calculated between each point. The change of flux linkage is a very important parameter, as the power generated is proportional to $\frac{d \Phi_{B}}{d t}$. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -367,7 +367,7 @@ The simulated data is plotted Figure \ref{fiq:piezo_simulation_experimental}.
   \begin{center}
   \includegraphics[height=6cm]{images/own_dwg/ltspice_piezo}
   \end{center}
-  \caption{Equivalent model of piezo in LTSpice simulator.}
+  \caption{Equivalent model of piezoelement in LTSpice simulator.}
   \label{fig:piezo_ltspice_equivalent}
 \end{figure}
 
@@ -451,7 +451,7 @@ The BLE113 can be forced to sleep by external control if needed and it can opera
 
 There is an accelerometer ADXL375 onboard the Printed Circuit Board (PCB) to study applications of the tyre sensor system. Schematic of sensor section is shown in Figure \ref{fig:sensor_circuit}. The power supply section has a separate digital Input/Output (IO) supply voltage which is further filtered for the analog sections of board by FB501 and C502. Both supplies are fed by same system level power bus from LTC3331.
 
-ADXL375 is capable of both SPI and Inter-Integrated Circuit (I2C) communication, SPI communication was selected to facilitate faster communication to minimise time control circuit has to be in active mode and to avoid an additional power drain through the required pull-up resistors of the I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{orgate}, which has minimal static power current consumption of 0.1 microamperes. 
+ADXL375 is capable of both SPI and Inter-Integrated Circuit (I2C) communication, SPI communication was selected to facilitate faster communication to minimise time control circuit has to be in active mode and to avoid an additional power drain through the required pull-up resistors of the I2C bus. On the other hand, the circuit has a design feature which requires usage of OR gate to avoid SPI sequence being interpreted as I2C command. The OR was selected to be SN74AUP1T32 \cite{orgate}, which has minimal static power current consumption of 0.1 $\mu$A. 
 
 \begin{figure}[htb]
     \centering
@@ -462,7 +462,7 @@ ADXL375 is capable of both SPI and Inter-Integrated Circuit (I2C) communication,
 
 As the circuit will be subject to extreme accelerations, all the components should be surface mounted. This gives maximal solder pad area to height ratios, which helps to maintain the integrity of circuit. Larger components, such as inductors can be additionally glued for increased mechanical reliability.
 
-The estimated current draw for each of the subcircuits dominated by the main integrated circuit of each subcircuit. The power consumption estimates were presented in section \ref{sect:power_requirement} table \ref{power_consumption_table}.
+The estimated current draw for each of the subcircuits dominated by the main integrated circuit of each subcircuit. The power consumption estimates were presented in Section \ref{sect:power_requirement} Table \ref{power_consumption_table}.
 
 As the schematic was finished, next task was to design the layout of the circuit. Next section describes the design process of laying out the circuit and shows the completed design of circuit board.
 
@@ -490,10 +490,10 @@ The borders between sections are most clearly visible in the power planes of des
   \begin{center}
     \includegraphics[height=6cm]{images/own_dwg/circuit/powerplane.jpg}
   \end{center}
-  \caption{\label{fig:pcb_planes} Power planes of the PCB. Energy harvesting section is on left, control section is on right, radio communication is on top and accelerometer is on bottom.}
+  \caption{\label{fig:pcb_planes} Power planes of the PCB. Energy harvesting section is on the left, control section is on the right, radio communication is on the top and accelerometer is on the bottom.}
 \end{figure}
 
-In addition to mechanical and electrical properties, the PCB also acts as heat sink for mid-power components. In this circuit only LTC3331 needs consideration to thermal design. Circuit uses several vias under the pad of LTC3331 into the ground plane. As copper is an excellent conductor for heat, any thermal output from LTC3331 gets coupled to ground plane where it can spread to a wider area. Practically the expected milliwatt scale power in power supply section does not warrant concern for overheating.
+In addition to mechanical and electrical properties, the PCB also acts as heat sink for mid-power components. In this circuit only LTC3331 needs consideration to thermal design. Circuit uses several vias under the pad of LTC3331 into the ground plane. As copper is an excellent conductor for heat, any thermal output from LTC3331 gets coupled to ground plane where it can spread to a wider area. Practically the expected milliwatt-scale power in power supply section does not warrant concern for overheating.
 
 Battery holder is the only large component in design where G-forces might cause a problem. The holder is on the backside of the PCB, where it can be mounted using adhesives or it can be supported by the harvester top.
 
