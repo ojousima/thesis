@@ -22,8 +22,10 @@ The harvester was built according to design presented in Section \ref{sect:emh_d
 \begin{center}
 \includegraphics[height=8cm]{images/own_pic/inductive_harvester.jpg}
 \end{center}
-\caption{\label{fig:emh_final} Final prototype of electromagnetic harvester.}
+\caption{\label{fig:emh_final} Final prototype of electromagnetic harvester. Balancing magnets can be seen on top and bottom, rotor magnet is floating in middle. Coil is in upper half of the generator.}
 \end{figure}
+
+The final electromagnetic harvester design had width and depth of 35 mm and height of 40 mm. Shaft is made of acryllic with 10 mm inner diameter and 12 mm outer diameter. Rotor magnet is made of N42 neodymium alloy, its diameter is 9.5 mm and length is 12.7 mm. Wire has diameter of 0.1 mm, coil resistance is 34 $\Omega$. Therefore length of coil is approximately 15 m and N\textsubscript{turns} is approximately 400. 
 
 \subsubsection{Frequency domain results} \label{sect:emh_fd}
 One of the original design goals of the harvester was to provide a wide-band energy harvester solution. This section presents the frequency domain response of the electromagnetic harvester.
@@ -139,7 +141,7 @@ The frequency sweep result on open circuit is shown in Figure \ref{fig:piezo_fd}
 The peak frequency is somewhat poorly suited to the environment in the tyre presented in Section \ref{sect:tyre_environment}, as the peak response is significantly above peak frequencies encountered in the tyre. Usually the frequency is tuned downwards by adding mass to the harvester, however this approach is not feasible in this application as the proof mass is limited to avoid damage to the piezoelement due to excessive strain. As the peak frequency was identified near 330 Hz, the time domain analysis were performed on the harvester. Next section details the voltage, current and power outputs into varied loads.
 
 \subsubsection{Time domain results}\label{sect:piezo_td}
-This section presents the time-domain results of the piezoelectric harvester. The test setup of the piezoelectric harvester was similar to the test setup of the electromagnetic harvester, details of the test setup are given in Section \ref{sect:lg_test_setup}. Unlike the electromagnetic harvester, this piezoelectric harvester did not have any obvious minimum acceleration before the friction would be overcome and therefore even very small signal was obtainable. Likewise no maximum value for output signal was found by increasing the power to the vibration exciter. The function generator output signal was held at 6 volts peak-to-peak for the time domain tests and at 3 volts peak-to-peak for frequency domain tests to limit the loosening of the screws by vibration. Gain of the power amplifier was fixed at 9.5.
+This section presents the time-domain results of the piezoelectric harvester. The test setup of the piezoelectric harvester was similar to the test setup of the electromagnetic harvester, details of the test setup are given in Section \ref{sect:lg_test_setup}. Unlike the electromagnetic harvester, this piezoelectric harvester did not have any obvious minimum acceleration before the friction would be overcome and therefore even very small signal was obtainable. No maximum value for output signal was found by increasing the power to the vibration exciter, the output of harvester grew with the input signal. The function generator output signal was held at 6 volts peak-to-peak for the time domain tests and at 3 volts peak-to-peak for frequency domain tests to limit the loosening of the screws by vibration. Gain of the power amplifier was fixed at 9.5.
 
 The piezoelectric harvester was characterised by high output voltages at high output impedance. Open loop response is shown in Figure \ref{fig:piezo_td_open}. The output was not a clean sine-resembling signal as with the electromagnetic harvester, it has sharp downwards peaks and a lot of high-frequency distortion.
 
@@ -168,7 +170,7 @@ The frequency domain results presented in Section \ref{sect:piezo_fd} were used 
 \end{split}
 \end{equation}
 
-Theory would predict the maximum power point to be near the cut-off frequency, so the generator was tested with 18 k$\Omega$, 12 k$\Omega$ and 9 k$\Omega$ resistive loads. The peak voltages and calculated power into the load are presented in Table \ref{tbl:piezo_harvester_shaker_output}. The power is calculated by approximating the waveform as a clean sine calculating RMS power from peak voltage values. Method is similar to Equation \eqref{eq:rms_power} presented in Section \ref{sect:lg_td}, but the multiplier $k$ is $\sqrt{2}$ instead of $\sqrt{3}$ as the waveform is approximated as a sine rather than a triangle. While the absolute value of the power output has approximation error, the waveforms obtained with 18 k$\Omega$ and 12 k$\Omega$ are similar enough for comparing the outputs between the loads. On 9 k$\Omega$ load the waveform was clearly more distorted, and therefore calculation for power has greater approximation error.
+Theory would predict the maximum power point to be near the cut-off frequency, as the cut-off point is where reactive impedance is equal to resistance which fills the constraint of Equation \eqref{eq:matched_load} presented in Section \ref{sect:em_harvest}. The generator was tested with 18 k$\Omega$, 12 k$\Omega$ and 9 k$\Omega$ resistive loads. The peak voltages and calculated power into the load are presented in Table \ref{tbl:piezo_harvester_shaker_output}. The power is calculated by approximating the waveform as a clean sine calculating RMS power from peak voltage values. Method is similar to Equation \eqref{eq:rms_power} presented in Section \ref{sect:lg_td}, but the multiplier $k$ is $\sqrt{2}$ instead of $\sqrt{3}$ as the waveform is approximated as a sine rather than a triangle. While the absolute value of the power output has approximation error, the waveforms obtained with 18 k$\Omega$ and 12 k$\Omega$ are similar enough for comparing the outputs between the loads. On 9 k$\Omega$ load the waveform was clearly more distorted, and therefore calculation for power has greater approximation error.
 
 \begin{table}[htb]
 \caption{\label{tbl:piezo_harvester_shaker_output} Output power of piezo harvester at 18 k$\Omega$, 12 k$\Omega$ and 9 k$\Omega$ loads.}
@@ -317,8 +319,16 @@ The harvester was glued to the inner lining of the tyre as shown in Figure \ref{
 
 The supercapacitor was fully charged before installing in tyre. Measurements were taken next day when the voltage had stabilised near 2.670 V. Tyre was driven at varied speeds and loads. Power output was estimated based stored voltage in supercapacitor before and after the test. The voltage was measured with NI 9215 \cite{ni9215} which has precision required for measuring millivolt-scale differences. 
 
+The power output was calculated from the energy difference between the start and end of the test as per equation \eqref{eq:pwr_capacitance}. The test results are presented in Table \ref{tbl:piezo_harvester_tyre_output}.
+
+\begin{equation} \label{eq:pwr_capacitance}
+  P_{avg} = \frac{E_{t} - E_{0}}{t} = \frac{1}{2} C \frac{\left({V_{t}^2} - {V_{0}^2}\right)}{t}
+\end{equation}
+
+Where $P_{avg}$ is average power generated, $E_t$ is stored energy at the end of measurement, $E_0$ is stored energy at the start of measurement, $C$ is capacitance of the supercapacitor, $V_t$ is voltage of the supercapacitor at the end of measurement, $V_0$ is voltage of supercapacitor at the start of measurement and $t$ is the duration of measurement.
+
 \begin{table}[htb]
-\caption{\label{tbl:piezo_harvester_tyre_output} Measured values from tyre test setup.}
+\caption{\label{tbl:piezo_harvester_tyre_output} Measured values from tyre test setup, power is calculated with Equation \eqref{eq:pwr_capacitance}.}
 \begin{center}
 \fbox{
 \begin{tabular}{l l l l l r}
