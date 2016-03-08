@@ -238,7 +238,7 @@ Weighted stress tensor integration over rotor magnet volume as implemented by FE
   \begin{center}
   \includegraphics[width=\columnwidth]{images/own_dwg/femm_fvsd_dualmagnet.jpg}
   \end{center}
-  \caption{\label{femm_forces} Steady-state forces acting on a magnet. The magnetic force will counteract centrifugal force at 2 mm, 5 mm and 7 mm displacement from center for speeds of 40, 80 and 120 km / h respectively.}
+  \caption{\label{femm_forces} Steady-state forces acting on a magnet. The magnetic force will counteract centrifugal force at 2 mm, 5 mm and 7 mm displacement from centre for speeds of 40, 80 and 120 km / h respectively.}
 \end{figure}
 
 It can be seen from the points where the magnetic force line intersects the centrifugal force line that net force on the rotor magnet is dominated by the magnetic forces at lower speeds. Centrifugal force on magnet becomes significant at higher speeds. The rotor magnet can impact the bottom assuming 20 mm displacement as estimated in Figure \ref{fig:deformation} in Section \ref{sect:tyre_environment}, therefore rubber layer to act as a bumper may be required on the stator magnets. Second use for this FEA analysis was to create a look-up table for flux linkage into the coils of the generator. The methodology was similar to determining the forces affecting the rotor magnet: a Lua script was ran to sweep the possible magnet positions, and the look-up table of flux linkage into coils was created. For the purposes of analysis, difference of flux linkage was calculated between each point. The change of flux linkage is a very important parameter, as the power generated is proportional to $\frac{d \Phi_{B}}{d t}$. 
@@ -298,7 +298,7 @@ Series of tests were ran to determine the characteristics of piezoelectric power
   \label{fiq:thunder_eval}
 \end{figure}
 
-This setup was replicated using a solenoid actuator as an impact force generator, a precision scale as load cell to measure the impact force and an oscilloscope to view the output waveforms. An eraser was cut to shape to act as preload bellow to spread the impact over larger surface area of piezoelement. Displacement was not measured. The test setup is shown in Figure \ref{fiq:piezo_impact}. An electronics prototyping platform, "breadboard", was used to house test the electronics including a resistive ladder and an Arduino to trigger the solenoid at adjustable duty cycles. Load force was controlled by setting the stroke length of the solenoid shaft and fine tuned by adjusting the voltage over the solenoid. 
+This setup was replicated using a solenoid actuator as an impact force generator, a precision scale as load cell to measure the impact force and an oscilloscope to view the output waveforms. An eraser was cut to shape to act as preload bellow to spread the impact over larger surface area of piezo element. Displacement was not measured. The test setup is shown in Figure \ref{fiq:piezo_impact}. An electronics prototyping platform, "breadboard", was used to house test the electronics including a resistive ladder and an Arduino to trigger the solenoid at adjustable duty cycles. Load force was controlled by setting the stroke length of the solenoid shaft and fine tuned by adjusting the voltage over the solenoid. 
 
 \begin{figure}[htb]
   \begin{center}
@@ -308,7 +308,7 @@ This setup was replicated using a solenoid actuator as an impact force generator
   \label{fiq:piezo_impact}
 \end{figure}
 
-The measurement results are shown in Figure \ref{fiq:piezo_measurement_chart}. Output voltage scales with square of impact force, which is sensible as the work done can be expressed as $W = F \cdot d$, where $W$ is work, $F$ is force and $d$ is a distance the force acts on an object. As the displacement of the piezoelement grows with the applied force, total work and therefore energy grows with the both terms. 
+The measurement results are shown in Figure \ref{fiq:piezo_measurement_chart}. Output voltage scales with square of impact force, which is sensible as the work done can be expressed as $W = F \cdot d$, where $W$ is work, $F$ is force and $d$ is a distance the force acts on an object. As the displacement of the piezo element grows with the applied force, total work and therefore energy grows with the both terms. 
 
 \begin{figure}[htb]
   \begin{center}
@@ -330,13 +330,13 @@ The time constants for a voltage halving were graphically measured from oscillos
   \label{fig:piezo_time_capacitance}
 \end{figure}
 
-The half-time data can be used to calculate the capacitance of the piezoelement using the RC-time constant of circuit:
+The half-time data can be used to calculate the capacitance of the piezo element using the RC-time constant of circuit:
 
 \begin{equation}
   C=\frac{t}{-ln(\frac{1}{2})R} 
 \end{equation}
 
-Datasheet of TH-5C provides a value of 39 nF as the capacitance, while these calculated values are notably higher and rise with the loading of the piezoelement. Most likely explanation of this observation is the mechanical response time of system: the solenoid plunger will take some milliseconds to reach new force equilibrium, and this effect becomes more pronounced at smaller time constants of the RC-system. Using the known voltage and capacitance energy and peak power in impact can be determined:
+Datasheet of TH-5C provides a value of 39 nF as the capacitance, while these calculated values are notably higher and rise with the loading of the piezo element. Most likely explanation of this observation is the mechanical response time of system: the solenoid plunger will take some milliseconds to reach new force equilibrium, and this effect becomes more pronounced at smaller time constants of the RC-system. Using the known voltage and capacitance energy and peak power in impact can be determined:
  
 \begin{equation}
    E = \frac{1}{2}V^2C
@@ -348,7 +348,7 @@ Datasheet of TH-5C provides a value of 39 nF as the capacitance, while these cal
  
 The results of calculations are shown in Figure \ref{fig:piezo_power_energy}. As these calculations are based on inaccurately measured time, they should not be used as reference for any further calculations. However, trends can be seen in these values. 
  
- Interestingly the peak work done by the piezoelement to the resistor seems to be almost constant on all load levels. This is probably a consequence of the logarithmic voltage-load relationship described earlier in this section. There is a possibly significant result based on these findings: total energy obtainable from harvester grows with the load resistance. However, this is applicable only for a resistive load under impact-based energy generation.
+ Interestingly the peak work done by the piezo element to the resistor seems to be almost constant on all load levels. This is probably a consequence of the logarithmic voltage-load relationship described earlier in this section. There is a possibly significant result based on these findings: total energy obtainable from harvester grows with the load resistance. However, this is applicable only for a resistive load under impact-based energy generation.
  
  \begin{figure}[htb]
   \begin{center}
@@ -358,7 +358,7 @@ The results of calculations are shown in Figure \ref{fig:piezo_power_energy}. As
   \label{fig:piezo_power_energy}
 \end{figure}
 
-Based on these results, an electrical equivalent model of the circuit was designed. The model is shown in Figure \ref{fig:piezo_ltspice_equivalent}. Model has two parallel current sources, one to simulate impact of the plunger on the piezoelement and other to simulate the release of the impact. Capacitance in parallel is set to 39 nF as given in the datasheet, load resistance is parametricised to step through the experimental values.
+Based on these results, an electrical equivalent model of the circuit was designed. The model is shown in Figure \ref{fig:piezo_ltspice_equivalent}. Model has two parallel current sources, one to simulate impact of the plunger on the piezo element and other to simulate the release of the impact. Capacitance in parallel is set to 39 nF as given in the datasheet, load resistance is parametricised to step through the experimental values.
 
 Model was tuned by first calculating the total current transfer to reach the open circuit voltage over capacitor. Then maximum current of current sources was matched to the peak voltage over highest load.
 The simulated data is plotted Figure \ref{fiq:piezo_simulation_experimental}.
@@ -367,7 +367,7 @@ The simulated data is plotted Figure \ref{fiq:piezo_simulation_experimental}.
   \begin{center}
   \includegraphics[height=6cm]{images/own_dwg/ltspice_piezo}
   \end{center}
-  \caption{Equivalent model of piezoelement in LTSpice simulator.}
+  \caption{Equivalent model of piezo element in LTSpice simulator.}
   \label{fig:piezo_ltspice_equivalent}
 \end{figure}
 
@@ -375,7 +375,7 @@ The simulated data is plotted Figure \ref{fiq:piezo_simulation_experimental}.
   \begin{center}
   \includegraphics[height=8cm]{images/own_dwg/ltspice_piezo_simulation}
   \end{center}
-  \caption{Simulated piezoelement output voltage and power waveforms. Loads are stepped through list to match experimental values at 2000 gf impact force. Black: 50k; Blue: 150k; Red: 250k; Green: 350k; Pink: 450k; Gray: 550k}
+  \caption{Simulated piezo element output voltage and power waveforms. Loads are stepped through list to match experimental values at 2000 gf impact force. Black: 50k; Blue: 150k; Red: 250k; Green: 350k; Pink: 450k; Gray: 550k}
   \label{fiq:piezo_simulation_experimental}
 \end{figure}
 
@@ -498,7 +498,7 @@ In addition to mechanical and electrical properties, the PCB also acts as heat s
 Battery holder is the only large component in design where G-forces might cause a problem. The holder is on the backside of the PCB, where it can be mounted using adhesives or it can be supported by the harvester top.
 
 \subsection{Mechanical design of the harvester}
-This section details the mechanical considerations for both piezolectric and electromagnetic harvesters. First material options are explored, then the design for generators is presented.
+This section details the mechanical considerations for both piezoelectric and electromagnetic harvesters. First material options are explored, then the design for generators is presented.
 
 Material for the generator has a few requirements. It has to have at least as good temperature characteristics as the magnet being used and it must be hard enough to not deform under impacts. Low friction coefficient is desirable as this leads to smaller  frictional losses, and long time durability under wear is of course desired. Being lightweight and easily machinable are also desired characteristics. As the generator is small, volumetric cost of the material is of little concern. For the electro-magnetic generator design material ferromagnetism has to be considered. Table \ref{parameters_of_materials} displays comparison of different materials considered for this application.
 
@@ -517,7 +517,7 @@ PTFE(Teflon)      & Very low   & Lowest                      & Lowest    & -190.
 Polycarbonate     & Very high  & High       & -         & -60... + 125 \degree C \\ 
 PA 6 (Nylon)      & Low        & Medium                      & High      & -40... + 80 \degree C  \\ 
 Oil-infused Nylon & Low        & Very low                    & Very high & -20... + 105 \degree C \\ 
-Acryllic          & High       & -                           & -         & -40... + 70 \degree C \\ 
+Acrylic          & High       & -                           & -         & -40... + 70 \degree C \\ 
 Polyacetal (POM C)& Medium     & Low                         & Low       & -50... + 105 \degree C \\ 
 Carbon fiber     & Highest     & Highest                         & High       & ... + 80 \degree C \\ 
 \end{tabular}
@@ -528,7 +528,7 @@ Carbon fiber     & Highest     & Highest                         & High       & 
 
 From the Table \ref{parameters_of_materials} it can be seen that there is no single best material for the harvester. Polycarbonate and carbon fibre have excellent mechanical strength but they have high friction. Teflon and nylon have lower friction, but they have poor mechanical rigidity. 
 
-In the end acryllic was chosen as the material of the harvester. While acryllic is not a best material by any single metric, it has the necessary properties. Acryllic is easy to machine and readily available which were decisive factors for the selection of acrylic over other materials. 
+In the end acrylic was chosen as the material of the harvester. While acrylic is not a best material by any single metric, it has the necessary properties. Acrylic is easy to machine and readily available which were decisive factors for the selection of acrylic over other materials. 
 
 As the minimum diameter of the harvester is defined by piezoelement diameter of 34 mm, both generators are designed with 35 mm square bases. Both generators also use same mounting hole pattern for electronics: 2.75 mm diameter holes at the corners of the square.
 

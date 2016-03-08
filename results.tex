@@ -152,7 +152,7 @@ The piezoelectric harvester was characterised by high output voltages at high ou
 \caption{\label{fig:piezo_td_open} Open loop response from the piezoelectric harvester. Red is the excitation signal, blue is the response.}
 \end{figure}
 
-While output signal is off the scale, negative peaks were measured at -12 V. Peak-to-peak amplitude was therefore roughly 20 V. The search for the maximum power point was started by modeling the circuit as RC- high pass filter shown in Figure \ref{fig:rc_highpass} with piezo capacitance as the series capacitor and load as the resistor. 
+While output signal is off the scale, negative peaks were measured at -12 V. Peak-to-peak amplitude was therefore roughly 20 V. The search for the maximum power point was started by modelling the circuit as RC- high pass filter shown in Figure \ref{fig:rc_highpass} with piezo capacitance as the series capacitor and load as the resistor. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -253,7 +253,7 @@ The revised harvesting circuit is able to start at 0.33 V input DC voltage, or a
 
 Maximum power point tracking is provided by sampling open-loop voltage of the circuit through voltage divider R1 and R2 every 16 seconds into capacitor C2. After the sample has been stored into the capacitor, BQ25504 attempts to set the current taken from the input so that V\textsubscript{IN} matches V\textsubscript{REF}. 
 
-This form of MPPT is not adjustable by an external microcontroller: while digital potentiometers exist, their current consumption far exceeds the low-power requirements of the circuit. Therefore a fixed ratio had to be set for the circuit. The ratio was set to 80 \% to avoid overloading the piezoelement, as it was previously found in section \ref{sect:piezo_td} that overloading the element has a disastrous effect on efficiency of piezoelectric harvesting whereas underloading has much less pronounced effect on the efficiency.
+This form of MPPT is not adjustable by an external microcontroller: while digital potentiometers exist, their current consumption far exceeds the low-power requirements of the circuit. Therefore a fixed ratio had to be set for the circuit. The ratio was set to 80 \% to avoid overloading the piezo element, as it was previously found in section \ref{sect:piezo_td} that overloading the element has a disastrous effect on efficiency of piezoelectric harvesting whereas underloading has much less pronounced effect on the efficiency.
 
 Resistors R3 through R9 set various operation points for the circuit. Output voltage was set to 3.3 V, and power good -threshold was set to 3 V on charging and 2.2 V on discharging. 
 

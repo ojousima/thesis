@@ -46,7 +46,7 @@ A common approach to piezoelectric harvesting is to configure the element as a c
   \label{fiq:resonant_piezo}
 \end{figure}
 
-This kind of resonant harvesting is challenging in a tyre. The energy harvester has a very sharp peak efficiency frequencies, and dominant frequency of tyre varies with the speed of the car. On the other hand, there is almost guaranteed broadband energy available from moments where the tyre contacts road. There is also some research on tuning the resonant frequency of cantilevered piezoelectric harvester by Singh et al. \cite{Singh2012}. They used intelligently driven Switch-Mode Power Supply (SMPS) to impedance-match the load to a piezoelectric element. As the electro-mechanical nature of piezoelement means changing load changes the mechanical properties of the piezoelement, resonance frequency can track the dominant frequency of system within some limits. Figure \ref{fiq:tracking_piezo} shows the tracking behaviour Singh et al. achieved, resonance can be adjusted in range of 65 - 70 Hz.
+This kind of resonant harvesting is challenging in a tyre. The energy harvester has a very sharp peak efficiency frequencies, and dominant frequency of tyre varies with the speed of the car. On the other hand, there is almost guaranteed broadband energy available from moments where the tyre contacts road. There is also some research on tuning the resonant frequency of cantilevered piezoelectric harvester by Singh et al. \cite{Singh2012}. They used intelligently driven Switch-Mode Power Supply (SMPS) to impedance-match the load to a piezoelectric element. As the electro-mechanical nature of piezo element means changing load changes the mechanical properties of the piezo element, resonance frequency can track the dominant frequency of system within some limits. Figure \ref{fiq:tracking_piezo} shows the tracking behaviour Singh et al. achieved, resonance can be adjusted in range of 65 - 70 Hz.
 
 \begin{figure}[htb]
   \begin{center}
@@ -63,7 +63,7 @@ In conclusion, resonant piezoelectric harvesting is not optimal for car tyre app
 \subsubsection{Impact-based piezoelectric harvesting}
 Previous section concluded resonant harvesting is not optimal method for the environment of this application. Another method would be to use an impactor to hit a piezoelectric plate on the tyre. These impacts would provide energy once per rotation. This method has been experimented with before by Manla et al \cite{Manla2009}. Their generator produced 4 mW electrical power.
 
-Piezoelectric elements are often electrically modelled as current source with parallel capacitor or a voltage source with series capacitor, as shown in Figure \ref{fig:piezo_equivalents} by Kanda et al. \cite{Kanda2012}. There are also a lot more complex models which account for mechanical phenomena in piezoelement, as well as loading effects coupling on mechanical model. For the purposes of model identification for the piezo only simplest voltage source (a) and current source (b) models are explored.
+Piezoelectric elements are often electrically modelled as current source with parallel capacitor or a voltage source with series capacitor, as shown in Figure \ref{fig:piezo_equivalents} by Kanda et al. \cite{Kanda2012}. There are also a lot more complex models which account for mechanical phenomena in piezo element, as well as loading effects coupling on mechanical model. For the purposes of model identification for the piezo only simplest voltage source (a) and current source (b) models are explored.
 
 \begin{figure}[htb]
   \begin{center}
@@ -73,7 +73,7 @@ Piezoelectric elements are often electrically modelled as current source with pa
   \label{fig:piezo_equivalents}
 \end{figure}
 
-The model (b) in Figure \ref{fig:piezo_equivalents} shows clearly that no DC current can flow in or out of piezo element. Maximum current in any cycle of a piezoelement is limited by the open loop voltage which is seen on the terminals of the piezoelement and piezo capacitance in series with circuit. 
+The model (b) in Figure \ref{fig:piezo_equivalents} shows clearly that no DC current can flow in or out of piezo element. Maximum current in any cycle of a piezo element is limited by the open loop voltage which is seen on the terminals of the piezo element and piezo capacitance in series with circuit. 
 
 The implication for impact-based harvesting is somewhat discouraging: total amount of power obtainable is limited by the frequency of impacts. However, if there is any natural resonance frequency for the piezo generator, some of the energy in the impact should be in appropriate spectrum for the generator and the generator could produce decaying amount of power in-between of the impacts.
 
