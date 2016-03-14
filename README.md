@@ -21,7 +21,7 @@ Some of the energy harvesting hardware under folder "hardware" has sparked inter
 
 PCB designs are licensed under CERN OHL 1.2, please see [LICENSE.md](/LICENSE.md) for details.
 
-My personal favourite piece of work during the thesis was making animations of magnetic fields using a magnetics FEA software *FEMM*, Lua scripts to step parameters of the simulation and making images of fields strenghts and *convert* to create animations from the images.
+My personal favourite piece of work during the thesis was making animations of magnetic fields using a magnetics FEA software *FEMM*. Lua scripts were used to step parameters of the simulation and exporting images of fields strenghts. Finally *convert* was used to create animations from the images.
 for example `convert -delay 12 -loop 0 magnet*.bmp animated.gif` .
 
 ![animations of magnetic fields](./simulation/FEMM/imgout/aluminum_nobias.gif)
