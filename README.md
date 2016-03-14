@@ -19,7 +19,7 @@ feasible with the presented harvester.
 ##The Good Parts
 Some of the energy harvesting hardware under folder "hardware" has sparked interest. Printed circuit boards are designed in open source software KiCAD which allows anyone to explore and modify designs without investing in expensive software licenses. 
 
-PCB designs are licensed under CERN OHL 1.2, please see [LICENCE.md](/LICENSE.md) for details.
+PCB designs are licensed under CERN OHL 1.2, please see [LICENSE.md](/LICENSE.md) for details.
 
 My personal favourite piece of work during the thesis was making using *FEMM*, Lua scripts and *convert*,
 for example `convert -delay 12 -loop 0 magnet*.bmp animated.gif` .
