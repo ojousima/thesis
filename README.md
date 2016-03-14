@@ -21,8 +21,12 @@ Some of the energy harvesting hardware under folder "hardware" has sparked inter
 
 PCB designs are licensed under CERN OHL 1.2, please see [LICENCE.md](/LICENSE.md) for details.
 
-My personal favourite piece of work during the thesis was making ![animations of magnetic fields](./simulation/FEMM/imgout/aluminum_nobias.gif) using *FEMM*, Lua scripts and *convert*,
+My personal favourite piece of work during the thesis was making using *FEMM*, Lua scripts and *convert*,
 for example `convert -delay 12 -loop 0 magnet*.bmp animated.gif` .
 
-Maybe the most interesting detail in the thesis is application of ferrofluid in electromagnetic harvester design. Ferrofluid significantly lowers the friction rotor magnet sees inside the shaft of generator, bringing a lot sharper peak in frequency output as seen in ![Figure](./images/own_measurement/generator_shaker/inductive_fd_combined).
+![animations of magnetic fields](./simulation/FEMM/imgout/aluminum_nobias.gif)
+
+Maybe the most interesting detail in the thesis is application of ferrofluid in electromagnetic harvester design. Ferrofluid significantly lowers the friction rotor magnet sees inside the shaft of generator, bringing a lot sharper peak in frequency output as seen in figure below.
+
+![Figure](./images/own_measurement/generator_shaker/inductive_fd_combined.png).
 
